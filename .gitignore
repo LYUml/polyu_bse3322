@@ -1,0 +1,33 @@
+# Local generated results
+output/*
+!output/.gitkeep
+tmp/
+*.tmp
+*.log
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+.pytest_cache/
+
+# Local credentials and environment
+.env
+.env.*
+!.env.example
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+desktop.ini
+.idea/
+
+# Generated FDS outputs; preserve model inputs and selected curated evidence
+*.smv
+*.sf
+*.bf
+*.s3d
+*.prt5
+*.restart
+*.q
+*.sz
