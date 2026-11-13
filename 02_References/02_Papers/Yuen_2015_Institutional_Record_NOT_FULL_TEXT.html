@@ -1,0 +1,926 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head><!-- inj yui3-seed: --><script type='text/javascript' src='//cdnjs.cloudflare.com/ajax/libs/yui/3.6.0/yui/yui-min.js'></script><script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'></script><!-- Adobe Analytics --><script type='text/javascript' src='https://assets.adobedtm.com/4a848ae9611a/d0e96722185b/launch-d525bb0064d8.min.js'></script><script type='text/javascript' src=/assets/nr_browser_production.js></script>
+
+<!-- def.1 -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width">
+<title>
+"LES and multi-step chemical reaction in compartment fires" by A.C.Y. Yuen, G.H. Yeoh et al.
+</title>
+
+
+<!-- FILE article_meta-tags.inc --><!-- FILE: /srv/sequoia/main/data/assets/site/article_meta-tags.inc -->
+<meta itemprop="name" content="LES and multi-step chemical reaction in compartment fires">
+<meta property="og:title" content="LES and multi-step chemical reaction in compartment fires">
+<meta name="twitter:title" content="LES and multi-step chemical reaction in compartment fires">
+<meta property="article:author" content="A.C.Y. Yuen">
+<meta name="author" content="A.C.Y. Yuen">
+<meta property="article:author" content="G.H. Yeoh">
+<meta name="author" content="G.H. Yeoh">
+<meta property="article:author" content="V. Timchenko">
+<meta name="author" content="V. Timchenko">
+<meta property="article:author" content="T. Barber">
+<meta name="author" content="T. Barber">
+<meta name="robots" content="noodp, noydir">
+<meta name="description" content="Numerical studies on two large-scale compartment buoyant fires were performed utilizing a fully coupled Large Eddy Simulation (LES) and strained laminar flamelet combustion model, extended from single-step to multistep chemical reaction. Two Subgrid-Scaled (SGS) turbulent models, Smagorinsky and WALE, were examined for center and corner fires. Compared with the experimental and existing numerical data, the WALE model with a multistep chemical reaction gave the best prediction for the upper hot layer and doorway gas temperatures. Specie concentrations including oxygen, carbon dioxide, and carbon monoxide were also found to compare well against the experimental measurements when the WALE model with a multistep chemical reaction was adopted.">
+<meta itemprop="description" content="Numerical studies on two large-scale compartment buoyant fires were performed utilizing a fully coupled Large Eddy Simulation (LES) and strained laminar flamelet combustion model, extended from single-step to multistep chemical reaction. Two Subgrid-Scaled (SGS) turbulent models, Smagorinsky and WALE, were examined for center and corner fires. Compared with the experimental and existing numerical data, the WALE model with a multistep chemical reaction gave the best prediction for the upper hot layer and doorway gas temperatures. Specie concentrations including oxygen, carbon dioxide, and carbon monoxide were also found to compare well against the experimental measurements when the WALE model with a multistep chemical reaction was adopted.">
+<meta name="twitter:description" content="Numerical studies on two large-scale compartment buoyant fires were performed utilizing a fully coupled Large Eddy Simulation (LES) and strained laminar flamelet combustion model, extended from single-step to multistep chemical reaction. Two Subgrid-Scaled (SGS) turbulent models, Smagorinsky and WALE, were examined for center and corner fires. Compared with the experimental and existing numerical data, the WALE model with a multistep chemical reaction gave the best prediction for the upper hot layer and doorway gas temperatures. Specie concentrations including oxygen, carbon dioxide, and carbon monoxide were also found to compare well against the experimental measurements when the WALE model with a multistep chemical reaction was adopted.">
+<meta property="og:description" content="Numerical studies on two large-scale compartment buoyant fires were performed utilizing a fully coupled Large Eddy Simulation (LES) and strained laminar flamelet combustion model, extended from single-step to multistep chemical reaction. Two Subgrid-Scaled (SGS) turbulent models, Smagorinsky and WALE, were examined for center and corner fires. Compared with the experimental and existing numerical data, the WALE model with a multistep chemical reaction gave the best prediction for the upper hot layer and doorway gas temperatures. Specie concentrations including oxygen, carbon dioxide, and carbon monoxide were also found to compare well against the experimental measurements when the WALE model with a multistep chemical reaction was adopted.">
+<meta name="keywords" content="Carbon, Carbon dioxide, Carbon monoxide, Large eddy simulation, Combustion model, Compartment fires, Fully-coupled, Gas temperature, Laminar flamelets, Numerical data, Single-step, Turbulent models, Chemical reactions">
+<meta name="bepress_citation_series_title" content="Research outputs 2014 to 2021">
+<meta name="bepress_citation_author" content="Yuen, A.C.Y.">
+<meta name="bepress_citation_author" content="Yeoh, G.H.">
+<meta name="bepress_citation_author_institution" content="Edith Cowan University">
+<meta name="bepress_citation_author" content="Timchenko, V.">
+<meta name="bepress_citation_author" content="Barber, T.">
+<meta name="bepress_citation_title" content="LES and multi-step chemical reaction in compartment fires">
+<meta name="bepress_citation_date" content="2015">
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_download_link.inc -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/article_meta-tags.inc (cont) -->
+<meta name="bepress_citation_abstract_html_url" content="https://ro.ecu.edu.au/ecuworkspost2013/1348">
+<meta name="bepress_citation_publisher" content="Taylor and Francis Inc.">
+<meta name="bepress_citation_doi" content="10.1080/10407782.2015.1012886">
+<meta name="bepress_citation_online_date" content="2016/2/11">
+<meta name="viewport" content="width=device-width">
+<!-- Additional Twitter data -->
+<meta name="twitter:card" content="summary">
+<!-- Additional Open Graph data -->
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://ro.ecu.edu.au/ecuworkspost2013/1348">
+<meta property="og:site_name" content="Research Online">
+
+
+
+
+<!-- FILE: article_meta-tags.inc (cont) -->
+<meta name="bepress_is_article_cover_page" content="1">
+
+
+<!-- sh.1 -->
+<link rel="stylesheet" href="/ir-style.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/ir-custom.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../ir-custom.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/ir-local.css" type="text/css" media="screen">
+<link rel="stylesheet" href="../ir-local.css" type="text/css" media="screen">
+<link rel="stylesheet" href="/ir-print.css" type="text/css" media="print">
+<link type="text/css" rel="stylesheet" href="/assets/floatbox/floatbox.css">
+<link rel="alternate" type="application/rss+xml" title="Site Feed" href="/recent.rss">
+<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon">
+<!--[if IE]>
+<link rel="stylesheet" href="/ir-ie.css" type="text/css" media="screen">
+<![endif]-->
+
+<!-- JS  -->
+<script type="text/javascript" src="/assets/jsUtilities.js"></script>
+<script type="text/javascript" src="/assets/footnoteLinks.js"></script>
+<script type="text/javascript" src="/assets/scripts/yui-init.pack.js"></script>
+<script type="text/javascript" src="/assets/scripts/bepress-init.debug.js"></script>
+<script type="text/javascript" src="/assets/scripts/JumpListYUI.pack.js"></script>
+
+<!-- end sh.1 -->
+
+
+
+
+<script type="text/javascript">var pageData = {"page":{"environment":"prod","productName":"bpdg","language":"en","name":"ir_series:article","businessUnit":"els:rp:st"},"visitor":{}};</script>
+
+</head>
+<body id="geo-series">
+<!-- FILE /srv/sequoia/main/data/ro.ecu.edu.au/assets/header.pregen --><!-- FILE: /srv/sequoia/main/data/assets/site/mobile_nav.inc --><!--[if !IE]>-->
+<script src="/assets/scripts/dc-mobile/dc-responsive-nav.js"></script>
+
+<header id="mobile-nav" class="nav-down device-fixed-height" style="visibility: hidden;">
+  
+  
+  <nav class="nav-collapse">
+    <ul>
+      <li class="menu-item active device-fixed-width"><a href="https://ro.ecu.edu.au" title="Home" data-scroll >Home</a></li>
+      <li class="menu-item device-fixed-width"><a href="https://ro.ecu.edu.au/do/search/advanced/" title="Search" data-scroll ><i class="icon-search"></i> Search</a></li>
+      <li class="menu-item device-fixed-width"><a href="https://ro.ecu.edu.au/communities.html" title="Browse" data-scroll >Browse Collections</a></li>
+      <li class="menu-item device-fixed-width"><a href="/cgi/myaccount.cgi?context=ecuworkspost2013" title="My Account" data-scroll >My Account</a></li>
+      <li class="menu-item device-fixed-width"><a href="https://ro.ecu.edu.au/about.html" title="About" data-scroll >About</a></li>
+      <li class="menu-item device-fixed-width"><a href="https://network.bepress.com" title="Digital Commons Network" data-scroll ><img width="16" height="16" alt="DC Network" style="vertical-align:top;" src="/assets/md5images/8e240588cf8cd3a028768d4294acd7d3.png"> Digital Commons Network™</a></li>
+    </ul>
+  </nav>
+</header>
+
+<script src="/assets/scripts/dc-mobile/dc-mobile-nav.js"></script>
+<!--<![endif]-->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/header.pregen (cont) -->
+
+
+
+
+
+<div id="ecu">
+	<div id="container">
+		<a href="#main" class="skiplink" accesskey="2" >Skip to main content</a>
+
+					
+			<div id="header" role="banner">
+				<a href="https://ro.ecu.edu.au" id="banner_link" title="Research Online" >
+					<img id="banner_image" alt="Research Online" width='1960' height='250' src="/assets/md5images/d8ccf811946e3862a5a9803d1ee034aa.png">
+				</a>
+				
+					<a href="http://www.ecu.edu.au/" id="logo_link" title="Edith Cowan University" >
+						<img id="logo_image" alt="Edith Cowan University" width='244' height='250' src="/assets/md5images/c84fde155dd90c5297c791f35799626c.png">
+					</a>
+				
+				
+			</div>
+					
+			<div id="navigation">
+				<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_navigation.inc -->
+<div id="tabs">
+	<ul>
+		<li id="tabone">
+			<a href="https://ro.ecu.edu.au/cgi/myaccount.cgi?context=ecuworkspost2013" title="My Account" >
+				<span>My Account</span>
+			</a>
+		</li>
+		<li id="tabtwo">
+			<a href="https://ro.ecu.edu.au/faq.html" title="FAQ" >
+				<span>FAQ</span>
+			</a>
+		</li>		
+		<li id="tabthree">
+			<a href="https://ro.ecu.edu.au/about.html" title="About" >
+				<span>About</span>
+			</a>
+		</li>		
+
+		<li id="tabfour-a">
+			<a href="https://ro.ecu.edu.au/contact.html" title="Contact Us" >
+				<span>Contact Us</span>
+			</a>
+		</li>
+		
+		<li id="tabfour">
+			<a href="https://ro.ecu.edu.au" title="Home" >
+				<span>Home</span>
+			</a>
+		</li>
+	</ul>
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/header.pregen (cont) -->
+			</div>
+		
+
+		<div id="wrapper">
+			<div id="content">
+				<div id="main" class="text" role="main">
+
+<script type="text/javascript" src="/assets/floatbox/floatbox.js"></script>  
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article_pager.inc -->
+<div id="breadcrumb">
+
+<div class="crumbs"><!-- FILE: /srv/sequoia/main/data/assets/site/ir_breadcrumb.inc -->
+
+<div class="crumbs" role="navigation" aria-label="Breadcrumb">
+    <ol style="list-style:none;margin:0;padding:0">
+	
+	
+	<li style="display:inline;margin:0">
+		<a href="https://ro.ecu.edu.au" class="ignore" >Home</a>
+	</li>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	 <span aria-hidden="true">&gt;</span> 
+	<li style="display:inline;margin:0">
+		<a href="https://ro.ecu.edu.au/ecuworkspost2013" class="ignore" >Research outputs 2014 to 2021</a>
+	</li>	
+	
+	
+	
+	
+	
+	 <span aria-hidden="true">&gt;</span> 
+	<li style="display:inline;margin:0">
+		<a href="https://ro.ecu.edu.au/ecuworkspost2013/1348" class="ignore" aria-current="page" >1348</a>
+	</li>	
+	
+	
+	
+	</ol>
+</div>
+
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article_pager.inc (cont) --></div>
+</div>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_series/article/index.html (cont) -->
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc -->
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/openurl.inc -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_download_link.inc -->
+
+
+
+
+
+
+
+
+
+	
+	
+	
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+	
+	
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_series/article/ir_article_header.inc -->
+
+
+<div id="series-header">
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_series/ir_series_logo.inc -->
+
+
+
+ 
+
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_series/article/ir_article_header.inc (cont) --><h2 id="series-title"><a href="https://ro.ecu.edu.au/ecuworkspost2013" >Research outputs 2014 to 2021</a></h2></div>
+<div style="clear: both">&nbsp;</div>
+
+<div id="sub">
+<div id="alpha">
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc (cont) --><div id='title' class='element'>
+<h1>LES and multi-step chemical reaction in compartment fires</h1>
+</div>
+<div class='clear'></div>
+<div id='authors' class='element'>
+<h2 class='visually-hidden'>Authors/Creators</h2>
+<ul class="author"><li><a href='https://ro.ecu.edu.au/do/search/?q=author%3A%22A.C.Y.%20Yuen%22&start=0&context=302996'><strong>A.C.Y. Yuen</strong></a></li>
+<li><a href='https://ro.ecu.edu.au/do/search/?q=author%3A%22G.H.%20Yeoh%22&start=0&context=302996'><strong>G.H. Yeoh</strong>, <em>Edith Cowan University</em></a></li>
+<li><a href='https://ro.ecu.edu.au/do/search/?q=author%3A%22V.%20Timchenko%22&start=0&context=302996'><strong>V. Timchenko</strong></a></li>
+<li><a href='https://ro.ecu.edu.au/do/search/?q=author%3A%22T.%20Barber%22&start=0&context=302996'><strong>T. Barber</strong></a></li>
+</ul></div>
+<div class='clear'></div>
+<div id='abstract' class='element'>
+<h2 class='field-heading'>Abstract</h2>
+<p>Numerical studies on two large-scale compartment buoyant fires were performed utilizing a fully coupled Large Eddy Simulation (LES) and strained laminar flamelet combustion model, extended from single-step to multistep chemical reaction. Two Subgrid-Scaled (SGS) turbulent models, Smagorinsky and WALE, were examined for center and corner fires. Compared with the experimental and existing numerical data, the WALE model with a multistep chemical reaction gave the best prediction for the upper hot layer and doorway gas temperatures. Specie concentrations including oxygen, carbon dioxide, and carbon monoxide were also found to compare well against the experimental measurements when the WALE model with a multistep chemical reaction was adopted.</p>
+</div>
+<div class='clear'></div>
+<div id='keywords' class='element'>
+<h2 class='field-heading'>Keywords</h2>
+<p>Carbon, Carbon dioxide, Carbon monoxide, Large eddy simulation, Combustion model, Compartment fires, Fully-coupled, Gas temperature, Laminar flamelets, Numerical data, Single-step, Turbulent models, Chemical reactions</p>
+</div>
+<div class='clear'></div>
+<div id='document_type' class='element'>
+<h2 class='field-heading'>Document Type</h2>
+<p>Journal Article</p>
+</div>
+<div class='clear'></div>
+<div id='publication_date' class='element'>
+<h2 class='field-heading'>Date of Publication</h2>
+<p>2015</p>
+</div>
+<div class='clear'></div>
+<div id='publisher' class='element'>
+<h2 class='field-heading'>Publisher</h2>
+<p>Taylor and Francis Inc.</p>
+</div>
+<div class='clear'></div>
+<div id='school' class='element'>
+<h2 class='field-heading'>School</h2>
+<p>School of Engineering</p>
+</div>
+<div class='clear'></div>
+<div id='ras' class='element'>
+<h2 class='field-heading'>RAS ID</h2>
+<p>21598</p>
+</div>
+<div class='clear'></div>
+<div id='funding' class='element'>
+<h2 class='field-heading'>Funding Information</h2>
+<p>ARC, Australian Research Council</p>
+</div>
+<div class='clear'></div>
+<div id='grant_num' class='element'>
+<h2 class='field-heading'>Grant Number</h2>
+<p>ARC Number : LP130100927</p>
+</div>
+<div class='clear'></div>
+<div id='comments' class='element'>
+<h2 class='field-heading'>Comments</h2>
+<p>Yuen, A.C.Y., Yeoh, G.H., Timchenko, V., Barber, T. (2015). LES and multi-step chemical reaction in compartment fires in Numerical Heat Transfer; Part A: Applications, 68(7), 711-736. Available   <a href="http://doi.org/10.1080/10407782.2015.1012886">here</a>.</p>
+</div>
+<div class='clear'></div>
+<div id='rights' class='element'>
+<h2 class='field-heading'>Copyright</h2>
+<p>subscription content</p>
+</div>
+<div class='clear'></div>
+</div>
+    </div>
+    <div id='beta_7-3'>
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc --><!-- FILE: /srv/sequoia/main/data/assets/site/openurl.inc -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_download_link.inc -->
+
+
+
+
+
+
+
+
+
+	
+	
+	
+    
+    
+    
+	
+	
+	
+	
+	
+		
+		
+	
+	
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+
+	<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_download_button.inc --><div class="aside download-button">
+    <a id="remote-link" class="btn" href="http://doi.org/10.1080/10407782.2015.1012886" title="Link opens in new window" target="_blank" > 
+    	<i class="icon-external-link" aria-hidden="true"></i>
+      Link to Full Text
+    </a>
+</div>
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+	<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_embargo.inc -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/info_box_custom_upper.inc -->
+
+<div class="custom aside">
+
+
+</div>
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_openurl.inc -->
+<div id="open-url" class="aside">
+	
+	
+	  	<a id="openurl" class="ignore" href="https://openurl.bepress.com/openurl/redirect/?artnum=2349&amp;atitle=LES%20and%20multi-step%20chemical%20reaction%20in%20compartment%20fires&amp;aulast=Yuen&amp;aufirst=A.C.Y.&amp;date=2015&amp;genre=article&amp;id=doi:10.1080%2F10407782.2015.1012886" title="OpenURL" target="_blank" >Find in your library <span class="icon-external-link" role="img" aria-label="Opens in a new window"></span></a><br>
+	
+
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/info_box_article_metrics.inc -->
+
+
+
+
+
+
+
+
+<div id="article-stats" class="aside hidden">
+
+    <p class="article-downloads-wrapper hidden"><span id="article-downloads"></span> DOWNLOADS</p>
+    <p class="article-stats-date hidden">Since February 11, 2016</p>
+
+    <p class="article-plum-metrics">
+        <a href="https://plu.mx/plum/a/?repo_url=https://ro.ecu.edu.au/ecuworkspost2013/1348" class="plumx-plum-print-popup plum-bigben-theme" data-badge="true" data-hide-when-empty="true" ></a>
+    </p>
+</div>
+<script type="text/javascript" src="//cdn.plu.mx/widget-popup.js"></script>
+
+
+
+<!-- Article Download Counts -->
+<script type="text/javascript" src="/assets/scripts/article-downloads.pack.js"></script>
+<script type="text/javascript">
+    insertDownloads(8129656);
+</script>
+
+
+<!-- Add border to Plum badge & download counts when visible -->
+<script>
+// bind to event when PlumX widget loads
+jQuery('body').bind('plum:widget-load', function(e){
+// if Plum badge is visible
+  if (jQuery('.PlumX-Popup').length) {
+// remove 'hidden' class
+  jQuery('#article-stats').removeClass('hidden');
+  jQuery('.article-stats-date').addClass('plum-border');
+  }
+});
+// bind to event when page loads
+jQuery(window).bind('load',function(e){
+// if DC downloads are visible
+  if (jQuery('#article-downloads').text().length > 0) {
+// add border to aside
+  jQuery('#article-stats').removeClass('hidden');
+  }
+});
+</script>
+
+<!-- Amplitude Event Tracking -->
+
+
+<script>
+$(function() {
+
+  // This is the handler for Plum popup engagement on mouseover
+  $("#article-stats").on("mouseover", "a.plx-wrapping-print-link", function(event) {
+    // Send the event to Amplitude
+    amplitude.getInstance().logEvent("plumPopupMouseover");
+  });
+
+  // This is the handler for Plum badge and 'see details' link clickthrough
+  $("#article-stats").on("click", "div.ppp-container.ppp-small.ppp-badge", function(event) {
+    // Send the event to Amplitude
+    amplitude.getInstance().logEvent("plumDetailsClick");
+  });
+
+  // This is the handler for AddThis link clickthrough
+  $(".addthis_toolbox").on("click", "a", function(event) {
+    // Send the event to Amplitude
+    amplitude.getInstance().logEvent("addThisClick");
+  });
+
+  // This is the handler for AddThis link clickthrough
+  $(".aside.download-button").on("click", "a", function(event) {
+    // Send the event to Amplitude
+    amplitude.getInstance().logEvent("downloadClick");
+  });
+
+});
+</script>
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+
+
+	<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_disciplines.inc -->
+
+
+
+
+	
+		
+	
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/bookmark_widget.inc -->
+
+<div id="share" class="aside">
+<h2>Share</h2>
+	
+	<div class="a2a_kit a2a_kit_size_24 a2a_default_style">
+    	<a class="a2a_button_facebook"></a>
+    	<a class="a2a_button_linkedin"></a>
+		<a class="a2a_button_whatsapp"></a>
+		<a class="a2a_button_email"></a>
+    	<a class="a2a_dd"></a>
+    	<script async src="https://static.addtoany.com/menu/page.js"></script>
+	</div>
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_geolocate.inc --><!-- FILE: /srv/sequoia/main/data/assets/site/ir_geolocate_enabled_and_displayed.inc -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_geolocate.inc (cont) -->
+
+<div class="aside">
+	<!-- FILE: /srv/sequoia/main/data/assets/site/ir_article_map.inc -->
+
+
+
+<div class="clear">&nbsp;</div>
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_geolocate.inc (cont) -->
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+	<!-- FILE: /srv/sequoia/main/data/assets/site/zotero_coins.inc -->
+
+<span class="Z3988" title="ctx_ver=Z39.88-2004&amp;rft_val_fmt=info%3Aofi%2Ffmt%3Akev%3Amtx%3Ajournal&amp;rft_id=https%3A%2F%2Fro.ecu.edu.au%2Fecuworkspost2013%2F1348&amp;rft.atitle=LES%20and%20multi-step%20chemical%20reaction%20in%20compartment%20fires&amp;rft.aufirst=A.C.Y.&amp;rft.aulast=Yuen&amp;rft.au=G.H.%20Yeoh&amp;rft.au=V.%20Timchenko&amp;rft.au=T.%20Barber&amp;rft.jtitle=Research%20outputs%202014%20to%202021&amp;rft.date=2015-01-01&amp;rft_id=info:doi/10.1080%2F10407782.2015.1012886">COinS</span>
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_series/info_box_custom_lower.inc -->
+
+
+<!-- BEGIN Altmetric code -->
+  
+
+<div id='doi' class='aside'>
+    <div class='altmetric-embed' data-badge-type='donut' data-doi="10.1080/10407782.2015.1012886" data-hide-no-mentions="true"></div>
+    <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
+</div>
+<div class='clear'></div>
+
+  
+<!-- END Altmetric Code -->
+
+
+<div id="custom-fields">
+    <div class="scopus element">
+        <object height="50" data="https://api.elsevier.com/content/abstract/citation-count?doi=10.1080/10407782.2015.1012886&httpAccept=text/html&apiKey=10d3abe22d5b4d8e21f4c3ea24645503">
+        </object>
+    </div>
+    <div class="clear"></div>
+</div>
+<!-- FILE: /srv/sequoia/main/data/assets/site/info_box_7_3.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc (cont) --></div>
+
+<div class='clear'>&nbsp;</div>
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_series/article/ir_article_custom_fields.inc --><div id='custom-fields'>
+	
+		<div id='doi' class='element'>
+			<h4>Link to publisher version (DOI)</h4>
+			<p><a href="http://dx.doi.org/10.1080/10407782.2015.1012886" >10.1080/10407782.2015.1012886</a></p>
+		</div>
+		<div class='clear'></div>
+	
+	
+	
+	
+	
+	
+	
+</div>
+
+
+
+<!-- FILE: /srv/sequoia/main/data/journals/ro.ecu.edu.au/ecuworkspost2013/assets/article/article_info.inc (cont) -->
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_series/article/index.html (cont) -->
+<!-- FILE /srv/sequoia/main/data/assets/site/footer.pregen --></div>
+	<div class="verticalalign">&nbsp;</div>
+	<div class="clear">&nbsp;</div>
+
+</div>
+
+	<div id="sidebar" role="complementary">
+	<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_7_8.inc -->
+
+	<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc --><!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_custom_upper_7_8.inc --><a class="side-button" href="https://ecu.au.libguides.com/publish/OpenAccess_RO" >Make a Submission</a>
+<a class="side-button" href="https://ro.ecu.edu.au/cgi/myaccount.cgi?context=" >My Account</a>
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_search_7_8.inc --><h2>Search</h2>
+
+
+	
+<form method='get' action='https://ro.ecu.edu.au/do/search/' id="sidebar-search">
+	<label for="search" accesskey="4">
+		Enter search terms:
+	</label>
+		<div>
+			<span class="border">
+				<input type="text" name='q' class="search" id="search">
+			</span> 
+			<input type="submit" value="Search" class="searchbutton" style="font-size:11px;">
+		</div>
+	<label for="context" style="display:none;">
+		Select context to search:
+	</label> 
+		<div>
+			<span class="border">
+				<select name="fq" id="context">
+					
+					
+						<option value='virtual_ancestor_link:"https://ro.ecu.edu.au/ecuworkspost2013"'>in this series</option>
+					
+					
+					
+					<option value='virtual_ancestor_link:"https://ro.ecu.edu.au"'>in this repository</option>
+					<option value='virtual_ancestor_link:"http:/"'>across all repositories</option>
+				</select>
+			</span>
+		</div>
+</form>
+
+<p class="advanced">
+	
+	
+		<a href="https://ro.ecu.edu.au/do/search/advanced/?fq=virtual_ancestor_link:%22https://ro.ecu.edu.au/ecuworkspost2013%22" >
+			Advanced Search
+		</a>
+	
+
+	<br><a href="https://ro.ecu.edu.au/help-search.html" >Help Using Search</a>
+</p>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_notify_7_8.inc -->
+
+
+	<ul id="side-notify">
+		<li class="notify">
+			<a href="https://ro.ecu.edu.au/ecuworkspost2013/announcements.html" title="Email or RSS Notifications" >
+				Notify me via email or <acronym title="Really Simple Syndication">RSS</acronym>
+			</a>
+		</li>
+	</ul>
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/urc_badge.inc -->
+
+
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_notify_7_8.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_custom_middle_7_8.inc --><div id="sidebarfollow"><span class="sidebar-follow"><!-- FILE: /srv/sequoia/main/data/assets/site/nw_follow_ctx.inc -->
+
+	
+		<a rel="nofollow" href="https://network.bepress.com/api/follow/subscribe?publication=MjgxNTVhZmMzNGJlYTA3YQ%3D%3D&amp;format=html" data-follow-set="publication:MjgxNTVhZmMzNGJlYTA3YQ==" title="Follow Research outputs 2014 to 2021" class="btn followable" >Follow</a>
+	
+
+
+
+
+
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_custom_middle_7_8.inc (cont) --></span></div>
+<h2>Links</h2>
+<ul>
+<li><a href="https://ecu.au.libguides.com/publish/OpenAccess_RO" target="_blank" >Benefits of Submitting to RO</a></li>
+</ul>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_browse.inc --><h2>Browse</h2>
+<ul id="side-browse">
+
+
+<li class="collections"><a href="https://ro.ecu.edu.au/communities.html" title="Browse by Collections" >Collections</a></li>
+<li class="discipline-browser"><a href="https://ro.ecu.edu.au/do/discipline_browser/disciplines" title="Browse by Disciplines" >Disciplines</a></li>
+<li class="author"><a href="https://ro.ecu.edu.au/authors.html" title="Browse by Author" >Author Names</a></li>
+
+
+<li><a href="https://ro.ecu.edu.au/exhibit" >Exhibits</a></li>
+</ul>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_author_7_8.inc --><h2>Author Information</h2>
+<ul id="side-author">
+<li class="faq"><a href="https://ro.ecu.edu.au/faq.html" title="Author Guidelines" target="_blank" >Author Guidelines</a></li>
+
+<li><a href="https://www.ecu.edu.au/centres/library-services/services-and-facilities/submit-a-thesis" title="Thesis Submission Guidelines" target="_blank" >Thesis Submission Guidelines</a></li>
+</ul><!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_custom_lower_7_8.inc --><!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_homepage_links_7_8.inc -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_custom_lower_7_8.inc (cont) -->
+	
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sw_links_7_8.inc -->
+
+	
+		
+	
+
+
+	<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_geolocate.inc --><!-- FILE: /srv/sequoia/main/data/assets/site/ir_geolocate_enabled_and_displayed.inc -->
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_geolocate.inc (cont) -->
+
+<h2>Article Locations</h2>
+
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/google_map.inc -->
+	
+	
+
+
+
+
+	
+
+
+	
+
+
+
+
+<script>
+	if (typeof window.googleMap=='undefined') {
+		document.write(
+			'<script src="/assets/cgi/js/geolocate-v3.pack.js"></' + 'script>'
+		);
+	}
+	if (
+		typeof window.google=='undefined'
+		|| typeof window.google.maps=='undefined'
+	) {
+		document.write(
+			'<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAhbW6Wxlc9A2yM3fqEEQKM2lIQU-a7kxM&amp;sensor=false&amp;v=3"></' + 'script>'
+		);
+	}
+</script>
+
+<div id="side_map"></div>
+
+<script>
+	// Enable the new look
+	google.maps.visualRefresh = true;
+
+	var side_mapOptions = {};
+	side_mapOptions.zoomLevel = 5;
+	side_mapOptions.divId = "side_map";
+	side_mapOptions.submit = false;
+	side_mapOptions.context = "ecuworkspost2013" + "/";
+	
+	
+
+	var side_mapObj = new googleMap(side_mapOptions);
+	
+	side_mapObj.instantiate();
+
+	// If it's a sidebar map or the large map, load the KML file
+	if (
+		(side_mapOptions.divId === "side_map")
+		|| (side_mapOptions.divId === "large_map") 
+	) {
+		side_mapObj.loadKml();
+	}
+
+	// Attach clickHandler and keypressHandler to submit form maps
+	if (false) {
+		document.getElementById("locate").onclick=function() {
+			side_mapObj.showAddress(side_mapObj);
+		};
+		document.getElementById("geoLocateAddress").onkeypress=function(e) {
+			side_mapObj.geolocateOnEnter(e, side_mapObj);
+		};
+		// If a location is already provided, make placemarker draggable and attach dragHandler
+		
+	}
+</script>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_geolocate.inc (cont) -->
+
+<ul>
+<li><a href="https://ro.ecu.edu.au/ecuworkspost2013/map.html" class="floatbox" data-fb-options="colorTheme:black width:900 height:675 caption:href scrolling:no showClose:true" >View articles on map</a></li>
+<li><a href="https://ro.ecu.edu.au/ecuworkspost2013/images.kml" >View articles in Google Earth</a></li>
+</ul>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_sidebar_custom_lowest_7_8.inc -->
+
+
+
+<a class="contact-button" href="https://ro.ecu.edu.au/contact.html" title="Contact Us" >Contact Us</a><!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_sort_sba.inc (cont) -->
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_sidebar_7_8.inc (cont) -->
+
+		
+
+
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/footer.pregen (cont) -->
+	<div class="verticalalign">&nbsp;</div>
+	</div>
+
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_footer_content.inc --><div id="footer" role="contentinfo">
+	
+	
+	<!-- FILE: /srv/sequoia/main/data/assets/site/ir_bepress_logo.inc --><div id="bepress">
+
+<a href="https://www.elsevier.com/solutions/digital-commons" title="Elsevier - Digital Commons" >
+	<em>Elsevier - Digital Commons</em>
+</a>
+
+</div>
+<!-- FILE: /srv/sequoia/main/data/assets/site/ir_footer_content.inc (cont) -->
+	<p>
+		<a href="https://ro.ecu.edu.au" title="Home page" accesskey="1" >Home</a> | 
+		<a href="https://ro.ecu.edu.au/about.html" title="About" >About</a> | 
+		<a href="https://ro.ecu.edu.au/faq.html" title="FAQ" >FAQ</a> | 
+		<a href="/cgi/myaccount.cgi?context=ecuworkspost2013" title="My Account Page" accesskey="3" >My Account</a> | 
+		<a href="https://ro.ecu.edu.au/accessibility.html" title="Accessibility Statement" accesskey="0" >Accessibility Statement</a>
+	</p>
+	<p>
+	
+	
+		<a class="secondary-link" href="https://www.elsevier.com/legal/privacy-policy" title="Privacy Policy" >Privacy</a>
+	
+		<a class="secondary-link" href="https://www.elsevier.com/legal/elsevier-website-terms-and-conditions" title="Copyright Policy" >Copyright</a>	
+	</p> 
+	
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/assets/site/footer.pregen (cont) -->
+
+</div>
+</div>
+
+<!-- FILE: /srv/sequoia/main/data/ro.ecu.edu.au/assets/ir_analytics.inc --><!-- Google tag (gtag.js) -->
+<script async src=https://www.googletagmanager.com/gtag/js?id=G-2MWL3YQPLC></script>
+<script> window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-2MWL3YQPLC');
+</script><!-- FILE: /srv/sequoia/main/data/assets/site/footer.pregen (cont) -->
+
+<script type='text/javascript' src='/assets/scripts/bpbootstrap-20160726.pack.js'></script><script type='text/javascript'>BPBootstrap.init({appendCookie:''})</script><script>(function(){function c(){var b=a.contentDocument||(a.contentWindow&&a.contentWindow.document);if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'a5978ee76d5cf57a',t:'MTc5NDUwNzcwNQ=='};var l=window.parent.location,o;try{o=new URL(l.origin).origin}catch(e){try{o=new URL(new URL(l.href).origin).origin}catch(e){o=''}}var u='/cdn-cgi/challenge-platform/scripts/jsd/main.js?ray=a5978ee76d5cf57a',a=document.createElement('script');a.src=o?new URL(u,o).href:u;document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body></html>

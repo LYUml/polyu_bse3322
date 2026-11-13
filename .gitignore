@@ -1,6 +1,6 @@
 # Local generated results
-output/*
-!output/.gitkeep
+04_Results/*
+!04_Results/.gitkeep
 tmp/
 *.tmp
 *.log
@@ -31,3 +31,8 @@ desktop.ini
 *.restart
 *.q
 *.sz
+
+# Large course slide decks remain local; see reference download manifests
+02_References/01_Course_Materials/AL01_Fire_Modelling.pptx
+02_References/01_Course_Materials/AL02_Steckler_Room_Fire.pptx
+02_References/01_Course_Materials/AL03_Smoke_Extraction.pptx

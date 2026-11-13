@@ -1,0 +1,45 @@
+[
+  {
+    "source": "https://www.hkfsd.gov.hk/eng/source/circular/2025_06_eng_20251016_144624.pdf",
+    "path": "02_References/03_HK_Regulations/07_FSD_Circular_6_2025_Obsolete_Letters.pdf",
+    "kind": "url",
+    "pages": 2,
+    "status": "ok",
+    "bytes": 938460,
+    "sha256": "d6e4b51dc761cc1b05a176a912aa41e815aa62d43589c16cac1ce2f08e0d869c"
+  },
+  {
+    "source": "https://www.hkfsd.gov.hk/eng/source/circular/2025_01_eng_20250317_103159.pdf",
+    "path": "02_References/03_HK_Regulations/08_FSD_Circular_1_2025_Obsolete_Letters.pdf",
+    "kind": "url",
+    "pages": 2,
+    "status": "ok",
+    "bytes": 805110,
+    "sha256": "c2349351627998d06ec20676d8779bc2b378f6bf7655d19d782f7d1c18a9f9d9"
+  },
+  {
+    "source": "https://www.hkfsd.gov.hk/eng/source/circular/2023_02_eng_20230621_104014.pdf",
+    "path": "02_References/03_HK_Regulations/09_FSD_Circular_2_2023_Mechanical_Ventilation.pdf",
+    "kind": "url",
+    "pages": 22,
+    "status": "ok",
+    "bytes": 1257959,
+    "sha256": "950c83c826b18d2c1daf9e959698a82f1d20299ad6456f274c7e099d5d897635"
+  },
+  {
+    "source": "https://scholars.cityu.edu.hk/en/publications/experimental-study-on-temperature-profile-in-long-narrow-compartm/",
+    "path": "02_References/02_Papers/Peng_2021_Institutional_Record_NOT_FULL_TEXT.html",
+    "kind": "url",
+    "status": "ok",
+    "bytes": 69759,
+    "sha256": "ad2a5868571942c8b6c1aee2b8774c04a7f53fce2a69458195d8552c274515d3"
+  },
+  {
+    "source": "https://ro.ecu.edu.au/ecuworkspost2013/1348/",
+    "path": "02_References/02_Papers/Yuen_2015_Institutional_Record_NOT_FULL_TEXT.html",
+    "kind": "url",
+    "status": "ok",
+    "bytes": 35830,
+    "sha256": "c7a9d7ac5a86bea459607a462ec29e14cb321bedcb9cfb8f63f5f7ac3b0de291"
+  }
+]

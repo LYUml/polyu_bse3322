@@ -1,0 +1,52 @@
+# Group 18 项目起步与课程资料
+
+更新：2026-11-13。课程根目录：`C:\Users\lyuml-win\iCloudDrive\Desktop\y3_s1\bse3322`。
+
+## 已确认的项目范围
+
+用户确认 Group 18。作业 Table 1 对应 OP-1（全部四个侧开口开启）及 OP-6（仅 R1 开启），偶数组火源功率为 47.2 和 106.2 kW。
+
+先建立这四种配置/功率组合，再增加网格、SGS 和建模常数的敏感性算例。原文写“8 cases total”，并列 OP-1 Tests 1–8、OP-6 Tests 41–48；具体测试号与四种基本组合的对应关系未确认，不能直接当作最终运行矩阵。
+
+`04_project/Presentation_Schedule_R2.xlsx` 已读取：Group 18 演示为 2026-11-25 08:30–09:00，Zone 4。此表没有确定报告提交截止时间。
+
+## 课程资料优先级
+
+以下路径相对于课程根目录；页码按 PDF 页序。
+
+| 资料 | 已检查状态 | 对本项目的用途 |
+| --- | --- | --- |
+| `04_project/Project_Topic_1B_Smoke_Extraction.pdf` | 已复制到本地 brief，已提取全文并查看第 1、2 页 | 作业要求、图 1、工况分配 |
+| `04_project/Presentation_Schedule_R2.xlsx` | 已读取单元格 | Group 18 演示场次 |
+| `01_lec/W03_Fire_Detectors_and_Smoke_Extraction.pdf` | 已成功读取，66 页，相关文字已检索 | 第 39–50 页排烟；第 44 页计算例题；第 51–61 页烟帘与排烟案例 |
+| `01_lec/W04_Fire_Modelling.pdf` | 已成功读取，61 页，相关文字已检索 | 第 14 页 FDS/PyroSim；第 28–29 页 SGS 常数；第 58–59 页模型设置与输出 |
+| `03_adaptive_learning/AL01_Fire_Modelling.pptx` | 文件清单发现，约 877 MB，未读内容 | 按标题判断可能有建模示范，优先后续检查 |
+| `03_adaptive_learning/AL02_Steckler_Room_Fire.pptx` | 文件清单发现，约 70 MB，未读内容 | 按标题判断可能有房间火灾建模练习 |
+| `03_adaptive_learning/AL03_Smoke_Extraction.pptx` | 已尝试读取，状态见本轮结果；不以标题代替内容验证 | 最相关的排烟课件，可能包含媒体或嵌入材料，须进一步确认 |
+| `00_info/Group_List_R5.xlsx` | 文件清单发现，未读取成员资料 | 用户已直接确认组号，无需据姓名推断 |
+| `00_info/Teaching_Schedule.pdf` | 文件清单发现，未读内容 | 可能补充咨询安排，以最新公告核对 |
+| `01_lec/W10_Passive_Fire_Protection_and_Evacuation.pdf` | 文件清单发现，未读内容 | 逃生与被动防火讨论的次级资料 |
+
+课程目录未发现以 `.fds` 或 `.psm` 为扩展名的独立模型文件。此结论不排除 PPTX 嵌入对象或其他压缩包内部模型。不要将几百 MB 课件直接加入 Git。
+
+W03 的示例是另一座大型试验大厅，不能把它的几何、火源、烟帘尺寸直接套进本作业。W04 同时出现不同年代的软件与语言描述；FDS 参数和默认模型应以实际运行版本的官方手册为准。
+
+## 本机工具
+
+已发现 `C:\Program Files\PyroSim 2026\fds\fds.exe`、`fds_openmp.exe`、`fds2ascii.exe`，以及 FDS User/Technical Reference Guide。`fds` 当前未在命令搜索路径中发现。
+
+随安装附带的 User Guide 标注 Revision FDS-6.10.1，日期 2025-04-04。这是手册版本，尚不能替代对可执行文件运行版本的确认；PyroSim 许可证、FDS 启动、MPI/OpenMP 和算例运行均未测试。
+
+文本缓存和课程清单保存在已被 Git 忽略的 `04_Results/course-text/`、`04_Results/course-inventory.csv`，只作本地检索。
+
+## 先完成这些工作
+
+1. 获取 Peng 2021 原论文全文及温度曲线，确认火源尺寸/位置、墙体材料厚度、开口坐标、测点、环境温度、稳态统计区间。通过学校图书馆正常访问。
+2. 解决开口高度冲突：正文 0.63 m，图 1 小字看似 0.61 m。图 1 已查看，但不能从低清晰度缩图猜测完整尺寸。
+3. 使用已安装 FDS 做小型启动检查；固定 solver 版本，再建一个 OP-1 基准工况。此步骤尚未执行。
+4. 先做特征火源尺度估算，选取能解析几何与羽流的粗/中/细网格；用温度剖面、开口流量和守恒检查评估。不能仅凭单一 D*/dx 阈值宣称网格独立。
+5. 在 OP-1 上确定网格与统计区间，验证后转 OP-6，再比较 SGS 模型及至少一个常数。实际可选模型和参数按锁定版本检查。
+6. 排烟设计另建 propylene 工况，与 propane 实验验证分开；比较无排烟、自然排烟/烟帘、必要时机械排烟；设计烟产率 0.02、0.05、0.1，CO yield 0.01。
+7. 明确烟层界面识别方法、空间位置和评估时段，以 0.38 m 为作业给定高度条件，同时报告 CO、可见度、温度和补风影响。风机功率需排烟体积流量、系统压降及效率；流量本身不足以确定功率。
+
+咨询时应确认“8 cases”的含义、报告截止日期及格式、允许使用的实验数据和开口高度。参数未确认前不展开大量计算。

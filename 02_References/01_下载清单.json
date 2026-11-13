@@ -1,0 +1,159 @@
+{
+  "date": "2026-11-13",
+  "files": [
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\04_project\\Presentation_Schedule_R2.xlsx",
+      "path": "01_Assignment_Brief/Presentation_Schedule_R2.xlsx",
+      "kind": "copy",
+      "archive_entries": 15,
+      "status": "ok",
+      "bytes": 4427810,
+      "sha256": "a0526661dccb3cbbdc903c1ff5b13f5cd068560893982db596bdb2143339ba1a"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\01_lec\\W04_Fire_Modelling.pdf",
+      "path": "02_References/01_Course_Materials/W04_Fire_Modelling.pdf",
+      "kind": "copy",
+      "pages": 61,
+      "status": "ok",
+      "bytes": 9460474,
+      "sha256": "d2413c10f31f0cc2aebf33466c78ea536ea87e0771d4aad87eabf8a6e109ef3a"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\01_lec\\W03_Fire_Detectors_and_Smoke_Extraction.pdf",
+      "path": "02_References/01_Course_Materials/W03_Fire_Detectors_and_Smoke_Extraction.pdf",
+      "kind": "copy",
+      "pages": 66,
+      "status": "ok",
+      "bytes": 23611538,
+      "sha256": "6f52789c2589787a6ce34cbcb5e53c6b645ce2b6806476d6ae35b4dbea1420dc"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL03_Smoke_Extraction.pptx",
+      "path": "02_References/01_Course_Materials/AL03_Smoke_Extraction.pptx",
+      "kind": "copy",
+      "status": "failed",
+      "error": "File is not a zip file"
+    },
+    {
+      "source": "https://www.hkfsd.gov.hk/eng/source/circular/2024_04_eng_20240426_164202.pdf",
+      "path": "02_References/03_HK_Regulations/03_FSD_Circular_4_2024_Amendments.pdf",
+      "kind": "url",
+      "pages": 7,
+      "status": "ok",
+      "bytes": 1028514,
+      "sha256": "8828d359ecdb17fe5982ed55e3767b410d48fbe35ab285da68901cd963873778"
+    },
+    {
+      "source": "https://www.hkfsd.gov.hk/eng/source/licensing/FSD_Web_20210416_PG_02.pdf",
+      "path": "02_References/03_HK_Regulations/04_FSD_Smoke_Control_Submission_and_Acceptance.pdf",
+      "kind": "url",
+      "pages": 41,
+      "status": "ok",
+      "bytes": 3150844,
+      "sha256": "28c0b3ba10c9516e08a4e6f535300c9c8e0602782819aff84de8574381bd2e52"
+    },
+    {
+      "source": "https://www.bd.gov.hk/doc/en/resources/codes-and-references/code-and-design-manuals/fs_code2011.pdf",
+      "path": "02_References/03_HK_Regulations/05_BD_Fire_Safety_Code_2011_2024_Edition.pdf",
+      "kind": "url",
+      "pages": 246,
+      "status": "ok",
+      "bytes": 3372278,
+      "sha256": "09987f7eeff68d45bd90670d2079fffa3313a3d477bda47c8c47ca3ac9b41407"
+    },
+    {
+      "source": "https://arxiv.org/pdf/2412.17146",
+      "path": "02_References/02_Papers/Xu_2024_FoamPilot_arXiv_2412.17146.pdf",
+      "kind": "url",
+      "pages": 12,
+      "status": "ok",
+      "bytes": 2852009,
+      "sha256": "43f700473a32553f206152f676330b465c33894298bfcfec2f8a4a983570bec8"
+    },
+    {
+      "source": "https://www.hkfsd.gov.hk/eng/source/safety/File2022.pdf",
+      "path": "02_References/03_HK_Regulations/01_FSD_Codes_of_Practice_2022.pdf",
+      "kind": "url",
+      "pages": 195,
+      "status": "ok",
+      "bytes": 4774616,
+      "sha256": "ce1d88b6f2df3d4674db80763134eebac3ff6f1ec9bd0f29d1466cf16657622f"
+    },
+    {
+      "source": "C:\\Program Files\\PyroSim 2026\\fds\\FDS_Technical_Reference_Guide.pdf",
+      "path": "02_References/04_FDS_Documentation/FDS_Technical_Reference_Guide.pdf",
+      "kind": "copy",
+      "pages": 236,
+      "status": "ok",
+      "bytes": 1442081,
+      "sha256": "4b0382d381df18508bbc8c8ba19e6ca150788707b6a9a91d87d771ff5f71b4f0"
+    },
+    {
+      "source": "C:\\Program Files\\PyroSim 2026\\fds\\FDS_User_Guide.pdf",
+      "path": "02_References/04_FDS_Documentation/FDS_User_Guide.pdf",
+      "kind": "copy",
+      "pages": 540,
+      "status": "ok",
+      "bytes": 11589658,
+      "sha256": "a5b3c2fcc559ec673597ca919e75568478cb3fe0db5446addd752059fad2a326"
+    },
+    {
+      "source": "https://codeload.github.com/Meteor-Simulation/bulc-mcp/zip/607748ded2dddec9e6b3fb30d25030efb6473386",
+      "path": "06_Tools/01_Repository_Snapshots/bulc-mcp_607748ded2dd.zip",
+      "kind": "url",
+      "archive_entries": 108,
+      "status": "ok",
+      "bytes": 521045,
+      "sha256": "cdb0e70a0960158b2bfd576fcd18cfc3f7aeeda69a476cc5e5416ad24632942f"
+    },
+    {
+      "source": "https://codeload.github.com/GraysonBellamy/pyfds/zip/1d69ca9fc53c925291cc14f820a970d10e304e9b",
+      "path": "06_Tools/01_Repository_Snapshots/pyfds_1d69ca9fc53c.zip",
+      "kind": "url",
+      "archive_entries": 388,
+      "status": "ok",
+      "bytes": 812816,
+      "sha256": "169146642bf2b043e76969da4f1e0fab37f16915c080ead5ebb8c7117ab0df59"
+    },
+    {
+      "source": "https://codeload.github.com/FireDynamics/fdsreader/zip/01676361618cc014f53f6fa76de34feec45b0168",
+      "path": "06_Tools/01_Repository_Snapshots/fdsreader_01676361618c.zip",
+      "kind": "url",
+      "archive_entries": 272,
+      "status": "ok",
+      "bytes": 1411442,
+      "sha256": "723f053397eb46d2d33ee78cc3801b1ec5ee00eb1052af962c26257f3d13eb30"
+    },
+    {
+      "source": "https://www.hkfsd.gov.hk/eng/source/circular/e04_1996.pdf",
+      "path": "02_References/03_HK_Regulations/02_FSD_Circular_4_1996_Smoke_Control.pdf",
+      "kind": "url",
+      "pages": 150,
+      "status": "ok",
+      "bytes": 14134385,
+      "sha256": "5b74ff513ba3363423ffef1ef7702e1c5dcc8675e45e8448772220703152e9fc"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL02_Steckler_Room_Fire.pptx",
+      "path": "02_References/01_Course_Materials/AL02_Steckler_Room_Fire.pptx",
+      "kind": "copy",
+      "status": "failed",
+      "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\03_adaptive_learning\\\\AL02_Steckler_Room_Fire.pptx', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\02_References\\\\01_Course_Materials\\\\AL02_Steckler_Room_Fire.pptx.part']' timed out after 90 seconds"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL01_Fire_Modelling.pptx",
+      "path": "02_References/01_Course_Materials/AL01_Fire_Modelling.pptx",
+      "kind": "copy",
+      "status": "failed",
+      "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\03_adaptive_learning\\\\AL01_Fire_Modelling.pptx', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\02_References\\\\01_Course_Materials\\\\AL01_Fire_Modelling.pptx.part']' timed out after 90 seconds"
+    },
+    {
+      "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\00_info\\Teaching_Schedule.pdf",
+      "path": "01_Assignment_Brief/Teaching_Schedule.pdf",
+      "kind": "copy",
+      "status": "failed",
+      "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\00_info\\\\Teaching_Schedule.pdf', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\01_Assignment_Brief\\\\Teaching_Schedule.pdf.part']' timed out after 90 seconds"
+    }
+  ]
+}

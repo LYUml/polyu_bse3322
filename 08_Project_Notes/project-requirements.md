@@ -1,6 +1,10 @@
 # Project requirements and open questions
 
-Source: `brief/Project_Topic_1B_Smoke_Extraction.pdf` (3 pages). This checklist is based on text extraction; Fig. 1 has not yet been visually reviewed.
+Latest full reading: [Group 18 task and evidence review](01_Group18_任务与证据梳理.md). That review supersedes earlier unresolved source assumptions: Peng supports 0.63 m opening height and a 0.25 m square propane burner, and documents the measurement arrays. Teaching examples have several different inputs. Innovation is an extension after the required CFD work, as clarified by the user; see [PINN/MOOSAS options](02_创新方案_PINN_MOOSAS与开源复用.md).
+
+Source: `01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf` (3 pages). Text extracted; pages 1 and 2 visually reviewed on 2026-11-13. See `08_Project_Notes/project-start.md` for the current Group 18 plan and `08_Project_Notes/resources.md` for research sources.
+
+User confirmed Group 18 on 2026-11-13. Working baseline: OP-1 plus OP-6 (R1 only), HRR 47.2 and 106.2 kW. The four configuration/HRR combinations are not a claim that only four total runs satisfy the assignment; mesh/SGS/constant studies add runs, and the brief's eight-case wording remains to be clarified.
 
 ## Confirmed brief requirements
 
@@ -40,8 +44,9 @@ Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even gr
 
 ## Pending information / source ambiguities
 
-- User's group number, deadline, deliverable format, marking rubric and team allocation.
+- Report deadline, deliverable format, marking rubric and team allocation. Presentation schedule lists Group 18 on 2026-11-25, 08:30-09:00, Zone 4 (not a confirmed report deadline).
 - Fig. 1 opening positions, burner dimensions/location, wall construction and measurement positions.
+- Opening height has now been checked against Peng PDF page 3, both prose and high-resolution Fig. 1: 0.63 m. The earlier apparent 0.61 m was a low-resolution reading issue.
 - Experimental time windows, ambient conditions and boundary/material properties.
 - Brief mentions “nanofluid concentration,” apparently unrelated to this fire task: retain as a source ambiguity until clarified.
 - Exact meaning of “inlet and outlet” temperature/velocity and smoke-layer acceptance measurement method.

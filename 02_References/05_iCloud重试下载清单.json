@@ -1,0 +1,23 @@
+[
+  {
+    "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\00_info\\Teaching_Schedule.pdf",
+    "path": "01_Assignment_Brief/Teaching_Schedule.pdf",
+    "kind": "copy",
+    "status": "failed",
+    "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\00_info\\\\Teaching_Schedule.pdf', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\01_Assignment_Brief\\\\Teaching_Schedule.pdf.part']' returned non-zero exit status 1."
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL01_Fire_Modelling.pptx",
+    "path": "02_References/01_Course_Materials/AL01_Fire_Modelling.pptx",
+    "kind": "copy",
+    "status": "failed",
+    "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\03_adaptive_learning\\\\AL01_Fire_Modelling.pptx', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\02_References\\\\01_Course_Materials\\\\AL01_Fire_Modelling.pptx.part']' returned non-zero exit status 1."
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL02_Steckler_Room_Fire.pptx",
+    "path": "02_References/01_Course_Materials/AL02_Steckler_Room_Fire.pptx",
+    "kind": "copy",
+    "status": "failed",
+    "error": "Command '['C:\\\\Users\\\\lyuml-win\\\\.cache\\\\codex-runtimes\\\\codex-primary-runtime\\\\dependencies\\\\python\\\\python.exe', '-c', 'import shutil,sys; shutil.copyfile(sys.argv[1],sys.argv[2])', 'C:\\\\Users\\\\lyuml-win\\\\iCloudDrive\\\\Desktop\\\\y3_s1\\\\bse3322\\\\03_adaptive_learning\\\\AL02_Steckler_Room_Fire.pptx', 'C:\\\\Users\\\\lyuml-win\\\\Desktop\\\\polyu_bse3322\\\\02_References\\\\01_Course_Materials\\\\AL02_Steckler_Room_Fire.pptx.part']' returned non-zero exit status 1."
+  }
+]

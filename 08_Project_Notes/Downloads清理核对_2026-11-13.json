@@ -1,0 +1,53 @@
+[
+  {
+    "source": "C:\\Users\\lyuml-win\\Downloads\\BSE3322_Online_Adaptive-learning_Introduction_to_Fire_Modelling_Software(1).pptx",
+    "archive": "C:\\Users\\lyuml-win\\Desktop\\polyu_bse3322\\02_References\\01_Course_Materials\\AL01_Fire_Modelling.pptx",
+    "sha256": "4eda45cff0b9d0a25e0b448ac0f8c4b5a1f3c05caf8802b33f3c309a811e16aa",
+    "bytes": 876878336,
+    "validation": {
+      "format": "Office compound container",
+      "encrypted": true,
+      "content_validation": "not readable without authorized password"
+    }
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\Downloads\\BSE3322_Teaching_schedule_2026_v4.pdf",
+    "archive": "C:\\Users\\lyuml-win\\Desktop\\polyu_bse3322\\01_Assignment_Brief\\BSE3322_Teaching_schedule_2026_v4.pdf",
+    "sha256": "ce41f511c1eb9d6e9fa8ac90d33e71c76eca02b0d78aa8930d323ecdb3cd3efb",
+    "bytes": 182586,
+    "validation": {
+      "pages": 1
+    }
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\Downloads\\AL02_Steckler_Room_Fire.pptx",
+    "archive": "C:\\Users\\lyuml-win\\Desktop\\polyu_bse3322\\02_References\\01_Course_Materials\\AL02_Steckler_Room_Fire.pptx",
+    "sha256": "19718195a0395831878e5b460a1f2809d158386be1ec0addc1ea4e18db1d8d51",
+    "bytes": 70129152,
+    "validation": {
+      "format": "Office compound container",
+      "encrypted": true,
+      "content_validation": "not readable without authorized password"
+    }
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\Downloads\\BSE3322_Online_Adaptive-learning_Steckler_Room_Fire_Case_Study_R1.pptx",
+    "archive": "C:\\Users\\lyuml-win\\Desktop\\polyu_bse3322\\02_References\\01_Course_Materials\\AL02_Steckler_Room_Fire.pptx",
+    "sha256": "19718195a0395831878e5b460a1f2809d158386be1ec0addc1ea4e18db1d8d51",
+    "bytes": 70129152,
+    "validation": {
+      "format": "Office compound container",
+      "encrypted": true,
+      "content_validation": "not readable without authorized password"
+    }
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\Downloads\\1-s2.0-S0886779821002091-main.pdf",
+    "archive": "C:\\Users\\lyuml-win\\Desktop\\polyu_bse3322\\02_References\\02_Papers\\Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf",
+    "sha256": "697f2b8f084664ba3e5fe7e9df7557fc2ffc1f56ac8e567b7438f93291f0d55c",
+    "bytes": 2348857,
+    "validation": {
+      "pages": 11
+    }
+  }
+]

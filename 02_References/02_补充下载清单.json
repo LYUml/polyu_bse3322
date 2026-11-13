@@ -1,0 +1,49 @@
+[
+  {
+    "source": "https://arxiv.org/pdf/2505.04997v3",
+    "path": "02_References/02_Papers/Yue_2026_Foam_Agent_arXiv_2505.04997v3.pdf",
+    "kind": "url",
+    "pages": 36,
+    "status": "ok",
+    "bytes": 9246748,
+    "sha256": "008d6ad531c5956a8d59d5d292cbebccd7f0b4af25cc52413e77d6dedddf5eab"
+  },
+  {
+    "source": "https://arxiv.org/pdf/2509.18178v2",
+    "path": "02_References/02_Papers/Yue_2025_Foam_Agent_2_arXiv_2509.18178v2.pdf",
+    "kind": "url",
+    "pages": 28,
+    "status": "ok",
+    "bytes": 19367113,
+    "sha256": "b7c140b6fa69b9f005b3f4a83bb134d3cdb2df6337b471caff695aaff8e5914e"
+  },
+  {
+    "source": "https://www.hkfsd.gov.hk/eng/source/circular/2026_05_eng_20260603_113355.pdf",
+    "path": "02_References/03_HK_Regulations/06_FSD_Circular_5_2026_APS_Scope_Only.pdf",
+    "kind": "url",
+    "pages": 7,
+    "status": "ok",
+    "bytes": 3409515,
+    "sha256": "f7bc7416dca7cc88ecc4ce70e803fa48a7e0d857e117882672f67eba0cafb623"
+  },
+  {
+    "source": "C:\\Users\\lyuml-win\\iCloudDrive\\Desktop\\y3_s1\\bse3322\\03_adaptive_learning\\AL03_Smoke_Extraction.pptx",
+    "path": "02_References/01_Course_Materials/AL03_Smoke_Extraction.pptx",
+    "kind": "copy",
+    "format": "Office compound container",
+    "encrypted": true,
+    "content_validation": "not readable without authorized password",
+    "status": "ok",
+    "bytes": 440001536,
+    "sha256": "f6fa758a039f77c56795948cb30423eabba9464b9b9644b264d8a1cdd09e0c2c"
+  },
+  {
+    "source": "https://codeload.github.com/csml-rpi/Foam-Agent/zip/8b340299810a7b1a1a1455e30ee0bd1ba4a5a85a",
+    "path": "06_Tools/01_Repository_Snapshots/Foam-Agent_8b340299810a.zip",
+    "kind": "url",
+    "archive_entries": 199,
+    "status": "ok",
+    "bytes": 309245,
+    "sha256": "346bbbabacbbb368f8fb4d61b03483693f268aa8443a9c254a6e2d8e5b386884"
+  }
+]
