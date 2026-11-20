@@ -34,15 +34,19 @@ function series(ext) {
 const avg=series('_devc.csv'), heat=series('_hrr.csv');
 const ref=fs.readFileSync(path.join(__dirname,'../05_Calculations/peng_fig9.csv'),'utf8').trim().split(/\r?\n/).slice(1).map(l=>l.split(',')).filter(r=>Number(r[0])===q && r[1]==='OP-'+match[1]);
 if(ref.length!==51) throw Error('Expected 51 experiment points');
-const ambient=Number(fs.readFileSync(file('.fds'),'utf8').match(/TMPA=([\d.]+)/)[1]);
+const deck=fs.readFileSync(file('.fds'),'utf8');
+const ambient=Number(deck.match(/TMPA=([\d.]+)/)[1]);
+const sensorPositions=new Map(Array.from(deck.matchAll(/&DEVC\s+ID='(TC_\d+)'[^/]*?\bXYZ=([\d.]+),/g),
+  ([,name,xMetres])=>[name,Number(xMetres)*100]));
 let abs=0,sq=0,worstDrift=0;
-console.log('sensor_x_cm,figure_r_cm,exp_rise_K,fds_rise_K,error_K,second_minus_first_half_K');
+console.log('sensor_x_cm,figure_r_cm,exp_rise_K,fds_rise_K,error_K,second_minus_first_half_K,model_x_cm');
 ref.forEach((r,i)=>{
   const x=i<8?30*i:240+10*(i-8), tc='TC_'+x;
+  if(!sensorPositions.has(tc)) throw Error('Missing model coordinate for '+tc);
   if(Math.abs(Number(r[2])-(x-330))>4) throw Error('Station mismatch');
   const rise=avg(tc,'C')-ambient, error=rise-Number(r[3]);
   const drift=avg(tc,'C',mid,end)-avg(tc,'C',start,mid);
   abs+=Math.abs(error); sq+=error*error; worstDrift=Math.max(worstDrift,Math.abs(drift));
-  console.log([x,r[2],r[3],rise.toFixed(2),error.toFixed(2),drift.toFixed(2)].join(','));
+  console.log([x,r[2],r[3],rise.toFixed(2),error.toFixed(2),drift.toFixed(2),sensorPositions.get(tc).toFixed(3)].join(','));
 });
 console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
