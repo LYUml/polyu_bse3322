@@ -46,6 +46,16 @@ def predict(observed, candidates):
     return mean, spread
 
 
+def log_feasibility(z):
+    if z >= -10:
+        return math.log(0.5 * math.erfc(-z / math.sqrt(2)))
+    # Mills expansion for the lower normal tail, retaining scores below
+    # floating-point probability range for strongly infeasible candidates.
+    inv_sq = 1 / (z * z)
+    return (-0.5 * z * z - math.log(-z) - 0.5 * math.log(2 * math.pi)
+            + math.log1p(-inv_sq + 3 * inv_sq**2 - 15 * inv_sq**3))
+
+
 def propose(method, observed, rng):
     unseen = [p for p in GRID if p not in observed]
     if method == "ordered":
@@ -53,10 +63,9 @@ def propose(method, observed, rng):
     mean, spread = predict(observed, unseen)
     best = min((q for (d, q), m in observed.items() if m >= 0), default=5)
     if method == "BO":
-        prob = [0.5 * math.erfc(-m / (s * math.sqrt(2))) for m, s in zip(mean, spread)]
-        # Known cost improvement times probability of satisfying the layer constraint.
-        scores = [max(0, best-p[1])*a for p, a in zip(unseen, prob)]
-        if max(scores) == 0:
+        scores = [math.log(best-p[1]) + log_feasibility(m/s) if p[1] < best else -math.inf
+                  for p, m, s in zip(unseen, mean, spread)]
+        if max(scores) == -math.inf:
             scores = list(spread)
         return unseen[int(np.argmax(scores))]
     # Integer chromosomes (depth, flow); feasibility-first posterior mean fitness.
