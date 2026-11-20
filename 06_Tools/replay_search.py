@@ -20,9 +20,14 @@ def read_fds():
         depth, flow = (f"{i * 0.08:g}".replace(".", "p") for i in (d, q))
         directory = ROOT / "04_Results" / f"design_6_0p02_{depth}_{flow}_120"
         command = ["node", str(ROOT / "06_Tools/summarize_design.cjs"), str(directory)]
-        data = subprocess.check_output(command, text=True)
+        archive = ROOT / "05_Calculations" / f"{directory.name}_stations.csv"
+        if directory.is_dir():
+            data = subprocess.check_output(command, text=True)
+        else:
+            data = archive.read_text(encoding="utf-8-sig")
         rows = list(csv.DictReader(io.StringIO(data)))
-        if len(rows) != 8 or any(
+        stations = {float(row["x_m"]) for row in rows}
+        if stations != {0.5, 1.7, 2.4, 3, 3.6, 4.2, 4.9, 6.1} or len(rows) != 8 or any(
             r["case"] != directory.name or float(r["start_s"]) != 0 or float(r["end_s"]) != 120
             for r in rows
         ):
