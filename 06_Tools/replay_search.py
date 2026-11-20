@@ -82,11 +82,12 @@ def replay(margins, writer):
                 assert p not in observed
                 observed[p] = margins[p]
                 best = min((q*0.08 for (_, q), m in observed.items() if m >= 0), default=None)
-                writer.writerow([method, seed, step+1, p[0]*0.08, p[1]*0.08, observed[p], best])
+                best_margin = max(observed.values())
+                writer.writerow([method, seed, step+1, p[0]*0.08, p[1]*0.08, observed[p], best, best_margin])
 
 
 if __name__ == "__main__":
     writer = csv.writer(sys.stdout, lineterminator="\n")
     margins = read_fds()
-    writer.writerow(["method","seed","queries","depth_m","flow_m3_s","observed_margin_m","best_feasible_flow_m3_s"])
+    writer.writerow(["method","seed","queries","depth_m","flow_m3_s","observed_margin_m","best_feasible_flow_m3_s","best_observed_margin_m"])
     replay(margins, writer)
