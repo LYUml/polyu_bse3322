@@ -44,6 +44,7 @@ for(let i=1;i<window.length;i++){
 }
 let volume=0;
 for(let i=1;i<window.length;i++) volume+=(total(window[i])+total(window[i-1]))*0.5*(window[i][0]-window[i-1][0]);
+const belowIntervals=[];
 for(const name of layers){
   const x=name.slice(5), j=column(name,'m'), co=column('co'+x,'mol/mol'), vis=column('vis'+x,'m');
   let min=window[0],maxCO=window[0],minVis=window[0],first=null,duration=0;
@@ -58,6 +59,15 @@ for(const name of layers){
     const from=lowA?a[0]:crossing, to=lowB?b[0]:crossing;
     first??=from;
     duration+=to-from;
+    belowIntervals.push([from,to]);
   }
   console.log([id,x,start,end,min[j],min[0],first?.toFixed(3)??'',duration.toFixed(3),maxCO[co]*1e6,minVis[vis],(volume/(end-start)).toFixed(5),roof.length?(roofVolume/(end-start)).toFixed(5):'',maxCO[0],minVis[0]].join(','));
 }
+// Merge overlapping excursions so simultaneous violations count only once.
+belowIntervals.sort((a,b)=>a[0]-b[0]);
+let coveredUntil=start, anyBelow=0;
+for(const [from,to] of belowIntervals){
+  anyBelow+=Math.max(0,to-Math.max(from,coveredUntil));
+  coveredUntil=Math.max(coveredUntil,to);
+}
+console.error(JSON.stringify({case:id,start_s:start,end_s:end,any_station_below_duration_s:anyBelow}));
