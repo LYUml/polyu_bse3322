@@ -51,4 +51,13 @@ ref.forEach((r,i)=>{
 });
 const budgetTerms=['Q_RADI','Q_CONV','Q_COND','Q_DIFF','Q_PRES','Q_PART','Q_ENTH','Q_TOTAL'];
 const mean_domain_budget_kW=Object.fromEntries(budgetTerms.map(name=>[name,heat(name,'kW')]));
-console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
+let mean_door_flow_kg_s;
+if(id.endsWith('_doorflow')){
+  const doors=match[1]==='1'?['L2','L1','R1','R2']:['R1'];
+  mean_door_flow_kg_s={};
+  for(const door of doors){
+    const outward=avg(door+'_out','kg/s'), inward=-avg(door+'_in','kg/s');
+    mean_door_flow_kg_s[door]={outward,inward,net_outward:outward-inward};
+  }
+}
+console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,mean_door_flow_kg_s,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
