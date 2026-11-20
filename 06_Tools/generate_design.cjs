@@ -7,9 +7,11 @@ const [op,soot,depth,flow,end] = process.argv.slice(2).map(Number);
 if (![1,6].includes(op) || ![0.02,0.05,0.1].includes(soot)
     || !Number.isFinite(depth) || depth<0 || depth>=0.38
     || !Number.isFinite(flow) || flow<0 || !(end>0)) throw Error('Invalid design parameters');
-const natural = process.argv[7] === 'natural';
-if (process.argv[7] && (!natural || flow!==0)) throw Error('Natural vent requires zero mechanical flow');
-const id = [natural?'natural':'design',op,soot,depth,flow,end].join('_').replaceAll('.','p');
+const layout = process.argv[7] || 'central';
+const natural = layout === 'natural';
+const distributed = layout === 'distributed';
+if (!['central','natural','distributed'].includes(layout) || (natural && flow!==0) || (distributed && flow<=0)) throw Error('Invalid exhaust layout');
+const id = [natural?'natural':distributed?'distributed':'design',op,soot,depth,flow,end].join('_').replaceAll('.','p');
 const base = fs.readFileSync(path.join(__dirname,'../03_Models/op1_106_coarse.fds'),'utf8');
 let lines = base.split(/\r?\n/).filter(l => l && !l.startsWith('&HEAD') && !l.startsWith('&TIME')
   && !l.startsWith('&PROP') && !l.startsWith('&DEVC') && !l.startsWith('&TAIL')
@@ -28,11 +30,12 @@ if(natural) {
   }
 }
 if(flow>0) {
-  for(const [side,x] of [['L',2.95],['R',3.35]]) {
+  const openings = distributed ? [['L',0.65],['R',5.65],['C1',2.95],['C2',3.35]] : [['L',2.95],['R',3.35]];
+  for(const [side,x] of openings) {
     lines.push("&VENT ID='vent"+side+"', XB="+[x,(x+0.3).toFixed(2),0.3,0.6,0.76,0.76].join(',')+", SURF_ID='HVAC' /",
       "&HVAC ID='in"+side+"', TYPE_ID='NODE', DUCT_ID='duct"+side+"', VENT_ID='vent"+side+"' /",
       "&HVAC ID='out"+side+"', TYPE_ID='NODE', DUCT_ID='duct"+side+"', AMBIENT=.TRUE., XYZ="+x+",0.45,1.16 /",
-      "&HVAC ID='duct"+side+"', TYPE_ID='DUCT', NODE_ID='in"+side+"','out"+side+"', AREA=0.09, LENGTH=0.4, VOLUME_FLOW="+flow/2+" /",
+      "&HVAC ID='duct"+side+"', TYPE_ID='DUCT', NODE_ID='in"+side+"','out"+side+"', AREA=0.09, LENGTH=0.4, VOLUME_FLOW="+flow/openings.length+" /",
       "&DEVC ID='flow"+side+"', DUCT_ID='duct"+side+"', QUANTITY='DUCT VOLUME FLOW' /");
   }
 }
