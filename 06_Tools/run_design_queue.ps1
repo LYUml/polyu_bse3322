@@ -34,6 +34,7 @@ try {
         $id = $Matches[1]
         $caseDir = Join-Path $results $id
         $inputFile = Join-Path $caseDir "$id.fds"
+        while (!(Test-Path -LiteralPath $caseDir) -and @(Get-Process -Name fds -ErrorAction SilentlyContinue).Count -ge $MaxFds) { Start-Sleep -Seconds 15 }
         if (Test-Path -LiteralPath $caseDir) {
             if (!(Test-Path -LiteralPath $inputFile) -or (Compare-Object (Get-Content -LiteralPath $inputFile) $deck)) { throw "Existing input differs: $id" }
             $errFile = Join-Path $caseDir 'stderr.log'
@@ -43,7 +44,7 @@ try {
             Record "reuse $id"
             continue
         }
-        while (@(Get-Process -Name fds -ErrorAction SilentlyContinue).Count -ge $MaxFds) { Start-Sleep -Seconds 15 }
+
         $null = New-Item -ItemType Directory -Path $caseDir
         $deck | Set-Content -Encoding ascii -LiteralPath $inputFile
         $p = Start-Process -FilePath "$bin/fds.exe" -ArgumentList "$id.fds" -WorkingDirectory $caseDir -WindowStyle Hidden -RedirectStandardError "$caseDir/stderr.log" -PassThru
