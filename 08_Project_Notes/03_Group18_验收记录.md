@@ -20,3 +20,8 @@ How：Fig.1 四口中心按舱长等间距布置；侧壁网格占位 0.05 m，�
 What：同为 soot yield 0.10 的有帘/无帘两例，50–100 s 中心切面，每例 501 帧、六列。05_Calculations/wjc_layer_screen.csv 为摘要，04_Results/wjc_layer_diagnostic.csv 是逐帧结果。
 Why：确定自有模型的垂直输出位置与失守风险。x=3.609 m 的帘内区域有帘时 232/501 帧热层估计低于 0.38 m，无帘时为 14/500 个可用帧；x=2.991 m 对应 75/501 和 2/499。两端多数帧的温差太弱，不能据此断言远端没有烟。
 How：以 Node 运行 06_Tools/wjc_layer_diagnostic.cjs，参数为 WJC 的 Task 2 文件夹；解析 Fortran 温度切片记录并校验网格与时间。按 Janssens–Tran 两区温度积分法用 Kelvin 计算界面；在墙附近延拓最近的内部温度，低于 5 K 垂直温差作为工程筛查假设标记缺测。5 K 并非课程验收标准；近源区可能强混合，所得为热界面诊断，不能视为 WJC 或正式设计的烟层达标结论。参考 https://www.fpl.fs.usda.gov/documnts/pdf1992/janss92a.pdf 。
+
+## 丙烷工况与敏感性矩阵
+What：粗网格有 OP-1、仅 R1 的 OP-6 × 47.2 / 106.2 kW 四组。OP-1 高功率另有中/细网格、WALE、辐射份额 0.20/0.50。除所列变量外使用同一基准。以上为诊断矩阵，生产网格选择需查实际结果。
+Why：分离开口、火源功率、网格、SGS 与辐射份额影响，先锁定观测位置并保留实际 HRR。
+How：运行 node 06_Tools/generate_propane_variants.cjs 生成八个差异化输入。OP-6 保留 x=3.91–4.34 m 的唯一侧口。基准日志的体相 SGS 为 Deardorff，WALE 变体体相为 WALE。基准 TC_0 实际输入为 x=0；TC_660 为 6.599 m，纠正先前“两个端点均内移”的表述。起步日志只证明输入可加载，未证明网格收敛或实验验证通过。
