@@ -10,7 +10,7 @@ out=csv.writer(sys.stdout,lineterminator="\n")
 out.writerow(["grid","hrr_kW","cells","dx_m","dy_m","dz_m","Dstar_m","Rstar_volume","Rstar_longest","cells_across_Dstar_longest"])
 for grid in ("coarse","medium","fine","doorflow"):
     deck=(models/f"op1_106_{grid}.fds").read_text()
-    ijk=tuple(map(int,re.search(r"IJK=([\d,]+)",deck)[1].split(",")))
+    ijk=tuple(map(int,re.search(r"IJK=(\d+,\d+,\d+)",deck)[1].split(",")))
     xb=list(map(float,re.search(r"&MESH[^\n]*XB=([\d.,]+)",deck)[1].split(",")))
     spacing=[(xb[2*i+1]-xb[2*i])/n for i,n in enumerate(ijk)]
     temp=float(re.search(r"TMPA=([\d.]+)",deck)[1])+273.15
