@@ -27,6 +27,11 @@ with pdfplumber.open(next((root/"02_References/02_Papers").glob("Peng*.pdf"))) a
                 if op=='OP-6' and v['stroking_color']!=(0.502,0,0): continue
                 x=(v['x1']+v['x0'])/2
                 y=(v['top']+v['bottom'])/2
+                if op=='OP-6':
+                    vertices=list(dict.fromkeys(cmd[1] for cmd in v['path'] if cmd[0] in ('m','l')))
+                    if len(vertices)!=3:
+                        raise ValueError("Expected a triangular OP-6 marker")
+                    x,y=(sum(axis)/3 for axis in zip(*vertices))
                 if not left<x<right or not top<y<bottom: continue
                 if x>445 and y<top+55: continue  # legend
                 r=(x-left)/(right-left)*800-400
