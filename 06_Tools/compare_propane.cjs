@@ -60,7 +60,7 @@ const budgetTerms=['Q_RADI','Q_CONV','Q_COND','Q_DIFF','Q_PRES','Q_PART','Q_ENTH
 const mean_domain_budget_kW=Object.fromEntries(budgetTerms.map(name=>[name,heat(name,'kW')]));
 const enthalpy_minus_net_input_kW = mean_domain_budget_kW.Q_ENTH - mean_domain_budget_kW.Q_TOTAL;
 let mean_door_flow_kg_s;
-if(id.endsWith('_doorflow')){
+if(id.endsWith('_doorflow') || id.endsWith('_doorfield')){
   const doors=match[1]==='1'?['L2','L1','R1','R2']:['R1'];
   mean_door_flow_kg_s={};
   for(const door of doors){
