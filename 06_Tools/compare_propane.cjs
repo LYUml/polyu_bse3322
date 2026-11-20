@@ -49,4 +49,6 @@ ref.forEach((r,i)=>{
   abs+=Math.abs(error); sq+=error*error; worstDrift=Math.max(worstDrift,Math.abs(drift));
   console.log([x,r[2],r[3],rise.toFixed(2),error.toFixed(2),drift.toFixed(2),sensorPositions.get(tc).toFixed(3)].join(','));
 });
-console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
+const budgetTerms=['Q_RADI','Q_CONV','Q_COND','Q_DIFF','Q_PRES','Q_PART','Q_ENTH','Q_TOTAL'];
+const mean_domain_budget_kW=Object.fromEntries(budgetTerms.map(name=>[name,heat(name,'kW')]));
+console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
