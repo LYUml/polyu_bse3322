@@ -31,7 +31,7 @@ if(window[0][0]>start) window.unshift(interpolate(rows[next-1],rows[next],start)
 const layers=names.filter(n=>n.startsWith('layer'));
 if(layers.length!==8) throw Error('Expected eight layer columns');
 const threshold=0.38;
-console.log('case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s');
+console.log('case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s,time_at_max_co_s,time_at_min_visibility_s');
 const flow=names.filter(n=>/^flow(L|R|C1|C2)$/.test(n)).map(n=>column(n,'m3/s'));
 if(flow.length!==((input.match(/TYPE_ID='DUCT'/g)||[]).length)) throw Error('Unexpected duct count');
 const roof=names.filter(n=>/^roof[LR]$/.test(n)).map(n=>column(n,'m3/s'));
@@ -46,10 +46,12 @@ let volume=0;
 for(let i=1;i<window.length;i++) volume+=(total(window[i])+total(window[i-1]))*0.5*(window[i][0]-window[i-1][0]);
 for(const name of layers){
   const x=name.slice(5), j=column(name,'m'), co=column('co'+x,'mol/mol'), vis=column('vis'+x,'m');
-  let min=window[0],first=null,duration=0;
+  let min=window[0],maxCO=window[0],minVis=window[0],first=null,duration=0;
   for(let i=1;i<window.length;i++){
     const a=window[i-1],b=window[i];
     if(b[j]<min[j]) min=b;
+    if(b[co]>maxCO[co]) maxCO=b;
+    if(b[vis]<minVis[vis]) minVis=b;
     const lowA=a[j]<threshold,lowB=b[j]<threshold;
     if(!lowA && !lowB) continue;
     const crossing=lowA===lowB ? a[0] : a[0]+(threshold-a[j])*(b[0]-a[0])/(b[j]-a[j]);
@@ -57,5 +59,5 @@ for(const name of layers){
     first??=from;
     duration+=to-from;
   }
-  console.log([id,x,start,end,min[j],min[0],first?.toFixed(3)??'',duration.toFixed(3),Math.max(...window.map(r=>r[co]))*1e6,Math.min(...window.map(r=>r[vis])),(volume/(end-start)).toFixed(5),roof.length?(roofVolume/(end-start)).toFixed(5):''].join(','));
+  console.log([id,x,start,end,min[j],min[0],first?.toFixed(3)??'',duration.toFixed(3),maxCO[co]*1e6,minVis[vis],(volume/(end-start)).toFixed(5),roof.length?(roofVolume/(end-start)).toFixed(5):'',maxCO[0],minVis[0]].join(','));
 }
