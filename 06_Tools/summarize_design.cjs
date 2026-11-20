@@ -10,13 +10,16 @@ const resultFile=files.find(f=>f.endsWith('_devc.csv'));
 const id=resultFile?.slice(0,-9);
 if(!id || !Number.isFinite(start) || start<0) throw Error('Invalid case or start time');
 const out=fs.readFileSync(path.join(dir,id+'.out'),'utf8');
-if(!out.includes('FDS completed successfully')) throw Error('Case has not completed successfully');
-const input=fs.readFileSync(path.join(dir,files.find(f=>f.endsWith('.fds'))),'utf8');
+if(!out.includes('FDS completed successfully (CHID: '+id+')')) throw Error('Case has not completed successfully');
+const inputs=files.filter(f=>f.endsWith('.fds')).map(f=>fs.readFileSync(path.join(dir,f),'utf8'))
+  .filter(deck=>deck.match(/\bCHID\s*=\s*'([^']+)'/i)?.[1]===id);
+if(inputs.length!==1) throw Error('Expected one input matching the output CHID');
+const [input]=inputs;
 const end=Number(input.match(/T_END\s*=\s*([\d.]+)/i)?.[1]);
 const [unitLine,nameLine,...data]=fs.readFileSync(path.join(dir,resultFile),'utf8').trim().split(/\r?\n/);
 const names=nameLine.replaceAll('"','').split(',');
 const units=unitLine.split(',');
-const rows=data.map(l=>l.split(',').map(Number));
+const rows=data.map(l=>l.split(',').map(v=>v.trim()===''?NaN:Number(v)));
 if(rows.some((r,i)=>r.length!==names.length || r.some(v=>!Number.isFinite(v)) || (i && r[0]<=rows[i-1][0]))) throw Error('Invalid time series');
 if(!Number.isFinite(end) || Math.abs(rows.at(-1)[0]-end)>0.001 || rows[0][0]>start || start>=end) throw Error('Incomplete requested interval');
 function column(name,unit) {
