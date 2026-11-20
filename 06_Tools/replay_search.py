@@ -22,7 +22,10 @@ def read_fds():
         command = ["node", str(ROOT / "06_Tools/summarize_design.cjs"), str(directory)]
         data = subprocess.check_output(command, text=True)
         rows = list(csv.DictReader(io.StringIO(data)))
-        if len(rows) != 8 or any(float(r["end_s"]) != 120 for r in rows):
+        if len(rows) != 8 or any(
+            r["case"] != directory.name or float(r["start_s"]) != 0 or float(r["end_s"]) != 120
+            for r in rows
+        ):
             raise ValueError(f"Incomplete scenario: {directory}")
         margins[d, q] = min(float(r["min_height_m"]) for r in rows) - 0.38
     return margins
