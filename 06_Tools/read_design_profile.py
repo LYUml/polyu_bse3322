@@ -1,4 +1,4 @@
-"""Read a timestamped vertical profile from the project's coarse centreplane slices."""
+"""Read a coarse centreplane profile: CASE X TIME [--half-height]."""
 import csv
 import struct
 import sys
@@ -6,6 +6,9 @@ from pathlib import Path
 
 case = Path(sys.argv[1])
 position, requested = map(float, sys.argv[2:4])
+half_height = sys.argv[4:] == ["--half-height"]
+if sys.argv[4:] and not half_height:
+    raise ValueError("Expected --half-height or no optional argument")
 
 def record(stream):
     marker=stream.read(4)
@@ -40,5 +43,10 @@ s,extinction=profile(5,"SOOT EXTINCTION COEFFICIENT","1/m")
 if abs(t-s)>0.001: raise ValueError("Slices out of sync")
 out=csv.writer(sys.stdout,lineterminator="\n")
 out.writerow(["case","time_s","x_m","y_m","z_m","gas_temperature_C","soot_extinction_per_m"])
-for k in range(1,19):
-    out.writerow([case.name,round(t,4),round(round(position/0.05)*0.05,3),0.45,round(k*0.04,2),round(temp[k],3),round(extinction[k],5)])
+location = [case.name, round(t,4), round(round(position/0.05)*0.05,3), 0.45]
+if half_height:
+    # The target is midway between the adjacent 0.36 and 0.40 m slice nodes.
+    out.writerow(location + [0.38, (temp[9]+temp[10])/2, (extinction[9]+extinction[10])/2])
+else:
+    for k in range(1,19):
+        out.writerow(location + [round(k*0.04,2),round(temp[k],3),round(extinction[k],5)])
