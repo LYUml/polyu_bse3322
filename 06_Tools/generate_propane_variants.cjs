@@ -5,6 +5,7 @@ const models = path.join(__dirname,'../03_Models');
 const baseline = fs.readFileSync(path.join(models,'op1_106_coarse.fds'),'utf8');
 const variants = [
   ['op1_47_coarse',47.2,1], ['op6_47_coarse',47.2,6], ['op6_106_coarse',106.2,6],
+  ['op1_47_medium',47.2,1,'176,36,25'], ['op1_47_fine',47.2,1,'220,48,32'],
   ['op1_106_medium',106.2,1,'176,36,25'], ['op1_106_fine',106.2,1,'220,48,32'],
   ['op1_106_wale',106.2,1,null,'WALE'], ['op1_106_rad020',106.2,1,null,null,0.20],
   ['op1_106_rad050',106.2,1,null,null,0.50]
