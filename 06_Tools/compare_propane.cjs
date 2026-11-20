@@ -11,7 +11,7 @@ const match=id.match(/^op([16])_(47|106)_/);
 if(!match) throw Error('Unrecognised case');
 const q=match[2]==='47'?47.2:106.2;
 const file=ext=>path.join(dir,id+ext);
-if(mode!=='--diagnostic' && !fs.readFileSync(file('.out'),'utf8').includes('FDS completed successfully')) throw Error('Incomplete run');
+if(mode!=='--diagnostic' && !fs.readFileSync(file('.out'),'utf8').includes('FDS completed successfully (CHID: '+id+')')) throw Error('Incomplete run');
 function series(ext) {
   const [units,headers,...rows]=fs.readFileSync(file(ext),'utf8').trim().split(/\r?\n/);
   const names=headers.replaceAll('"','').split(',');
