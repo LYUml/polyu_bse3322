@@ -35,3 +35,8 @@ How：node 06_Tools/generate_design.cjs 6 0.02 0.16 0.16 120 输出 C 输入；�
 What：06_Tools/summarize_design.cjs 从成功完成的丙烯算例读取 8 列层高及对应的 CO、能见度。按每个位置列出全时段最低层高、发生时刻、首次低于 0.38 m 的时间、累计越线时长、峰值 CO ppm 和最低能见度。管道流量先求和再按时间积分求平均。
 Why：保留最不利位置和持续时间，避免平均层高掩盖越线；0.38 m 判据覆盖整个已模拟火灾时段。弱分层状态还需结合切片解释。
 How：node 06_Tools/summarize_design.cjs 04_Results/算例名 输出 CSV。额外起始时间参数仅用于诊断。时间点间线性插值求阈值穿越时刻；数据分辨率约 0.5 s。检查完成标记、末时刻、列名及单位。3 s 预检已正常结束，两管平均总风量 0.10902 m³/s（含启动过程），仅用于测试采集链路。
+
+## 对照曲线及热边界敏感性
+What：06_Tools/compare_propane.cjs 以名义测点对应原图的 51 个数字化点，积分计算时间加权温升、MAE、RMSE、平均实际 HRR 和窗口前后半段的测点温度漂移。op1_106_board_proxy 额外比较绝热假设与 15 mm 导热板代理边界。
+Why：热电偶温度仍在上升时，实际 HRR 接近输入值不足以支持温度验证。OP-1 粗网格 5–9 s 的诊断读数为平均 HRR 106.67 kW、最大半窗漂移 69.50 K，仅用于检查时间和单位。绝热边界无法评价板内导热。
+How：node 06_Tools/compare_propane.cjs 04_Results/op1_106_coarse 90 120（示例时段，最终仍检查漂移）；早期调试必须显式加 --diagnostic。升温 = 热电偶温度减输入环境温度，线性插值到窗口端点并积分。代理板的 15 mm 厚度来自 Peng；密度 200 kg/m³、导热率 0.1 W/(m·K)、比热 1 kJ/(kg·K) 借自 FDS 官方 Steckler_010 的 INSULATION 材料，仅用于估计边界敏感性，非 Peng 实测值。出处 https://github.com/firemodels/fds/blob/FDS-6.10.1/Validation/Steckler_Compartment/FDS_Input_Files/Steckler_010.fds 。
