@@ -57,7 +57,10 @@ How：用带 NumPy 的 Python 运行该脚本并将 stdout 保存为 CSV。GP �
     pdftocairo -f 8 -l 8 -svg 02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf "$env:TEMP/peng8.svg"
     node 06_Tools/extract_peng_fig9.cjs "$env:TEMP/peng8.svg" | Set-Content -Encoding ascii "$env:TEMP/peng8.csv"
 
-重新转换原 PDF 并复跑，四组共 204 行的功率、开口、距离和温升字段与项目表逐项相同。核对图例、两轴和原文 51 点布置。复现一致性不能排除原图差异：106.2 kW、OP-6 的 Fig. 9(d) 峰值约 890 K，Fig. 6 中同工况汇总点目读约 870 K。两图取数不合并。本文引用 Fig. 9 剖面，峰值比较保留出处。没有仪器时序或作者原始表，0.1 K 位数仅用于复现。正式图见 07_Report/peng_ceiling_profiles.png。
+重新转换原 PDF 并复跑，与初版 SVG 提取表逐项相同。正式数据已由下述直接刻度标定版本更新。核对图例、两轴和原文 51 点布置。复现一致性不能排除原图差异：106.2 kW、OP-6 的 Fig. 9(d) 峰值约 890 K，Fig. 6 中同工况汇总点目读约 870 K。两图取数不合并。本文引用 Fig. 9 剖面，峰值比较保留出处。没有仪器时序或作者原始表，0.1 K 位数仅用于复现。正式图见 07_Report/peng_ceiling_profiles.png。
 
 ## 网格化几何
 从三份实际 Smokeview 几何记录读取 vent/obstruction 的 IJK 索引，按均匀网格步长转回米。每个侧口的实际流通面积均比名义 0.2709 m² 大约 6.1%–6.5%；三个网格的侧口面积相近并不能证明实验开口几何误差消失。粗网格燃烧面积与名义值相同，但中心在 x/y 方向各正移 25 mm；中、细燃烧面积偏差分别为 −2.0%、+0.8%。成绩评估须检查实际 HRR 和开口流动，并将这一系统几何偏差与网格导致的其他变化区分。复现：运行 06_Tools/audit_mesh_geometry.py；数据见 05_Calculations/mesh_geometry.csv。
+
+### 独立读图校核及正式版本
+正式 CSV 和报告图使用 pdfplumber 的原生 PDF 方框与曲线路径；横轴按左右边框标定，纵轴按矢量主刻度相邻两点线性标定，图符位置取外接框中心。正文图例确认系列和符号。脚本 06_Tools/extract_peng_pdf_objects.py 的标准输出为正式 CSV。与上一版 Poppler SVG 加渲染图标定的结果按功率、开口和测点顺序比较，204 点的纵轴绝对差平均 0.214 K、最大 0.6 K，横轴平均 1.655 cm、最大 2.4 cm。该差值描述两条读图路径的一致性，不是实验不确定度。复现仓库 https://github.com/jsvine/pdfplumber 。
