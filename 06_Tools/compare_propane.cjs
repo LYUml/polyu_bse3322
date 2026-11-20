@@ -38,6 +38,7 @@ const deck=fs.readFileSync(file('.fds'),'utf8');
 const ambient=Number(deck.match(/TMPA=([\d.]+)/)[1]);
 const sensorPositions=new Map(Array.from(deck.matchAll(/&DEVC\s+ID='(TC_\d+)'[^/]*?\bXYZ=([\d.]+),/g),
   ([,name,xMetres])=>[name,Number(xMetres)*100]));
+let experimentPeak, modelPeak;
 let signedError=0,abs=0,sq=0,worstDrift=0;
 console.log('sensor_x_cm,figure_r_cm,exp_rise_K,fds_rise_K,error_K,second_minus_first_half_K,model_x_cm');
 ref.forEach((r,i)=>{
@@ -46,6 +47,8 @@ ref.forEach((r,i)=>{
   // Reference coordinates are digitized to 0.1 cm. Allow 0.5 cm for plot registration.
   if(Math.abs(Number(r[2])-(x-330))>0.5) throw Error('Station mismatch');
   const rise=avg(tc,'C')-ambient, error=rise-Number(r[3]);
+  if(!experimentPeak || Number(r[3])>experimentPeak.rise_K) experimentPeak={rise_K:Number(r[3]),r_cm:Number(r[2])};
+  if(!modelPeak || rise>modelPeak.rise_K) modelPeak={rise_K:rise,r_cm:sensorPositions.get(tc)-330};
   const drift=avg(tc,'C',mid,end)-avg(tc,'C',start,mid);
   signedError+=error;
   abs+=Math.abs(error); sq+=error*error; worstDrift=Math.max(worstDrift,Math.abs(drift));
@@ -62,4 +65,4 @@ if(id.endsWith('_doorflow')){
     mean_door_flow_kg_s[door]={outward,inward,net_outward:outward-inward};
   }
 }
-console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,mean_door_flow_kg_s,mean_signed_error_K:signedError/ref.length,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
+console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,mean_door_flow_kg_s,experimentPeak,modelPeak,mean_signed_error_K:signedError/ref.length,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
