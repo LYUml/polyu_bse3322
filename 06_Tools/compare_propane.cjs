@@ -18,13 +18,15 @@ function series(ext) {
   const values=rows.map(r=>r.split(',').map(value=>value.trim()==='' ? NaN : Number(value)));
   if(values[0][0]>start || values.at(-1)[0]<end-1e-5) throw Error('Requested interval unavailable');
   if(values.some((r,i)=>r.length!==names.length || r.some(v=>!Number.isFinite(v)) || (i && r[0]<=values[i-1][0]))) throw Error('Invalid data');
-  return (name,unit,lo=start,hi=end)=>{
+  return (name,unit,lo=start,hi=end,intervalMean=false)=>{
     const col=names.indexOf(name);
     if(col<0 || units.split(',')[col]!==unit) throw Error('Unexpected column '+name);
     let sum=0;
     for(let i=1;i<values.length;i++){
       const a=values[i-1],b=values[i], l=Math.max(lo,a[0]), h=Math.min(hi,b[0]);
       if(h<=l) continue;
+      // FDS door flux records are means over the preceding device output interval.
+      if(intervalMean){ sum+=(h-l)*b[col]; continue; }
       const slope=(b[col]-a[col])/(b[0]-a[0]);
       sum+=(h-l)*(a[col]+slope*((l+h)/2-a[0]));
     }
@@ -61,7 +63,7 @@ if(id.endsWith('_doorflow')){
   const doors=match[1]==='1'?['L2','L1','R1','R2']:['R1'];
   mean_door_flow_kg_s={};
   for(const door of doors){
-    const outward=avg(door+'_out','kg/s'), inward=-avg(door+'_in','kg/s');
+    const outward=avg(door+'_out','kg/s',start,end,true), inward=-avg(door+'_in','kg/s',start,end,true);
     mean_door_flow_kg_s[door]={outward,inward,net_outward:outward-inward};
   }
 }
