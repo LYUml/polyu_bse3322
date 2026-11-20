@@ -46,6 +46,8 @@ console.log('sensor_x_cm,figure_r_cm,exp_rise_K,fds_rise_K,error_K,second_minus_
 ref.forEach((r,i)=>{
   const x=i<8?30*i:240+10*(i-8), tc='TC_'+x;
   if(!sensorPositions.has(tc)) throw Error('Missing model coordinate for '+tc);
+  // The right-end probe is inset 1 mm to keep it inside the domain.
+  if(Math.abs(sensorPositions.get(tc)-x)>0.100001) throw Error('Model station mismatch for '+tc);
   // Reference coordinates are digitized to 0.1 cm. Allow 0.5 cm for plot registration.
   if(Math.abs(Number(r[2])-(x-330))>0.5) throw Error('Station mismatch');
   const rise=avg(tc,'C')-ambient, error=rise-Number(r[3]);
