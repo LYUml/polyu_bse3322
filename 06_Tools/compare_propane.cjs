@@ -70,4 +70,11 @@ if(id.endsWith('_doorflow') || id.endsWith('_doorfield')){
     mean_door_flow_kg_s[door]={outward,inward,net_outward:outward-inward};
   }
 }
-console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,enthalpy_minus_net_input_kW,mean_door_flow_kg_s,experimentPeak,modelPeak,mean_signed_error_K:signedError/ref.length,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
+const mean_R1_profile = id.endsWith('_doorflow')
+  ? [0.06,0.14,0.22,0.3,0.38,0.46,0.54,0.6].map(z => ({
+      height_m: z,
+      velocity_y_m_s: avg('R1_V-VELOCITY_'+z,'m/s'),
+      temperature_C: avg('R1_TEMPERATURE_'+z,'C')
+    }))
+  : undefined;
+console.error(JSON.stringify({id,diagnostic:mode==='--diagnostic',start,end,mean_HRR_kW:heat('HRR','kW'),mean_domain_budget_kW,enthalpy_minus_net_input_kW,mean_door_flow_kg_s,mean_R1_profile,experimentPeak,modelPeak,mean_signed_error_K:signedError/ref.length,MAE_K:abs/51,RMSE_K:Math.sqrt(sq/51),max_half_window_drift_K:worstDrift}));
