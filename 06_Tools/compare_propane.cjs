@@ -15,7 +15,7 @@ if(mode!=='--diagnostic' && !fs.readFileSync(file('.out'),'utf8').includes('FDS 
 function series(ext) {
   const [units,headers,...rows]=fs.readFileSync(file(ext),'utf8').trim().split(/\r?\n/);
   const names=headers.replaceAll('"','').split(',');
-  const values=rows.map(r=>r.split(',').map(Number));
+  const values=rows.map(r=>r.split(',').map(value=>value.trim()==='' ? NaN : Number(value)));
   if(values[0][0]>start || values.at(-1)[0]<end-1e-5) throw Error('Requested interval unavailable');
   if(values.some((r,i)=>r.length!==names.length || r.some(v=>!Number.isFinite(v)) || (i && r[0]<=values[i-1][0]))) throw Error('Invalid data');
   return (name,unit,lo=start,hi=end)=>{
