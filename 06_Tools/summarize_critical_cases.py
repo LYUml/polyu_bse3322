@@ -22,8 +22,8 @@ def summarize(case):
     height = min(stations, key=lambda s: float(s["min_height_m"]))
     visibility = min(stations, key=lambda s: float(s["min_visibility_m"]))
     co = max(stations, key=lambda s: float(s["max_co_ppm"]))
-    return [case, height["min_height_m"], height["x_m"], visibility["min_visibility_m"],
-            visibility["x_m"], co["max_co_ppm"], co["x_m"],
+    return [case, height["min_height_m"], height["x_m"], height["time_at_min_s"], visibility["min_visibility_m"],
+            visibility["x_m"], visibility["time_at_min_visibility_s"], co["max_co_ppm"], co["x_m"], co["time_at_max_co_s"],
             json.loads(run.stderr)["any_station_below_duration_s"]]
 
 
@@ -35,7 +35,7 @@ if __name__ == "__main__":
             case = f"design_{opening}_{yield_id}_0p16_0p16_120"
             rows.append([f"OP-{opening}", soot_yield, *summarize(case)])
     writer = csv.writer(sys.stdout, lineterminator="\n")
-    writer.writerow(["opening", "soot_yield_kg_per_kg", "case", "min_height_m", "height_station_x_m", "min_visibility_m",
-                     "visibility_station_x_m", "max_co_ppm", "co_station_x_m",
+    writer.writerow(["opening", "soot_yield_kg_per_kg", "case", "min_height_m", "height_station_x_m", "time_at_min_height_s", "min_visibility_m",
+                     "visibility_station_x_m", "time_at_min_visibility_s", "max_co_ppm", "co_station_x_m", "time_at_max_co_s",
                      "any_station_below_duration_s"])
     writer.writerows(rows)
