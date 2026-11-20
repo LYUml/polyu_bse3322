@@ -28,11 +28,14 @@ def summarize(case):
 
 
 if __name__ == "__main__":
-    cases = [f"design_{op}_{yield_id}_0p16_0p16_120"
-             for op in (1, 6) for yield_id in ("0p02", "0p05", "0p1")]
-    rows = [summarize(case) for case in cases]
+    rows = []
+    for opening in (1, 6):
+        for soot_yield in (0.02, 0.05, 0.1):
+            yield_id = str(soot_yield).replace(".", "p")
+            case = f"design_{opening}_{yield_id}_0p16_0p16_120"
+            rows.append([f"OP-{opening}", soot_yield, *summarize(case)])
     writer = csv.writer(sys.stdout, lineterminator="\n")
-    writer.writerow(["case", "min_height_m", "height_station_x_m", "min_visibility_m",
+    writer.writerow(["opening", "soot_yield_kg_per_kg", "case", "min_height_m", "height_station_x_m", "min_visibility_m",
                      "visibility_station_x_m", "max_co_ppm", "co_station_x_m",
                      "any_station_below_duration_s"])
     writer.writerows(rows)
