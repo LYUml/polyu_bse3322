@@ -6,9 +6,12 @@ from pathlib import Path
 root = Path(__file__).resolve().parents[1]
 writer = csv.writer(sys.stdout, lineterminator="\n")
 writer.writerow(["mesh","object","x_min_m","x_max_m","y_min_m","y_max_m","z_min_m","z_max_m","area_m2","area_change_pct"])
-for mesh in ("coarse","medium","fine"):
+for mesh in ("coarse","medium","fine","doorflow"):
     case=f"op1_106_{mesh}"
-    text=(root / "04_Results" / case / (case+".smv")).read_text().splitlines()
+    source=root / "04_Results" / case / (case+".smv")
+    if mesh=="doorflow" and not source.exists():
+        source=root / "04_Results/doorflow_check/doorflow_check.smv"
+    text=source.read_text().splitlines()
     def block(name):
         i=text.index(name)
         count=int(text[i+1].split()[0])
