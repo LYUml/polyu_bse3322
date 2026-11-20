@@ -28,8 +28,9 @@ def summarize(case):
         if len(matches) != 1:
             raise ValueError(f"Expected one full-duration excursion record for {case}")
         duration = float(matches[0]["any_station_below_duration_s"])
-    if len({s["x_m"] for s in stations}) != 8 or len(stations) != 8:
-        raise ValueError(f"Expected eight stations in {case}")
+    expected_positions = {0.5, 1.7, 2.4, 3.0, 3.6, 4.2, 4.9, 6.1}
+    if {float(s["x_m"]) for s in stations} != expected_positions or len(stations) != 8:
+        raise ValueError(f"Unexpected station positions in {case}")
     if any(s["case"] != case or float(s["end_s"]) != 120 or float(s["start_s"]) != 0 for s in stations):
         raise ValueError(f"Unexpected scenario or interval in {case}")
     height = min(stations, key=lambda s: float(s["min_height_m"]))
