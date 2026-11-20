@@ -1,13 +1,15 @@
 /* Emit a design input to stdout; no solver is started by this generator.
    node generate_design.cjs OP soot curtainDepth_m totalFlow_m3s endTime_s
-   flow=0 represents the unmodified ceiling (no new openings). */
+   flow=0 leaves the ceiling closed unless a final natural argument opens both vents. */
 const fs = require('node:fs');
 const path = require('node:path');
 const [op,soot,depth,flow,end] = process.argv.slice(2).map(Number);
 if (![1,6].includes(op) || ![0.02,0.05,0.1].includes(soot)
     || !Number.isFinite(depth) || depth<0 || depth>=0.38
     || !Number.isFinite(flow) || flow<0 || !(end>0)) throw Error('Invalid design parameters');
-const id = ['design',op,soot,depth,flow,end].join('_').replaceAll('.','p');
+const natural = process.argv[7] === 'natural';
+if (process.argv[7] && (!natural || flow!==0)) throw Error('Natural vent requires zero mechanical flow');
+const id = [natural?'natural':'design',op,soot,depth,flow,end].join('_').replaceAll('.','p');
 const base = fs.readFileSync(path.join(__dirname,'../03_Models/op1_106_coarse.fds'),'utf8');
 let lines = base.split(/\r?\n/).filter(l => l && !l.startsWith('&HEAD') && !l.startsWith('&TIME')
   && !l.startsWith('&PROP') && !l.startsWith('&DEVC') && !l.startsWith('&TAIL')
@@ -16,6 +18,14 @@ lines=lines.map(l=>l.startsWith('&REAC') ? "&REAC FUEL='PROPYLENE', SOOT_YIELD="
 lines.unshift("&HEAD CHID='"+id+"', TITLE='Group 18 curtain and exhaust screening' /","&TIME T_END="+end+" /");
 if(depth>0) {
   for(const x of [2.8,3.8]) lines.push('&OBST XB='+[x,x,0,0.9,(0.76-depth).toFixed(4),0.76].join(',')+' /');
+}
+if(natural) {
+  for(const [side,x] of [['L',2.95],['R',3.35]]) {
+    const x2=(x+0.3).toFixed(2);
+    lines.push("&VENT XB="+[x,x2,0.3,0.6,0.76,0.76].join(',')+", SURF_ID='OPEN' /");
+    // One face inside the domain to measure net upward transport beneath the vent.
+    lines.push("&DEVC ID='roof"+side+"', XB="+[x,x2,0.3,0.6,0.72,0.72].join(',')+", QUANTITY='W-VELOCITY', SPATIAL_STATISTIC='AREA INTEGRAL' /");
+  }
 }
 if(flow>0) {
   for(const [side,x] of [['L',2.95],['R',3.35]]) {

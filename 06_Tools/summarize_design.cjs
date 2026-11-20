@@ -31,10 +31,17 @@ if(window[0][0]>start) window.unshift(interpolate(rows[next-1],rows[next],start)
 const layers=names.filter(n=>n.startsWith('layer'));
 if(layers.length!==8) throw Error('Expected eight layer columns');
 const threshold=0.38;
-console.log('case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_total_exhaust_m3_s');
+console.log('case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s');
 const flow=names.filter(n=>/^flow[LR]$/.test(n)).map(n=>column(n,'m3/s'));
 if(flow.length!==(input.includes("TYPE_ID='DUCT'")?2:0)) throw Error('Unexpected duct count');
+const roof=names.filter(n=>/^roof[LR]$/.test(n)).map(n=>column(n,'m3/s'));
+if (id.startsWith('natural_') && roof.length!==2) throw Error('Missing roof flux readings');
 const total=r=>flow.reduce((s,j)=>s+r[j],0);
+let roofVolume=0;
+for(let i=1;i<window.length;i++){
+  const dt=window[i][0]-window[i-1][0];
+  for(const j of roof) roofVolume+=(window[i][j]+window[i-1][j])*0.5*dt;
+}
 let volume=0;
 for(let i=1;i<window.length;i++) volume+=(total(window[i])+total(window[i-1]))*0.5*(window[i][0]-window[i-1][0]);
 for(const name of layers){
@@ -50,5 +57,5 @@ for(const name of layers){
     first??=from;
     duration+=to-from;
   }
-  console.log([id,x,start,end,min[j],min[0],first?.toFixed(3)??'',duration.toFixed(3),Math.max(...window.map(r=>r[co]))*1e6,Math.min(...window.map(r=>r[vis])),(volume/(end-start)).toFixed(5)].join(','));
+  console.log([id,x,start,end,min[j],min[0],first?.toFixed(3)??'',duration.toFixed(3),Math.max(...window.map(r=>r[co]))*1e6,Math.min(...window.map(r=>r[vis])),(volume/(end-start)).toFixed(5),roof.length?(roofVolume/(end-start)).toFixed(5):''].join(','));
 }
