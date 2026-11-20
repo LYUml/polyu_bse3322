@@ -58,3 +58,6 @@ How：用带 NumPy 的 Python 运行该脚本并将 stdout 保存为 CSV。GP �
     node 06_Tools/extract_peng_fig9.cjs "$env:TEMP/peng8.svg" | Set-Content -Encoding ascii "$env:TEMP/peng8.csv"
 
 重新转换原 PDF 并复跑，四组共 204 行的功率、开口、距离和温升字段与项目表逐项相同。核对图例、两轴和原文 51 点布置。复现一致性不能排除原图差异：106.2 kW、OP-6 的 Fig. 9(d) 峰值约 890 K，Fig. 6 中同工况汇总点目读约 870 K。两图取数不合并。本文引用 Fig. 9 剖面，峰值比较保留出处。没有仪器时序或作者原始表，0.1 K 位数仅用于复现。正式图见 07_Report/peng_ceiling_profiles.png。
+
+## 网格化几何
+从三份实际 Smokeview 几何记录读取 vent/obstruction 的 IJK 索引，按均匀网格步长转回米。每个侧口的实际流通面积均比名义 0.2709 m² 大约 6.1%–6.5%；三个网格的侧口面积相近并不能证明实验开口几何误差消失。粗网格燃烧面积与名义值相同，但中心在 x/y 方向各正移 25 mm；中、细燃烧面积偏差分别为 −2.0%、+0.8%。成绩评估须检查实际 HRR 和开口流动，并将这一系统几何偏差与网格导致的其他变化区分。复现：运行 06_Tools/audit_mesh_geometry.py；数据见 05_Calculations/mesh_geometry.csv。
