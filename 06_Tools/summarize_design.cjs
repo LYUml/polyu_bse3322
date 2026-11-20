@@ -32,7 +32,10 @@ const next=rows.findIndex(r=>r[0]>=start);
 const window=rows.slice(next);
 if(window[0][0]>start) window.unshift(interpolate(rows[next-1],rows[next],start));
 const layers=names.filter(n=>n.startsWith('layer'));
-if(layers.length!==8) throw Error('Expected eight layer columns');
+const expectedLayers=[0.5,1.7,2.4,3,3.6,4.2,4.9,6.1].map(x=>'layer'+x);
+if(layers.length!==expectedLayers.length || expectedLayers.some(name=>!layers.includes(name))) {
+  throw Error('Missing or duplicate smoke-layer station');
+}
 const threshold=0.38;
 console.log('case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s,time_at_max_co_s,time_at_min_visibility_s,mean_co_ppm,mean_visibility_m');
 const flow=names.filter(n=>/^flow(L|R|C1|C2)$/.test(n)).map(n=>column(n,'m3/s'));
