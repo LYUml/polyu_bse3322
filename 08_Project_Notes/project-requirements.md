@@ -62,3 +62,9 @@ Both full texts are archived. The [source review](01_Group18_任务与证据梳�
 ### Experimental test numbers and the assignment count
 
 Peng Table 1 gives eight HRRs per opening configuration. Both OP-1 (tests 1–8) and OP-6 (tests 41–48) list 11.8, 23.6, 35.4, 47.2, 59, 70.8, 88.5 and 106.2 kW. Reading each range in listed order implies tests 4 and 8 for OP-1, and 44 and 48 for OP-6, at the two Group 18 HRRs. This mapping is inferred from the table order. The methods paragraph prints 45.2 kW where the experimental table and assignment give 47.2 kW. The project uses 47.2 kW as specified in the brief. The experimental ranges explain the eight original tests per opening configuration. The brief's own eight-case counting rule remains unresolved. [Peng experimental matrix](../02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf) · [Assignment Table 1](../01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf)
+
+## Human review inventory (2026-11-22)
+
+The [report figure directory](../07_Report/) contains the Peng ceiling temperature profiles, four coarse-grid propane validation plots (OP-1 and OP-6 at both HRRs), and one OP-6 curtain/soot minimum-height plot. Use the coarse-grid captions when reviewing those four figures. Review the 90–120 s fine-grid comparisons separately once the corresponding simulations finish.
+
+The submission directory currently contains only its placeholder. The formal report is deferred to human review. For the design conclusion, review the full-duration station minima for each required scenario, the fan power inputs and the CO discussion alongside the [module acceptance record](03_Group18_验收记录.md). Figure availability alone does not establish design acceptance.
