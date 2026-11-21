@@ -133,6 +133,8 @@ For the six fixed-door scenarios, use two adjustable end openings with the same 
 
 Each corresponding case completed 120 s with all eight sampled thermal layer heights at or above 0.38 m. The limiting case was OP-1 at soot yield 0.02 kg/kg, with 0.4425 m at x = 0.5 m and t = 69.00 s. The resulting minimum margin across the six cases was 0.0625 m. [Six-scenario minima and run identifiers](../05_Calculations/door_preset_1p28_six_scenarios.csv)
 
+![Minimum thermal layer height across eight stations over 120 s](door_preset_minimum_heights.png)
+
 Across all six preset cases, the lowest recorded half-height visibility (2.57 m) and highest CO concentration (38.31 ppm) coincided at x = 3.6 m and t = 4.00 s in OP-6 with soot yield 0.05 kg/kg. The thermal layer height there was 0.4975 m. The four-door baseline therefore governs the height margin, while the single-door intermediate-soot case governs both of these local exposure indicators. [OP-6 intermediate-soot station results](../05_Calculations/inlet48_6_0p05_0p24_1p28_120_stations.csv)
 
 The recommendation assumes the specified door state and inlet setting persist throughout the fire. Door transitions, actuator response and failure remain untested. The 0.96 m³/s comparison examines whether the same preset rule can reduce fan power while maintaining the height criterion. With the short-branch loss model above, reducing total flow from 1.28 to 0.96 m³/s would reduce the estimated combined electrical input from 10.32 to 4.35 W (about 58%). The lower figure is conditional on maintaining the six-scenario layer-height criterion. Both estimates exclude the remaining system pressure losses. The minimum feasible fan power remains undetermined.
