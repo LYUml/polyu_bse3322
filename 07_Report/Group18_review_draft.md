@@ -1,0 +1,17 @@
+# Group 18 review draft
+
+## Propane ceiling-jet validation
+
+A ventilation design based on FDS depends on the model reproducing the temperature distribution in the experimental compartment. The validation compares the OP-1 and OP-6 ceiling measurements at 47.2 and 106.2 kW with the corresponding Peng profiles. The method pairs 51 thermocouple locations, subtracts the model ambient temperature and averages each device over 90–120 s using its actual output intervals. For the OP-6 high-power adiabatic door-flow case the signed mean error is +330.31 K and the RMSE is 361.45 K. The hottest model station lies 0.70 m farther to the left of the fire than the hottest experimental station. The paired wall heat-loss comparison and the OP-1 fine-grid results are pending. [Experimental profiles](../05_Calculations/peng_fig9.csv) · [OP-6 results](../05_Calculations/op6_106_doorflow_90_120.json)
+
+## Propylene smoke extraction
+
+The design criterion is a smoke-layer height of at least 0.38 m. Each candidate is screened using the minimum reported thermal layer height across eight stations over the 120 s fire. Half-height visibility, CO and vertical slices provide independent indicators within the same simulation for interpreting a thermal-layer excursion. In OP-6, a 0.24 m curtain depth, 1.00 m curtain spacing and a total exhaust of 1.28 m³/s gave a minimum height of 0.3528 m at soot yield 0.05. Increasing the spacing to 1.10 m gave 0.2983 m at the same end station by 44.0 s and triggered an early stop. The end-station slice showed a vertical temperature range of only 1.85 K. The widened layout fails the thermal screen, while the local optical evidence gives little support for a continuous smoke interface there. The 0.90 m spacing is under evaluation. [Full-duration cases](../05_Calculations/tall_makeup_op6_completed_scenarios.csv) · [Early-stop record](../05_Calculations/spacing110_6_0p05_0p24_1p28_120_screen_failure.json) · [Vertical profile](../05_Calculations/spacing110_6_0p05_0p24_1p28_120_failure_profile.csv)
+
+## Search and fan power
+
+The first design objective is to find a nonnegative minimum layer-height margin in every agreed scenario. Only then can fan power be minimized among feasible layouts. A replay of the original 16 candidates found the largest available margin on query 7 with Bayesian optimization, query 9 for the median surrogate-GA trial and query 16 with ordered search. Even the largest margin was negative, so this experiment supports a comparison of search order only. For the wider exhaust openings, the two short branches together require an estimated 10.32 W at 1.28 m³/s under the assumed branch loss of 4.84 Pa and total efficiency of 0.60. Final fan selection requires the full system pressure rise. [Search results](../05_Calculations/search_summary.csv) · [Fan assumptions and CO comparisons](../08_Project_Notes/03_Group18_验收记录.md)
+
+## Remaining decisions
+
+After the paired propane runs finish, quantify the residual validation error and its sensitivity to enclosure heat transfer and mesh size. A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
