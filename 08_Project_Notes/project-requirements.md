@@ -45,8 +45,8 @@ Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even gr
 ## Pending information / source ambiguities
 
 - Report deadline, deliverable format, marking rubric and team allocation. Presentation schedule lists Group 18 on 2026-11-25, 08:30-09:00, Zone 4 (not a confirmed report deadline).
-- Fig. 1 opening positions, burner dimensions/location, wall construction and measurement positions.
-- Opening height has now been checked against Peng PDF page 3, both prose and high-resolution Fig. 1: 0.63 m. The earlier apparent 0.61 m was a low-resolution reading issue.
+- Peng Fig. 1 and the accompanying text support the 0.63 m opening height, 0.25 m square propane burner and measurement arrays. See the [source review](01_Group18_任务与证据梳理.md) for the geometry and coordinate mapping.
+- Peng gives a 15 mm enclosure thickness. The wall sensitivity case uses proxy density, conductivity and specific heat. Experimental values for these three properties remain unverified. [Wall-case input and material provenance](../07_Report/Group18_review_draft.md#model-geometry-and-mesh)
 - Experimental time windows, ambient conditions and boundary/material properties.
 - Brief mentions “nanofluid concentration,” apparently unrelated to this fire task: retain as a source ambiguity until clarified.
 - Exact meaning of “inlet and outlet” temperature/velocity and smoke-layer acceptance measurement method.
