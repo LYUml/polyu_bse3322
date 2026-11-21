@@ -55,10 +55,10 @@ const total=r=>flow.reduce((s,j)=>s+r[j],0);
 let roofVolume=0;
 for(let i=1;i<window.length;i++){
   const dt=window[i][0]-window[i-1][0];
-  for(const j of roof) roofVolume+=(window[i][j]+window[i-1][j])*0.5*dt;
+  for(const j of roof) roofVolume+=window[i][j]*dt;
 }
 let volume=0;
-for(let i=1;i<window.length;i++) volume+=(total(window[i])+total(window[i-1]))*0.5*(window[i][0]-window[i-1][0]);
+for(let i=1;i<window.length;i++) volume+=total(window[i])*(window[i][0]-window[i-1][0]);
 const belowIntervals=[];
 for(const name of layers){
   const x=name.slice(5), j=column(name,'m'), co=column('co'+x,'mol/mol'), vis=column('vis'+x,'m');
