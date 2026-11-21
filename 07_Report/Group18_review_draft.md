@@ -133,7 +133,7 @@ An alternative fixed layout opened the left end to 0.44 m and the right end to 0
 
 For the six fixed-door scenarios, use two adjustable end openings with the same preset height at both ends. Before the fire, set the height to 0.44 m with four doors open (OP-1) or 0.48 m with R1 alone open (OP-6). Keep the curtain depth at 0.24 m and deliver 0.64 m³/s through each exhaust branch. Door state determines the setting for all three soot yields. This rule was selected after inspecting the existing CFD results.
 
-Each corresponding case completed 120 s with all eight sampled thermal layer heights at or above 0.38 m. The limiting case was OP-1 at soot yield 0.02 kg/kg, with 0.4425 m at x = 0.5 m and t = 69.00 s. The resulting minimum margin across the six cases was 0.0625 m. [Six-scenario minima and run identifiers](../05_Calculations/door_preset_1p28_six_scenarios.csv)
+Each corresponding case completed 120 s with all eight sampled thermal layer heights at or above 0.38 m. The limiting case was OP-1 at soot yield 0.02 kg/kg, with 0.4425 m at x = 0.5 m and t = 69.00 s. The resulting minimum margin across the six cases was 0.0625 m. At that station the adjacent samples measured 0.625 m at 68.50 s and 0.746 m at 69.50 s. Across these three samples half-height visibility stayed at 30 m and CO remained below 10⁻²⁰ ppm. The sampled thermal minimum was brief and had no accompanying drop in half-height visibility. [Six-scenario minima and run identifiers](../05_Calculations/door_preset_1p28_six_scenarios.csv)
 
 ![Minimum thermal layer height across eight stations over 120 s](door_preset_minimum_heights.png)
 
