@@ -1,0 +1,4 @@
+case,y_m,max_span_m,span_time_s,left_x_m,right_x_m,longest_same_point_span_s,point_x_m,first_sample_s,last_sample_s
+inlet48_6_0p1_0p24_1p28_120,0.15,0.45,67.001,2.95,3.4,39.003,3.2,16.0,55.003
+inlet48_6_0p1_0p24_1p28_120,0.45,0.9,4.004,3.0,3.9,118.997,3.25,1.003,120.0
+inlet48_6_0p1_0p24_1p28_120,0.75,0.85,101.001,3.15,4.0,118.997,3.3,1.003,120.0
