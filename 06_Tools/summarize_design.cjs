@@ -13,8 +13,11 @@ const out=fs.readFileSync(path.join(dir,id+'.out'),'utf8');
 if(!out.includes('FDS completed successfully (CHID: '+id+')')) throw Error('Case has not completed successfully');
 const inputs=files.filter(f=>f.endsWith('.fds')).map(f=>fs.readFileSync(path.join(dir,f),'utf8'))
   .filter(deck=>deck.match(/\bCHID\s*=\s*'([^']+)'/i)?.[1]===id);
-if(inputs.length!==1) throw Error('Expected one input matching the output CHID');
-const [input]=inputs;
+// Restart decks in these runs differ only by the FDS restart flag.
+const configurations = new Set(inputs.map(deck => deck.trim()
+  .replace(/(&MISC\s+)RESTART\s*=\s*\.TRUE\.\s*,\s*/i, '$1')));
+if(configurations.size!==1) throw Error('Expected one physical configuration matching the output CHID');
+const [input]=configurations;
 const end=Number(input.match(/T_END\s*=\s*([\d.]+)/i)?.[1]);
 const [unitLine,nameLine,...data]=fs.readFileSync(path.join(dir,resultFile),'utf8').trim().split(/\r?\n/);
 const names=nameLine.replaceAll('"','').split(',');
