@@ -33,7 +33,9 @@ function series(ext) {
     return sum/(hi-lo);
   };
 }
-const avg=series('_devc.csv'), heat=series('_hrr.csv');
+const avg=series('_devc.csv'), hrrSeries=series('_hrr.csv');
+// FDS accumulates DT*Q_DOT between HRR dumps (Source/dump.f90).
+const heat=(name,unit)=>hrrSeries(name,unit,start,end,true);
 const ref=fs.readFileSync(path.join(__dirname,'../05_Calculations/peng_fig9.csv'),'utf8').trim().split(/\r?\n/).slice(1).map(l=>l.split(',')).filter(r=>Number(r[0])===q && r[1]==='OP-'+match[1]);
 if(ref.length!==51) throw Error('Expected 51 experiment points');
 const deck=fs.readFileSync(file('.fds'),'utf8');
