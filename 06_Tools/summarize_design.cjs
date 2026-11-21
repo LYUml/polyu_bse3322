@@ -24,6 +24,12 @@ const names=nameLine.replaceAll('"','').split(',');
 const units=unitLine.split(',');
 const rows=data.map(l=>l.split(',').map(v=>v.trim()===''?NaN:Number(v)));
 if(rows.some((r,i)=>r.length!==names.length || r.some(v=>!Number.isFinite(v)) || (i && r[0]<=rows[i-1][0]))) throw Error('Invalid time series');
+// Allow solver-step jitter around scheduled device output times.
+const deviceInterval = Number(input.match(/\bDT_DEVC\s*=\s*([\d.eE+-]+)/i)?.[1]);
+if (deviceInterval > 0 && rows.some((row, i) =>
+  i > 0 && row[0] - rows[i - 1][0] > 1.5 * deviceInterval)) {
+  throw Error('Gap in scheduled device output');
+}
 if(!Number.isFinite(end) || Math.abs(rows.at(-1)[0]-end)>0.001 || rows[0][0]>start || start>=end) throw Error('Incomplete requested interval');
 function column(name,unit) {
   const j=names.indexOf(name);
