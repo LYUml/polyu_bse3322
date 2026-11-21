@@ -95,4 +95,6 @@ The physics-informed surrogate was trained on FDS output to predict eight statio
 
 ## Remaining decisions
 
+The single-door 1.28 m³/s reference with a 0.36 m inlet top recorded a local thermal-layer excursion at x = 6.1 m. The device heights at 82.501, 83.004 and 83.503 s were 0.6118, 0.3528 and 0.6017 m. Only the middle sample crossed the 0.38 m threshold at this station during the run. Linear interpolation between these samples gives about 0.11 s below the threshold, shorter than the 0.5 s sampling interval, so the physical duration is unresolved. The design fails the single-frame screening rule. Visibility at half height remained 30 m in all three samples. At the minimum, both branches carried 0.640 m³/s. The underlying device series is `tall_makeup_6_0p05_0p24_1p28_120_devc.csv`.
+
 After the paired propane runs finish, quantify the residual validation error and its sensitivity to enclosure heat transfer and mesh size. A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
