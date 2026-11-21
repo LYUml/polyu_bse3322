@@ -87,4 +87,4 @@ for(const [from,to] of belowIntervals){
   anyBelow+=Math.max(0,to-Math.max(from,coveredUntil));
   coveredUntil=Math.max(coveredUntil,to);
 }
-console.error(JSON.stringify({case:id,start_s:start,end_s:end,any_station_below_duration_s:anyBelow}));
+console.error(JSON.stringify({case:id,start_s:start,end_s:end,any_station_below_duration_s:anyBelow,threshold_timing_method:"linear interpolation between reported layer heights; crossing and duration are estimates"}));
