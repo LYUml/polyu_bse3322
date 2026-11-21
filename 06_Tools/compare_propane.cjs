@@ -70,7 +70,7 @@ if(id.endsWith('_doorflow') || id.endsWith('_doorfield')){
     mean_door_flow_kg_s[door]={outward,inward,net_outward:outward-inward};
   }
 }
-const mean_R1_profile = id.endsWith('_doorflow')
+const mean_R1_profile = mean_door_flow_kg_s
   ? [0.06,0.14,0.22,0.3,0.38,0.46,0.54,0.6].map(z => ({
       height_m: z,
       velocity_y_m_s: avg('R1_V-VELOCITY_'+z,'m/s'),
