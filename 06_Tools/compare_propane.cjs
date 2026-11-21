@@ -12,12 +12,16 @@ if(!match) throw Error('Unrecognised case');
 const q=match[2]==='47'?47.2:106.2;
 const file=ext=>path.join(dir,id+ext);
 if(mode!=='--diagnostic' && !fs.readFileSync(file('.out'),'utf8').includes('FDS completed successfully (CHID: '+id+')')) throw Error('Incomplete run');
-function series(ext) {
+const deck=fs.readFileSync(file('.fds'),'utf8');
+function series(ext, intervalPattern) {
   const [units,headers,...rows]=fs.readFileSync(file(ext),'utf8').trim().split(/\r?\n/);
   const names=headers.replaceAll('"','').split(',');
   const values=rows.map(r=>r.split(',').map(value=>value.trim()==='' ? NaN : Number(value)));
   if(values[0][0]>start || values.at(-1)[0]<end-1e-5) throw Error('Requested interval unavailable');
   if(values.some((r,i)=>r.length!==names.length || r.some(v=>!Number.isFinite(v)) || (i && r[0]<=values[i-1][0]))) throw Error('Invalid data');
+  const interval=Number(deck.match(intervalPattern)?.[1]);
+  if(interval>0 && values.some((r,i)=>i>0 && r[0]>start && values[i-1][0]<end &&
+      r[0]-values[i-1][0]>1.5*interval)) throw Error('Gap in analysis window: '+ext);
   return (name,unit,lo=start,hi=end,intervalMean=true)=>{
     const col=names.indexOf(name);
     if(col<0 || units.split(',')[col]!==unit) throw Error('Unexpected column '+name);
@@ -33,12 +37,12 @@ function series(ext) {
     return sum/(hi-lo);
   };
 }
-const avg=series('_devc.csv'), hrrSeries=series('_hrr.csv');
+const avg=series('_devc.csv', /\bDT_DEVC\s*=\s*([\d.eE+-]+)/i);
+const hrrSeries=series('_hrr.csv', /\bDT_HRR\s*=\s*([\d.eE+-]+)/i);
 // FDS accumulates DT*Q_DOT between HRR dumps (Source/dump.f90).
 const heat=(name,unit)=>hrrSeries(name,unit,start,end,true);
 const ref=fs.readFileSync(path.join(__dirname,'../05_Calculations/peng_fig9.csv'),'utf8').trim().split(/\r?\n/).slice(1).map(l=>l.split(',')).filter(r=>Number(r[0])===q && r[1]==='OP-'+match[1]);
 if(ref.length!==51) throw Error('Expected 51 experiment points');
-const deck=fs.readFileSync(file('.fds'),'utf8');
 const ambient=Number(deck.match(/TMPA=([\d.]+)/)[1]);
 const sensorPositions=new Map(Array.from(deck.matchAll(/&DEVC\s+ID='(TC_\d+)'[^/]*?\bXYZ=([\d.]+),/g),
   ([,name,xMetres])=>[name,Number(xMetres)*100]));
