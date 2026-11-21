@@ -6,6 +6,8 @@ FDS 6.10.1 represents the 6.60 m long, 0.90 m wide and 0.76 m high compartment. 
 
 Using the characteristic fire diameter from Yuen et al. (2015), equations 26–27, gives D* = 0.283 m at 47.2 kW and 0.391 m at 106.2 kW. Dividing by the longest cell dimension gives 5.65, 7.27 and 9.42 cells across D* on the three meshes at low power, and 7.82, 10.05 and 13.03 at high power. These ratios describe plume resolution. The sensitivity of the predicted ceiling temperatures is evaluated separately against the measured profiles. [Reproducible mesh calculation](../06_Tools/mesh_resolution.py)
 
+Both OP-6 wall comparison runs use 154 × 56 × 23 cells. Their matched adiabatic reference has a mean signed error of +330.3 K. The separate 132 × 28 × 19 coarse-grid run gives +302.5 K. Using the coarse run as the reference would combine the effects of enclosure heat transfer and mesh changes. [Matched adiabatic input](../03_Models/op6_106_doorflow.fds) · [Coarse-grid input](../03_Models/op6_106_coarse.fds)
+
 The wall heat-loss sensitivity run uses the 15 mm enclosure thickness reported by Peng. Density (200 kg/m³), thermal conductivity (0.1 W/(m·K)) and specific heat (1 kJ/(kg·K)) are proxy values from the FDS Steckler insulation example. They were applied to the compartment enclosure. The exterior extension retains the baseline boundary conditions. [Wall-case input](../03_Models/op6_106_board_doorflow.fds) · [Parameter provenance](../08_Project_Notes/03_Group18_验收记录.md)
 
 ## Propane ceiling-jet validation
