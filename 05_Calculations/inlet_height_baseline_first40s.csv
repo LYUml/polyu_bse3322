@@ -1,0 +1,5 @@
+chid,window_start_inclusive_s,window_end_exclusive_s,first_sample_s,last_sample_s,samples,stations,min_height_m,x_m,time_at_min_s
+inlet44_1_0p02_0p24_1p28_120,0,40,0,39.502297,80,8,0.47260354,4.9,39.002106
+inlet48_1_0p02_0p24_1p28_120,0,40,0,39.501069,80,8,0.57242118,2.4,9.5041207
+inlet44_6_0p02_0p24_1p28_120,0,40,0,39.505002,80,8,0.60776375,3.6,4.0028939
+inlet48_6_0p02_0p24_1p28_120,0,40,0,39.501022,80,8,0.58267633,3.6,4.0010465
