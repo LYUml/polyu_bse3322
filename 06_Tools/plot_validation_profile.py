@@ -33,7 +33,8 @@ def xy(x, y):
     return (110+(x+340)*1230/680, 640-(y-low)*440/(high-low))
 label(72, 36, f"Ceiling temperature rise   |   OP-{opening[-1]}, {power_kw} kW", 39)
 label(72, 105, "Temperature rise (K)", 24)
-for t in range(low, high+1, 50):
+tick_step = 50 * max(1, math.ceil((high-low)/500))
+for t in range(math.ceil(low/tick_step)*tick_step, high+1, tick_step):
     _, y = xy(0,t)
     draw.line((110,y,1340,y), fill="#d5dade")
     label(96,y,str(t),21,"rm")
