@@ -34,7 +34,7 @@ How：node 06_Tools/summarize_design.cjs 04_Results/算例名 输出 CSV。额�
 ## 对照曲线及热边界敏感性
 What：06_Tools/compare_propane.cjs 以名义测点对应原图的 51 个数字化点，积分计算时间加权温升、MAE、RMSE、平均实际 HRR 和窗口前后半段的测点温度漂移。op1_106_board_proxy 额外比较绝热假设与 15 mm 导热板代理边界。
 Why：热电偶温度仍在上升时，实际 HRR 接近输入值不足以支持温度验证。OP-1 粗网格 5–9 s 的诊断读数为平均 HRR 106.67 kW、最大半窗漂移 69.50 K，仅用于检查时间和单位。绝热边界无法评价板内导热。
-How：node 06_Tools/compare_propane.cjs 04_Results/op1_106_coarse 90 120（示例时段，最终仍检查漂移）；早期调试必须显式加 --diagnostic。升温 = 热电偶温度减输入环境温度，线性插值到窗口端点并积分。代理板的 15 mm 厚度来自 Peng；密度 200 kg/m³、导热率 0.1 W/(m·K)、比热 1 kJ/(kg·K) 借自 FDS 官方 Steckler_010 的 INSULATION 材料，仅用于估计边界敏感性，非 Peng 实测值。出处 https://github.com/firemodels/fds/blob/FDS-6.10.1/Validation/Steckler_Compartment/FDS_Input_Files/Steckler_010.fds 。
+How：node 06_Tools/compare_propane.cjs 04_Results/op1_106_coarse 90 120（示例时段，最终仍检查漂移）；早期调试必须显式加 --diagnostic。升温 = 热电偶温度减输入环境温度，按各设备输出区间与分析窗口的重叠时长加权平均。代理板的 15 mm 厚度来自 Peng；密度 200 kg/m³、导热率 0.1 W/(m·K)、比热 1 kJ/(kg·K) 借自 FDS 官方 Steckler_010 的 INSULATION 材料，仅用于估计边界敏感性，非 Peng 实测值。出处 https://github.com/firemodels/fds/blob/FDS-6.10.1/Validation/Steckler_Compartment/FDS_Input_Files/Steckler_010.fds 。
 
 ## 自然排烟候选
 What：OP-6 单开 R1、烟产率 0.02、烟帘深 0.16 m，顶棚两处各 0.30 × 0.30 m 的 OPEN 面直接连至环境，风机功率为零（理想无阻开口，无外部风压）。
