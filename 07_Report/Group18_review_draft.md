@@ -17,6 +17,10 @@ The four coarse-grid comparisons use the same 51-station scoring rule. Positive 
 
 The low-power OP-6 case has the smallest bias, but its RMSE shows substantial local discrepancies. Closing openings changes the sign of the mean error at both powers. Agreement in one configuration therefore gives limited support for predictions under a different opening condition. [OP-1 low power](op1_47_coarse_validation.png) · [OP-1 high power](op1_106_coarse_validation.png) · [OP-6 low power](op6_47_coarse_validation.png) · [OP-6 high power](op6_106_coarse_validation.png)
 
+## Turbulence closure and radiative fraction
+
+At OP-1 and 106.2 kW, four completed coarse-grid cases isolate two modelling choices. Replacing the gas-phase Deardorff closure with WALE at the same specified radiative fraction (0.29) reduced the 51-station temperature-rise RMSE from 82.0 to 77.0 K. With Deardorff retained, changing the radiative fraction to 0.20 gave 74.6 K and increasing it to 0.50 gave 131.1 K. The sensitivity of the fit to this combustion parameter is appreciable in this case. Choosing it for other opening configurations requires independent validation. [Paired sensitivity results, 90–120 s](../05_Calculations/op1_106_physics_sensitivity.csv)
+
 ## Inflow and outflow at R1
 
 The R1 doorway carries flow in both directions. At 106.2 kW, the 90–120 s mean velocity at 0.14 m above the floor pointed into the compartment in both cases. The four-open-door case (OP-1) gave 0.55 m/s inward at 29.65 °C, compared with 0.69 m/s inward at 39.21 °C for the single-open-door case (OP-6). At 0.38 m, the flow pointed outwards at 0.37 m/s and 109.61 °C for OP-1, and 0.74 m/s and 473.64 °C for OP-6. These are local model predictions at the same doorway. Experimental door profiles would be needed to validate the magnitudes. [OP-1 R1 profile](../05_Calculations/op1_106_doorfield_90_120.json) · [OP-6 R1 profile](../05_Calculations/op6_106_doorfield_90_120.json)
