@@ -6,6 +6,17 @@ A ventilation design based on FDS depends on the model reproducing the temperatu
 
 The experimental reference consists of 204 points digitized from Peng et al., Fig. 9 (51 stations for each opening and heat-release-rate combination). The primary extraction reads native PDF marker paths with pdfplumber, calibrates the axes against the plot frame and major ticks, and uses the centroid of each triangular marker. A second extraction through Poppler SVG differed by a mean absolute 0.20 K and a maximum 0.6 K on the temperature axis. These differences measure agreement between digitization methods; experimental measurement uncertainty must be considered separately. [Primary extraction script](../06_Tools/extract_peng_pdf_objects.py) · [SVG cross-check](../06_Tools/extract_peng_fig9.cjs)
 
+The four coarse-grid comparisons use the same 51-station scoring rule. Positive bias means FDS predicted a greater temperature rise than Peng measured.
+
+| Opening | Fire power | Mean signed error | RMSE |
+|---|---:|---:|---:|
+| OP-1 | 47.2 kW | −191.8 K | 192.4 K |
+| OP-1 | 106.2 kW | −76.6 K | 82.0 K |
+| OP-6 | 47.2 kW | +6.0 K | 33.3 K |
+| OP-6 | 106.2 kW | +302.5 K | 335.5 K |
+
+The low-power OP-6 case has the smallest bias, but its RMSE shows substantial local discrepancies. Closing openings changes the sign of the mean error at both powers. Agreement in one configuration therefore gives limited support for predictions under a different opening condition. [OP-1 low power](op1_47_coarse_validation.png) · [OP-1 high power](op1_106_coarse_validation.png) · [OP-6 low power](op6_47_coarse_validation.png) · [OP-6 high power](op6_106_coarse_validation.png)
+
 ## Inflow and outflow at R1
 
 The R1 doorway carries flow in both directions. At 106.2 kW, the 90–120 s mean velocity at 0.14 m above the floor pointed into the compartment in both cases. The four-open-door case (OP-1) gave 0.55 m/s inward at 29.65 °C, compared with 0.69 m/s inward at 39.21 °C for the single-open-door case (OP-6). At 0.38 m, the flow pointed outwards at 0.37 m/s and 109.61 °C for OP-1, and 0.74 m/s and 473.64 °C for OP-6. These are local model predictions at the same doorway. Experimental door profiles would be needed to validate the magnitudes. [OP-1 R1 profile](../05_Calculations/op1_106_doorfield_90_120.json) · [OP-6 R1 profile](../05_Calculations/op6_106_doorfield_90_120.json)
