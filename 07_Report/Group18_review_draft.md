@@ -8,6 +8,18 @@ A ventilation design based on FDS depends on the model reproducing the temperatu
 
 The design criterion is a smoke-layer height of at least 0.38 m. Each candidate is screened using the minimum reported thermal layer height across eight stations over the 120 s fire. Half-height visibility, CO and vertical slices provide independent indicators within the same simulation for interpreting a thermal-layer excursion. In OP-6, a 0.24 m curtain depth, 1.00 m curtain spacing and a total exhaust of 1.28 m³/s gave a minimum height of 0.3528 m at soot yield 0.05. Increasing the spacing to 1.10 m gave 0.2983 m at the same end station by 44.0 s and triggered an early stop. The end-station slice showed a vertical temperature range of only 1.85 K. The widened layout fails the thermal screen, while the local optical evidence gives little support for a continuous smoke interface there. The 0.90 m spacing is under evaluation. [Full-duration cases](../05_Calculations/tall_makeup_op6_completed_scenarios.csv) · [Early-stop record](../05_Calculations/spacing110_6_0p05_0p24_1p28_120_screen_failure.json) · [Vertical profile](../05_Calculations/spacing110_6_0p05_0p24_1p28_120_failure_profile.csv)
 
+## Worst-case smoke yield
+
+For OP-6 with 1.00 m curtain spacing and 1.28 m³/s total extraction, each table entry is the lowest thermal layer height recorded across eight stations during a complete 120 s run.
+
+| Curtain depth (m) | Yield 0.02 kg/kg | Yield 0.05 kg/kg | Yield 0.10 kg/kg |
+|---|---:|---:|---:|
+| 0.16 | 0.263 m | 0.371 m | 0.245 m |
+| 0.24 | 0.365 m | 0.353 m | 0.369 m |
+| 0.32 | Untested here | Untested here | 0.267 m |
+
+The lowest height occurred at yield 0.10 for the 0.16 m curtain and at yield 0.05 for the 0.24 m curtain. Increasing the curtain depth from 0.16 to 0.24 m improved the minimum across the three scenarios by 0.108 m, but the resulting minimum remained 0.027 m below the target. This comparison motivates testing the spacing change first at yield 0.05. The ranking applies to the stated opening and exhaust configuration. [Full-duration scenario minima](../05_Calculations/tall_makeup_op6_completed_scenarios.csv)
+
 ## Search and fan power
 
 The first design objective is to find a nonnegative minimum layer-height margin in every agreed scenario. Only then can fan power be minimized among feasible layouts. A replay of the original 16 candidates found the largest available margin on query 7 with Bayesian optimization, query 9 for the median surrogate-GA trial and query 16 with ordered search. Even the largest margin was negative, so this experiment supports a comparison of search order only. For the wider exhaust openings, the two short branches together require an estimated 10.32 W at 1.28 m³/s under the assumed branch loss of 4.84 Pa and total efficiency of 0.60. Final fan selection requires the full system pressure rise. [Search results](../05_Calculations/search_summary.csv) · [Fan assumptions and CO comparisons](../08_Project_Notes/03_Group18_验收记录.md)
