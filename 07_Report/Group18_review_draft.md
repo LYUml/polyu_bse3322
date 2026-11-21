@@ -33,7 +33,9 @@ At OP-1 and 106.2 kW, four completed coarse-grid cases isolate two modelling cho
 
 ## Inflow and outflow at R1
 
-The R1 doorway carries flow in both directions. At 106.2 kW, the 90–120 s mean velocity at 0.14 m above the floor pointed into the compartment in both cases. The four-open-door case (OP-1) gave 0.55 m/s inward at 29.65 °C, compared with 0.69 m/s inward at 39.21 °C for the single-open-door case (OP-6). At 0.38 m, the flow pointed outwards at 0.37 m/s and 109.61 °C for OP-1, and 0.74 m/s and 473.64 °C for OP-6. These are local model predictions at the same doorway. Experimental door profiles would be needed to validate the magnitudes. [OP-1 R1 profile](../05_Calculations/op1_106_doorfield_90_120.json) · [OP-6 R1 profile](../05_Calculations/op6_106_doorfield_90_120.json)
+At 47.2 kW, R1 flow at 0.14 m was inward in both OP-1 (0.43 m/s, 28.28 °C) and OP-6 (0.66 m/s, 29.68 °C). At 0.38 m it was outward in OP-1 (0.14 m/s, 64.79 °C) and OP-6 (0.40 m/s, 212.11 °C). Values are local 90–120 s means. [OP-1 low-power profile](../05_Calculations/op1_47_doorflow_90_120.json) · [OP-6 low-power profile](../05_Calculations/op6_47_doorflow_90_120.json)
+
+At 106.2 kW, the 90–120 s mean velocity at 0.14 m above the floor pointed into the compartment in both cases. The four-open-door case (OP-1) gave 0.55 m/s inward at 29.65 °C, compared with 0.69 m/s inward at 39.21 °C for the single-open-door case (OP-6). At 0.38 m, the flow pointed outwards at 0.37 m/s and 109.61 °C for OP-1, and 0.74 m/s and 473.64 °C for OP-6. These are local model predictions at the same doorway. Experimental door profiles would be needed to validate the magnitudes. [OP-1 R1 profile](../05_Calculations/op1_106_doorfield_90_120.json) · [OP-6 R1 profile](../05_Calculations/op6_106_doorfield_90_120.json)
 
 ## Propylene smoke extraction
 
