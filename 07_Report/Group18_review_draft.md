@@ -59,7 +59,9 @@ The propylene model prescribes a CO yield of 0.01 kg per kg of fuel consumed. Th
 
 At 0.64 m³/s exhaust with the same OP-6 opening configuration, soot yield 0.02 and 0.16 m curtains, adding two low-level make-up openings raised the eight-station minimum layer height from 0.048 to 0.145 m. Across the same stations, peak half-height CO fell from 381 to 84 ppm and minimum half-height visibility rose from 1.63 to 5.88 m. These extrema are taken separately across stations and times. Make-up air improved all three measures in this case, although the lowest layer remained 0.235 m below the target. [Original layout](../05_Calculations/design_6_0p02_0p16_0p64_120_stations.csv) · [Added make-up openings](../05_Calculations/makeup_6_0p02_0p16_0p64_120_stations.csv)
 
-The asymmetric extraction trial keeps total flow at 1.28 m³/s and directs more flow towards R1, where the equal-flow baseline breached the height criterion at x = 6.1 m. At 5.501 s the left and right branch devices recorded 0.55997 and 0.71996 m³/s, respectively, confirming delivery of the intended split at that instant. The eight layer-height records determine whether this redistribution improves the design.
+For the equal-flow OP-6 baseline with soot yield 0.05, the right-end station (x = 6.1 m) fell below 0.38 m in one of 241 records. Its estimated layer height fell from 0.612 m at 82.501 s to 0.353 m at 83.004 s and recovered to 0.602 m at 83.503 s. Visibility at half height remained 30 m in all three records, with negligible CO. The middle record fails the screening criterion. The neighbouring records and visibility provide little evidence of persistent smoke at half height.
+
+The asymmetric extraction trial keeps total flow at 1.28 m³/s and directs more flow towards the affected end. At 5.501 s the left and right branch devices recorded 0.55997 and 0.71996 m³/s, respectively, confirming delivery of the intended split at that instant. The eight layer-height records determine whether this redistribution improves the design.
 
 ## Supplementary surrogate check
 
