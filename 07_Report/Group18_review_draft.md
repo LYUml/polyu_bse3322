@@ -20,6 +20,8 @@ The experimental reference consists of 204 points digitized from Peng et al., Fi
 
 The four coarse-grid comparisons use the same 51-station scoring rule. Positive bias means FDS predicted a greater temperature rise than Peng measured.
 
+The OP-6 low-power door-flow case also displaced the hottest station to the left. Peng measured a peak rise of 586.4 K above the burner, while FDS predicted 700.4 K at 0.40 m to the left. Its 51-station mean error was +45.5 K and RMSE was 61.4 K on the door-flow mesh. The +6.0 K error in the coarse-grid table below applies to a different mesh. [Low-power door-flow results](../05_Calculations/op6_47_doorflow_90_120.json)
+
 With only R1 open, raising the nominal fire power from 47.2 to 106.2 kW increased the mean temperature rise across the 51 stations by 128.2 K in Peng's data and 413.0 K in the adiabatic simulations. The simulated increase was 3.22 times the experimental increase. Mean simulated R1 inflow changed from 0.0943 to 0.0945 kg/s and outflow from 0.0961 to 0.0981 kg/s. These mass flows alone cannot quantify heat carried out through the door. [Low-power station comparison](../05_Calculations/op6_47_doorflow_90_120.csv) · [High-power station comparison](../05_Calculations/op6_106_doorflow_90_120.csv)
 
 | Opening | Fire power | Mean signed error | RMSE |
