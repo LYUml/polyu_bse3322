@@ -42,6 +42,8 @@ Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even gr
 - Evaluate more sooty conditions with smoke yields 0.05 and 0.1; explain design strategy and critical scenarios.
 - Discuss CO generation and mitigation.
 
+The design brief specifies three soot yields. Group 18 tests each under both OP-1 (four open doorways) and OP-6 (only R1 open) to assess sensitivity to make-up air and identify the limiting scenario. Group 18 selected this six-case design matrix. The brief explicitly requests explanation of doorway effects in the propane investigation and asks the group to stipulate critical propylene scenarios.
+
 ## Pending information / source ambiguities
 
 - Report deadline, deliverable format, marking rubric and team allocation. Presentation schedule lists Group 18 on 2026-11-25, 08:30-09:00, Zone 4 (not a confirmed report deadline).
