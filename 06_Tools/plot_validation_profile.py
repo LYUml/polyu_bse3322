@@ -14,8 +14,17 @@ if len(rows) != 51:
     raise ValueError("Expected 51 paired stations")
 observed = [(float(r["figure_r_cm"]), float(r["exp_rise_K"])) for r in rows]
 model = [(float(r["model_x_cm"])-330, float(r["fds_rise_K"])) for r in rows]
-low = math.floor(min(y for _, y in observed+model)/50)*50
-high = math.ceil(max(y for _, y in observed+model)/50)*50
+adiabatic = []
+if variant == "board_doorflow":
+    baseline = root / "05_Calculations" / f"{opening}_{power}_doorflow_90_120.csv"
+    with baseline.open(encoding="utf-8-sig") as f:
+        reference = list(csv.DictReader(f))
+    keys = ("model_x_cm", "figure_r_cm", "exp_rise_K")
+    if [[r[k] for k in keys] for r in reference] != [[r[k] for k in keys] for r in rows]:
+        raise ValueError("Wall comparison requires matching experimental and model stations")
+    adiabatic = [(float(r["model_x_cm"])-330, float(r["fds_rise_K"])) for r in reference]
+low = math.floor(min(y for _, y in observed+model+adiabatic)/50)*50
+high = math.ceil(max(y for _, y in observed+model+adiabatic)/50)*50
 image = Image.new("RGB", (1400, 800), "white")
 draw = ImageDraw.Draw(image)
 def label(x, y, text, size, anchor="la"):
@@ -31,6 +40,10 @@ for t in range(low, high+1, 50):
 for r in range(-300,301,100):
     x,_ = xy(r,low)
     label(x,663,str(r),21,"mm")
+if adiabatic:
+    draw.line([xy(x,y) for x,y in adiabatic], fill="#646464", width=3)
+    draw.line((490,122,540,122),fill="#646464",width=3)
+    label(552,122,"FDS, adiabatic",22,"lm")
 draw.line([xy(x,y) for x,y in model], fill="#155482", width=4)
 for x,y in observed:
     a,b = xy(x,y)
