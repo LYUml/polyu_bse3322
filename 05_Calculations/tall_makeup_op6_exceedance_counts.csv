@@ -1,0 +1,8 @@
+"case_id","sampled_times","times_below_0p38","station_time_pairs_below_0p38","longest_consecutive_times_any_station"
+"tall_makeup_6_0p02_0p16_1p28_120","241","4","4","1"
+"tall_makeup_6_0p02_0p24_1p28_120","241","1","1","1"
+"tall_makeup_6_0p05_0p16_1p28_120","241","1","1","1"
+"tall_makeup_6_0p05_0p24_1p28_120","241","1","1","1"
+"tall_makeup_6_0p1_0p16_1p28_120","241","3","3","1"
+"tall_makeup_6_0p1_0p24_1p28_120","241","1","1","1"
+"tall_makeup_6_0p1_0p32_1p28_120","241","16","16","2"
