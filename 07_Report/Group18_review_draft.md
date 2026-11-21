@@ -103,6 +103,8 @@ Lowering both end openings from 0.36 to 0.24 m reduced their combined area from 
 
 The physics-informed surrogate was trained on FDS output to predict eight station height histories. A held-out design tested extrapolation from curtain depths of 0.16 and 0.24 m to 0.32 m at OP-6, soot yield 0.10 and total flow 1.28 m³/s. Its predicted minimum of 0.619 m exceeded the full-run FDS minimum of 0.267 m by 0.352 m and would have classified the design as passing. The independent reference here is a held-out CFD case; experimental validation is a separate propane comparison. This false pass is why the design decision uses full-duration FDS output or an observed early failure. [Surrogate methodology and event audit](../09_PINN_Layer/README.md)
 
+At 0.05 kg/kg soot yield, the enlarged-inlet design also completed 120 s under OP-1. Its lowest recorded layer height was 0.509 m at x = 0.5 m and t = 79.0 s, compared with 0.524 m at x = 6.1 m and t = 27.0 s under OP-6. The limiting station moved to the opposite end of the compartment with the change in door configuration. [OP-1 station results](../05_Calculations/inlet44_1_0p05_0p24_1p28_120_stations.csv)
+
 ## Remaining decisions
 
 A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
