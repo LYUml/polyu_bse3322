@@ -204,3 +204,5 @@ $marker = Join-Path "04_Results/$chid" 'screening.enabled'
 Set-Content -LiteralPath $marker -Value $chid -Encoding ascii -NoNewline
 if ((Get-Content -LiteralPath $marker -Raw) -cne $chid) { throw 'Screening marker mismatch' }
 ```
+
+1.10 m 间距候选已触发筛查早停。44.004917 s，端部 x=6.1 m 的估算层高为 0.2982593 m，余量 −81.74 mm。同站半高能见度为 30 m，CO 接近零，两支各为 0.64 m³/s。FDS 日志确认按该 CHID 正常停算。截断记录已足以筛除候选，120 s 全程最低值未定。原 1.00 m 布局的全程最低为 0.35277 m，故单独加宽间距未改善可行性。[早停事件及相邻记录](../05_Calculations/spacing110_6_0p05_0p24_1p28_120_screen_failure.json)
