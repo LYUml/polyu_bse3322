@@ -1,5 +1,9 @@
 # Group 18 review draft
 
+## Model geometry and mesh
+
+FDS 6.10.1 represents the 6.60 m long, 0.90 m wide and 0.76 m high compartment. The computational domain extends to y = 1.40 m outside the opening wall so that doorway inflow and outflow can develop. The ambient temperature is 27.5 °C. The nominal propane burner is a 0.25 m square. At 106.2 kW its prescribed heat release per unit area is 1,699.2 kW/m². The ceiling comparison uses 1 mm thermocouples at z = 0.74 m. For the OP-1 mesh study the coarse, medium and fine domains contain 132 × 28 × 19, 176 × 36 × 25 and 220 × 48 × 32 cells respectively. Geometry and fire inputs are retained across the three runs. [Coarse input](../03_Models/op1_106_coarse.fds) · [Medium input](../03_Models/op1_106_medium.fds) · [Fine input](../03_Models/op1_106_fine.fds)
+
 ## Propane ceiling-jet validation
 
 A ventilation design based on FDS depends on the model reproducing the temperature distribution in the experimental compartment. The validation compares the OP-1 and OP-6 ceiling measurements at 47.2 and 106.2 kW with the corresponding Peng profiles. The method pairs 51 thermocouple locations, subtracts the model ambient temperature and averages each device over 90–120 s using its actual output intervals. For the OP-6 high-power adiabatic door-flow case the signed mean error is +330.31 K and the RMSE is 361.45 K. The hottest model station lies 0.70 m farther to the left of the fire than the hottest experimental station. The paired wall heat-loss comparison and the OP-1 fine-grid results are pending. [Experimental profiles](../05_Calculations/peng_fig9.csv) · [OP-6 results](../05_Calculations/op6_106_doorflow_90_120.json)
