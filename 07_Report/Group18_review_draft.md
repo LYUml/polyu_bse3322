@@ -47,7 +47,7 @@ For OP-6 with 1.00 m curtain spacing and 1.28 m³/s total extraction, each table
 | 0.24 | 0.365 m | 0.353 m | 0.369 m |
 | 0.32 | Untested here | Untested here | 0.267 m |
 
-The lowest height occurred at yield 0.10 for the 0.16 m curtain and at yield 0.05 for the 0.24 m curtain. Increasing the curtain depth from 0.16 to 0.24 m improved the minimum across the three scenarios by 0.108 m, but the resulting minimum remained 0.027 m below the target. This comparison motivates testing the spacing change first at yield 0.05. The ranking applies to the stated opening and exhaust configuration. [Full-duration scenario minima](../05_Calculations/tall_makeup_op6_completed_scenarios.csv)
+The lowest height occurred at yield 0.10 for the 0.16 m curtain and at yield 0.05 for the 0.24 m curtain. Increasing the curtain depth from 0.16 to 0.24 m improved the minimum across the three scenarios by 0.108 m, but the resulting minimum remained 0.027 m below the target. The 0.24 m baseline reached its minimum at x = 6.1 m after 83.0 s, which motivates screening both spacing and branch-flow changes at yield 0.05 first. These seven runs cover OP-6. Establishing the worst opening configuration requires a matched OP-1 comparison. [Full-duration scenario minima](../05_Calculations/tall_makeup_op6_completed_scenarios.csv)
 
 ## Search and fan power
 
