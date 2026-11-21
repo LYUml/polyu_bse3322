@@ -103,8 +103,27 @@ def replay(margins, writer):
                 writer.writerow([method, seed, step+1, p[0]*0.08, p[1]*0.08, observed[p], best, best_margin])
 
 
+def summarize_trace(rows, writer):
+    """Report first discoveries for each seed using the completed trace."""
+    from itertools import groupby
+    writer.writerow(["method", "seed", "first_best_margin_query", "first_feasible_query",
+                     "best_margin_m", "lowest_feasible_flow_m3_s"])
+    for (method, seed), group in groupby(rows, key=lambda row: (row["method"], row["seed"])):
+        run = list(group)
+        if [int(row["queries"]) for row in run] != list(range(1, len(GRID) + 1)):
+            raise ValueError(f"Incomplete query sequence for {method}, seed {seed}")
+        best = max(float(row["observed_margin_m"]) for row in run)
+        first_best = next(row["queries"] for row in run if float(row["observed_margin_m"]) == best)
+        feasible = [row for row in run if float(row["observed_margin_m"]) >= 0]
+        writer.writerow([method, seed, first_best, feasible[0]["queries"] if feasible else "",
+                         best, min((float(row["flow_m3_s"]) for row in feasible), default="")])
+
+
 if __name__ == "__main__":
     writer = csv.writer(sys.stdout, lineterminator="\n")
+    if sys.argv[1:] == ["--summarize"]:
+        summarize_trace(csv.DictReader(sys.stdin), writer)
+        sys.exit(0)
     margins = read_fds()
     writer.writerow(["method","seed","queries","depth_m","flow_m3_s","observed_margin_m","best_feasible_flow_m3_s","best_observed_margin_m"])
     replay(margins, writer)
