@@ -28,6 +28,10 @@ The first design objective is to find a nonnegative minimum layer-height margin 
 
 The propylene model prescribes a CO yield of 0.01 kg per kg of fuel consumed. The half-height probes measure local concentration as smoke moves through the compartment. In the OP-6 comparison with soot yield 0.02 and curtain depth 0.16 m, increasing exhaust from 0.16 to 0.64 m³/s reduced the 120 s mean CO concentration at x = 6.1 m from 100.73 to 0.62 ppm. At this same station, minimum thermal layer height was 0.143 m and 0.097 m, respectively. Both fell below the 0.38 m target. This comparison supports higher extraction as a means of reducing local CO accumulation in this scenario. Estimating the fraction of CO removed through the ducts would also require exhaust CO mass flux. [Lower-flow station results](../05_Calculations/design_6_0p02_0p16_0p16_120_stations.csv) · [Higher-flow station results](../05_Calculations/design_6_0p02_0p16_0p64_120_stations.csv)
 
+## Supplementary surrogate check
+
+The physics-informed surrogate was trained on FDS output to predict eight station height histories. A held-out design tested extrapolation from curtain depths of 0.16 and 0.24 m to 0.32 m at OP-6, soot yield 0.10 and total flow 1.28 m³/s. Its predicted minimum of 0.619 m exceeded the full-run FDS minimum of 0.267 m by 0.352 m and would have classified the design as passing. The independent reference here is a held-out CFD case; experimental validation is a separate propane comparison. This false pass is why the design decision uses full-duration FDS output or an observed early failure. [Surrogate methodology and event audit](../09_PINN_Layer/README.md)
+
 ## Remaining decisions
 
 After the paired propane runs finish, quantify the residual validation error and its sensitivity to enclosure heat transfer and mesh size. A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
