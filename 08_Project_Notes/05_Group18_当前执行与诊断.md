@@ -19,6 +19,8 @@
 
 [实验论文](../02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf) · [几何离散](../05_Calculations/mesh_geometry.csv) · [高功率结果](../05_Calculations/op6_106_coarse_90_120.json) · [低功率结果](../05_Calculations/op6_47_coarse_90_120.json)
 
+两档 OP6 门流仪表算例均已正常结束。在共同的 90–120 s 窗口，47.2 / 106.2 kW 的实际火功率分别为 47.24 / 106.31 kW，顶棚测线平均温升偏差为 +45.4 / +330.3 K，峰位相对实验偏移 −0.40 / −0.70 m。R1 平均进流为 0.09433 / 0.09451 kg/s，出流为 0.09614 / 0.09815 kg/s。高功率模拟的门洞总进流未下降；实验缺少对应流量测量，绝对通风量与真实门流分布仍待验证。[低功率正式结果](../05_Calculations/op6_47_doorflow_90_120.json) · [高功率正式结果](../05_Calculations/op6_106_doorflow_90_120.json)
+
 ## 丙烯风量初算
 
 采用稳态显热平衡，V̇ = Q̇c /(ρ cp ΔT)，其中 Q̇c 为假设由排风带走的热量 (kW)，ρ=p/(RT) 为排出气体密度 (kg/m³)，cp 单位 kJ/(kg·K)，结果为热态 m³/s。NISTIR 5516 的烟层质量和焓平衡用于说明量级。假定环境 300.65 K，p=101325 Pa，R=287 J/(kg·K)，cp=1.0，举例取火源 106.2 kW 的 65% 进入排风显热。用 ΔT=50、100、200 K 做敏感性分析，得到约 1.37、0.78、0.49 m³/s。这三个温升和 65% 均为假设；优先用现有输出复核出口温度，再缩小范围。给定 0.76 m 矮舱及撞顶火焰，顶棚射流、开口双向交换、冷空气短路和局部卷吸会破坏单层均匀混合假设。该计算不能预测 0.38 m 界面，也不能直接给出合规风量。[NISTIR 5516](https://nvlpubs.nist.gov/nistpubs/Legacy/IR/nistir5516.pdf)
