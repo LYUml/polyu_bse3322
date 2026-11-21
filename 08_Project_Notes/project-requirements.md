@@ -58,3 +58,7 @@ Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even gr
 2. Yuen et al. (2015), LES and multi-step chemical reaction in compartment fires. Numerical Heat Transfer; Part A: Applications, 68, 711–736.
 
 These papers have not yet been retrieved or reviewed in this workspace.
+
+### Experimental test numbers and the assignment count
+
+Peng Table 1 gives eight HRRs per opening configuration. Both OP-1 (tests 1–8) and OP-6 (tests 41–48) list 11.8, 23.6, 35.4, 47.2, 59, 70.8, 88.5 and 106.2 kW. Reading each range in listed order implies tests 4 and 8 for OP-1, and 44 and 48 for OP-6, at the two Group 18 HRRs. This mapping is inferred from the table order. The methods paragraph prints 45.2 kW where the experimental table and assignment give 47.2 kW. The project uses 47.2 kW as specified in the brief. The experimental ranges explain the eight original tests per opening configuration. The brief's own eight-case counting rule remains unresolved. [Peng experimental matrix](../02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf) · [Assignment Table 1](../01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf)
