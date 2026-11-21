@@ -1,0 +1,7 @@
+case,frames,first_x_ever_detected_m,last_x_ever_detected_m,outer_positive_node_frames,max_simultaneous_positive_nodes,interior_nodes_per_frame
+inlet44_1_0p02_0p24_1p28_120,121,2.7,4.0,0,186,2227
+inlet44_1_0p05_0p24_1p28_120,121,2.6,4.0,0,201,2227
+inlet44_1_0p1_0p24_1p28_120,121,2.65,4.05,0,235,2227
+inlet48_6_0p02_0p24_1p28_120,121,2.9,4.1,0,196,2227
+inlet48_6_0p05_0p24_1p28_120,121,2.9,4.1,0,226,2227
+inlet48_6_0p1_0p24_1p28_120,121,2.85,4.05,0,217,2227
