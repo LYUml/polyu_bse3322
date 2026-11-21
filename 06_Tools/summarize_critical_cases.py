@@ -1,4 +1,5 @@
 """Summarize the six completed fixed-design scenarios as CSV on stdout."""
+import argparse
 import csv
 import io
 import json
@@ -42,11 +43,15 @@ def summarize(case):
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument("--design", choices=("baseline", "tall_makeup"), default="baseline")
+    args = parser.parse_args()
+    prefix, flow = ("design", "0p16") if args.design == "baseline" else ("tall_makeup", "1p28")
     rows = []
     for opening in (1, 6):
         for soot_yield in (0.02, 0.05, 0.1):
             yield_id = str(soot_yield).replace(".", "p")
-            case = f"design_{opening}_{yield_id}_0p16_0p16_120"
+            case = f"{prefix}_{opening}_{yield_id}_0p16_{flow}_120"
             rows.append([f"OP-{opening}", soot_yield, *summarize(case)])
     writer = csv.writer(sys.stdout, lineterminator="\n")
     writer.writerow(["opening", "soot_yield_kg_per_kg", "case", "min_height_m", "height_station_x_m", "time_at_min_height_s", "min_visibility_m",
