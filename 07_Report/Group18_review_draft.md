@@ -117,6 +117,10 @@ At a total exhaust flow of 1.28 m³/s and curtain depth of 0.24 m, five scenario
 
 At 0.10 kg/kg, OP-6 failed at x = 6.1 m and t = 37.504 s with a recorded thermal layer height of 0.3695 m. Both branches delivered 0.640 m³/s and half-height visibility was 30 m. The last available vertical slice at 37.001 s gave 27.7–30.4 °C and extinction rounded to zero across the sampled heights. These observations establish a thermal screening failure. Evidence for a continuous smoke interface at half height at that instant remains inconclusive. The run ended at the first recorded breach. [Breach record](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_screen_failure.json) · [Preceding vertical profile](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_prebreach_profile.csv)
 
+## Effect of increasing end-opening height
+
+Increasing both end openings from 0.44 to 0.48 m at the same exhaust flow of 1.28 m³/s allowed the OP-6 case with soot yield 0.10 kg/kg to complete 120 s above the height criterion at all eight stations. The lowest layer height (0.550 m) and lowest half-height visibility (3.22 m) occurred together at x = 3.6 m and t = 4.00 s. The highest half-height CO concentration was 37.9 ppm at x = 3.0 m and t = 76.00 s. The layer criterion therefore leaves distinct local visibility and CO conditions to report. [Eight-station results](../05_Calculations/inlet48_6_0p1_0p24_1p28_120_stations.csv)
+
 ## Remaining decisions
 
 A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
