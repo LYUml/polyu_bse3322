@@ -6,7 +6,7 @@ from PIL import Image, ImageDraw, ImageFont
 
 root = Path(__file__).resolve().parents[1]
 case = sys.argv[1]
-opening, power, mesh = case.split("_")
+opening, power, variant = case.split("_", 2)
 power_kw = {"47": "47.2", "106": "106.2"}[power]
 with (root / "05_Calculations" / f"{case}_90_120.csv").open(encoding="utf-8-sig") as f:
     rows = list(csv.DictReader(f))
@@ -38,6 +38,8 @@ for x,y in observed:
 draw.ellipse((740,117,750,127),fill="white",outline="#a64220",width=3)
 label(763,122,"Peng et al. (2021), Fig. 9",22,"lm")
 draw.line((1042,122,1092,122),fill="#155482",width=4)
-label(1104,122,"FDS, 90–120 s",22,"lm")
+variant_label = {"board_doorflow": "proxy board", "doorflow": "adiabatic"}.get(variant, variant)
+label(1104,122,f"FDS, {variant_label}",22,"lm")
+label(72, 82, "FDS averaging interval 90–120 s", 19)
 label(725,724,"Distance from fire axis (cm)",25,"mm")
 image.save(root/"07_Report"/f"{case}_validation.png",dpi=(200,200))
