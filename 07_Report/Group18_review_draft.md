@@ -127,6 +127,10 @@ At the baseline soot yield of 0.02 kg/kg, raising the openings from 0.44 to 0.48
 
 The four-door high-soot case excluded the symmetric 0.48 m layout at 96.003 s. At x = 0.5 m, the recorded layer height was 0.3455 m, compared with 0.7197 m at the same station and time with symmetric 0.44 m openings. Half-height visibility was 30 m in both cases. The corresponding centreplane profiles contained only a small vertical temperature variation (27.8–30.1 °C and 27.6–30.8 °C, respectively). All 18 interior extinction readings in each profile rounded to zero at five decimal places. The thermal screening failure stands; these local optical readings provide no evidence of a continuous smoke layer at half height at the failed station. [First breach](../05_Calculations/inlet48_1_0p1_0p24_1p28_120_screen_failure.json) · [Paired vertical profiles](../05_Calculations/op1_high_soot_inlet_height_profiles_96s.csv)
 
-## Remaining decisions
+## Door-dependent inlet setting and remaining decisions
 
-A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
+For the six fixed-door scenarios, use two adjustable end openings with the same preset height at both ends. Before the fire, set the height to 0.44 m with four doors open (OP-1) or 0.48 m with R1 alone open (OP-6). Keep the curtain depth at 0.24 m and deliver 0.64 m³/s through each exhaust branch. Door state determines the setting for all three soot yields. This rule was selected after inspecting the existing CFD results.
+
+Each corresponding case completed 120 s with all eight sampled thermal layer heights at or above 0.38 m. The limiting case was OP-1 at soot yield 0.02 kg/kg, with 0.4425 m at x = 0.5 m and t = 69.00 s. The resulting minimum margin across the six cases was 0.0625 m. [Six-scenario minima and run identifiers](../05_Calculations/door_preset_1p28_six_scenarios.csv)
+
+The recommendation assumes the specified door state and inlet setting persist throughout the fire. Door transitions, actuator response and failure remain untested. The 0.96 m³/s comparison examines whether the same preset rule can reduce fan power while maintaining the height criterion. The minimum feasible fan power remains undetermined.
