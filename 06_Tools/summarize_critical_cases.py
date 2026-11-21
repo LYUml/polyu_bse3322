@@ -48,6 +48,7 @@ if __name__ == "__main__":
         "baseline": ("design", "0p16", "0p16"),
         "tall_makeup": ("tall_makeup", "0p16", "1p28"),
         "tall_makeup_deep": ("tall_makeup", "0p24", "1p28"),
+        "inlet44": ("inlet44", "0p24", "1p28"),
     }
     parser.add_argument("--design", choices=designs, default="baseline")
     args = parser.parse_args()
