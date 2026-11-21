@@ -50,14 +50,14 @@ Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even gr
 - Experimental time windows, ambient conditions and boundary/material properties.
 - Brief mentions “nanofluid concentration,” apparently unrelated to this fire task: retain as a source ambiguity until clarified.
 - Exact meaning of “inlet and outlet” temperature/velocity and smoke-layer acceptance measurement method.
-- No model, solver installation or completed simulation is established by workspace initialization.
+- [Validation and design records](03_Group18_验收记录.md) document completed simulations. The [seven full OP6 design results](../05_Calculations/tall_makeup_op6_completed_scenarios.csv) include the 0.32 m curtain. Each tested curtain depth has a negative margin in at least one scenario. A design meeting the 0.38 m target across the required scenarios remains outstanding. The [independent PINN check](../09_PINN_Layer/README.md) records a false pass for the deeper curtain.
 
 ## Literature named in the brief
 
 1. Peng et al. (2021), Experimental study on temperature profile in long-narrow compartment fire with multiple lateral openings. Tunnelling and Underground Space Technology, 117, 104018.
 2. Yuen et al. (2015), LES and multi-step chemical reaction in compartment fires. Numerical Heat Transfer; Part A: Applications, 68, 711–736.
 
-These papers have not yet been retrieved or reviewed in this workspace.
+Both full texts are archived. The [source review](01_Group18_任务与证据梳理.md) identifies the figures and sections used for temperature validation and numerical methodology.
 
 ### Experimental test numbers and the assignment count
 
