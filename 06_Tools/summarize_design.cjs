@@ -65,8 +65,9 @@ for(const name of layers){
   let min=window[0],maxCO=window[0],minVis=window[0],first=null,duration=0,coIntegral=0,visibilityIntegral=0;
   for(let i=1;i<window.length;i++){
     const a=window[i-1],b=window[i];
-    coIntegral+=(a[co]+b[co])*0.5*(b[0]-a[0]);
-    visibilityIntegral+=(a[vis]+b[vis])*0.5*(b[0]-a[0]);
+    // CO and visibility use the default DEVC mean over the preceding interval.
+    coIntegral+=b[co]*(b[0]-a[0]);
+    visibilityIntegral+=b[vis]*(b[0]-a[0]);
     if(b[j]<min[j]) min=b;
     if(b[co]>maxCO[co]) maxCO=b;
     if(b[vis]<minVis[vis]) minVis=b;
