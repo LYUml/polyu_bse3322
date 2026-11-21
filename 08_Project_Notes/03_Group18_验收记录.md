@@ -504,3 +504,7 @@ FDS 成功完成 120 s。为检查加密网格能否解释低功率工况的温�
 三档烟炱产率下，OP6 单开 R1 的局部峰值达到 OP1 四门开启的 5.03–5.53 倍，而估算生成量相差不足 0.5%。在本模型中，补风与排烟布置需要控制 CO 在舱内的输运和积聚。这个对照没有测量排风管的 CO 质量通量，不能据此计算污染物捕集效率。
 
 [OP1 生成量](../05_Calculations/design_op1_0p16_0p16_CO_generation.csv) · [OP6 生成量](../05_Calculations/design_op6_0p16_0p16_CO_generation.csv) · [六工况测点极值](../05_Calculations/critical_scenarios.csv)
+
+### OP6 垂壁深度与烟炱产率的全程对照
+
+在总排风量 1.28 m³/s 下，0.16 m 和 0.24 m 垂壁的三档烟炱工况均完成 120 s。两种深度对应的三场景最低估算层高分别为 0.2445 m 和 0.3528 m，控制场景分别为烟炱产率 0.10 和 0.05。正式图的每个点对应表中一行 min_layer_m。表中 case_id 对应 04_Results 下的同名目录，station_x_m 与 time_s 给出定位原始设备记录所需的测站和时刻。[报告图](../07_Report/op6_curtain_soot_minimum_height.png) · [六工况数据表](../05_Calculations/tall_makeup_op6_completed_scenarios.csv)
