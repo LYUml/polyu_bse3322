@@ -123,6 +123,8 @@ Increasing both end openings from 0.44 to 0.48 m at the same exhaust flow of 1.2
 
 At 4.004 s, the longest connected run of detectable soot on the three sampled longitudinal lines extended from x = 3.0 to 3.9 m on the centreline. At x = 3.25 m on that line, the nodes bracketing half height (z = 0.36 and 0.40 m) both contained detectable soot at every recorded frame from 1.003 to 120 s. The eight-station height result therefore coexisted with persistent soot near the burner. These three lines alone cannot locate a compartment-wide smoke interface. [Three-line soot analysis](../05_Calculations/inlet48_6_0p1_0p24_1p28_120_half_height_continuity.csv)
 
+At the baseline soot yield of 0.02 kg/kg, raising the openings from 0.44 to 0.48 m changed the 120 s minimum in opposite directions across the two door configurations. The OP-1 minimum fell from 0.4425 to 0.4026 m at x = 0.5 m, leaving 0.0226 m above the criterion. The OP-6 minimum rose from 0.4310 to 0.5827 m, with its location shifting from x = 6.1 to 3.6 m. Both enlarged-opening cases passed the eight-station screen. These are differences between full-run extrema, which occurred at different times. [OP-1 station results](../05_Calculations/inlet48_1_0p02_0p24_1p28_120_stations.csv) · [OP-6 station results](../05_Calculations/inlet48_6_0p02_0p24_1p28_120_stations.csv)
+
 ## Remaining decisions
 
 A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
