@@ -105,8 +105,18 @@ Lowering both end openings from 0.36 to 0.24 m reduced their combined area from 
 
 The physics-informed surrogate was trained on FDS output to predict eight station height histories. A held-out design tested extrapolation from curtain depths of 0.16 and 0.24 m to 0.32 m at OP-6, soot yield 0.10 and total flow 1.28 m³/s. Its predicted minimum of 0.619 m exceeded the full-run FDS minimum of 0.267 m by 0.352 m and would have classified the design as passing. The independent reference here is a held-out CFD case; experimental validation is a separate propane comparison. This false pass is why the design decision uses full-duration FDS output or an observed early failure. [Surrogate methodology and event audit](../09_PINN_Layer/README.md)
 
-## Remaining decisions
+## Six-scenario assessment of the 0.44 m end openings
 
-The 0.44 m inlet layout at 1.28 m³/s passed both door cases at soot yield 0.05 kg/kg. At 0.10 kg/kg, OP-6 failed at x = 6.1 m and t = 37.504 s with a recorded thermal layer height of 0.3695 m. Both branches delivered 0.640 m³/s and half-height visibility was 30 m. The last available vertical slice at 37.001 s gave 27.7–30.4 °C and extinction rounded to zero across the sampled heights. These observations establish a thermal screening failure. Evidence for a continuous smoke interface at half height at that instant remains inconclusive. The run ended at the first recorded breach. [Breach record](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_screen_failure.json) · [Preceding vertical profile](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_prebreach_profile.csv)
+At a total exhaust flow of 1.28 m³/s and curtain depth of 0.24 m, five scenarios maintained the 0.38 m criterion at all eight stations for 120 s. The single-door, highest-soot scenario excluded this layout from consideration across all six scenarios.
+
+| Soot yield (kg/kg) | OP-1 four doors, minimum height (m) | OP-6 single door, minimum height (m) |
+|---:|---:|---:|
+| 0.02 | [0.4425](../05_Calculations/inlet44_1_0p02_0p24_1p28_120_stations.csv) | [0.4310](../05_Calculations/inlet44_6_0p02_0p24_1p28_120_stations.csv) |
+| 0.05 | [0.5093](../05_Calculations/inlet44_1_0p05_0p24_1p28_120_stations.csv) | [0.5244](../05_Calculations/inlet44_6_0p05_0p24_1p28_120_stations.csv) |
+| 0.10 | [0.5013](../05_Calculations/inlet44_1_0p1_0p24_1p28_120_stations.csv) | 0.3695 at early stop (37.504 s) |
+
+At 0.10 kg/kg, OP-6 failed at x = 6.1 m and t = 37.504 s with a recorded thermal layer height of 0.3695 m. Both branches delivered 0.640 m³/s and half-height visibility was 30 m. The last available vertical slice at 37.001 s gave 27.7–30.4 °C and extinction rounded to zero across the sampled heights. These observations establish a thermal screening failure. Evidence for a continuous smoke interface at half height at that instant remains inconclusive. The run ended at the first recorded breach. [Breach record](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_screen_failure.json) · [Preceding vertical profile](../05_Calculations/inlet44_6_0p1_0p24_1p28_120_prebreach_profile.csv)
+
+## Remaining decisions
 
 A propylene design recommendation requires a full-duration candidate with satisfactory margins across the specified door and soot scenarios. Retain all early-stop cases as failed, truncated observations. The formal report and submission remain subject to group review.
