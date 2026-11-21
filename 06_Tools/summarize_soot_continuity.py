@@ -1,4 +1,4 @@
-"""Summarize half-height soot continuity from the inlet44 coarse mesh. Pass case directories."""
+"""Summarize half-height soot continuity on the design grids. Pass case directories."""
 import csv
 import struct
 import sys
@@ -31,13 +31,17 @@ def summarize(directory):
         raise ValueError("Expected soot density")
     times, frames = [], []
     with smoke.open("rb") as stream:
-        if struct.unpack("<8i", record(stream)) != (1, 0, 0, 132, 0, 28, 0, 19):
-            raise ValueError("Expected the inlet44 coarse mesh")
+        header = struct.unpack("<8i", record(stream))
+        if header[:7] != (1, 0, 0, 132, 0, 28, 0) or header[7] not in (19, 38):
+            raise ValueError("Expected a supported design mesh")
+        cells_z = header[7]
+        # Keep the same two physical heights on both vertical grids.
+        height_indices = [round(z * cells_z / 0.76) for z in (0.36, 0.40)]
         while stream.peek(1):
             time_s, = struct.unpack("<f", record(stream))
             count, compressed = struct.unpack("<2i", record(stream))
             payload = record(stream)
-            if len(payload) != compressed or count != 77140:
+            if len(payload) != compressed or count != (cells_z + 1) * 29 * 133:
                 raise ValueError("Unexpected frame dimensions")
             values = bytearray()
             i = 0
@@ -48,9 +52,9 @@ def summarize(directory):
                 else:
                     values.append(payload[i])
                     i += 1
-            field = np.frombuffer(values, dtype=np.uint8).reshape(20, 29, 133)
-            # Both nodes bracketing z=0.38 m, interior x nodes only.
-            frames.append((field[9:11, :, 1:-1] > 0).all(axis=0))
+            field = np.frombuffer(values, dtype=np.uint8).reshape(cells_z + 1, 29, 133)
+            # Check both sampled heights at interior x nodes.
+            frames.append((field[height_indices, :, 1:-1] > 0).all(axis=0))
             times.append(time_s)
     if len(times) != 121 or times[0] != 0 or times[-1] != 120 or not np.allclose(np.diff(times), 1, atol=0.02):
         raise ValueError("Expected complete 120 s output with one frame per second")
