@@ -1,4 +1,4 @@
-﻿case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s,time_at_max_co_s,time_at_min_visibility_s,mean_co_ppm,mean_visibility_m
+case,x_m,start_s,end_s,min_height_m,time_at_min_s,first_below_s,below_duration_s,max_co_ppm,min_visibility_m,mean_mechanical_exhaust_m3_s,mean_net_flow_below_roof_vents_m3_s,time_at_max_co_s,time_at_min_visibility_s,mean_co_ppm,mean_visibility_m
 inlet48_6_0p02_0p24_0p96_120,0.5,0,120,0.39573017,88.504323,,0.000,2.0418533e-8,30,0.95432,,89.005843,0,9.609569240721186e-10,29.999999999999986
 inlet48_6_0p02_0p24_0p96_120,1.7,0,120,0.45847993,72.000524,,0.000,4.875977e-7,30,0.95432,,80.004867,0,1.7805459277960383e-8,29.999999999999986
 inlet48_6_0p02_0p24_0p96_120,2.4,0,120,0.53684318,32.005006,,0.000,3.3414421e-7,30,0.95432,,27.000318,0,2.0089309956033287e-8,29.999999999999986
