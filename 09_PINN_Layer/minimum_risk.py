@@ -32,20 +32,32 @@ def main():
         if {float(r['station_m']) for r in archive[name]} != set(X):
             raise ValueError(name)
     rows = []
+    stacked_rows = []
     for outer, tests in groups.items():
         train = [cases[n] for g,names in groups.items() if g!=outer for n in names]
         point = {test:estimate(train,test) for test in tests}
         candidates = defaultdict(list)
+        numerator = denominator = 0.
         for inner, calibration in groups.items():
             if inner==outer:
                 continue
             smaller = [c for c in train if tuple(c['design'][:-1])!=inner]
             # Use the largest calibration error within a physical design.
-            residual = max(abs(estimate(smaller,n)[2]-cases[n]['y'].min()) for n in calibration)
+            inner_predictions = np.array([estimate(smaller,n) for n in calibration])
+            inner_truth = np.array([cases[n]['y'].min() for n in calibration])
+            residual = max(abs(inner_predictions[:,2]-inner_truth))
+            # Equal influence per physical design, including designs with two meshes.
+            difference = inner_predictions[:,0]-inner_predictions[:,1]
+            numerator += np.mean(difference*(inner_truth-inner_predictions[:,1]))
+            denominator += np.mean(difference**2)
             for test in tests:
                 candidates[test].append(estimate(smaller,test)[2]-residual)
         for test in tests:
             pinn,direct,hybrid = point[test]
+            weight = float(np.clip(numerator/denominator,0,1)) if denominator else .5
+            stacked_rows.append(dict(case=test,actual_m=cases[test]['y'].min(),
+                                     pinn_weight=weight,fixed_m=hybrid,
+                                     stacked_m=weight*pinn+(1-weight)*direct))
             np.testing.assert_allclose(pinn,min(float(r['corrected_m']) for r in archive[test]),atol=1e-8)
             ordered = sorted(candidates[test])
             rank = math.floor(.10*(len(ordered)+1))
@@ -53,6 +65,7 @@ def main():
             rows.append(dict(case=test,actual_m=cases[test]['y'].min(),pinn_m=pinn,
                              direct_m=direct,hybrid_m=hybrid,lower_m=lower))
     save(HERE/'minimum_risk_holdouts.csv',rows)
+    save(HERE/'minimum_stack_holdouts.csv',stacked_rows)
     actual=np.array([r['actual_m'] for r in rows])
     for key in ['pinn_m','direct_m','hybrid_m','lower_m']:
         pred=np.array([r[key] for r in rows])
