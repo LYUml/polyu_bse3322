@@ -1,0 +1,20 @@
+\par\smallskip\begingroup\centering
+\begin{tikzpicture}[
+stage/.style={draw=ink!65,fill=teal!4,rounded corners=2pt,align=center,
+              text width=.268\linewidth,minimum height=39pt,inner sep=3pt,
+              font=\fontsize{9.5bp}{11bp}\selectfont},
+connection/.style={->,>=stealth,draw=ink,line width=.7pt}]
+\node[stage] (v) at (0,0) {\textbf{Task 1. Propane}\\Compare FDS ceiling profiles\\with Peng's measurements};
+\node[stage,right of=v,node distance=.342\linewidth] (s)
+  {\textbf{Task 2. Propylene}\\Screen vents, curtains\\and make-up openings};
+\node[stage,right of=s,node distance=.342\linewidth] (d)
+  {\textbf{Flow selection}\\Compare layer clearance\\and fan power};
+\draw[connection] (v.east)--(s.west);
+\draw[connection] (s.east)--(d.west);
+\node[below of=s,node distance=33pt,draw=ink!45,rounded corners=2pt,inner sep=4pt,
+      font=\fontsize{9.5bp}{11bp}\selectfont] (p)
+  {\textbf{PINN test}\quad Can the surrogate detect local breaches?};
+\draw[connection,dashed] (s.south)--(p.north);
+\end{tikzpicture}\par
+{\fontsize{10bp}{12bp}\selectfont\itshape Study workflow. The surrogate is evaluated against the FDS station histories.\par}
+\endgroup
