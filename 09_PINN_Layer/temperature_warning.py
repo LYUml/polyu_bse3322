@@ -15,7 +15,7 @@ def with_modes(case, center, axes):
     return dict(case, features=features)
 
 
-def main():
+def holdout_features():
     with (HERE/'neighbor_warning_scores.csv').open() as f:
         names = {r['case'] for r in csv.DictReader(f) if r['method'] == 'station'}
     complete = load_complete(names)
@@ -31,7 +31,6 @@ def main():
         case['ceiling'] = temp[latest, :, -1]
         cases[name] = case
 
-    scores, events = [], []
     for name, test in cases.items():
         train = [case for case in cases.values()
                  if not np.array_equal(case['design'][:-1], test['design'][:-1])]
@@ -40,6 +39,13 @@ def main():
         _, _, axes = np.linalg.svd(ceiling-center, full_matrices=False)
         training_features = [with_modes(case, center, axes[:2]) for case in train]
         test_features = with_modes(test, center, axes[:2])
+        yield name, training_features, test_features
+
+
+def main():
+    scores, events = [], []
+    for name, training_features, test_features in holdout_features():
+        test = test_features
         leads = {}
         station_score, station_cut = fit_warning(training_features, 4)
         temp_score, temp_cut = fit_warning(training_features, 6)
