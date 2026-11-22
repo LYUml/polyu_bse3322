@@ -1,0 +1,40 @@
+{
+  "case": "inlet48_6_0p02_0p24_1p12_z38_120",
+  "complete": true,
+  "observed_to_s": 120.0,
+  "observed_min_m": 0.55219027,
+  "min_time_s": 49.50187,
+  "min_station_m": 4.2,
+  "first_time_s": null,
+  "first_stations_m": [],
+  "landmarks": [
+    {
+      "cutoff_s": 60,
+      "recorded_utc": "2026-11-22T13:44:54.129712+00:00",
+      "already_breached": false,
+      "frozen_before_first_breach": null,
+      "observed_pick_m": 4.2,
+      "model_pick_m": 4.2,
+      "predicted_min_m": 0.5109726496229109,
+      "alarm": false,
+      "observed_pick_hit": null,
+      "model_pick_hit": null,
+      "missed_breach": null,
+      "false_alarm": false
+    },
+    {
+      "cutoff_s": 90,
+      "recorded_utc": "2026-11-22T14:18:57.006142+00:00",
+      "already_breached": false,
+      "frozen_before_first_breach": null,
+      "observed_pick_m": 4.2,
+      "model_pick_m": 4.2,
+      "predicted_min_m": 0.5406980002912034,
+      "alarm": false,
+      "observed_pick_hit": null,
+      "model_pick_hit": null,
+      "missed_breach": null,
+      "false_alarm": false
+    }
+  ]
+}

@@ -216,3 +216,7 @@ OP-6、0.48 m 补风口、0.24 m 垂壁、烟炱产率 0.02 的 38 层竖向网�
 `python station_pick.py` 从已保存的逐站留出预测比较两条规则。若全舱到截点还未记录越限，各选一站：此前最低高度最小的站，或模型预测最终最低高度最小的站。并列选较小坐标，下一次首次越限若有多个同帧站，选中其中一个即算命中；没有以后越限则没有可核对的目标站。选站本身不产生报警。30/60/90 s 三个截点，可核对位置的设计数依次为 9/3/2，简单规则命中 2/1/1，模型命中 3/2/2。截点的案例重叠，禁止相加作为独立设计。站位命中不等于模型预测低于 0.38 m。
 
 1.12 m³/s、OP-6、垂向 38 层已在运行。首次检查仅查看步数日志，模拟时间约 32 s，随后在 60 s 之前登记规则、代码/输入哈希与训练设备哈希。使用 `python station_pick.py --live` 取得已过截点的只读前缀预测；30 s 为演示，60/90 s 为规则预登记。评分按上述同一规则；区分预测实际落盘早于事件与按预登记规则事后回放。30 s 两者都选 4.2 m 站，当时此站最低 0.6228 m，模型预测最低 0.5689 m。监测任务继续独立核对设备阈值，站位排序不等于排烟方案通过或失败。[同预算回放](station_pick_holdouts.csv) · [锁定规则](station_watch_plan.json)
+
+### Prospective station picks at 1.12 m³/s
+
+At both 60 s and 90 s, the observed minimum and model forecast selected x = 4.2 m. The model forecast full-run minima of 0.5110 m and 0.5407 m respectively. Across all eight FDS device records through 120 s, the minimum was 0.55219 m at x = 4.2 m at 49.50187 s. Both selections therefore identified the full-run lowest station after its minimum had occurred. No device record crossed 0.38 m and neither forecast raised an alarm. First-crossing localization and event recall cannot be scored on this case. See [scored observations](station_pick_result.json).
