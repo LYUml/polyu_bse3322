@@ -12,8 +12,8 @@ STATIONS = ("0.5", "1.7", "2.4", "3", "3.6", "4.2", "4.9", "6.1")
 
 def inspect(marker):
     directory = marker.parent
-    chid = directory.name
-    if marker.read_text().strip() != chid or not chid.replace("_", "").isalnum():
+    chid = marker.read_text().strip()
+    if not chid.replace("_", "").isalnum():
         return
     deck = (directory / (chid + ".fds")).read_text()
     if "PROPYLENE" not in deck.upper() or f"CHID='{chid}'" not in deck:
