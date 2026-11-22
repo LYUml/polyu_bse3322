@@ -1,11 +1,14 @@
 \reportheading{2.\quad Methodology}
-The study used Fire Dynamics Simulator (FDS 6.10.1, McGrattan et al., 2025) in two stages. Task~1 compared the predicted ceiling-jet temperature profile with measurements from a naturally ventilated propane fire. Task~2 used a propylene fire to compare extraction designs under a specified smoke-layer constraint. Temperature agreement in the first stage provides evidence about the fire model under the experimental conditions. The second stage also depends on the representation of soot, make-up air and mechanical extraction.
+Both tasks used Fire Dynamics Simulator 6.10.1 (McGrattan et al., 2025). The propane experiment provides a benchmark for ceiling temperature. The propylene cases add soot production, mechanical exhaust and make-up air to assess smoke control.
+
+\input{sections/study-flow}
 
 \subhead{2.1\quad Task 1 --- Propane fire and ceiling-jet validation}
 The model followed the compartment in Fig.~1 of the Topic B brief and the experiment of Peng et al.\ (2021). Its internal dimensions were $6.60 \times 0.90 \times 0.76$~m (length, width and height). A floor-mounted, 0.25~m square burner was centred at $x=3.30$~m. Four side openings, each 0.43~m wide and 0.63~m high, were labelled L2, L1, R1 and R2 in order of increasing $x$. The computational domain extended beyond the opening wall to $y=1.40$~m, allowing flow to enter and leave at different heights across the same doorway. The reference ambient temperature was $27.5\,^{\circ}$C.
 
 Group~18 compared OP-1 (all four openings) with OP-6 (R1 alone) at nominal heat release rates of 47.2 and 106.2~kW. FDS prescribed the fire through the heat release rate per unit burner area. The recorded heat release rate and the burner footprint on each mesh were checked because snapping the burner edges to cell faces can change its effective area.
 
+\clearpage
 \subhead{Spatial resolution and physical submodels}
 The OP-1 study used $132\times28\times19$, $176\times36\times25$ and $220\times48\times32$ cells over the same domain. Following Yuen et al.\ (2015), the characteristic fire diameter was calculated as
 \[
@@ -13,7 +16,6 @@ The OP-1 study used $132\times28\times19$, $176\times36\times25$ and $220\times4
 \]
 Here $\dot Q$ is nominal fire power, $\rho_\infty$, $c_p$ and $T_\infty$ are ambient air density, specific heat and absolute temperature, and $g$ is gravitational acceleration. For each mesh, $D^*$ was divided by the longest cell dimension. Sensitivity was then assessed from the actual change in the predicted temperature profile.
 
-\clearpage
 \subhead{Task 1 --- Controlled comparisons and experimental measurements}
 At OP-1 and 106.2~kW, the coarse-grid simulations compared the Deardorff and WALE subgrid-scale closures at a fixed radiative fraction of 0.29. Separate Deardorff runs varied this fraction to 0.20 and 0.50. To assess enclosure heat loss, paired runs replaced the adiabatic enclosure with a 15~mm conducting board. Board thickness came from the experiment. Density (200~kg/m$^3$), thermal conductivity (0.10~W/(m\,K)) and specific heat (1.0~kJ/(kg\,K)) were proxy inputs from the FDS Steckler insulation example. The OP-6 wall comparison retained the same $154\times56\times23$ doorway-diagnostic mesh on both sides of the comparison.
 
