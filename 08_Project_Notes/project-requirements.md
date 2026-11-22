@@ -32,7 +32,7 @@ All groups use OP-1: L1, L2, R1, R2 open.
 | 18–22 | OP-6 | R1 |
 | >22 | OP-7 | R2 |
 
-Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even groups. It also states “8 cases total based on group no.” Exact case counting and test-number mapping must be checked against the formatted table and experiment before generating the simulation matrix.
+Table 1 lists HRR 23.6 and 70.8 kW for odd groups, 47.2 and 106.2 kW for even groups. It also states “8 cases total based on group no.” The source reconciliation and completed-run inventory below document the Group 18 interpretation.
 
 ## Smoke extraction design
 
@@ -63,7 +63,7 @@ Both full texts are archived. The [source review](01_Group18_任务与证据梳�
 
 ### Experimental test numbers and the assignment count
 
-Peng Table 1 gives eight HRRs per opening configuration. Both OP-1 (tests 1–8) and OP-6 (tests 41–48) list 11.8, 23.6, 35.4, 47.2, 59, 70.8, 88.5 and 106.2 kW. Reading each range in listed order implies tests 4 and 8 for OP-1, and 44 and 48 for OP-6, at the two Group 18 HRRs. This mapping is inferred from the table order. The methods paragraph prints 45.2 kW where the experimental table and assignment give 47.2 kW. The project uses 47.2 kW as specified in the brief. The experimental ranges explain the eight original tests per opening configuration. The brief's own eight-case counting rule remains unresolved. [Peng experimental matrix](../02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf) · [Assignment Table 1](../01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf)
+Peng Table 2 gives eight HRRs per opening configuration. Both OP-1 (tests 1–8) and OP-6 (tests 41–48) list 11.8, 23.6, 35.4, 47.2, 59, 70.8, 88.5 and 106.2 kW. Reading each range in listed order implies tests 4 and 8 for OP-1, and 44 and 48 for OP-6, at the two Group 18 HRRs. This mapping is inferred from the table order. The methods paragraph prints 45.2 kW where the experimental table and assignment give 47.2 kW. The project uses 47.2 kW as specified in the brief. The experimental ranges explain the eight original tests per opening configuration. The brief's own eight-case counting rule remains unresolved. [Peng experimental matrix](../02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf) · [Assignment Table 1](../01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf)
 
 ## Human review inventory (2026-11-22)
 
@@ -76,3 +76,16 @@ The propylene design review now has a complete 120 s CFD result for each of the 
 The [paired 0.44 m refinement input](../03_Models/inlet44_1_0p02_0p24_1p28_z38_120.fds) tests the limiting OP-1 preset at 0.02 m vertical resolution. The [completed 120 s comparison](../05_Calculations/z38_refinement_check.csv) gives a refined eight-station minimum of 0.5879 m for this preset. The separate 0.48 m OP-1 case reached 0.5457 m. The [actual heat-release comparison](../05_Calculations/door_preset_hrr_90_120.csv) gives the delivered fire power for the six original-grid scenarios. For the smoke-layer interpretation, inspect the [thermal minimum profile](../05_Calculations/inlet44_1_0p02_0p24_1p28_120_limiting_profile.csv), the [minimum-visibility profile](../05_Calculations/inlet48_6_0p05_0p24_1p28_120_visibility_event_profile.csv) and the [outer centreplane extinction maxima over 120 s](../05_Calculations/door_preset_outer_half_height_extinction.csv). These profiles distinguish the thermal interface from local smoke near the fire. Their spatial coverage is one longitudinal plane.
 
 At 1.28 m³/s the refined OP-6 baseline-soot case completed 120 s. The eight-station minimum was 0.5429 m at x = 3.6 m and t = 3.50 s, compared with 0.5827 m on the original grid. All sampled heights exceeded 0.38 m. At x = 6.1 m and 98.0 s the higher flow gave 0.7600 m. The refined checks cover baseline soot in both door states. The other four soot/door combinations have original-grid evidence only. [Eight-station results](../05_Calculations/inlet48_6_0p02_0p24_1p28_z38_120_stations.csv)
+
+### Group 18 propane case inventory
+
+Each listed suffix identifies a local FDS case under the indicated prefix. The completion line in each case output matches its CHID. Test numbers follow the ordered HRRs in Peng Table 2.
+
+| Inferred test | FDS prefix | HRR (kW) | Completed case suffixes |
+|---|---|---:|---|
+| 4 | op1_47 | 47.2 | coarse, medium, fine, doorflow |
+| 8 | op1_106 | 106.2 | coarse, medium, fine, board_proxy, doorfield, doorflow, rad020, rad050, wale |
+| 44 | op6_47 | 47.2 | coarse, doorflow |
+| 48 | op6_106 | 106.2 | coarse, medium, board_doorflow, doorfield, doorflow |
+
+The 20 completed numerical runs cover four distinct experimental conditions. Assignment Table 1 supplies four HRRs across both group parities. Using all four for two door states gives eight combinations, but the even-group labels select two HRRs. Neither the table nor the experimental paper identifies a further four Group 18 conditions. The paper reports three experimental repetitions per condition. The submitted count therefore records physical conditions and numerical variants separately.
