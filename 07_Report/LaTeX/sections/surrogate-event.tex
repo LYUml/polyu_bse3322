@@ -1,0 +1,11 @@
+\newcommand{\stationpanel}[4]{\begin{tikzpicture}
+\begin{axis}[width=#1\linewidth,height=4.65cm,xmin=#2,xmax=#3,ymin=.25,ymax=.80,
+title={#4},title style={font=\sffamily\small\bfseries,color=ink},
+axis lines=left,ytick={.30,.38,.60,.76},scaled ticks=false,ymajorgrids,grid style={gray!15},
+tick label style={font=\sffamily\scriptsize},xlabel={Time (s)},xlabel style={font=\sffamily\footnotesize}]
+\addplot[gray,densely dashed] coordinates {(#2,.38) (#3,.38)};
+\addplot[teal,thick,no marks] table[col sep=comma,x=time_s,y=fds_m]{data/pinn-end-station.csv};
+\addplot[rust,thick,dashed,no marks] table[col sep=comma,x=time_s,y=pinn_m]{data/pinn-end-station.csv};
+\end{axis}\end{tikzpicture}}
+\reportfigure{{\sffamily\small Layer height (m)\hfill\textcolor{teal}{\rule[.4ex]{12pt}{1.1pt}} FDS\qquad\textcolor{rust}{-- --} PINN\quad\textcolor{gray}{-- --} 0.38 m target\par}
+\stationpanel{.57}{0}{120}{Complete record}\hfill\stationpanel{.40}{81}{85}{Event detail}}{Figure 5. Distal station at $x=6.1$~m in the held-out OP-6 case with 0.24~m curtains and soot yield 0.05. The panels show the same native samples. At 83.0~s, FDS recorded 0.353~m and the PINN predicted 0.750~m. All eight stations appear in Appendix E.}

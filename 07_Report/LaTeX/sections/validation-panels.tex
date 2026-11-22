@@ -1,0 +1,16 @@
+\newcommand{\validationpanel}[3]{%
+\begin{tikzpicture}
+\begin{axis}[width=.475\linewidth,height=3.9cm,xmin=-340,xmax=340,ymin=0,ymax=1350,
+xtick={-300,0,300},ytick={0,600,1200},axis lines=left,ymajorgrids,grid style={gray!14},
+tick align=outside,title={#2\quad #3 kW},title style={font=\sffamily\small\bfseries,color=ink,at={(.5,.97)}},
+tick label style={font=\sffamily\scriptsize},enlarge x limits=false]
+\addplot[teal,thick,no marks] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/#1_90_120.csv};
+\addplot[only marks,mark=o,mark size=1.2pt,rust] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/#1_90_120.csv};
+\end{axis}\end{tikzpicture}}
+\reportfigure{{\sffamily\small Temperature rise (K)\hfill
+\textcolor{teal}{\rule[.4ex]{14pt}{1.1pt}} FDS\quad
+\textcolor{rust}{$\circ$} Peng et al.\par}
+\begin{tabular}{@{}cc@{}}
+\validationpanel{op1_47_coarse}{OP-1}{47.2}&\validationpanel{op1_106_coarse}{OP-1}{106.2}\\
+\validationpanel{op6_47_coarse}{OP-6}{47.2}&\validationpanel{op6_106_coarse}{OP-6}{106.2}
+\end{tabular}\par{\sffamily\small Distance from the fire axis (cm)}}{Figure 1. Measured and simulated ceiling temperature rise. Each panel uses the same axes. The experimental markers are digitised from Peng et al.\ (2021), Fig.~9. The lines show coarse-grid FDS averages over 90--120~s.}

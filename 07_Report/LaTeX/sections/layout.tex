@@ -1,29 +1,20 @@
 \subhead{Compartment plan and extraction layout}
-\begingroup\centering
-\setlength{\unitlength}{0.88pt}
-\begin{picture}(420,104)
-\put(24,28){\framebox(363,49.5){}}
-\put(24,76){\line(1,0){363}}
-\linethickness{2pt}
-\multiput(57.55,77.5)(90.75,0){4}{\line(1,0){23.65}}
-\linethickness{0.4pt}
-\put(69,85){\makebox(0,0){L2}}
-\put(160,85){\makebox(0,0){L1}}
-\put(251,85){\makebox(0,0){R1}}
-\put(342,85){\makebox(0,0){R2}}
-\put(178,28){\line(0,1){49.5}}
-\put(233,28){\line(0,1){49.5}}
-\put(183.5,30.75){\framebox(22,44){}}
-\put(205.5,30.75){\framebox(22,44){}}
-\put(198.625,45.875){\dashbox{1.25}(13.75,13.75){}}
-\linethickness{2pt}
-\put(24,28){\line(0,1){49.5}}
-\put(387,28){\line(0,1){49.5}}
-\linethickness{0.4pt}
-\put(24,18){\line(1,0){363}}
-\put(24,15){\line(0,1){6}}
-\put(387,15){\line(0,1){6}}
-\put(205,8){\makebox(0,0){6.60 m}}
-\end{picture}\par
-\endgroup
-\tablenote{Plan view of the nominal inputs. The long wall carries the four labelled doorways. In the paired-flow design, the heavy end lines mark make-up openings, the two full-width interior lines mark curtains and the adjoining rectangles mark ceiling exhausts. The dashed square marks the floor burner under the exhausts. The end openings, curtains and exhausts apply to Task~2.}
+\reportfigure{\begin{tikzpicture}[x=1.52cm,y=1.52cm,font=\sffamily\footnotesize]
+\fill[teal!5] (0,0) rectangle (6.6,.9);
+\draw[ink,line width=.7pt] (0,0) rectangle (6.6,.9);
+\foreach \x/\id in {.825/L2,2.475/L1,4.125/R1,5.775/R2}{
+ \draw[white,line width=2.3pt] (\x-.215,.9)--(\x+.215,.9);
+ \draw[teal,line width=2pt] (\x-.215,.9)--(\x+.215,.9);
+ \node[above,text=teal] at (\x,1.01){\bfseries \id};}
+\filldraw[fill=teal!24,draw=teal] (2.9,.05) rectangle (3.3,.85);
+\filldraw[fill=teal!24,draw=teal] (3.3,.05) rectangle (3.7,.85);
+\foreach \x in {2.8,3.8}{\draw[ink,dashed,thick] (\x,0)--(\x,.9);}
+\filldraw[fill=rust!30,draw=rust] (3.175,.325) rectangle (3.425,.575);
+\foreach \x in {0,6.6}{\draw[teal,line width=2.4pt] (\x,0)--(\x,.9);}
+\draw[gray!70,|<->|] (0,-.22)--node[fill=white,inner sep=2pt,text=ink]{6.60 m}(6.6,-.22);
+\draw[gray!70,|<->|] (6.90,0)--(6.90,.9);
+\node[right,text=ink] at (6.92,.45){0.90 m};
+\end{tikzpicture}\par
+{\sffamily\footnotesize\textcolor{rust}{\rule{6pt}{6pt}} Burner\qquad
+\textcolor{teal!65}{\rule{6pt}{6pt}} Ceiling vents\qquad
+\textcolor{ink}{-- --} Curtains\qquad\textcolor{teal}{\rule[.4ex]{10pt}{1.6pt}} Openings}}{Plan view of the nominal geometry. The propane model uses the labelled side openings. The propylene design adds end-wall make-up openings and two ceiling vents between curtains above the burner.}

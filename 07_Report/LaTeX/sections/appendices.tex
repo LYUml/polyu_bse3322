@@ -22,8 +22,7 @@ OP-6&106.2&0.095&0.098&361.4\\
 0.16&$-335$&$-331$&$-296$&$-285$\\
 0.24&$-336$&$-337$&$-294$&$-302$\\
 \end{reporttable}
-\clearpage
-\reportheading{Appendix D.\quad Paired-flow data coverage}
+\bigskip\reportheading{Appendix D.\quad Paired-flow data coverage}
 \tabletitle{Table D1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
 \begin{reporttable}{L{.23}L{.23}L{.27}L{.27}}
 \rowcolor{tablegrey}Door state&Soot (kg/kg)&0.96 m$^3$/s&1.28 m$^3$/s\\
@@ -36,6 +35,8 @@ OP-6&0.10&0.4061&0.5503\\
 \end{reporttable}
 The 1.28~m$^3$/s minima in Table D1 were checked against the raw device histories and successful completion logs. At 0.96~m$^3$/s the archived per-station reductions cover eight stations and 0--120~s in each of the six cases. Some local raw folders contain earlier, interrupted runs. The low-flow comparisons use the archived full-duration station data.
 
-For the short-branch comparison the total electrical input was obtained using $Q=1.28$ or $0.96$~m$^3$/s, pressure loss 4.84 or 2.72~Pa, and total efficiency 0.60. The cubic flow dependence follows from fixed branch geometry and assumed constant loss coefficients.
-\subhead{Appendix E.\quad Surrogate event scoring}
+The short-branch power estimates use $Q=1.28$ or $0.96$~m$^3$/s, pressure loss 4.84 or 2.72~Pa, and total efficiency 0.60. The cubic flow dependence follows from fixed branch geometry and assumed constant loss coefficients.
+\clearpage
+\reportheading{Appendix E.\quad Surrogate event scoring}
 The physics-informed extreme learning machine used 96 fixed tanh units and a least-squares output fit with ridge coefficient 0.1. A simplified upper-layer volume balance constrained the weighted mean layer thickness under an assumption of lateral uniformity. A short event was a continuous excursion below 0.38~m at one station lasting at most 2~s. An event counted as a match when the intersection of the predicted and observed intervals covered at least half their union, with one-to-one matching. Linear interpolation between device records approximately 0.5~s apart limits the precision of short event durations.
+\reportfigure{\includegraphics[width=\linewidth]{../../09_PINN_Layer/eight_stations.png}}{Figure E1. FDS and PINN thermal layer heights across the eight sampled columns. The far-end station is enlarged in Figure 5.}
