@@ -33,18 +33,25 @@ def samples(case):
                 design=case['design'],trend_score=LIMIT-h-HORIZON*step)
 
 
-def estimate(train, test, nfeat):
+def fit_warning(train, nfeat):
     x=np.concatenate([c['features'][c['eligible']][:,:nfeat] for c in train])
     y=np.concatenate([c['label'][c['eligible']] for c in train])
     if not y.any() or y.all():
-        return np.zeros_like(test['eligible'])
+        return lambda case: np.zeros_like(case['eligible'], dtype=float), np.inf
     mean=x.mean(axis=0)
     scale=np.maximum(x.std(axis=0),1e-6)
     z=(x-mean)/scale
     # Ridge linear discriminant for ranking alerts; the score is not a probability.
     w=np.linalg.solve(z.T@z+len(y)*.05*np.eye(nfeat),z.T@y.astype(float))
     cutoff=np.quantile((z@w)[~y],.999)
-    return ((test['features'][:,:,:nfeat]-mean)/scale)@w > cutoff
+    def score(case):
+        return ((case['features'][:,:,:nfeat]-mean)/scale)@w
+    return score, cutoff
+
+
+def estimate(train, test, nfeat):
+    score, cutoff = fit_warning(train, nfeat)
+    return score(test) > cutoff
 
 
 def evaluate(case, alarms, event_leads=None):
