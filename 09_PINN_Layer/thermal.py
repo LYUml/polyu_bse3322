@@ -12,17 +12,17 @@ from summarize_soot_continuity import record
 AMBIENT_K = 273.15 + 27.5
 
 
-def read_columns(case):
-    path = ROOT/'04_Results'/case/(case+'_1_1.sf')
+def read_columns(case, directory=None):
+    path = (directory or ROOT/'04_Results'/case)/(case+'_1_1.sf')
     times, columns = [], []
     with path.open('rb') as f:
         quantity, _, units = [record(f).decode().strip() for _ in range(3)]
         bounds = struct.unpack('<6i', record(f))
-        if (quantity, units) != ('TEMPERATURE', 'C') or bounds != (0,132,9,9,0,19):
+        if (quantity, units) != ('TEMPERATURE', 'C') or bounds[:5] != (0,132,9,9,0) or bounds[5] not in (19,38):
             raise ValueError(f'Unexpected slice: {path}')
         while f.peek(1):
             times.append(struct.unpack('<f', record(f))[0])
-            nodes = np.frombuffer(record(f), dtype='<f4').reshape(20,133)
+            nodes = np.frombuffer(record(f), dtype='<f4').reshape(bounds[5]+1,133)
             station_nodes = nodes[:, np.rint(X/.05).astype(int)].T.astype(float)
             columns.append(.5*(station_nodes[:,1:]+station_nodes[:,:-1])+273.15)
     times, columns = np.array(times), np.array(columns)

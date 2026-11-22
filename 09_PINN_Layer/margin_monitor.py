@@ -60,7 +60,7 @@ def load_complete():
         phi,deriv = basis(t,d)
         residual = (deriv+(1.28+.32*d[5])/(6.6*.9*H)*phi)[t>=10]
         residual -= residual.mean(axis=0)
-        cases[name] = dict(name=name,design=d,phi=phi,t=t,y=y,gram=phi.T@phi,
+        cases[name] = dict(name=name,directory=path.parent,design=d,phi=phi,t=t,y=y,gram=phi.T@phi,
                            rhs=phi.T@(H-y),physics=residual.T@residual,
                            digest=hashlib.sha256(path.read_bytes()).hexdigest())
     return cases
