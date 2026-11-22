@@ -54,7 +54,7 @@ def estimate(train, test, nfeat):
     return score(test) > cutoff
 
 
-def evaluate(case, alarms, event_leads=None):
+def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
     hits=short_hits=false=count=short=0
     leads=[]
     for j,events in enumerate(case['events']):
@@ -62,7 +62,18 @@ def evaluate(case, alarms, event_leads=None):
         short+=sum(b-a<=2 for a,b in events)
         next_alarm=0.
         matched=set()
-        for now in case['t'][case['eligible'][:,j]&alarms[:,j]]:
+        candidates = case['eligible'][:,j] & alarms[:,j]
+        if rearm_on_recovery:
+            below = case['features'][:,j,0] > H-LIMIT
+            recovered = np.r_[False, below[:-1] & ~below[1:]]
+        else:
+            recovered = np.zeros_like(candidates)
+        for index in np.flatnonzero(candidates | recovered):
+            now = case['t'][index]
+            if recovered[index]:
+                next_alarm = now
+            if not candidates[index]:
+                continue
             if now<next_alarm:
                 continue
             next_alarm=now+HORIZON
@@ -93,8 +104,10 @@ def main():
                  'height_features':estimate(train,test,4),'height_and_temperature':estimate(train,test,6)}
         for method,alarm in methods.items():
             rows.append(dict(case=name,method=method,**evaluate(test,alarm)))
+        rows.append(dict(case=name, method='temperature_rearm_on_recovery',
+                         **evaluate(test, methods['height_and_temperature'], rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
-    for method in methods:
+    for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
         print(method,{k:sum(r[k] for r in subset) for k in ['events','hits','short_events','short_hits','false_alarms','lead_sum_s']})
 
