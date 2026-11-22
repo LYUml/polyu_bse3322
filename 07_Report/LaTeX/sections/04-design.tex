@@ -1,6 +1,6 @@
 \reportheading{4.\quad Task 2 --- Smoke extraction design and optimisation}
 \subhead{4.1\quad Prioritising FDS runs and comparing search order}
-For a new layout, the proposed surrogate estimates the lowest layer height from the design inputs. Its 6.60~cm mean absolute error on held-out cases gives a scale for interpreting the predicted margin (Section~5). Four actual breaches received passing predictions. Candidate priority can therefore use the estimate, while the clearance decision uses the FDS history. The archived simulations allow a separate test of search order.
+For a new layout, the proposed surrogate estimates the lowest layer height from the design inputs. Its 6.33~cm mean absolute error on held-out cases gives a scale for interpreting the predicted margin (Section~5). Four actual breaches received passing predictions. Candidate priority can therefore use the estimate, while the clearance decision uses the FDS history. The archived simulations allow a separate test of search order.
 The original sixteen OP-6 designs all crossed below the 0.38~m threshold. The largest margin was $-0.2849$~m, for a 0.16~m curtain and 0.32~m$^3$/s extraction. Replaying the recorded candidates in their original order reached this point on query 16. Bayesian search reached it on query 7 and the genetic search on queries 6--11 over 20 seeds. These figures describe query order within a known set. The best candidate still left the layer at about 0.095~m. Further design work therefore changed the air-supply and capture arrangements.
 
 \subhead{4.2\quad Locating the failure and adapting the inlets}
@@ -34,4 +34,4 @@ OP-6&0.02&18.19&30.36\\
 OP-6&0.05&2.57&38.31\\
 OP-6&0.10&3.22&37.89\\
 \end{reporttable}
-The most adverse visibility and CO readings for the selected flow occurred together at $x=3.6$~m and 4.0~s under OP-6 with soot yield 0.05. The thermal clearance on the original grid was smallest under OP-1 with soot yield 0.02. The station results therefore identify different controlling scenarios for exposure and thermal clearance.
+The most adverse visibility and CO readings for the selected flow occurred together at $x=3.6$~m and 4.0~s under OP-6 with soot yield 0.05. The thermal clearance on the original grid was smallest under OP-1 with soot yield 0.02. The station results therefore identify different controlling scenarios for exposure and thermal clearance. At 1.12~m$^3$/s, the refined high-soot OP-6 case also met the thermal criterion, although half-height visibility reached 4.06~m and CO reached 32.83~ppm. These are full-run extrema across the eight stations.
