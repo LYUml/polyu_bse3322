@@ -20,7 +20,14 @@
       "observed_pick_hit": null,
       "model_pick_hit": null,
       "missed_breach": null,
-      "false_alarm": false
+      "false_alarm": false,
+      "remaining_min_m": 0.55782073,
+      "remaining_min_stations_m": [
+        4.9
+      ],
+      "remaining_min_time_s": 61.501694,
+      "observed_pick_hit_remaining_min": false,
+      "model_pick_hit_remaining_min": false
     },
     {
       "cutoff_s": 90,
@@ -34,7 +41,14 @@
       "observed_pick_hit": null,
       "model_pick_hit": null,
       "missed_breach": null,
-      "false_alarm": false
+      "false_alarm": false,
+      "remaining_min_m": 0.59495316,
+      "remaining_min_stations_m": [
+        4.9
+      ],
+      "remaining_min_time_s": 105.00109,
+      "observed_pick_hit_remaining_min": false,
+      "model_pick_hit_remaining_min": false
     }
   ]
 }

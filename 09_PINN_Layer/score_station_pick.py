@@ -66,6 +66,15 @@ def evaluate():
                 before=False
         eligible=not r['already_breached'] and first is not None
         alarm=min(r['predicted_min_m'])<LIMIT
+        remaining = h[t > cut]
+        future = {}
+        if full and remaining.size:
+            minimum = remaining.min()
+            stations = list(X[remaining.min(axis=0) == minimum])
+            future = dict(remaining_min_m=minimum, remaining_min_stations_m=stations,
+                          remaining_min_time_s=t[t > cut][np.flatnonzero(remaining.min(axis=1) == minimum)[0]],
+                          observed_pick_hit_remaining_min=r['observed_pick_m'] in stations,
+                          model_pick_hit_remaining_min=r['model_pick_m'] in stations)
         out['landmarks'].append(dict(cutoff_s=cut,recorded_utc=r['recorded_utc'],
             already_breached=r['already_breached'],frozen_before_first_breach=before,
             observed_pick_m=r['observed_pick_m'],model_pick_m=r['model_pick_m'],
@@ -73,7 +82,7 @@ def evaluate():
             observed_pick_hit=r['observed_pick_m'] in out['first_stations_m'] if eligible else None,
             model_pick_hit=r['model_pick_m'] in out['first_stations_m'] if eligible else None,
             missed_breach=not alarm if eligible else None,
-            false_alarm=alarm if full and first is None else None))
+            false_alarm=alarm if full and first is None else None, **future))
     return out
 
 
