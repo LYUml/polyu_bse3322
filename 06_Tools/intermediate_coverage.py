@@ -36,16 +36,20 @@ def inspect(deck):
 
 def main():
     rows = []
+    verified = 0
     decks = sorted((ROOT / "03_Models").glob("*_1p12_z38_120.fds"))
     assert len(decks) == 6
     for deck in decks:
         _,door,soot,*_ = deck.stem.split("_")
         state, values = inspect(deck)
+        verified += state in ("Pass", "Breach")
         fields = ["OP-" + door, f"{float(soot.replace('p','.')):.2f}", state]
         fields += [f"{values[0]:.1f}", f"{values[1]:.4f}"] if values else ["--","--"]
         rows.append(" & ".join(fields) + r" \\")
         print(deck.stem,state,values)
     target = ROOT / "07_Report/LaTeX/sections/intermediate-coverage.tex"
+    count_file = target.with_name("intermediate-count.tex")
+    count_file.write_text(str(verified) + "%\n", encoding="ascii")
     target.write_text("\n".join(rows)+"\n", encoding="ascii")
 
 
