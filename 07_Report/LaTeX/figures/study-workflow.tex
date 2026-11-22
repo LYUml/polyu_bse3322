@@ -1,45 +1,57 @@
 \documentclass[tikz,border=2pt]{standalone}
-\usetikzlibrary{arrows.meta,shapes.geometric}
-\definecolor{navy}{HTML}{234954}
-\definecolor{teal}{HTML}{126763}
-\definecolor{rulegray}{HTML}{637478}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\definecolor{ink}{HTML}{263238}
+\definecolor{blue}{HTML}{216282}
+\definecolor{rust}{HTML}{9F452B}
+\newcommand{\datadir}{../../../05_Calculations}
 \begin{document}
-\begin{tikzpicture}[x=1cm,y=-1cm,font=\sffamily\small,
-  head/.style={font=\sffamily\bfseries\large,anchor=west},
-  box/.style={draw=navy!65,fill=navy!4,rounded corners=2pt,align=center,inner sep=4pt},
-  design/.style={box,draw=teal!70,fill=teal!5},
-  route/.style={draw=rulegray,line width=.65pt,-{Stealth[length=4pt]}},
-  note/.style={font=\sffamily\footnotesize,fill=white,inner sep=1.5pt}]
-\node[head,text=navy] at (0,0) {Task 1 \enspace Propane validation};
-\node[head,text=teal] at (7.6,0) {Task 2 \enspace Propylene design};
-\draw[navy!65] (0,.28)--(6.75,.28);
-\draw[teal!65] (7.6,.28)--(14.6,.28);
-\node[box,text width=2.85cm] (exp) at (1.60,1.12)
-  {\textbf{Peng experiment}\\Digitise ceiling\\temperature rises};
-\node[box,text width=2.95cm] (fds) at (5.15,1.12)
-  {\textbf{FDS reproduction}\\Two door states\\Two fire sizes};
-\node[box,text width=5.85cm] (compare) at (3.37,2.68)
-  {\textbf{Compare 51 matched stations}\\Profile error and peak displacement};
-\draw[route] (exp.south)--++(0,.24)-|(2.25,2.28);
-\draw[route] (fds.south)--++(0,.24)-|(4.55,2.28);
-\node[box,text width=5.85cm] (diagnose) at (3.37,4.08)
-  {\textbf{Explain differences}\\Mesh, wall heat loss and doorway flow};
-\draw[route] (compare.south)--(diagnose.north);
-\node[design,text width=5.10cm] (layout) at (10.65,1.12)
-  {\textbf{Set a candidate layout}\\Vent and curtain layout\\Make-up air and exhaust flow};
-\node[design,text width=5.10cm] (measure) at (10.65,2.68)
-  {\textbf{Evaluate the FDS scenarios}\\Two door states, three soot yields\\Eight layer-height stations};
-\draw[route] (layout.south)--(measure.north);
-\node[diamond,aspect=3.8,draw=teal,fill=teal!6,align=center,inner sep=1.4pt] (decision) at (10.65,4.08)
-  {\textbf{All sampled heights}\\$\geq$\,0.38 m?};
-\draw[route] (measure.south)--(decision.north);
-\draw[route] (decision.east)--(14.45,4.08)--(14.45,1.12)--(layout.east);
-\node[note,rotate=90] at (14.45,2.63) {No: revise candidate};
-\node[design,text width=5.10cm] (select) at (10.65,5.82)
-  {\textbf{Rank feasible designs by power}\\Check the limiting cases on a finer grid};
-\draw[route] (decision.south)--node[right,note]{Yes}(select.north);
-\node[box,dashed,fill=white,text width=5.85cm] (pinn) at (3.37,5.82)
-  {\textbf{PINN cross-check}\\Test held-out designs for missed breaches};
-\draw[route,dashed] (measure.west)--(7.16,2.68)--(7.16,5.82)--(pinn.east);
+\begin{tikzpicture}[font=\sffamily\small,text=ink,every node/.style={inner sep=1pt},
+ title/.style={anchor=west,font=\sffamily\bfseries\large},
+ leftnote/.style={anchor=west},tag/.style={font=\sffamily\bfseries\Large,anchor=west}]
+\node[tag] at (0,6.38) {a};
+\node[title] at (.55,6.38) {Compartment and fire source};
+\begin{scope}[shift={(.55,4.96)},x=1.37cm,y=1.37cm]
+\fill[ink!4] (0,0) rectangle (6.6,.90);
+\draw[ink,thick] (0,0)--(0,.9)--(6.6,.9)--(6.6,0)--cycle;
+\foreach \x/\door in {.825/L2,2.475/L1,4.125/R1,5.775/R2}{
+ \draw[white,line width=2pt] (\x-.215,0)--(\x+.215,0);
+ \draw[blue,densely dashed] (\x-.215,0)--(\x+.215,0);
+ \node[below] at (\x,-.035) {\door};}
+\fill[rust] (3.175,.325) rectangle (3.425,.575);
+\draw[rust] (3.425,.45)--(3.59,.45) node[right]{burner};
+\end{scope}
+\node[leftnote] at (10.05,5.91) {Plan view, $6.60\times0.90$ m};
+\node[leftnote] at (10.05,5.53) {OP-1\enspace all four doors open};
+\node[leftnote] at (10.05,5.15) {OP-6\enspace R1 open};
+\draw[ink!35] (0,4.43)--(15.65,4.43);
+\node[tag] at (0,4.03) {b};
+\node[title] at (.55,4.03) {Task 1\enspace Propane validation};
+\node[tag] at (8.02,4.03) {c};
+\node[title] at (8.57,4.03) {Task 2\enspace Propylene extraction};
+\node[leftnote] at (.55,3.56) {Ceiling temperature rise (K)};
+\node[leftnote] at (8.57,3.56) {Minimum layer height over 120 s (m)};
+\pgfplotsset{profile/.style={anchor=south west,width=6.40cm,height=2.0cm,
+ scale only axis,axis lines=left,axis line style={-,draw=ink!65},tick align=outside,
+ major tick length=2pt,tick style={ink!65},ticklabel style={font=\sffamily\footnotesize},
+ xmin=0,xmax=6.6,xtick={0,3.3,6.6},xticklabels={0,3.3,6.6},
+ xlabel={Distance along compartment (m)},xlabel style={font=\sffamily\footnotesize},
+ scaled ticks=false}}
+\begin{axis}[profile,at={(.88cm,1.15cm)},ymin=0,ymax=1000,ytick={0,500,1000},
+ legend style={draw=none,fill=none,font=\sffamily\footnotesize,at={(.015,.99)},anchor=north west},
+ legend cell align=left]
+\addplot[only marks,mark=o,mark size=1.25pt,ink] table[col sep=comma,x expr=\thisrow{sensor_x_cm}/100,y=exp_rise_K]{\datadir/op1_106_coarse_90_120.csv};
+\addlegendentry{Peng et al.}
+\addplot[blue,thick] table[col sep=comma,x expr=\thisrow{sensor_x_cm}/100,y=fds_rise_K]{\datadir/op1_106_coarse_90_120.csv};
+\addlegendentry{FDS}
+\end{axis}
+\begin{axis}[profile,at={(8.90cm,1.15cm)},ymin=0,ymax=.52,ytick={0,.2,.4}]
+\draw[rust,dashed] (axis cs:0,.38)--(axis cs:6.6,.38)
+ node[pos=.98,above left,text=rust,font=\sffamily\footnotesize]{0.38 m criterion};
+\addplot[only marks,blue,mark=*,mark size=2.3pt] table[col sep=comma,x=x_m,y=min_height_m]{\datadir/design_6_0p02_0p16_0p16_120_stations.csv};
+\end{axis}
+\node[leftnote] at (.55,-.02) {Compare 51 stations for bias, RMSE and peak position.};
+\node[leftnote] at (8.57,-.02) {Rank feasible candidates by estimated fan power.};
+\node[leftnote] at (8.57,-.42) {Test PINN predictions on held-out FDS cases.};
 \end{tikzpicture}
 \end{document}
