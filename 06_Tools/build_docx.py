@@ -1,12 +1,11 @@
 """Generate the BSE3322 Group 18 report as a Word document.
 
-All numbers are read from  stats.json  (produced by build_figs.py), so the
-report can be re-generated after any re-run of the simulations.
+Temperature comparisons use stats.json. The fixed-door flow comparison uses the archived station summaries.
 """
 from __future__ import annotations
 
 import json
-import os
+from pathlib import Path
 
 from docx import Document
 from docx.enum.section import WD_SECTION
@@ -15,11 +14,11 @@ from docx.enum.text import WD_ALIGN_PARAGRAPH, WD_BREAK
 from docx.oxml.ns import qn
 from docx.shared import Cm, Pt, RGBColor
 
-BASE = r"C:\Users\Lenovo\Documents\deepseek-harness\default-workspace\BSE3322_Group18\Report"
-FIG = os.path.join(BASE, "figures")
-OUT = os.path.join(BASE, "BSE3322_Group18_Report_v3.docx")
-
-S = json.load(open(os.path.join(BASE, "stats.json"), encoding="utf-8"))
+ROOT = Path(__file__).resolve().parents[1]
+REPORT = ROOT / "07_Report"
+FIG = REPORT / "figures"
+OUT = REPORT / "BSE3322_Group18_Report_v3.docx"
+S = json.loads((ROOT / "05_Calculations" / "stats.json").read_text(encoding="utf-8"))
 
 BODY = 11
 
@@ -110,7 +109,7 @@ def body(text):
 def figure(name, caption, width=15.0):
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.add_run().add_picture(os.path.join(FIG, name), width=Cm(width))
+    p.add_run().add_picture(str(FIG / name), width=Cm(width))
     p.paragraph_format.space_after = Pt(2)
     cap = para(caption, size=9, italic=False, align=WD_ALIGN_PARAGRAPH.CENTER,
                space_after=10)
@@ -171,11 +170,7 @@ body(
     "one, because the two mechanisms, air supply and smoke confinement, become comparable. A "
     "sensitivity study of the radiative fraction shows the peak ceiling temperature moving between "
     f"{f(st('F05', 'peak'), 0)} C and {f(st('F02', 'peak'), 0)} C as the fraction varies from 0.50 "
-    "to 0.20. The ventilation design, two ceiling shafts of 0.325 m square connected to the ambient "
-    "air, was sized from the NFPA 92 plume expression at 0.16 m3/s, which requires about 48 W of "
-    "fan power, and the simulated design cases reduce the ceiling temperature in the fire bay from "
-    f"{f(st('SE1', 'peak'), 0)} C with two ceiling shafts to {f(st('SE3', 'peak'), 0)} C when "
-    "shafts open."
+    "to 0.20. Preliminary plume sizing gave 0.16 m3/s. With door-dependent inlet heights and 0.24 m curtains, the 0.96 m3/s mechanical extract candidate kept the sampled thermal interface above 0.38 m in all six 120 s scenarios on the tested grid."
 )
 
 # --------------------------------------------------------------- 1. intro
@@ -418,7 +413,7 @@ body(
 
 # --------------------------------------------------------------- 5. design
 doc.add_heading("5. Smoke-Ventilation Design", level=1)
-doc.add_heading("5.1 Design basis and sizing", level=2)
+doc.add_heading("5.1 Preliminary plume sizing", level=2)
 body(
     "The design target is taken from the assignment: the smoke interface should not fall below "
     "half the compartment height, 0.38 m, and the layer should remain above the occupied zone for "
@@ -429,7 +424,7 @@ body(
     "the heat release rate Q_c = 0.7 Q and the clear height z = 0.38 m. For 106.2 kW this gives "
     "Q_c = 74.3 kW, m_p = 0.059 kg/s and, at a layer temperature of about 200 C where the density is "
     "0.75 kg/m3, a volumetric extract rate of 0.080 m3/s. A factor of two is applied to cover the "
-    "plume fluctuation and the leakage that any real installation has, so the design extract rate "
+    "plume fluctuation and the leakage that any real installation has, so the preliminary extract rate "
     "is 0.16 m3/s."
 )
 table(
@@ -440,11 +435,11 @@ table(
      ["Plume mass flow, m_p", "0.059 kg/s", "NFPA 92, 0.071 Q_c^(1/3) z^(5/3)"],
      ["Layer density at 200 C", "0.75 kg/m3", "ideal gas"],
      ["Required extract rate", "0.080 m3/s", "m_p / rho"],
-     ["Design extract rate", "0.16 m3/s", "2 x required"],
+     ["Preliminary extract rate", "0.16 m3/s", "2 x required"],
      ["Shaft area (two shafts)", "0.211 m2", "2 x 0.325 m"],
      ["Face velocity at the shaft", "0.76 m/s", "0.16 / 0.211"],
      ["Fan power", "48 W", "0.16 x 150 / 0.5"]],
-    "Table 5. Sizing of the smoke-ventilation system.",
+    "Table 5. Preliminary plume sizing and assumed system pressure loss.",
 )
 
 doc.add_heading("5.2 Description of the design cases", level=2)
@@ -516,26 +511,15 @@ body(
 doc.add_heading("5.4 Sootier fuels and tenability", level=2)
 body(
     "The soot yield has no significant effect on the gas temperature, as Table 6 shows: SE2, with "
-    "five times the soot of SE1, differs from it by less than 1 %. It does, however, change the "
-    "optical density of the smoke, and therefore the visibility, by roughly the same factor, so a "
-    "sooty fuel is the governing case for tenability even though it is not the governing case for "
-    "temperature. The design extract rate was therefore kept at the value sized on the thermal "
-    "criterion; a design that is required to hold a visibility threshold would have to be sized on "
-    "the soot production rate rather than on the plume mass flow, and that rate is proportional to "
-    "the soot yield. The carbon monoxide yield of 0.01 used here is modest; for a well-ventilated "
-    "compartment fire it is the correct order of magnitude, but if the fire becomes under-ventilated "
-    "the yield rises steeply and the design should be re-checked with a higher value."
+    "five times the soot of SE1, differs from it by less than 1 %. In the six mechanical extraction cases at 0.96 m3/s, the lowest half-height visibility was 12.33 m (OP-6, soot yield 0.10 kg/kg) and the highest CO concentration was 22.82 ppm (OP-6, 0.02 kg/kg). The simulations prescribe a CO yield of 0.01 kg/kg."
 )
 
-doc.add_heading("5.5 Fan power", level=2)
+doc.add_heading("5.5 Mechanical extraction and fan power", level=2)
 body(
-    "The design extract rate of 0.16 m3/s through two shafts gives a face velocity of 0.76 m/s, well "
-    "below the 2 m/s at which a ceiling vent begins to entrain the layer it is supposed to remove. "
-    "Taking a system pressure loss of 150 Pa, which covers the shaft friction, the duct, the fan "
-    "coil and a partly closed damper, and a fan efficiency of 0.5, the shaft power is "
-    "0.16 x 150 / 0.5 = 48 W, or about 24 W per shaft. This is a negligible load for a small "
-    "in-line fan, and it confirms that the design is limited by the available shaft area, not by the "
-    "power that can reasonably be installed."
+    "The preliminary 0.16 m3/s estimate assumed 150 Pa system loss and 50 % efficiency, giving 48 W. For the mechanical extraction comparison, a short-branch loss model gives 10.32 W at 1.28 m3/s and 4.35 W at 0.96 m3/s. These estimates exclude other system losses."
+)
+body(
+    "Both ends use 0.44 m inlets with four doors open (OP-1) or 0.48 m with R1 alone open (OP-6), with 0.24 m curtains. At 0.96 m3/s total, the eight-station minima over 120 s for soot yields 0.02, 0.05 and 0.10 kg/kg were 0.4574, 0.4717 and 0.4410 m for OP-1, and 0.3957, 0.5262 and 0.4061 m for OP-6. The smallest margin above 0.38 m was 0.0157 m at x = 0.5 m and 88.5 s, compared with 0.0625 m across the six higher-flow runs. The low-flow margin still needs a paired grid-refinement check."
 )
 
 # --------------------------------------------------------------- 6. limitations
@@ -543,14 +527,14 @@ doc.add_heading("6. Limitations", level=1)
 body(
     "Four limitations should be stated. First, the walls are adiabatic and inert; a real steel hall "
     "loses heat to the structure, so the computed temperatures are upper bounds and the far-field "
-    "values in particular are likely to be conservative by 20-40 K. Second, the runs are 100 s "
+    "values in particular are likely to be conservative by 20-40 K. Second, the preliminary runs are 100 s "
     "long, which is enough for the layer to establish itself in this small volume but not for the "
     "walls to reach a steady thermal state; the quasi-steady values quoted here are therefore "
-    "early-time values. Third, the design cases were not instrumented with layer-height or "
+    "early-time values. Third, cases SE1-SE3 were not instrumented with layer-height or "
     "visibility devices, so the performance of the ventilation system is assessed from the gas "
     "temperature and from the qualitative smoke distribution rather than from the two quantities "
     "the criterion is written in; adding those devices is the first improvement to make. Fourth, "
-    "the single-opening case uses the OP-B opening, which is the mirror image of the R1 opening "
+    "the preliminary single-opening case uses the OP-B opening, which is the mirror image of the R1 opening "
     "specified for the group; the two are equivalent for a symmetric geometry, but a direct run "
     "with R1 would remove any doubt."
 )
@@ -570,12 +554,7 @@ body(
     "comparable at the higher heat release rate. (iii) The radiative fraction is the most "
     "influential model constant among those tested, moving the peak ceiling temperature by up to "
     "12 % over the range 0.20-0.50, with an asymmetric response that reflects the re-radiation from "
-    "the walls. (iv) A two-shaft design sized at 0.16 m3/s from the NFPA 92 plume expression, "
-    "requiring about 48 W of fan power, lowers the fire-bay ceiling temperature by about 30 % "
-    "relative to an unextracted fire bay and keeps the far end of the compartment close to "
-    "ambient, but it also shows that the half-height criterion cannot be applied to a zone in which "
-    "a layer never forms, and that the criterion should be reformulated for a compartment of this "
-    "scale."
+    "the walls. (iv) For the two fixed door states and three soot yields tested, 0.96 m3/s met the eight-station thermal criterion on the current grid with a minimum clearance of 0.0157 m above target. Door transitions and the minimum feasible fan power remain unresolved."
 )
 
 # --------------------------------------------------------------- references

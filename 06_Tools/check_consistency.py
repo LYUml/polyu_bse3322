@@ -1,13 +1,13 @@
 """Cross-check every number in the report against stats.json and the decks."""
 import json
-import os
-import re
+from pathlib import Path
 
 import docx
 
-BASE = r"C:\Users\Lenovo\Documents\deepseek-harness\default-workspace\BSE3322_Group18\Report"
-DOCX = os.path.join(BASE, "BSE3322_Group18_Report_v3.docx")
-S = json.load(open(os.path.join(BASE, "stats.json"), encoding="utf-8"))
+ROOT = Path(__file__).resolve().parents[1]
+REPORT = ROOT / "07_Report"
+DOCX = REPORT / "BSE3322_Group18_Report_v3.docx"
+S = json.loads((ROOT / "05_Calculations" / "stats.json").read_text(encoding="utf-8"))
 
 
 def at(case, x):
@@ -85,5 +85,6 @@ if problems:
     print("PROBLEMS:")
     for p_ in problems:
         print("  -", p_)
+    raise SystemExit(1)
 else:
     print("all table numbers match stats.json; no stale text found")
