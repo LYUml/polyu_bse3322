@@ -1,49 +1,47 @@
 \documentclass[tikz,border=3pt]{standalone}
-\usetikzlibrary{arrows.meta,calc}
-\definecolor{ink}{HTML}{23323A}
-\definecolor{blue}{HTML}{245477}
-\definecolor{green}{HTML}{18665F}
-\definecolor{ochre}{HTML}{845122}
+\usetikzlibrary{arrows.meta,backgrounds,fit}
+\definecolor{ink}{HTML}{23343C}
+\definecolor{lake}{HTML}{20576C}
+\definecolor{pine}{HTML}{1B6055}
 \begin{document}
-\begin{tikzpicture}[y=-1cm,font=\sffamily\small,text=ink,
-  base/.style={align=center,inner xsep=5pt,inner ysep=4pt},
-  common/.style={base,fill=ink!7},
-  val/.style={base,fill=blue!7},design/.style={base,fill=green!7},
-  test/.style={base,fill=ochre!8},
-  arrow/.style={-{Stealth[length=2mm]},draw=ink!80,thick},
-  side/.style={arrow,dashed,draw=ochre},
-  label/.style={font=\sffamily\footnotesize,fill=white,inner sep=2pt}]
-\node[common] (root) at (7.6,0) {\textbf{Compartment geometry and door states}\quad OP-1 / OP-6};
-\node[text=blue,font=\sffamily\bfseries\large] (one) at (3.25,1.03) {Task 1\quad Propane validation};
-\node[text=green,font=\sffamily\bfseries\large] (two) at (11.65,1.03) {Task 2\quad Propylene design};
-\draw[arrow] (root.south)--++(0,.23) -| (one.north);
-\draw[arrow] (root.south)--++(0,.23) -| (two.north);
-\node[val] (exp) at (1.43,2.13) {\textbf{Experiment}\\Digitise Peng et al.'s\\ceiling temperatures};
-\node[val] (fds) at (5.08,2.13) {\textbf{FDS reproduction}\\Match door state, fire\\size and probe positions};
-\draw[arrow] (one.south)--++(0,.17) -| (exp.north);
-\draw[arrow] (one.south)--++(0,.17) -| (fds.north);
-\node[val] (match) at (3.25,3.72) {\textbf{Compare ceiling temperature rise}\\51 matched stations, 90--120 s};
-\draw[arrow] (exp.south)--++(0,.25) -| ([xshift=-.9cm]match.north);
-\draw[arrow] (fds.south)--++(0,.25) -| ([xshift=.9cm]match.north);
-\node[val] (diag) at (3.25,5.07) {\textbf{Assess model error}\\Bias, RMSE and peak position\\Check mesh, wall losses and doorway flow};
-\draw[arrow] (match.south)--(diag.north);
-\node[design] (screen) at (11.65,2.13) {\textbf{Screen 16 OP-6 candidates}\\Vary curtain depth and exhaust flow};
-\node[design] (run) at (11.65,3.72) {\textbf{Run FDS for revised layouts}\\Vary make-up air and extraction rate};
-\node[design] (gate) at (11.65,5.25) {\textbf{Is every sampled height at least 0.38 m?}\\8 stations over 120 s\\2 door states $\times$ 3 soot yields};
-\node[design] (grid) at (11.65,6.95) {\textbf{Recheck limiting cases}\\Refine the vertical grid};
-\node[design] (opt) at (11.65,8.57) {\textbf{Minimise estimated fan power}\\Compare the surviving tested designs};
-\draw[arrow] (two.south)--(screen.north);
-\draw[arrow] (screen.south)--(run.north);
-\draw[arrow] (run.south)--(gate.north);
-\draw[arrow] (gate.south)--node[right,label]{Yes}(grid.north);
-\draw[arrow] (grid.south)--node[right,label]{Clearance maintained}(opt.north);
-\coordinate (loop) at (15.87,3.72);
-\draw[arrow] (gate.east)-|(loop)--(run.east);
-\node[label,rotate=90] at (15.87,4.50) {No: revise};
-\node[test] (train) at (3.25,6.95) {\textbf{Train the PINN on FDS layer histories}\\Withhold one complete OP-6 design at a time};
-\node[test] (audit) at (3.25,8.57) {\textbf{Compare PINN predictions with held-out FDS}\\Minimum height and timing of local breaches};
-\draw[side] (run.west)--(7.63,3.72)|-(train.east);
-\node[label,rotate=90,text=ochre] at (7.63,5.42) {OP-6 station histories};
-\draw[side] (train.south)--(audit.north);
+\begin{tikzpicture}[font=\sffamily\large,text=ink,
+  item/.style={align=center,inner xsep=5pt,inner ysep=4pt},
+  head/.style={item,font=\sffamily\bfseries\Large},
+  flow/.style={draw=ink!80,line width=.85pt,-{Stealth[length=2mm]}},
+  branch/.style={flow,draw=pine,dashed},
+  note/.style={font=\sffamily\normalsize,inner sep=2pt}]
+\node[item,font=\sffamily\bfseries\large] (root) at (6.55,0) {Shared compartment and door states};
+\node[head,text=lake] (one) at (2.3,-1.1) {Task 1\quad Propane};
+\node[head,text=pine] (two) at (8.15,-1.1) {Task 2\quad Propylene};
+\draw[flow] (root.south)--++(0,-.22)-|(one.north);
+\draw[flow] (root.south)--++(0,-.22)-|(two.north);
+\node[item] (exp) at (1.1,-2.4) {Peng et al.\\experiment};
+\node[item] (fds) at (3.52,-2.4) {Matched\\FDS cases};
+\draw[flow] (one.south)--++(0,-.23)-|(exp.north);
+\draw[flow] (one.south)--++(0,-.23)-|(fds.north);
+\node[item] (match) at (2.3,-3.96) {Compare temperature rise\\at 51 stations};
+\draw[flow] (exp.south)--++(0,-.26)-|([xshift=-.75cm]match.north);
+\draw[flow] (fds.south)--++(0,-.26)-|([xshift=.75cm]match.north);
+\node[item,fill=lake!13] (error) at (2.3,-5.65) {Assess bias, RMSE\\and peak location};
+\draw[flow] (match.south)--(error.north);
+\node[item] (screen) at (8.15,-2.4) {Screen 16 curtain\\and flow settings};
+\node[item,fill=pine!14] (run) at (8.15,-3.96) {Run FDS for\\revised layouts};
+\node[item,draw=pine,rounded corners=3pt] (gate) at (8.15,-5.65) {Minimum height\\$\geq 0.38$ m?};
+\node[item] (grid) at (8.15,-7.13) {Refine grid\\for limiting cases};
+\node[item,fill=pine!14] (opt) at (12.58,-7.13) {Select lowest-power\\feasible design};
+\draw[flow] (two.south)--(screen.north);
+\draw[flow] (screen.south)--(run.north);
+\draw[flow] (run.south)--(gate.north);
+\draw[flow] (gate.south)--node[right,note]{Yes}(grid.north);
+\draw[flow] (grid.east)--(opt.west);
+\draw[flow] (gate.west)--(5.78,-5.65)--node[left,note,rotate=90,anchor=south]{No: revise}(5.78,-3.96)--(run.west);
+\node[item,text=pine] (train) at (12.58,-3.96) {\textbf{Train PINN}\\on OP-6 histories};
+\node[item,text=pine] (audit) at (12.58,-5.65) {Check breaches\\on held-out designs};
+\draw[branch] (run.east)--(train.west);
+\draw[branch] (train.south)--(audit.north);
+\begin{scope}[on background layer]
+\node[fit=(one)(exp)(fds)(match)(error),fill=lake!4,rounded corners=4pt,inner sep=6pt]{};
+\node[fit={(two)(screen)(run)(gate)(grid)(opt)(train)(audit)(5.45,-4.8)},fill=pine!4,rounded corners=4pt,inner sep=6pt]{};
+\end{scope}
 \end{tikzpicture}
 \end{document}
