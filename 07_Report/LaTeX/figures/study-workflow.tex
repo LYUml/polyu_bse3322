@@ -16,7 +16,7 @@
 % The stage bands carry the sequence; illustrations belong to their own stage.
 \filldraw[draw=sea!30,fill=sea!6] (0,0) rectangle (15,-2.08);
 \filldraw[draw=sea!30,fill=sea!4] (0,-2.94) rectangle (15,-5.05);
-\filldraw[draw=ochre!40,fill=ochre!6] (0,-5.91) rectangle (15,-12.45);
+\filldraw[draw=ochre!40,fill=ochre!6] (0,-5.91) rectangle (15,-12.40);
 \node[title,fill=sea!18] at (7.5,0) {Compartment and fire inputs};
 \node[title,fill=sea!18] at (7.5,-2.94) {Task 1\quad Propane validation};
 \node[title,fill=ochre!21] at (7.5,-5.91) {Task 2\quad Propylene extraction and optimisation};
@@ -63,30 +63,49 @@
 \node[labelnode] at (12.45,-4.12) {Assess profile error\\and peak location};
 \draw[flow] (4.52,-4.07)--(5.59,-4.07);
 \draw[flow] (9.33,-4.07)--(10.39,-4.07);
-% Separate the intended pre-screen from the retrospective search comparison.
-\node[labelnode] (data) at (2.35,-7.03) {Existing OP-6\\FDS designs};
-\node[labelnode,text=sea] (fit) at (7.48,-7.03) {\textbf{PINN + regression}\\Predict minimum height};
-\node[labelnode] (rank) at (12.40,-7.03) {Pre-screen layouts\\and flow rates};
-\draw[flow,dashed,draw=sea] (data.east)--(fit.west);
-\draw[flow] (fit.east)--(rank.west);
-\node[labelnode,draw=ochre!50,fill=white] (replay) at (2.65,-8.50)
- {Bayesian optimisation\\and genetic algorithm};
-\draw[flow,dashed,draw=sea] (data.south)--(replay.north);
-\node[tag,align=center] at (2.65,-9.56) {Search-order replay\\on 16 known designs};
-\node[labelnode] (fds) at (12.40,-8.57) {\textbf{Run FDS}\\on priority candidates};
-\draw[flow] (rank.south)--(fds.north);
-\node[labelnode,draw=ochre,fill=white,rounded corners=3pt] (gate) at (7.48,-8.57) {Minimum height\\$\geq 0.38$ m?};
-\draw[flow] (fds.west)--(gate.east);
-\draw[flow] (gate.south east)--++(.40,-.30)--(9.6,-9.51)--(14.72,-9.51)|-(rank.east);
-\node[tag,fill=ochre!6] at (11.7,-9.50) {No: revise and re-screen};
-\node[labelnode] (grid) at (7.48,-10.08) {Refine grid for limiting cases};
+% Recorded layer history, candidate ranking and CFD verification share one reading axis.
+\begin{axis}[at={(1.40cm,-7.23cm)},anchor=south west,scale only axis,width=2.15cm,height=.70cm,
+ axis lines=left,axis line style={-,ink!60},xtick=\empty,ytick=\empty,xmin=81,xmax=85,ymin=.25,ymax=.8]
+\addplot[sea,very thick] table[col sep=comma,x=time_s,y=fds_m]{../data/pinn-end-station.csv};
+\end{axis}
+\node[labelnode] (archive) at (2.48,-7.81) {Recorded OP-6\\layer histories};
+% Schematic narrowing of the design pool, not a numerical acceptance ratio.
+\begin{scope}[shift={(7.50,-6.77)}]
+\foreach \k in {-2,-1,0,1,2}{\fill[sea!70] (.29*\k,.19) circle (.075);}
+\draw[sea!80,line width=1pt] (-.84,.10)--(-.29,-.29)--(-.29,-.43)
+ (.84,.10)--(.29,-.29)--(.29,-.43);
+\draw[sea,very thick] (-.21,-.34)--(.21,-.34);
+\end{scope}
+\node[labelnode,text=sea] (rank) at (7.50,-7.81) {\textbf{PINN + regression}\\Rank new candidates};
+% Longitudinal section with eight actual station positions and the half-height plane.
+\begin{scope}[shift={(10.69,-7.23)},x=.52cm,y=.91cm]
+\filldraw[draw=ink,fill=white,line width=.7pt] (0,0) rectangle (6.6,.76);
+\foreach \x in {.5,1.7,2.4,3,3.6,4.2,4.9,6.1}
+ {\draw[sea!55] (\x,.06)--(\x,.7);\fill[sea] (\x,.38) circle[x radius=.055,y radius=.032];}
+\draw[clay,dashed,line width=.65pt] (0,.38)--(6.6,.38);
+\foreach \x in {2.8,3.8}{\draw[ink,thick] (\x,.76)--(\x,.52);}
+\fill[clay] (3.175,0) rectangle (3.425,.07);
+\end{scope}
+\node[labelnode] (fds) at (12.40,-7.81) {\textbf{Run shortlisted designs}\\Eight FDS stations};
+\draw[flow,dashed,draw=sea] (archive.east)--(rank.west);
+\draw[flow] (rank.east)--(fds.west);
+% The 4 by 4 lattice denotes the recorded curtain-depth / flow combinations.
+\node[labelnode] (replay) at (2.48,-9.22) {Bayesian optimisation\\and genetic algorithm};
+\draw[flow,dashed,draw=sea] (archive.south)--(replay.north);
+\foreach \i in {0,...,3}{\foreach \j in {0,...,3}{
+ \fill[ochre!75] (.53+.19*\i,-10.41+.19*\j) rectangle ++(.143,.143);}}
+\node[anchor=west,font=\sffamily\normalsize,align=left] at (1.40,-10.08) {Replay search order\\on 16 known designs};
+\node[labelnode,draw=ochre,fill=white,rounded corners=3pt] (gate) at (12.40,-9.30) {Minimum height\\$\geq 0.38$ m?};
+\draw[flow] (fds.south)--(gate.north);
+\draw[flow] (gate.west)-|(rank.south);
+\node[tag,anchor=south] at (9.10,-9.29) {No: revise};
+\node[labelnode] (grid) at (12.40,-10.67) {Refine limiting cases};
 \draw[flow] (gate.south)--node[right,tag]{Yes}(grid.north);
-\draw[flow] (grid.south)--(7.48,-10.84);
-\filldraw[fill=white,draw=ochre!65] (.32,-10.85) rectangle (14.68,-12.33);
-\node[align=left,font=\sffamily\bfseries\large] at (2.50,-11.52) {Select a feasible\\fan and layout};
-\node[align=left,anchor=west] at (4.48,-11.58)
- {$\displaystyle\min_{g,Q,P}\ P$ \quad fan input power\\[3pt]
- $\mathrm{s.t.}\quad h_{s,i,t}(g,Q)\geq 0.38\,\mathrm{m},\qquad
- P\geq Q\,\Delta p_s/\eta_s$};
+\draw[flow] (grid.south)--(12.40,-11.11);
+\filldraw[fill=white,draw=ochre!65] (.32,-11.13) rectangle (14.68,-12.27);
+\node[anchor=west] at (.54,-11.70) {$\displaystyle\min_{g,Q,P} P$};
+\node[align=left,anchor=west,font=\sffamily\bfseries\large] at (2.13,-11.70) {Fan input\\power};
+\draw[ochre!50] (4.68,-11.36)--(4.68,-12.05);
+\node[anchor=west] at (5.00,-11.70) {$\mathrm{s.t.}\quad h_{s,i,t}(g,Q)\geq 0.38\,\mathrm{m},\qquad P\geq Q\,\Delta p_s/\eta_s$};
 \end{tikzpicture}
 \end{document}
