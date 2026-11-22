@@ -33,8 +33,14 @@ def main():
             raise ValueError(name)
     rows = []
     stacked_rows = []
+    neighbor_rows = []
     for outer, tests in groups.items():
         train = [cases[n] for g,names in groups.items() if g!=outer for n in names]
+        other_groups = [g for g in groups if g != outer]
+        distances = np.linalg.norm(np.array(other_groups) - outer, axis=1)
+        nearest = [g for g,d in zip(other_groups, distances) if np.isclose(d, distances.min())]
+        # Give each physical design one vote, including designs with two meshes.
+        nearest_min = np.mean([np.mean([cases[n]['y'].min() for n in groups[g]]) for g in nearest])
         point = {test:estimate(train,test) for test in tests}
         candidates = defaultdict(list)
         numerator = denominator = 0.
@@ -54,6 +60,9 @@ def main():
                 candidates[test].append(estimate(smaller,test)[2]-residual)
         for test in tests:
             pinn,direct,hybrid = point[test]
+            neighbor_rows.append(dict(case=test, actual_m=cases[test]['y'].min(),
+                                      nearest_m=nearest_min, hybrid_m=hybrid,
+                                      neighbor_cases='|'.join(n for g in nearest for n in groups[g])))
             weight = float(np.clip(numerator/denominator,0,1)) if denominator else .5
             stacked_rows.append(dict(case=test,actual_m=cases[test]['y'].min(),
                                      pinn_weight=weight,fixed_m=hybrid,
@@ -66,6 +75,7 @@ def main():
                              direct_m=direct,hybrid_m=hybrid,lower_m=lower))
     save(HERE/'minimum_risk_holdouts.csv',rows)
     save(HERE/'minimum_stack_holdouts.csv',stacked_rows)
+    save(HERE/'minimum_neighbor_holdouts.csv',neighbor_rows)
     actual=np.array([r['actual_m'] for r in rows])
     for key in ['pinn_m','direct_m','hybrid_m','lower_m']:
         pred=np.array([r[key] for r in rows])
