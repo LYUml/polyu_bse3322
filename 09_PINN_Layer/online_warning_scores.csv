@@ -21,7 +21,7 @@ inlet44_1_0p1_0p24_1p28_120,height_features,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,height_and_temperature,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,persistence,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,trend,0,0,0,0,13,0
-inlet44_6_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,1,0
+inlet44_6_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,2,0
 inlet44_6_0p02_0p24_1p28_120,height_features,0,0,0,0,1,0
 inlet44_6_0p02_0p24_1p28_120,height_and_temperature,0,0,0,0,1,0
 inlet44_6_0p05_0p24_1p28_120,persistence,0,0,0,0,0,0
@@ -64,6 +64,11 @@ inlet48_6_0p05_0p24_1p28_120,trend,0,0,0,0,8,0
 inlet48_6_0p05_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,height_features,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,height_and_temperature,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p12_z38_120,persistence,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p12_z38_120,trend,0,0,0,0,33,0
+inlet48_6_0p1_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p12_z38_120,height_features,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p12_z38_120,height_and_temperature,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,persistence,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,trend,0,0,0,0,10,0
 inlet48_6_0p1_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0
@@ -72,13 +77,13 @@ inlet48_6_0p1_0p24_1p28_120,height_and_temperature,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,persistence,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,trend,0,0,0,0,119,0
 tall_makeup_1_0p05_0p24_0p96_120,trend_calibrated,0,0,0,0,0,0
-tall_makeup_1_0p05_0p24_0p96_120,height_features,0,0,0,0,7,0
-tall_makeup_1_0p05_0p24_0p96_120,height_and_temperature,0,0,0,0,5,0
+tall_makeup_1_0p05_0p24_0p96_120,height_features,0,0,0,0,8,0
+tall_makeup_1_0p05_0p24_0p96_120,height_and_temperature,0,0,0,0,4,0
 tall_makeup_1_0p05_0p24_1p28_120,persistence,1,0,1,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,trend,1,1,1,1,57,0.21571419288248705
 tall_makeup_1_0p05_0p24_1p28_120,trend_calibrated,1,0,1,0,3,0
 tall_makeup_1_0p05_0p24_1p28_120,height_features,1,0,1,0,2,0
-tall_makeup_1_0p05_0p24_1p28_120,height_and_temperature,1,0,1,0,1,0
+tall_makeup_1_0p05_0p24_1p28_120,height_and_temperature,1,0,1,0,2,0
 tall_makeup_6_0p02_0p16_1p28_120,persistence,4,0,4,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,trend,4,3,4,3,30,2.6611500724823323
 tall_makeup_6_0p02_0p16_1p28_120,trend_calibrated,4,1,4,1,3,0.4501673860504134
@@ -112,5 +117,5 @@ tall_makeup_6_0p1_0p24_1p28_120,height_and_temperature,1,0,1,0,0,0
 tall_makeup_6_0p1_0p32_1p28_120,persistence,13,0,13,0,0,0
 tall_makeup_6_0p1_0p32_1p28_120,trend,13,10,13,10,57,7.312239362736349
 tall_makeup_6_0p1_0p32_1p28_120,trend_calibrated,13,4,13,4,14,2.7665278396566464
-tall_makeup_6_0p1_0p32_1p28_120,height_features,13,3,13,3,14,1.8020458812864817
-tall_makeup_6_0p1_0p32_1p28_120,height_and_temperature,13,3,13,3,13,1.8020458812864817
+tall_makeup_6_0p1_0p32_1p28_120,height_features,13,3,13,3,15,1.8020458812864817
+tall_makeup_6_0p1_0p32_1p28_120,height_and_temperature,13,3,13,3,14,1.8020458812864817
