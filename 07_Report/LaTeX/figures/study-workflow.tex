@@ -1,47 +1,38 @@
 \documentclass[tikz,border=3pt]{standalone}
-\usetikzlibrary{arrows.meta,backgrounds,fit}
-\definecolor{ink}{HTML}{23343C}
-\definecolor{lake}{HTML}{20576C}
-\definecolor{pine}{HTML}{1B6055}
+\usetikzlibrary{arrows.meta}
+\definecolor{ink}{HTML}{253239}
+\definecolor{accent}{HTML}{215A63}
 \begin{document}
 \begin{tikzpicture}[font=\sffamily\large,text=ink,
-  item/.style={align=center,inner xsep=5pt,inner ysep=4pt},
-  head/.style={item,font=\sffamily\bfseries\Large},
-  flow/.style={draw=ink!80,line width=.85pt,-{Stealth[length=2mm]}},
-  branch/.style={flow,draw=pine,dashed},
-  note/.style={font=\sffamily\normalsize,inner sep=2pt}]
-\node[item,font=\sffamily\bfseries\large] (root) at (6.55,0) {Shared compartment and door states};
-\node[head,text=lake] (one) at (2.3,-1.1) {Task 1\quad Propane};
-\node[head,text=pine] (two) at (8.15,-1.1) {Task 2\quad Propylene};
-\draw[flow] (root.south)--++(0,-.22)-|(one.north);
-\draw[flow] (root.south)--++(0,-.22)-|(two.north);
-\node[item] (exp) at (1.1,-2.4) {Peng et al.\\experiment};
-\node[item] (fds) at (3.52,-2.4) {Matched\\FDS cases};
-\draw[flow] (one.south)--++(0,-.23)-|(exp.north);
-\draw[flow] (one.south)--++(0,-.23)-|(fds.north);
-\node[item] (match) at (2.3,-3.96) {Compare temperature rise\\at 51 stations};
-\draw[flow] (exp.south)--++(0,-.26)-|([xshift=-.75cm]match.north);
-\draw[flow] (fds.south)--++(0,-.26)-|([xshift=.75cm]match.north);
-\node[item,fill=lake!13] (error) at (2.3,-5.65) {Assess bias, RMSE\\and peak location};
-\draw[flow] (match.south)--(error.north);
-\node[item] (screen) at (8.15,-2.4) {Screen 16 curtain\\and flow settings};
-\node[item,fill=pine!14] (run) at (8.15,-3.96) {Run FDS for\\revised layouts};
-\node[item,draw=pine,rounded corners=3pt] (gate) at (8.15,-5.65) {Minimum height\\$\geq 0.38$ m?};
-\node[item] (grid) at (8.15,-7.13) {Refine grid\\for limiting cases};
-\node[item,fill=pine!14] (opt) at (12.58,-7.13) {Select lowest-power\\feasible design};
-\draw[flow] (two.south)--(screen.north);
-\draw[flow] (screen.south)--(run.north);
-\draw[flow] (run.south)--(gate.north);
-\draw[flow] (gate.south)--node[right,note]{Yes}(grid.north);
-\draw[flow] (grid.east)--(opt.west);
-\draw[flow] (gate.west)--(5.78,-5.65)--node[left,note,rotate=90,anchor=south]{No: revise}(5.78,-3.96)--(run.west);
-\node[item,text=pine] (train) at (12.58,-3.96) {\textbf{Train PINN}\\on OP-6 histories};
-\node[item,text=pine] (audit) at (12.58,-5.65) {Check breaches\\on held-out designs};
-\draw[branch] (run.east)--(train.west);
-\draw[branch] (train.south)--(audit.north);
-\begin{scope}[on background layer]
-\node[fit=(one)(exp)(fds)(match)(error),fill=lake!4,rounded corners=4pt,inner sep=6pt]{};
-\node[fit={(two)(screen)(run)(gate)(grid)(opt)(train)(audit)(5.45,-4.8)},fill=pine!4,rounded corners=4pt,inner sep=6pt]{};
-\end{scope}
+  activity/.style={align=center,inner xsep=6pt,inner ysep=3pt,fill=white},
+  phase/.style={align=left,anchor=west,font=\sffamily\bfseries\Large,text=accent},
+  arrow/.style={draw=ink!85,line width=.8pt,-{Stealth[length=2.1mm]},rounded corners=3pt},
+  note/.style={font=\sffamily\normalsize,inner sep=2pt,fill=white}]
+\node[phase] at (0,0) {Task 1\enspace Propane validation};
+\node[activity] (model) at (6.9,-.88) {Reproduce Peng's compartment in FDS};
+\node[activity] (cases) at (6.9,-1.97) {Run four fire cases};
+\node[activity] (obs) at (2.0,-3.13) {Peng's measured\\temperature rise};
+\node[activity] (compare) at (6.9,-3.13) {Compare profiles at 51 stations};
+\draw[arrow] (model)--(cases);
+\draw[arrow] (cases)--(compare);
+\draw[arrow] (obs)--(compare);
+\node[phase] at (0,-4.27) {Task 2\enspace Extraction design};
+\node[activity] (screen) at (6.9,-5.20) {With propylene, screen\\16 curtain and flow settings};
+\node[activity] (run) at (6.9,-6.67) {Run FDS for\\candidate layouts};
+\node[activity,text=accent] (pinn) at (12.17,-6.67) {\textbf{Fit PINN}\\to OP-6 histories};
+\node[activity] (test) at (12.17,-8.25) {Check breaches\\on held-out designs};
+\node[activity,draw=accent,rounded corners=3pt,line width=.85pt] (gate) at (6.9,-8.25) {Minimum height $\geq 0.38$ m?};
+\node[activity] (revise) at (2,-8.25) {Adjust inlets,\\curtains or flow};
+\node[activity] (grid) at (6.9,-9.70) {Refine grid for limiting cases};
+\node[activity,font=\sffamily\bfseries\large] (pick) at (6.9,-10.87) {Select lowest-power feasible design};
+\draw[arrow] (compare.south)--(screen.north);
+\draw[arrow] (screen)--(run);
+\draw[arrow] (run)--(gate);
+\draw[arrow,dashed,draw=accent] (run.east)--(pinn.west);
+\draw[arrow] (pinn)--(test);
+\draw[arrow] (gate.west)--node[above,note]{No}(revise.east);
+\draw[arrow] (revise.north)|-(run.west);
+\draw[arrow] (gate.south)--node[right,note]{Yes}(grid.north);
+\draw[arrow] (grid)--(pick);
 \end{tikzpicture}
 \end{document}
