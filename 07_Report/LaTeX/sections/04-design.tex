@@ -9,16 +9,7 @@ Opening both ends to 0.44~m raised the minimum to 0.524~m in that OP-6 scenario.
 \reportfigure{\includegraphics[width=.86\linewidth]{../op6_curtain_soot_minimum_height.png}}{Figure 3. OP-6 curtain and soot trials. A configuration must satisfy the thermal criterion throughout every specified scenario.}
 \clearpage
 \subhead{4.3\quad Flow selection across six scenarios}
-\tabletitle{Table 1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
-\begin{reporttable}{L{.23}L{.23}L{.27}L{.27}}
-\rowcolor{tablegrey}Door state&Soot (kg/kg)&0.96 m$^3$/s&1.28 m$^3$/s\\
-OP-1&0.02&0.4574&\textbf{0.4425}\\
-OP-1&0.05&0.4717&0.5093\\
-OP-1&0.10&0.4410&0.5013\\
-OP-6&0.02&\textbf{0.3957}&0.5827\\
-OP-6&0.05&0.5262&0.4975\\
-OP-6&0.10&0.4061&0.5503\\
-\end{reporttable}
+\input{sections/flow-comparison}
 The controlling station was at $x=0.5$~m for both flows. At high flow the OP-1 minimum occurred at 69.0~s. At low flow the OP-6 minimum occurred at 88.5~s. Both controlling cases used the lowest soot yield. Selecting only the highest soot yield for design would have missed the smallest clearance at either flow. Mean delivered fire powers for the six high-flow scenarios were 103.6--104.1~kW over 90--120~s.
 
 Reducing volume flow by 25\% reduced branch velocity from 2.00 to 1.50~m/s and estimated branch pressure loss from 4.84 to 2.72~Pa. The corresponding estimated combined electrical inputs were 10.32 and 4.35~W, a reduction of approximately 58\%. On the original grid both tested flows satisfy the sampled height constraint in Eq.~\eqref{eq:design}. For this preset layout and the two evaluated flows, 0.96~m$^3$/s gives the lowest estimated branch input. The least clearance above the target decreased by 46.8~mm. The 15.7~mm low-flow margin is smaller than the original 40~mm vertical cell spacing. This comparison motivates the paired refinement, although cell size alone does not quantify interface error.
