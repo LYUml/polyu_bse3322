@@ -45,6 +45,11 @@ The 1.28~m$^3$/s minima in Table D1 were checked against the raw device historie
 \end{reporttable}
 
 Combined fan input uses the two short branches and efficiency of 0.60 in Section~2.2. The 1.12~m$^3$/s case minimises power in Table D2. Across the six scenarios in Table D1, this intermediate flow has one complete refined-grid record. OP-1 at baseline soot and OP-6 at high soot have partial records.
+\tabletitle{Table D3. Refined-grid evidence at 1.12~m$^3$/s. Partial minima cover only the recorded interval.}
+\begin{reporttable}{L{.16}L{.18}L{.21}L{.22}L{.23}}
+\rowcolor{tablegrey}Door&Soot (kg/kg)&Status&Record (s)&Minimum (m)\\
+\csname @@input\endcsname sections/intermediate-coverage.tex
+\end{reporttable}
 \clearpage
 \reportheading{Appendix E.\quad Surrogate event scoring}
 The physics-informed extreme learning machine used 96 fixed tanh units and a least-squares output fit with ridge coefficient 0.1. A simplified upper-layer volume balance constrained the weighted mean layer thickness under an assumption of lateral uniformity. A short event was a continuous excursion below 0.38~m at one station lasting at most 2~s. An event counted as a match when the intersection of the predicted and observed intervals covered at least half their union, with one-to-one matching. Linear interpolation between device records approximately 0.5~s apart limits the precision of short event durations.
