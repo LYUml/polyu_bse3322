@@ -1,57 +1,49 @@
-\documentclass[tikz,border=2pt]{standalone}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
-\definecolor{ink}{HTML}{263238}
-\definecolor{blue}{HTML}{216282}
-\definecolor{rust}{HTML}{9F452B}
-\newcommand{\datadir}{../../../05_Calculations}
+\documentclass[tikz,border=3pt]{standalone}
+\usetikzlibrary{arrows.meta,calc}
+\definecolor{ink}{HTML}{23323A}
+\definecolor{blue}{HTML}{245477}
+\definecolor{green}{HTML}{18665F}
+\definecolor{ochre}{HTML}{845122}
 \begin{document}
-\begin{tikzpicture}[font=\sffamily\small,text=ink,every node/.style={inner sep=1pt},
- title/.style={anchor=west,font=\sffamily\bfseries\large},
- leftnote/.style={anchor=west},tag/.style={font=\sffamily\bfseries\Large,anchor=west}]
-\node[tag] at (0,6.38) {a};
-\node[title] at (.55,6.38) {Compartment and fire source};
-\begin{scope}[shift={(.55,4.96)},x=1.37cm,y=1.37cm]
-\fill[ink!4] (0,0) rectangle (6.6,.90);
-\draw[ink,thick] (0,0)--(0,.9)--(6.6,.9)--(6.6,0)--cycle;
-\foreach \x/\door in {.825/L2,2.475/L1,4.125/R1,5.775/R2}{
- \draw[white,line width=2pt] (\x-.215,0)--(\x+.215,0);
- \draw[blue,densely dashed] (\x-.215,0)--(\x+.215,0);
- \node[below] at (\x,-.035) {\door};}
-\fill[rust] (3.175,.325) rectangle (3.425,.575);
-\draw[rust] (3.425,.45)--(3.59,.45) node[right]{burner};
-\end{scope}
-\node[leftnote] at (10.05,5.91) {Plan view, $6.60\times0.90$ m};
-\node[leftnote] at (10.05,5.53) {OP-1\enspace all four doors open};
-\node[leftnote] at (10.05,5.15) {OP-6\enspace R1 open};
-\draw[ink!35] (0,4.43)--(15.65,4.43);
-\node[tag] at (0,4.03) {b};
-\node[title] at (.55,4.03) {Task 1\enspace Propane validation};
-\node[tag] at (8.02,4.03) {c};
-\node[title] at (8.57,4.03) {Task 2\enspace Propylene extraction};
-\node[leftnote] at (.55,3.56) {Ceiling temperature rise (K)};
-\node[leftnote] at (8.57,3.56) {Minimum layer height over 120 s (m)};
-\pgfplotsset{profile/.style={anchor=south west,width=6.40cm,height=2.0cm,
- scale only axis,axis lines=left,axis line style={-,draw=ink!65},tick align=outside,
- major tick length=2pt,tick style={ink!65},ticklabel style={font=\sffamily\footnotesize},
- xmin=0,xmax=6.6,xtick={0,3.3,6.6},xticklabels={0,3.3,6.6},
- xlabel={Distance along compartment (m)},xlabel style={font=\sffamily\footnotesize},
- scaled ticks=false}}
-\begin{axis}[profile,at={(.88cm,1.15cm)},ymin=0,ymax=1000,ytick={0,500,1000},
- legend style={draw=none,fill=none,font=\sffamily\footnotesize,at={(.015,.99)},anchor=north west},
- legend cell align=left]
-\addplot[only marks,mark=o,mark size=1.25pt,ink] table[col sep=comma,x expr=\thisrow{sensor_x_cm}/100,y=exp_rise_K]{\datadir/op1_106_coarse_90_120.csv};
-\addlegendentry{Peng et al.}
-\addplot[blue,thick] table[col sep=comma,x expr=\thisrow{sensor_x_cm}/100,y=fds_rise_K]{\datadir/op1_106_coarse_90_120.csv};
-\addlegendentry{FDS}
-\end{axis}
-\begin{axis}[profile,at={(8.90cm,1.15cm)},ymin=0,ymax=.52,ytick={0,.2,.4}]
-\draw[rust,dashed] (axis cs:0,.38)--(axis cs:6.6,.38)
- node[pos=.98,above left,text=rust,font=\sffamily\footnotesize]{0.38 m criterion};
-\addplot[only marks,blue,mark=*,mark size=2.3pt] table[col sep=comma,x=x_m,y=min_height_m]{\datadir/design_6_0p02_0p16_0p16_120_stations.csv};
-\end{axis}
-\node[leftnote] at (.55,-.02) {Compare 51 stations for bias, RMSE and peak position.};
-\node[leftnote] at (8.57,-.02) {Rank feasible candidates by estimated fan power.};
-\node[leftnote] at (8.57,-.42) {Test PINN predictions on held-out FDS cases.};
+\begin{tikzpicture}[y=-1cm,font=\sffamily\small,text=ink,
+  base/.style={align=center,inner xsep=5pt,inner ysep=4pt},
+  common/.style={base,fill=ink!7},
+  val/.style={base,fill=blue!7},design/.style={base,fill=green!7},
+  test/.style={base,fill=ochre!8},
+  arrow/.style={-{Stealth[length=2mm]},draw=ink!80,thick},
+  side/.style={arrow,dashed,draw=ochre},
+  label/.style={font=\sffamily\footnotesize,fill=white,inner sep=2pt}]
+\node[common] (root) at (7.6,0) {\textbf{Compartment geometry and door states}\quad OP-1 / OP-6};
+\node[text=blue,font=\sffamily\bfseries\large] (one) at (3.25,1.03) {Task 1\quad Propane validation};
+\node[text=green,font=\sffamily\bfseries\large] (two) at (11.65,1.03) {Task 2\quad Propylene design};
+\draw[arrow] (root.south)--++(0,.23) -| (one.north);
+\draw[arrow] (root.south)--++(0,.23) -| (two.north);
+\node[val] (exp) at (1.43,2.13) {\textbf{Experiment}\\Digitise Peng et al.'s\\ceiling temperatures};
+\node[val] (fds) at (5.08,2.13) {\textbf{FDS reproduction}\\Match door state, fire\\size and probe positions};
+\draw[arrow] (one.south)--++(0,.17) -| (exp.north);
+\draw[arrow] (one.south)--++(0,.17) -| (fds.north);
+\node[val] (match) at (3.25,3.72) {\textbf{Compare ceiling temperature rise}\\51 matched stations, 90--120 s};
+\draw[arrow] (exp.south)--++(0,.25) -| ([xshift=-.9cm]match.north);
+\draw[arrow] (fds.south)--++(0,.25) -| ([xshift=.9cm]match.north);
+\node[val] (diag) at (3.25,5.07) {\textbf{Assess model error}\\Bias, RMSE and peak position\\Check mesh, wall losses and doorway flow};
+\draw[arrow] (match.south)--(diag.north);
+\node[design] (screen) at (11.65,2.13) {\textbf{Screen 16 OP-6 candidates}\\Vary curtain depth and exhaust flow};
+\node[design] (run) at (11.65,3.72) {\textbf{Run FDS for revised layouts}\\Vary make-up air and extraction rate};
+\node[design] (gate) at (11.65,5.25) {\textbf{Is every sampled height at least 0.38 m?}\\8 stations over 120 s\\2 door states $\times$ 3 soot yields};
+\node[design] (grid) at (11.65,6.95) {\textbf{Recheck limiting cases}\\Refine the vertical grid};
+\node[design] (opt) at (11.65,8.57) {\textbf{Minimise estimated fan power}\\Compare the surviving tested designs};
+\draw[arrow] (two.south)--(screen.north);
+\draw[arrow] (screen.south)--(run.north);
+\draw[arrow] (run.south)--(gate.north);
+\draw[arrow] (gate.south)--node[right,label]{Yes}(grid.north);
+\draw[arrow] (grid.south)--node[right,label]{Clearance maintained}(opt.north);
+\coordinate (loop) at (15.87,3.72);
+\draw[arrow] (gate.east)-|(loop)--(run.east);
+\node[label,rotate=90] at (15.87,4.50) {No: revise};
+\node[test] (train) at (3.25,6.95) {\textbf{Train the PINN on FDS layer histories}\\Withhold one complete OP-6 design at a time};
+\node[test] (audit) at (3.25,8.57) {\textbf{Compare PINN predictions with held-out FDS}\\Minimum height and timing of local breaches};
+\draw[side] (run.west)--(7.63,3.72)|-(train.east);
+\node[label,rotate=90,text=ochre] at (7.63,5.42) {OP-6 station histories};
+\draw[side] (train.south)--(audit.north);
 \end{tikzpicture}
 \end{document}
