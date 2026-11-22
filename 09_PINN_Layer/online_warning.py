@@ -47,7 +47,7 @@ def estimate(train, test, nfeat):
     return ((test['features'][:,:,:nfeat]-mean)/scale)@w > cutoff
 
 
-def evaluate(case, alarms):
+def evaluate(case, alarms, event_leads=None):
     hits=short_hits=false=count=short=0
     leads=[]
     for j,events in enumerate(case['events']):
@@ -67,6 +67,8 @@ def evaluate(case, alarms):
                 matched.add(hit)
                 a,b=events[hit]
                 leads.append(a-now)
+                if event_leads is not None:
+                    event_leads[j, hit] = a-now
                 hits+=1
                 short_hits+=int(b-a<=2)
     return dict(events=count,hits=hits,short_events=short,short_hits=short_hits,
