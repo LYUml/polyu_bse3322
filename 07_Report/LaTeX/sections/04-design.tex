@@ -1,0 +1,28 @@
+\reportheading{4.\quad Task 2 --- Smoke extraction design and optimisation}
+\subhead{4.1\quad Screening the initial layout}
+The original sixteen OP-6 designs all crossed below the 0.38~m threshold. The largest margin was $-0.2849$~m, for a 0.16~m curtain and 0.32~m$^3$/s extraction. Replaying the recorded candidates in their original order reached this point on query 16. Bayesian search reached it on query 7 and the genetic search on queries 6--11 over 20 seeds. These figures describe query order within a known set. The best candidate still left the layer at about 0.095~m. Further design work therefore changed the air-supply and capture arrangements.
+
+\subhead{4.2\quad Locating the failure and adapting the inlets}
+One OP-6 trial with 0.36~m end inlets, 0.24~m curtains and total extraction of 1.28~m$^3$/s fell to 0.353~m at the far-end station ($x=6.1$~m) at 83.0~s for soot yield 0.05. The adjacent samples both exceeded 0.60~m. Half-height visibility remained 30~m and the local vertical profile showed little temperature stratification. The recorded value fails the specified thermal screen, while the optical evidence indicates uncertainty about the physical extent of smoke at that location.
+
+Opening both ends to 0.44~m raised the minimum to 0.524~m in that OP-6 scenario. At the same inlet setting and soot yield, OP-1 reached its lowest point at the opposite end. The final comparison therefore retained the 0.24~m curtains with 0.44~m make-up openings under OP-1 and 0.48~m under OP-6. It assumes that the corresponding setting can be established and maintained during each fire.
+\reportfigure{\includegraphics[width=.86\linewidth]{../op6_curtain_soot_minimum_height.png}}{Figure 3. OP-6 curtain and soot trials. A configuration must satisfy the thermal criterion throughout every specified scenario.}
+\clearpage
+\subhead{4.3\quad Flow selection across six scenarios}
+\tabletitle{Table 1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
+\begin{reporttable}{L{.23}L{.23}L{.27}L{.27}}
+\rowcolor{tablegrey}Door state&Soot (kg/kg)&0.96 m$^3$/s&1.28 m$^3$/s\\
+OP-1&0.02&0.4574&\textbf{0.4425}\\
+OP-1&0.05&0.4717&0.5093\\
+OP-1&0.10&0.4410&0.5013\\
+OP-6&0.02&\textbf{0.3957}&0.5827\\
+OP-6&0.05&0.5262&0.4975\\
+OP-6&0.10&0.4061&0.5503\\
+\end{reporttable}
+The controlling station was at $x=0.5$~m for both flows. At high flow the OP-1 minimum occurred at 69.0~s. At low flow the OP-6 minimum occurred at 88.5~s. Both controlling cases used the lowest soot yield. Selecting only the highest soot yield for design would have missed the smallest clearance at either flow. Mean delivered fire powers for the six high-flow scenarios were 103.6--104.1~kW over 90--120~s.
+
+Reducing volume flow by 25\% reduced branch velocity from 2.00 to 1.50~m/s and estimated branch pressure loss from 4.84 to 2.72~Pa. The corresponding estimated combined electrical inputs were 10.32 and 4.35~W, a reduction of approximately 58\%. On the original grid both tested flows satisfy the sampled height constraint in Eq.~\eqref{eq:design}. For this preset layout and the two evaluated flows, 0.96~m$^3$/s gives the lowest estimated branch input. The least clearance above the target decreased by 46.8~mm. The 15.7~mm low-flow margin is smaller than the original 40~mm vertical cell spacing. This comparison motivates the paired refinement, although cell size alone does not quantify interface error.
+
+\subhead{4.4\quad CO generation and local smoke conditions}
+The prescribed CO yield implies 10~g of CO per kilogram of fuel consumed. In earlier OP-6 trials with 0.24~m curtains and 1.28~m$^3$/s extraction, integrated HRR and the model heat of combustion gave nominal CO masses of 2.76, 2.81 and 2.94~g as soot yield increased. Corresponding local half-height peak concentrations were 20.0, 26.2 and 163.5~ppm. Local exposure depends on capture and dilution as well as total production. For the six low-flow preset scenarios the lowest sampled half-height visibility was 12.33~m and the highest sampled CO concentration was 22.82~ppm. Exhaust near the plume and an adequate make-up path help remove combustion products. Local exposure assessment should retain near-fire measurements even when the thermal height criterion is met.
+

@@ -59,3 +59,26 @@ Each branch had area $A=0.32$~m$^2$ and length $L=0.40$~m. The estimate assumed 
 The paired refinement retained the horizontal grid and physical settings and increased the vertical cell count from 19 to 38. The evaluation compares minimum sampled height, station and time at matched door state, inlet height, soot yield and extraction rate. A margin that changes sign under refinement changes the design decision.
 \pendingdata{OP-6, 0.48~m inlets, soot yield 0.02, $Q=0.96$~m$^3$/s. Insert the verified 38-layer minimum (m), station (m), time (s) and margin (mm) in the Task~2 results after the screening or full-run record is checked.}
 \pendingdata{OP-1, 0.44~m inlets, soot yield 0.02, $Q=1.28$~m$^3$/s. Insert the corresponding refined result and comparison with the original grid. Record the analysis interval if the run ends early.}
+\clearpage
+\subhead{2.3\quad Constrained optimisation of the extraction system}
+The brief specifies a minimum clear height and requires a power estimate for mechanical extraction. Group~18 chose minimum required fan input power as the design objective. Let $g$ denote a candidate layout, $Q$ the total extraction rate in m$^3$/s and $P$ the required electrical input in watts. We formulated the design problem as
+\begin{equation}
+\begin{aligned}
+\min_{g,Q,P}\quad &P\\
+\mathrm{s.t.}\quad
+ &h_{s,i,t}(g,Q)\geq 0.38\,\mathrm{m}
+       &&\forall s\in S,\ i\in I,\ t\in T_s,\\
+ &P\geq Q\,\Delta p_s(g,Q)/\eta_s(g,Q)
+       &&\forall s\in S,\\
+ &g\in G,\quad Q\in\mathcal Q(g),\quad P\geq0 .
+\end{aligned}
+\label{eq:design}
+\end{equation}
+$G$ contains the candidate vent, curtain and make-up layouts. A door-dependent inlet preset is part of $g$. One setting is specified in advance for each door state and applies to all soot yields in that state. The same $Q$ is selected from the tested flows $\mathcal Q(g)$ for every scenario. The six members of $S$ combine the two door states with the three soot yields. $I$ contains the eight station positions, and $T_s$ contains the stored device times over the full 120~s run. The first constraint tests every recorded station and time. The second sizes electrical input for the largest required power across the scenarios, with pressure drop $\Delta p_s$ in Pa and total efficiency $0<\eta_s\leq1$.
+
+For the two equal-flow branches, we evaluate power using the short-branch loss estimate in Section~2.2. Remaining ductwork and equipment losses are unknown. We evaluate feasibility by enumerating the tested candidates and computing the worst sampled clearance,
+\[
+m(g,Q)=\min_{s\in S,\ i\in I,\ t\in T_s}
+           \{h_{s,i,t}(g,Q)-0.38\,\mathrm{m}\}.
+\]
+Any observed negative clearance excludes a candidate. Establishing $m\geq0$ requires full coverage. Among candidates satisfying this condition we compare estimated electrical inputs. When every candidate in a screen violates the criterion, the largest observed margin identifies a direction for redesign. The Bayesian and genetic search replays in Section~4.1 apply to that diagnostic comparison.
