@@ -1,4 +1,4 @@
-﻿"""Compare the 1.28 m3/s door-preset runs with their 0.96 m3/s counterparts.
+"""Compare the 1.28 m3/s door-preset runs with their 0.96 m3/s counterparts.
 
 Reads
 -----
@@ -32,6 +32,8 @@ PAIRS = {
     "inlet48_6_0p05_0p24_0p96_120": "inlet48_6_0p05_0p24_1p28_120",
     "inlet48_6_0p1_0p24_0p96_120": "inlet48_6_0p1_0p24_1p28_120",
     "inlet44_1_0p1_0p24_0p96_120": "inlet44_1_0p1_0p24_1p28_120",
+    "inlet44_1_0p05_0p24_0p96_120": "inlet44_1_0p05_0p24_1p28_120",
+    "inlet48_6_0p02_0p24_0p96_120": "inlet48_6_0p02_0p24_1p28_120",
 }
 
 
