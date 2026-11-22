@@ -32,11 +32,11 @@ def basis(t, params):
     return (1-gate)*raw, gate*raw/2+(1-gate)*derivative
 
 
-def load_complete():
+def load_complete(names=None):
     cases = {}
     for path in sorted((ROOT/'04_Results').glob('*/*_devc.csv')):
         name = path.name.removesuffix('_devc.csv')
-        if not PATTERN.fullmatch(name):
+        if not PATTERN.fullmatch(name) or (names is not None and name not in names):
             continue
         log = path.with_name(name+'.out')
         if not log.exists() or f'STOP: FDS completed successfully (CHID: {name})' not in log.read_text(errors='replace')[-2048:]:
