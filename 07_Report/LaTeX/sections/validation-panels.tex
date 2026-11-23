@@ -1,16 +1,19 @@
 \newcommand{\validationpanel}[3]{%
 \begin{tikzpicture}
-\begin{axis}[width=.475\linewidth,height=3.9cm,xmin=-340,xmax=340,ymin=0,ymax=1350,
-xtick={-300,0,300},ytick={0,600,1200},axis lines=left,ymajorgrids,grid style={gray!14},
-tick align=outside,title={#2\quad #3 kW},title style={font=\sffamily\small\bfseries,color=ink,at={(.5,.97)}},
+\begin{axis}[width=.48\linewidth,height=3.70cm,xmin=-340,xmax=340,ymin=0,ymax=1350,
+xtick={-300,0,300},ytick={0,600,1200},scaled ticks=false,
+axis lines*=left,axis line style={gray!60},tick style={gray!60},
+tick align=outside,major tick length=2pt,ymajorgrids,grid style={gray!18},
+title={#2},title style={at={(axis description cs:0,1)},anchor=south west,font=\sffamily\small\bfseries,color=ink,inner xsep=0pt},
 tick label style={font=\sffamily\scriptsize},enlarge x limits=false]
-\addplot[teal,thick,no marks] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/#1_90_120.csv};
-\addplot[only marks,mark=o,mark size=1.2pt,rust] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/#1_90_120.csv};
+\addplot[only marks,mark=*,mark size=1.15pt,gray!75!black] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/#1_90_120.csv};
+\addplot[teal,line width=1.05pt,no marks] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/#1_90_120.csv};
+\node[anchor=north east,font=\sffamily\scriptsize,text=black!70,inner sep=2pt] at (rel axis cs:1,1) {RMSE #3 K};
 \end{axis}\end{tikzpicture}}
 \reportfigure{{\sffamily\small Temperature rise (K)\hfill
-\textcolor{teal}{\rule[.4ex]{14pt}{1.1pt}} FDS\quad
-\textcolor{rust}{$\circ$} Peng et al.\par}
-\begin{tabular}{@{}cc@{}}
-\validationpanel{op1_47_coarse}{OP-1}{47.2}&\validationpanel{op1_106_coarse}{OP-1}{106.2}\\
-\validationpanel{op6_47_coarse}{OP-6}{47.2}&\validationpanel{op6_106_coarse}{OP-6}{106.2}
-\end{tabular}\par{\sffamily\small Distance from the fire axis (cm)}}{Figure 1. Measured and simulated ceiling temperature rise. Each panel uses the same axes. The experimental markers are digitised from Peng et al.\ (2021), Fig.~9. The lines show coarse-grid FDS averages over 90--120~s.}
+\textcolor{teal}{\rule[.4ex]{14pt}{1.1pt}} FDS (coarse, adiabatic)\quad
+\textcolor{black!75}{$\bullet$} Peng et al.\par}
+\begin{tabular}{@{}c@{\hspace{4pt}}c@{}}
+\validationpanel{op1_47_coarse}{OP-1\enspace 47.2 kW}{192}&\validationpanel{op1_106_coarse}{OP-1\enspace 106.2 kW}{82}\\
+\validationpanel{op6_47_coarse}{OP-6\enspace 47.2 kW}{33}&\validationpanel{op6_106_coarse}{OP-6\enspace 106.2 kW}{335}
+\end{tabular}\par{\sffamily\small Distance from the fire axis (cm)}}{Figure 1. Coarse-grid ceiling temperature profiles averaged over 90--120~s against measurements digitised from Peng et al.\ (2021), Fig.~9. Figure~2 tests the wall boundary condition for the high-power OP-6 case.}
