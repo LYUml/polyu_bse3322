@@ -9,6 +9,9 @@ original,direct,both,6,6,6,6,0,0,0,0
 original,hybrid,design,6,6,6,6,0,0,0,0
 original,hybrid,scenario,6,6,6,6,0,0,0,0
 original,hybrid,both,6,6,6,6,0,0,0,0
+original,nearest,design,6,6,6,6,0,0,0,0
+original,nearest,scenario,6,6,6,6,0,0,0,0
+original,nearest,both,6,6,6,6,0,0,0,0
 refined,baseline,fixed,7,7,7,7,0,0,0,0
 refined,pinn,design,7,13,9,13,-6,0,-6,-2
 refined,pinn,scenario,7,11,7,11,-4,0,-4,0
@@ -19,3 +22,6 @@ refined,direct,both,7,7,7,7,0,0,0,0
 refined,hybrid,design,7,7,7,7,0,0,0,0
 refined,hybrid,scenario,7,9,7,9,-2,0,-2,0
 refined,hybrid,both,7,9,7,9,-2,0,-2,0
+refined,nearest,design,7,7,7,7,0,0,0,0
+refined,nearest,scenario,7,8,7,8,-1,0,-1,0
+refined,nearest,both,7,8,7,8,-1,0,-1,0

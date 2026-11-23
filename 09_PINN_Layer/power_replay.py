@@ -7,9 +7,12 @@ query only cheaper unresolved designs. Unknown labels branch both ways.
 """
 import csv
 import json
+from collections import defaultdict
+
+import numpy as np
 
 from margin_monitor import HERE, ROOT, X, LIMIT, load_complete, save
-from minimum_risk import estimate
+from minimum_risk import design, estimate, nearest_designs
 
 ARCHIVE = ROOT / '05_Calculations'
 POWER = {'0p96': 4.35, '1p12': 6.91, '1p28': 10.32}
@@ -63,21 +66,29 @@ def main():
     cases = load_complete()
     train = [case for name, case in cases.items()
              if not name.startswith(('inlet44_1_', 'inlet48_6_'))]
+    minima_by_design = defaultdict(list)
+    for case in train:
+        minima_by_design[tuple(case['design'][:-1])].append(case['y'].min())
     traces, summary, inventory = [], [], []
     for mesh, suffix, flows in [('original', '', ['0p96', '1p28']),
                                 ('refined', '_z38', list(POWER))]:
         fixed = {q: [f'{door}_{soot}_0p24_{q}{suffix}_120'
                      for door in ('inlet48_6', 'inlet44_1')
                      for soot in ('0p02', '0p05', '0p1')] for q in flows}
-        scores = {n: estimate(train, n) for names in fixed.values() for n in names}
+        scores = {}
+        for names in fixed.values():
+            for n in names:
+                neighbors = nearest_designs(minima_by_design, tuple(design(n)[:-1]))
+                nearest = np.mean([np.mean(minima_by_design[g]) for g in neighbors])
+                scores[n] = (*estimate(train, n), nearest)
         labels = {n: observed(n) for n in scores}
         for q in flows:
             for n in fixed[q]:
                 inventory.append(dict(mesh=mesh, case=n, power_W=POWER[q],
                                       observed_min_m=labels[n], pinn=scores[n][0],
-                                      direct=scores[n][1], hybrid=scores[n][2]))
+                                      direct=scores[n][1], hybrid=scores[n][2], nearest=scores[n][3]))
         missing = [n for n in scores if labels[n] is None]
-        for model, column in [('baseline', 0), ('pinn', 0), ('direct', 1), ('hybrid', 2)]:
+        for model, column in [('baseline', 0), ('pinn', 0), ('direct', 1), ('hybrid', 2), ('nearest', 3)]:
             modes = ['fixed'] if model == 'baseline' else ['design', 'scenario', 'both']
             for mode in modes:
                 minima = {q: min(scores[n][column] for n in fixed[q]) for q in flows}
