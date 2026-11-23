@@ -1,5 +1,5 @@
-% Data: held-out PINN rows in 09_PINN_Layer/event_scores.csv and
-% holdout_curves.csv.gz. Each case contributes one eight-station curve MAE.
+% Source: 09_PINN_Layer/holdout_curves.csv.gz, six tall_makeup OP-6 holdouts.
+% Pool station-time records, filter on fds_m, then average abs(pinn_m-fds_m).
 \reportfigure{\begin{tikzpicture}
 \begin{axis}[name=series,width=.50\linewidth,height=4.25cm,xmin=0,xmax=120,
  ymin=.30,ymax=.80,xtick={0,60,120},ytick={.38,.55,.76},ymajorgrids,
@@ -10,12 +10,15 @@
 \addplot[rust,thick,dashed,no marks] table[col sep=comma,x=time_s,y=pinn_m]{data/pinn-curve-example.csv};\addlegendentry{PINN 预测}
 \addplot[ink!55,densely dotted,forget plot] coordinates {(0,.38)(120,.38)};
 \end{axis}
-\begin{axis}[at={(series.east)},anchor=west,xshift=1.75cm,width=.43\linewidth,height=4.25cm,
- xmin=0,xmax=8.3,xtick={0,2,4,6,8},ymin=.48,ymax=2.52,ytick={1,2},
- yticklabels={抬高补风口,原布局},xmajorgrids,
- xlabel={曲线 MAE (cm)},title={全部留出算例},
+\begin{axis}[at={(series.east)},anchor=west,xshift=1.90cm,width=.43\linewidth,height=4.25cm,
+ xmin=0,xmax=13,xtick={0,5,10},ymin=.48,ymax=3.52,ytick={1,2,3},
+ yticklabels={$h\leq0.71$ m,$h<0.76$ m,全程},xmajorgrids,
+ xlabel={净高 MAE (cm)},title={六个 OP-6 留出算例},
  title style={yshift=12pt,font=\sffamily\small\bfseries}]
-\addplot[only marks,mark=o,mark size=1.7pt,ink!65] table[col sep=comma,x=mae_cm,y=row]{data/pinn-curve-errors.csv};
-\addplot[only marks,mark=diamond*,mark size=2.8pt,teal] coordinates {(1.67908,1)(4.54719,2)};
+\addplot[xbar,bar width=5pt,draw=none,fill=teal,
+ nodes near coords={\pgfmathprintnumber[fixed,precision=2]{\pgfplotspointmeta}},
+ point meta=x,nodes near coords align={horizontal},
+ every node near coord/.append style={font=\sffamily\scriptsize,text=ink}]
+ coordinates {(1.68,3)(4.75,2)(10.09,1)};
 \end{axis}
-\end{tikzpicture}}{图 6.\quad 左图青色圆点为 FDS 在 $x=6.1$~m 输出的全部 241 个净高值，橙色虚线为留出预测，水平点线为 0.38~m 判据。示例取抬高补风口组中曲线 MAE 最接近组均值的算例（1.28~m$^3$/s，烟炱产率 0.02，垂壁深度 0.24~m）。右图每个空心圆代表一个算例，菱形为组均值。}
+\end{tikzpicture}}{图 6.\quad 左图为曲线 MAE 最接近组均值的算例（1.28~m$^3$/s，烟炱产率 0.02，垂壁深度 0.24~m）在 $x=6.1$~m 的时序，水平点线为 0.38~m 判据。右图按 FDS 净高 $h$ 筛选六例的测点记录，由上至下分别含 11\,568、2\,001 和 553 条；第三组为第二组的子集。}
