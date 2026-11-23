@@ -44,8 +44,8 @@ The 1.28~m$^3$/s minima in Table D1 were checked against the raw device historie
 1.28&10.32&0.5429&Complete, 120 s\\
 \end{reporttable}
 
-Combined fan input uses the two short branches and efficiency of 0.60 in Section~2.2. The 1.12~m$^3$/s case minimises power in Table D2. Table D3 distinguishes cases that reached 120~s from those still accumulating device records. A recorded height below 0.38~m establishes a breach even before 120~s.
-\tabletitle{Table D3. Refined-grid evidence at 1.12~m$^3$/s. Partial minima cover only the recorded interval.}
+Combined fan input uses the two short branches and efficiency of 0.60 in Section~2.2. The 1.12~m$^3$/s case minimises power in Table D2. Table D3 reports the eight-station minima for all six completed runs.
+\tabletitle{Table D3. Refined-grid evidence at 1.12~m$^3$/s. The clearance threshold is 0.38~m.}
 \begin{reporttable}{L{.16}L{.18}L{.21}L{.22}L{.23}}
 \rowcolor{tablegrey}Door&Soot (kg/kg)&Status&Record (s)&Minimum (m)\\
 \csname @@input\endcsname sections/intermediate-coverage.tex
@@ -56,7 +56,7 @@ The physics-informed extreme learning machine used 96 fixed tanh units and a lea
 \subhead{Testing the minimum-height decision directly}
 On the earlier 20-case, 19-cell vertical grid cohort, whole-design holdout error in minimum height fell from 27.03 to 8.26~cm after fitting a station-minimum correction. Missed breaches fell from eight to six of eight, with one false alarm among twelve passing runs. Section~5 gives the expanded comparison.
 
-For the refined OP-6 low-flow case, the corrected forecast frozen before completion was 0.4710~m. The 0.3717~m breach at 98~s gives an overprediction of at least 9.9~cm because the run stopped early. At 1.12~m$^3$/s, forecasts issued at 60 and 90~s identified the limiting station at $x=4.2$~m after its minimum at 49.50~s.
+For the refined OP-6 low-flow case, the corrected forecast frozen before completion was 0.4710~m. The 0.3717~m breach at 98~s gives an overprediction of at least 9.9~cm because the run stopped early. For OP-6 at baseline soot and 1.12~m$^3$/s, forecasts issued at 60 and 90~s identified the limiting station at $x=4.2$~m after its minimum at 49.50~s.
 
 A separate two-second warning test used observations from running simulations. At a retrospectively matched count of 33 false alarms, local-height and multistation-temperature models detected the same four of 25 short events, with a mean lead of 0.73~s.
 
