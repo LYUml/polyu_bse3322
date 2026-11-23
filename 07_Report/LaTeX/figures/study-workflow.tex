@@ -60,7 +60,7 @@
 \addplot[clay,only marks,mark=*,mark size=.85pt] table[col sep=comma,x=sensor_x_cm,y=exp_rise_K]{../../../05_Calculations/op1_106_coarse_90_120.csv};
 \end{axis}
 \node[labelnode] at (7.48,-4.64) {Match 51 stations};
-\node[labelnode] at (12.45,-4.12) {Assess profile error\\and peak location};
+\node[labelnode] at (12.45,-4.12) {Compare peak and profile\\across door states};
 \draw[flow] (4.52,-4.07)--(5.59,-4.07);
 \draw[flow] (9.33,-4.07)--(10.39,-4.07);
 
@@ -69,24 +69,24 @@
  decision/.style={designnode,draw=ochre!80,fill=white,rounded corners=2pt,inner sep=4pt}}
 \draw[ochre!32] (8.42,-6.35)--(8.42,-13.97);
 \node[designnode] (initial) at (2.23,-6.98) {\textbf{16 OP-6 designs}\\All breach in FDS};
-\node[designnode] (layout) at (6.28,-6.98) {\textbf{Revise layout}\\Vents, curtains, inlets};
+\node[designnode] (layout) at (6.28,-6.98) {\textbf{Revise layout}\\Curtains, vents, make-up air};
 \draw[flow] (initial.east)--(layout.west);
-\node[designnode] (coarse) at (6.28,-8.47) {\textbf{Coarse-grid screen}\\0.96 and 1.28 pass};
+\node[designnode] (coarse) at (6.28,-8.47) {\textbf{Screen in FDS}\\0.96 and 1.28 pass};
 \draw[flow] (layout.south)--(coarse.north);
-\node[designnode] (refine) at (2.23,-8.47) {\textbf{Refine and retest}\\Eight FDS stations};
+\node[designnode] (refine) at (2.23,-8.47) {\textbf{Finer vertical grid}\\Recheck clearance};
 \draw[flow] (coarse.west)--(refine.east);
 \node[decision] (gate) at (2.23,-10.05) {All six cases hold\\$h\geq0.38$ m for 120 s?};
 \draw[flow] (refine.south)--(gate.north);
-\node[designnode] (retry) at (6.28,-10.05) {\textbf{0.96 breaches}\\Test 1.12};
+\node[designnode] (retry) at (6.28,-10.05) {\textbf{Reject 0.96}\\$h_{\min}=0.3717$ m};
 \draw[flow] (gate.east)--node[above,tag]{No}(retry.west);
-\draw[flow] (retry.north)--(6.28,-9.16)-|(refine.south east);
-\node[designnode] (verified) at (2.23,-11.85) {\textbf{1.12 passes all six}\\Minimum margin 55.8 mm};
+\draw[flow] (retry.north)--(6.28,-9.24)--node[above,tag,font=\sffamily\small]{Test 1.12}(3.41,-9.24)--(3.41,-8.81);
+\node[designnode] (verified) at (2.23,-11.85) {\textbf{1.12 passes all six}\\$h_{\min}=0.4358$ m};
 \draw[flow] (gate.south)--node[right,tag]{Yes}(verified.north);
 \node[designnode,fill=white,draw=ochre!55,inner sep=5pt] (power) at (4.16,-13.42)
  {$\displaystyle\min P$\quad s.t.\ all sampled heights $\geq0.38$ m\\
- \textbf{Select 1.12 m$^3$/s}\quad 6.91 W};
+ \textbf{Select 1.12 m$^3$/s}\quad 6.91 W vs.\ 10.32 W at 1.28};
 \draw[flow] (verified.south)--(verified.south |- power.north);
-\node[designnode,text=sea] (replay) at (11.82,-6.67) {\textbf{Replay archived search order}};
+\node[designnode,text=sea] (replay) at (11.82,-6.67) {\textbf{Replay the same 16 designs}};
 \draw[flow] (initial.north)--++(0,.30)-|(8.72,-6.67)--(replay.west);
 \foreach \x/\heading/\ranks in {
  10.25/{Bayesian\\optimisation}/{1,9,12,2,10,16,5,11,14,6,15,7,3,13,8,4},
@@ -106,11 +106,12 @@
   \end{scope}}
 }
 
-\node[designnode] at (11.82,-9.70) {Queries to largest margin\\Fixed 16 \quad BO 7 \quad GA 6--11};
-\node[designnode] (hist) at (11.82,-11.04) {\textbf{Prior FDS histories}};
-\node[designnode] (pred) at (11.82,-12.18) {\textbf{PINN + regression}\\Estimate minimum height};
-\node[designnode,text=sea] (test) at (11.82,-13.53) {Assess proposed pre-screen\\Holdouts and frozen forecasts};
+\node[designnode] at (11.82,-9.70) {Queries to best of 16\\Fixed 16 \quad BO 7 \quad GA 6--11};
+\node[designnode] (hist) at (11.82,-11.04) {\textbf{Archived FDS minima}};
+\node[designnode] (pred) at (11.82,-12.18) {\textbf{PINN + regression}\\Predict candidate minima};
+\node[designnode,text=sea] (test) at (11.82,-13.53) {Test pre-screen accuracy\\against held-out FDS results};
 \draw[flow] (hist.south)--(pred.north);
 \draw[flow] (pred.south)--(test.north);
+\draw[flow,draw=sea] (pred.west)--(8.80,-12.18)--node[pos=.48,above,sloped,font=\sffamily\small,text=sea]{Proposed test order}(8.80,-8.47)--(coarse.east);
 \end{tikzpicture}
 \end{document}
