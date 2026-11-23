@@ -195,6 +195,16 @@ def main():
         rapid_recovery_alert[1:] |= recovery_candidate[1:] & (next_height < LIMIT)
         rows.append(dict(case=name, method='recent_recovery_one_step',
                          **evaluate(test, filtered | rapid_recovery_alert, rearm_on_recovery=True)))
+        # Retrospective candidate: before the first breach, require net descent
+        # to account for at least half the distance travelled in the last 2 s.
+        start = np.searchsorted(times, times - HORIZON)
+        travel = np.vstack([np.zeros_like(heights[:1]),
+                            np.cumsum(np.abs(np.diff(heights, axis=0)), axis=0)])
+        sustained = heights[start] - heights >= .5 * (travel - travel[start])
+        breached = np.logical_or.accumulate((heights < LIMIT).any(axis=1))
+        trajectory_alert = (filtered | rapid_recovery_alert) & (breached[:, None] | sustained)
+        rows.append(dict(case=name, method='first_breach_net_descent',
+                         **evaluate(test, trajectory_alert, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
