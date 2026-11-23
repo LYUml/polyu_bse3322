@@ -56,4 +56,4 @@ variant_label = {"board_doorflow": "proxy board", "doorflow": "adiabatic"}.get(v
 label(1104,122,f"FDS, {variant_label}",22,"lm")
 label(72, 82, "FDS averaging interval 90–120 s", 19)
 label(725,724,"Distance from fire axis (cm)",25,"mm")
-image.save(root/"07_Report"/f"{case}_validation.png",dpi=(200,200))
+image.save(root/"07_Report"/"figures"/"diagnostics"/f"{case}_validation.png",dpi=(200,200))

@@ -32,6 +32,14 @@ desktop.ini
 *.q
 *.sz
 
+# Teammate handoff: retain the original case layout and publish source files only.
+/98_wjc/**/*
+!/98_wjc/**/
+!/98_wjc/**/*.fds
+!/98_wjc/**/*.psm.zip
+!/98_wjc/**/*.xlsx
+!/98_wjc/**/*.docx
+
 # Large course slide decks remain local; see reference download manifests
 02_References/01_Course_Materials/AL01_Fire_Modelling.pptx
 02_References/01_Course_Materials/AL02_Steckler_Room_Fire.pptx

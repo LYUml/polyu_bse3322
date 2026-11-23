@@ -41,4 +41,4 @@ for i, depth in enumerate(depths):
 for soot in (0.02, 0.05, 0.10):
     draw.text((290 + (soot-0.02)*12000, 655), f"{soot:.2f}", anchor="mt", font=font, fill="#15252d")
 draw.text((760, 714), "Soot yield (kg/kg)", anchor="mt", font=font, fill="#15252d")
-canvas.save(root / "07_Report/op6_curtain_soot_minimum_height.png", dpi=(200, 200))
+canvas.save(root / "07_Report/figures/diagnostics/op6_curtain_soot_minimum_height.png", dpi=(200, 200))

@@ -57,7 +57,7 @@ How：用带 NumPy 的 Python 运行该脚本并将 stdout 保存为 CSV。GP �
     pdftocairo -f 8 -l 8 -svg 02_References/02_Papers/Peng_2021_Temperature_Profile_Multiple_Lateral_Openings.pdf "$env:TEMP/peng8.svg"
     node 06_Tools/extract_peng_fig9.cjs "$env:TEMP/peng8.svg" | Set-Content -Encoding ascii "$env:TEMP/peng8.csv"
 
-重新转换原 PDF 并复跑，与初版 SVG 提取表逐项相同。正式数据已由下述直接刻度标定版本更新。核对图例、两轴和原文 51 点布置。复现一致性不能排除原图差异：106.2 kW、OP-6 的 Fig. 9(d) 峰值约 890 K，Fig. 6 中同工况汇总点目读约 870 K。两图取数不合并。本文引用 Fig. 9 剖面，峰值比较保留出处。没有仪器时序或作者原始表，0.1 K 位数仅用于复现。正式图见 07_Report/peng_ceiling_profiles.png。
+重新转换原 PDF 并复跑，与初版 SVG 提取表逐项相同。正式数据已由下述直接刻度标定版本更新。核对图例、两轴和原文 51 点布置。复现一致性不能排除原图差异：106.2 kW、OP-6 的 Fig. 9(d) 峰值约 890 K，Fig. 6 中同工况汇总点目读约 870 K。两图取数不合并。本文引用 Fig. 9 剖面，峰值比较保留出处。没有仪器时序或作者原始表，0.1 K 位数仅用于复现。正式图见 07_Report/figures/diagnostics/peng_ceiling_profiles.png。
 
 ## 网格化几何
 从三份实际 Smokeview 几何记录读取 vent/obstruction 的 IJK 索引，按均匀网格步长转回米。每个侧口的实际流通面积均比名义 0.2709 m² 大约 6.1%–6.5%；三个网格的侧口面积相近并不能证明实验开口几何误差消失。粗网格燃烧面积与名义值相同，但中心在 x/y 方向各正移 25 mm；中、细燃烧面积偏差分别为 −2.0%、+0.8%。成绩评估须检查实际 HRR 和开口流动，并将这一系统几何偏差与网格导致的其他变化区分。复现：运行 06_Tools/audit_mesh_geometry.py；数据见 05_Calculations/mesh_geometry.csv。
@@ -507,7 +507,7 @@ FDS 成功完成 120 s。为检查加密网格能否解释低功率工况的温�
 
 ### OP6 垂壁深度与烟炱产率的全程对照
 
-在总排风量 1.28 m³/s 下，0.16 m 和 0.24 m 垂壁的三档烟炱工况均完成 120 s。两种深度对应的三场景最低估算层高分别为 0.2445 m 和 0.3528 m，控制场景分别为烟炱产率 0.10 和 0.05。正式图的每个点对应表中一行 min_layer_m。表中 case_id 对应 04_Results 下的同名目录，station_x_m 与 time_s 给出定位原始设备记录所需的测站和时刻。[报告图](../07_Report/op6_curtain_soot_minimum_height.png) · [七工况数据表，含 0.32 m 垂壁的高烟炱工况](../05_Calculations/tall_makeup_op6_completed_scenarios.csv) · [重绘脚本](../06_Tools/plot_curtain_soot.py)
+在总排风量 1.28 m³/s 下，0.16 m 和 0.24 m 垂壁的三档烟炱工况均完成 120 s。两种深度对应的三场景最低估算层高分别为 0.2445 m 和 0.3528 m，控制场景分别为烟炱产率 0.10 和 0.05。正式图的每个点对应表中一行 min_layer_m。表中 case_id 对应 04_Results 下的同名目录，station_x_m 与 time_s 给出定位原始设备记录所需的测站和时刻。[报告图](../07_Report/figures/diagnostics/op6_curtain_soot_minimum_height.png) · [七工况数据表，含 0.32 m 垂壁的高烟炱工况](../05_Calculations/tall_makeup_op6_completed_scenarios.csv) · [重绘脚本](../06_Tools/plot_curtain_soot.py)
 
 ### 辐射分数对 R1 门流与顶棚温升的影响
 
