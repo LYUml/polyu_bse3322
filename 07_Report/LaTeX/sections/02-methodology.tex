@@ -33,7 +33,7 @@ We recorded peak position relative to the burner and used the R1 velocity and te
 The design fire had a nominal heat release rate of 106.2~kW. The baseline soot yield was 0.02~kg/kg of fuel and the CO yield was 0.01~kg/kg. Two further soot yields, 0.05 and 0.10~kg/kg, were applied at the same specified CO yield. The six design scenarios combined these three yields with OP-1 and OP-6. Each scenario assumed a fixed doorway state throughout the fire. The original design grid comprised $132\times28\times19$ cells with adiabatic enclosure surfaces.
 
 \subhead{Candidate screening and design changes}
-We examined two ways to prioritise FDS checks using archived results. In the first replay the unit of choice was a design. In the second it was a door state and soot yield at a specified flow.
+We examined two ways to prioritise FDS checks using archived results. In the first replay the unit of choice was a design. For the revised layout we ranked the six scenarios within each flow and tested whether also reordering the flows changed the number of checks.
 
 An initial OP-6 screen at baseline soot yield crossed four curtain depths (0, 0.08, 0.16 and 0.24~m) with four total exhaust flows (0.08, 0.16, 0.24 and 0.32~m$^3$/s). The fixed-order benchmark, Bayesian optimisation (BO)~\cite{bo} and a genetic algorithm (GA)~\cite{ga} began with the same four corner designs. Each query revealed one archived FDS margin. BO and GA used only the margins revealed so far to select their next design. We counted all queries through the first discovery of the largest recorded margin and repeated GA with 20 random seeds.
 
