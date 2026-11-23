@@ -1,0 +1,17 @@
+% Overlay coordinates refer to the 1280 x 720 native frame. The centreplane
+% extends from x = 228 to 932 px, with z = 0 at row 400 and the ceiling at 320.
+\begin{tikzpicture}
+  \node[anchor=south west,inner sep=0] (frame) at (0,0)
+    {\includegraphics[width=\linewidth]{../previews/OP6_1p12_y005_front_extinction_113s.png}};
+  \begin{scope}[x={(frame.south east)},y={(frame.north west)},
+                font=\sffamily\footnotesize,text=white]
+    \draw[white,line width=.45pt,dash pattern=on 2.2pt off 1.8pt]
+      (0.1781,0.5000) -- (0.7281,0.5000);
+    \draw[white,thin] (0.250,0.500) -- (0.229,0.407);
+    \node[anchor=north,inner sep=1pt] at (0.229,0.407) {0.38 m};
+    \draw[white,thin] (0.6865,0.5082) -- (0.711,0.599);
+    \filldraw[fill=white,draw=black,line width=.45pt]
+      (0.6865,0.5082) circle[radius=1.7pt];
+    \node[anchor=south,inner sep=1pt] at (0.711,0.599) {0.4358 m};
+  \end{scope}
+\end{tikzpicture}
