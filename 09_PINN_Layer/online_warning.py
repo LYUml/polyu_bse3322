@@ -2,6 +2,7 @@
 import numpy as np
 
 from margin_monitor import HERE, H, LIMIT, X, load_complete, save
+from minimum_risk import nearest_designs
 from run import intervals
 from thermal import read_columns, layer_height
 
@@ -33,7 +34,7 @@ def samples(case):
                 design=case['design'],trend_score=LIMIT-h-HORIZON*step)
 
 
-def fit_warning(train, nfeat):
+def fit_warning(train, nfeat, quantile=.999):
     x=np.concatenate([c['features'][c['eligible']][:,:nfeat] for c in train])
     y=np.concatenate([c['label'][c['eligible']] for c in train])
     if not y.any() or y.all():
@@ -43,7 +44,7 @@ def fit_warning(train, nfeat):
     z=(x-mean)/scale
     # Ridge linear discriminant for ranking alerts; the score is not a probability.
     w=np.linalg.solve(z.T@z+len(y)*.05*np.eye(nfeat),z.T@y.astype(float))
-    cutoff=np.quantile((z@w)[~y],.999)
+    cutoff=np.quantile((z@w)[~y],quantile)
     def score(case):
         return ((case['features'][:,:,:nfeat]-mean)/scale)@w
     return score, cutoff
@@ -94,7 +95,11 @@ def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
 
 
 def main():
-    cases={name:samples(c) for name,c in load_complete().items()}
+    complete = load_complete()
+    minima = {}
+    for case in complete.values():
+        minima.setdefault(tuple(case['design'][:-1]), []).append(case['y'].min())
+    cases={name:samples(c) for name,c in complete.items()}
     rows=[]
     for name,test in cases.items():
         train=[c for c in cases.values() if not np.array_equal(c['design'][:-1],test['design'][:-1])]
@@ -106,6 +111,13 @@ def main():
             rows.append(dict(case=name,method=method,**evaluate(test,alarm)))
         rows.append(dict(case=name, method='temperature_rearm_on_recovery',
                          **evaluate(test, methods['height_and_temperature'], rearm_on_recovery=True)))
+        neighbors = nearest_designs(minima, tuple(test['design'][:-1]))
+        alarms = np.zeros_like(test['eligible'])
+        if np.mean([np.mean(minima[g]) for g in neighbors]) < LIMIT:
+            score, cutoff = fit_warning(train, 6, quantile=.9985)
+            alarms = score(test) > cutoff
+        rows.append(dict(case=name, method='nearest_temperature_rearm',
+                         **evaluate(test, alarms, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]

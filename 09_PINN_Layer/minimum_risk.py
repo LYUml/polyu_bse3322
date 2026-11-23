@@ -20,6 +20,12 @@ def estimate(train, test):
     return pinn,direct,(direct+pinn)/2
 
 
+def nearest_designs(groups, outer):
+    other_groups = [g for g in groups if g != outer]
+    distances = np.linalg.norm(np.array(other_groups) - outer, axis=1)
+    return [g for g,d in zip(other_groups, distances) if np.isclose(d, distances.min())]
+
+
 def main():
     with (HERE/'margin_grouped.csv').open() as f:
         archive = defaultdict(list)
@@ -36,9 +42,7 @@ def main():
     neighbor_rows = []
     for outer, tests in groups.items():
         train = [cases[n] for g,names in groups.items() if g!=outer for n in names]
-        other_groups = [g for g in groups if g != outer]
-        distances = np.linalg.norm(np.array(other_groups) - outer, axis=1)
-        nearest = [g for g,d in zip(other_groups, distances) if np.isclose(d, distances.min())]
+        nearest = nearest_designs(groups, outer)
         # Give each physical design one vote, including designs with two meshes.
         nearest_min = np.mean([np.mean([cases[n]['y'].min() for n in groups[g]]) for g in nearest])
         point = {test:estimate(train,test) for test in tests}
