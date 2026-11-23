@@ -7,16 +7,12 @@ For Group~18, the even-group allocation gives two fire powers, 47.2 and 106.2~kW
 
 \clearpage
 \reportheading{Appendix A.\quad OP-1 and OP-6 at matched conditions}
-\reportfigure{\includegraphics[width=.94\linewidth]{../previews/OP1_OP6_temperature_matched.png}}{Figure A3(a). Task~1 centreplane gas temperature at 66.0~s. Both propane cases use 106.2~kW and the coarse grid. The FDS slices share a 20--870~$^{\circ}$C scale.}
-
-\medskip
-\reportfigure{\includegraphics[width=.94\linewidth]{../previews/OP1_OP6_extinction_matched.png}}{Figure A3(b). Task~2 centreplane soot extinction at 113.0~s. Both propylene cases use 1.12~m$^3$/s total extraction and soot yield 0.05. The common scale saturates at 0.10~m$^{-1}$. Figure A2 locates the OP-6 minimum thermal interface.}
-
-\medskip
-\reportfigure{\begin{tabular}{@{}r@{\quad}l@{}}
-OP-1 & \raisebox{-.45\height}{\includegraphics[width=.79\linewidth]{../previews/OP1_1p12_side_elevation.png}}\\[3pt]
-OP-6 & \raisebox{-.45\height}{\includegraphics[width=.79\linewidth]{../previews/OP6_1p12_side_elevation.png}}
-\end{tabular}}{Figure A3(c). PyroSim Results exterior elevations of the Task~2 cases, viewed from the same side. OP-1 has four open side doors and 0.44~m end openings. OP-6 has only R1 open in the side wall and 0.48~m end openings.}
+\begingroup
+\def\tempCaption{Figure A3(a). Task~1 centreplane gas temperature at 66.0~s. Both propane cases use 106.2~kW and the coarse grid. The FDS slices share a 20--870~$^{\circ}$C scale.}
+\def\smokeCaption{Figure A3(b). Task~2 centreplane soot extinction at 113.0~s. Both propylene cases use 1.12~m$^3$/s total extraction and soot yield 0.05. The common scale saturates at 0.10~m$^{-1}$. Figure A2 locates the OP-6 minimum thermal interface.}
+\def\modelCaption{Figure A3(c). PyroSim Results exterior elevations of the Task~2 cases, viewed from the same side. OP-1 has four open side doors and 0.44~m end openings. OP-6 has only R1 open in the side wall and 0.48~m end openings.}
+\input{figures/matched-panels}
+\endgroup
 \clearpage
 \reportheading{Appendix B.\quad Grid and door-flow comparisons}
 The characteristic fire diameters were 0.283 and 0.391~m at 47.2 and 106.2~kW. Their ratios to the longest cell dimensions were 5.65/7.82, 7.27/10.05 and 9.42/13.03 on the coarse, medium and fine meshes. Corresponding snapped burner areas were 0.06250, 0.06125 and 0.06300~m$^2$.
