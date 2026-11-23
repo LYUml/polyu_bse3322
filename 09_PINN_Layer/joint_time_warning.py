@@ -34,16 +34,19 @@ def main():
         raise ValueError('Missing original warning cohort')
     device = {n: samples(c) for n, c in raw.items()}
     joint = {n: joint_samples(c, device[n]) for n, c in raw.items()}
+    contrast = {n: dict(c, features=c['features'][:, :, [0, 1, 2, 3, 5]])
+                for n, c in joint.items()}
     rows = []
     for name, case in raw.items():
         train = [n for n in sorted(cohort)
                  if not np.array_equal(raw[n]['design'][:-1], case['design'][:-1])]
         hits = {}
-        for method, data, size in [('station', device, 4), ('joint_descending', joint, 6)]:
+        for method, data, size in [('station', device, 4), ('joint_descending', joint, 6),
+                                   ('contrast_descending', contrast, 5)]:
             score, cut = fit_warning([data[n] for n in train], size)
             test = data[name]
             alarms = score(test) > cut
-            if method == 'joint_descending':
+            if method != 'station':
                 alarms &= test['features'][:, :, 1] > 0
             leads = {}
             result = evaluate(test, alarms, leads)
