@@ -120,6 +120,15 @@ def main():
             alarms = score(test) > cutoff
         rows.append(dict(case=name, method='nearest_temperature_rearm',
                          **evaluate(test, alarms, rearm_on_recovery=True)))
+        times = test['t']
+        heights = complete[name]['y']
+        first_station_alarms = np.zeros_like(alarms)
+        for end, start in enumerate(np.searchsorted(times, times - HORIZON)):
+            # Ties go to the first station in the existing station order.
+            station = np.argmin(heights[start:end + 1].min(axis=0))
+            first_station_alarms[end, station] = alarms[end, station]
+        rows.append(dict(case=name, method='nearest_temperature_rearm_lowest_station',
+                         **evaluate(test, first_station_alarms, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
