@@ -1,15 +1,15 @@
 \reportheading{附录 A.\quad 工况登记}
 第 18 组采用偶数组的两档火源功率 47.2 和 106.2~kW，每档均计算 OP-1 和 OP-6。按 Peng 等~\cite{peng}的实验矩阵顺序，这四种组合对应实验 4、8、44 和 48。任务书另提到八个算例，但未列出偶数组另外四种物理条件。网格、亚网格模型、辐射和壁面的敏感性计算另列。丙烷火温升取 FDS 在 90--120~s 内的时间加权平均。丙烯火筛选从开始记录到首次越限或 120~s。
 
-\reportfigure{\includegraphics[width=\linewidth]{../previews/OP1_106_coarse_native_temperature_66s.png}}{图 A1.\quad Task~1 丙烷火工况在 66.0~s 时的纵向中心面气体温度（$y=0.45$~m，106.2~kW，OP-1 四扇侧门全开，粗网格）。PyroSim Results 原生画面显示，火羽流到达顶棚后向两侧铺展。色标范围为 20--870~$^{\circ}$C。}
+\reportfigure{\includegraphics[width=\linewidth]{../previews/OP1_106_coarse_native_temperature_66s.png}}{图 A1.\quad Task~1 丙烷火工况在 66.0~s 时的纵向中心面气体温度（$y=0.45$~m，106.2~kW，OP-1 四扇侧门全开，粗网格）。PyroSim Results 原生画面显示，火羽流到达顶棚后向两侧铺展。色标最高一档表示 $\geq 870$~$^{\circ}$C。}
 
-\reportfigure{\input{figures/op6-extinction-113s}}{图 A2.\quad OP-6 中心面，113.0~s，1.12~m$^3$/s，烟炱产率 0.05。色标上限为 0.10~m$^{-1}$。沿半高虚线读取原始切片，燃烧器正上方消光系数为 6.09~m$^{-1}$，远端 $x=6.1$~m 为 $1.58\times10^{-4}$~m$^{-1}$。远端圆点为 0.4358~m 的热分层界面，比目标高 55.8~mm。}
+\reportfigure{\input{figures/op6-extinction-113s}}{图 A2.\quad OP-6 中心面，113.0~s，1.12~m$^3$/s，烟炱产率 0.05。色标最高一档表示 $\geq 0.10$~m$^{-1}$。沿半高虚线读取原始切片，燃烧器正上方消光系数为 6.09~m$^{-1}$，远端 $x=6.1$~m 为 $1.58\times10^{-4}$~m$^{-1}$。远端圆点为 0.4358~m 的热分层界面，比目标高 55.8~mm。}
 
 \clearpage
 \reportheading{附录 A.\quad OP-1 与 OP-6 的同工况对照}
 \begingroup
-\def\tempCaption{图 A3(a).\quad Task~1 的中心面气体温度。两个丙烷火算例均取 106.2~kW、粗网格和 66.0~s 的 FDS 切片，共用 20--870~$^{\circ}$C 色标。}
-\def\smokeCaption{图 A3(b).\quad Task~2 在 113.0~s 的中心面烟炱消光系数。两个丙烯火算例的总排烟量均为 1.12~m$^3$/s，烟炱产率均为 0.05。共用色标上限为 0.10~m$^{-1}$。OP-6 最低热分层界面的位置见图 A2。}
+\def\tempCaption{图 A3(a).\quad Task~1 的中心面气体温度。两个丙烷火算例均取 106.2~kW、粗网格和 66.0~s 的 FDS 切片，共用色标从 20~$^{\circ}$C 起，最高一档表示 $\geq 870$~$^{\circ}$C。}
+\def\smokeCaption{图 A3(b).\quad Task~2 在 113.0~s 的中心面烟炱消光系数。两个丙烯火算例的总排烟量均为 1.12~m$^3$/s，烟炱产率均为 0.05。共用色标最高一档表示 $\geq 0.10$~m$^{-1}$。OP-6 最低热分层界面的位置见图 A2。}
 \def\modelCaption{图 A3(c).\quad Task~2 两组算例在 PyroSim Results 中的同角度侧墙外观。OP-1 四扇侧门全开，端墙补风口高 0.44~m；OP-6 仅开启 R1 侧门，端墙补风口高 0.48~m。}
 \input{figures/matched-panels}
 \endgroup
