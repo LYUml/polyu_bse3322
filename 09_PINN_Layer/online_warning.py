@@ -183,11 +183,18 @@ def main():
         last_below = np.maximum.accumulate(np.where(heights < LIMIT, times[:, None], -np.inf), axis=0)
         recently_recovered = (heights >= LIMIT) & (times[:, None] - last_below <= 10.)
         descending = test['features'][:, :, 1] > 0
-        repeat_alert = recently_recovered & lowest_station & projected_breach & descending
+        recovery_candidate = recently_recovered & lowest_station & projected_breach & descending
+        repeat_alert = recovery_candidate.copy()
         repeat_alert[0] = False
         repeat_alert[1:] &= descending[:-1]
         rows.append(dict(case=name, method='recent_recovery_descent',
                          **evaluate(test, filtered | repeat_alert, rearm_on_recovery=True)))
+        # Extrapolate over the last observed interval, without using a future timestamp.
+        next_height = heights[1:] - np.diff(times)[:, None] * test['features'][1:, :, 1]
+        rapid_recovery_alert = repeat_alert.copy()
+        rapid_recovery_alert[1:] |= recovery_candidate[1:] & (next_height < LIMIT)
+        rows.append(dict(case=name, method='recent_recovery_one_step',
+                         **evaluate(test, filtered | rapid_recovery_alert, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
