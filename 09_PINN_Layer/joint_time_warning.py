@@ -2,6 +2,7 @@
 import csv
 
 import numpy as np
+from margin_monitor import LIMIT
 
 from online_warning import H, HERE, HORIZON, evaluate, fit_warning, load_complete, samples, save
 from thermal import layer_height, read_columns
@@ -42,14 +43,20 @@ def main():
                  if not np.array_equal(raw[n]['design'][:-1], case['design'][:-1])]
         hits = {}
         for method, data, size in [('station', device, 4), ('joint_descending', joint, 6),
-                                   ('contrast_descending', contrast, 5)]:
+                                   ('contrast_descending', contrast, 5),
+                                   ('contrast_recovery', contrast, 5)]:
             score, cut = fit_warning([data[n] for n in train], size)
             test = data[name]
             alarms = score(test) > cut
+            rearm = method == 'contrast_recovery'
             if method != 'station':
-                alarms &= test['features'][:, :, 1] > 0
+                gate = test['features'][:, :, 1] > 0
+                if rearm:
+                    below = test['features'][:, :, 0] > H - LIMIT
+                    gate[1:] |= below[:-1] & ~below[1:]
+                alarms &= gate
             leads = {}
-            result = evaluate(test, alarms, leads)
+            result = evaluate(test, alarms, leads, rearm_on_recovery=rearm)
             hits[method] = set(leads)
             rows.append(dict(case=name, cohort='original' if name in cohort else 'additional',
                              method=method, events=result['events'], hits=result['hits'],
