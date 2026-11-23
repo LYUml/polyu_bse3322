@@ -7,6 +7,7 @@
 | 要找的内容 | 入口 |
 | --- | --- |
 | 当前报告 | [英文 PDF](07_Report/Group18_Report.pdf) · [中文审阅 PDF](07_Report/Group18_Report_zh.pdf) · [LaTeX 源文件](07_Report/LaTeX/) |
+| 历史草稿 | [v3 Word](07_Report/BSE3322_Group18_Report_v3.docx) 使用早期模型与网格，供追溯；当前设计推荐见上列 PDF。 |
 | 课堂演示视频 | [视频目录与播放顺序](07_Report/videos/README.md) · [Task 1 温度场](07_Report/videos/OP1_106_coarse_native_temperature.mp4) · [Task 2 三维烟气](07_Report/videos/OP6_1p12_y005_front_soot_interior.mp4) |
 | 作业要求 | [Topic B 原始作业 PDF](01_Assignment_Brief/Project_Topic_1B_Smoke_Extraction.pdf) · [工作清单](08_Project_Notes/project-requirements.md) |
 | 实验依据与计算记录 | [参考资料导航](02_References/00_资料导航.md) · [本地下载目录](02_References/00_本地下载目录.md) · [工况验收记录](08_Project_Notes/03_Group18_验收记录.md) |

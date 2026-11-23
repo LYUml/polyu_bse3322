@@ -75,13 +75,12 @@
 \draw[flow] (layout.south)--(coarse.north);
 \node[designnode] (refine) at (2.23,-8.47) {\textbf{Finer vertical grid}\\Recheck clearance};
 \draw[flow] (coarse.west)--(refine.east);
-\node[decision] (gate) at (2.23,-10.05) {All six cases hold\\$h\geq0.38$ m for 120 s?};
+\node[decision] (gate) at (2.23,-10.05) {\textbf{Test 1.12}\\OP-6, soot yield 0.02};
 \draw[flow] (refine.south)--(gate.north);
-\node[designnode] (retry) at (6.28,-10.05) {\textbf{Reject 0.96}\\$h_{\min}=0.3717$ m};
-\draw[flow] (gate.east)--node[above,tag]{No}(retry.west);
-\draw[flow] (retry.north)--(6.28,-9.24)--node[above,tag,font=\sffamily\small]{Test 1.12}(3.41,-9.24)--(3.41,-8.81);
-\node[designnode] (verified) at (2.23,-11.85) {\textbf{1.12 passes all six}\\$h_{\min}=0.4358$ m};
-\draw[flow] (gate.south)--node[right,tag]{Yes}(verified.north);
+\node[designnode] (six) at (6.28,-10.05) {\textbf{Verify at 1.12}\\2 door states, 3 soot yields};
+\draw[flow] (gate.east)--(six.west);
+\node[designnode] (verified) at (2.23,-11.85) {\textbf{Eight stations, 120 s}\\$h_{\min}=0.4358$ m};
+\draw[flow] (six.south)--(six.south |- verified.east)--(verified.east);
 \node[designnode,fill=white,draw=ochre!55,inner sep=5pt] (power) at (4.16,-13.42)
  {$\displaystyle\min P$\quad s.t.\ all sampled heights $\geq0.38$ m\\
  \textbf{Select 1.12 m$^3$/s}\quad 6.91 W vs.\ 10.32 W at 1.28};

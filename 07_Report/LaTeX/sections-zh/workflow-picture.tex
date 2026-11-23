@@ -66,13 +66,12 @@
 \draw[flow] (layout.south)--(coarse.north);
 \node[designnode] (refine) at (2.23,-8.47) {\textbf{加密竖向网格}\\复查净高};
 \draw[flow] (coarse.west)--(refine.east);
-\node[decision] (gate) at (2.23,-10.05) {六组均维持 120 s\\$h\geq0.38$ m？};
+\node[decision] (gate) at (2.23,-10.05) {\textbf{测试 1.12}\\OP-6，烟炱产率 0.02};
 \draw[flow] (refine.south)--(gate.north);
-\node[designnode] (retry) at (6.28,-10.05) {\textbf{淘汰 0.96}\\$h_{\min}=0.3717$ m};
-\draw[flow] (gate.east)--node[above,tag]{否}(retry.west);
-\draw[flow] (retry.north)--(6.28,-9.24)--node[above,tag,font=\sffamily\small]{复查 1.12}(3.41,-9.24)--(3.41,-8.81);
-\node[designnode] (verified) at (2.23,-11.85) {\textbf{1.12 六组均通过}\\$h_{\min}=0.4358$ m};
-\draw[flow] (gate.south)--node[right,tag]{是}(verified.north);
+\node[designnode] (six) at (6.28,-10.05) {\textbf{复核 1.12}\\两种门态，三种产率};
+\draw[flow] (gate.east)--(six.west);
+\node[designnode] (verified) at (2.23,-11.85) {\textbf{八个测柱，120 s}\\$h_{\min}=0.4358$ m};
+\draw[flow] (six.south)--(six.south |- verified.east)--(verified.east);
 \node[designnode,fill=white,draw=ochre!55,inner sep=5pt] (power) at (4.16,-13.42)
  {$\displaystyle\min P$\quad s.t.\ 各测点净高 $\geq0.38$ m\\
  \textbf{选择 1.12 m$^3$/s}\quad 6.91 W；1.28 为 10.32 W};

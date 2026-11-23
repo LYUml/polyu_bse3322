@@ -19,7 +19,7 @@ Here $\dot Q$ is nominal fire power, $\rho_\infty$, $c_p$ and $T_\infty$ are amb
 \subhead{Task 1 --- Controlled comparisons and experimental measurements}
 At OP-1 and 106.2~kW, the coarse-grid simulations compared the Deardorff and WALE subgrid-scale closures at a fixed radiative fraction of 0.29~\cite{fdstech}. Yuen et al.\ also examined the sensitivity to closure in compartment-fire simulations~\cite{yuen}. Separate Deardorff runs varied this fraction to 0.20 and 0.50. To assess enclosure heat loss, paired runs replaced the adiabatic enclosure with a 15~mm conducting board. Board thickness came from the experiment. Density (200~kg/m$^3$), thermal conductivity (0.10~W/(m\,K)) and specific heat (1.0~kJ/(kg\,K)) were proxy inputs from the FDS Steckler insulation example~\cite{steckler}. The OP-6 wall comparison retained the same $154\times56\times23$ doorway-diagnostic mesh on both sides of the comparison. The 47.2~kW OP-1 wall pair used the original coarse grid.
 
-The experimental reference was the longitudinal ceiling temperature rise digitised from Fig.~9 of Peng et al.~\cite{peng} Model outputs from 1~mm thermocouples at $z=0.74$~m were paired with 51 experimental positions. At each position $i$, the simulated temperature was time-averaged over 90--120~s using the actual device output intervals, then expressed as a rise above the model ambient. For $e_i=\Delta T_{\mathrm{FDS},i}-\Delta T_{\mathrm{exp},i}$, the two profile statistics were
+The experimental reference was the longitudinal ceiling temperature rise digitised from Fig.~9 of Peng et al.~\cite{peng}. Model outputs from 1~mm thermocouples at $z=0.74$~m were paired with 51 experimental positions. At each position $i$, the simulated temperature was time-averaged over 90--120~s using the actual device output intervals, then expressed as a rise above the model ambient. For $e_i=\Delta T_{\mathrm{FDS},i}-\Delta T_{\mathrm{exp},i}$, the two profile statistics were
 \[
  \mathrm{bias}=\frac{1}{51}\sum_{i=1}^{51}e_i,\qquad
  \mathrm{RMSE}=\sqrt{\frac{1}{51}\sum_{i=1}^{51}e_i^2}.
@@ -61,10 +61,8 @@ For a total volume flow $Q$ divided equally between the two short exhaust branch
 \]
 Each branch had area $A=0.32$~m$^2$ and length $L=0.40$~m. The estimate assumed hydraulic diameter $D_h=0.533$~m, air density $\rho=1.2$~kg/m$^3$, Darcy friction factor $f=0.02$, local loss coefficient $K=2$ and fan efficiency $\eta=0.60$. The two parallel branches share the same pressure drop. The estimate covers the modelled branches only.
 
-\subhead{Vertical-grid sensitivity at the limiting presets}
-The paired refinement retained the horizontal grid and physical settings and increased the vertical cell count from 19 to 38. The evaluation compares minimum sampled height, station and time at matched door state, inlet height, soot yield and extraction rate. A margin that changes sign under refinement changes the design decision.
-The OP-6 low-flow refinement stopped on the first recorded breach. Section~4.3 gives the observed height, location, time and corresponding optical conditions.
-For OP-6 at baseline soot yield, adding 1.12~m$^3$/s gave three flows on the same refined grid. We enumerated these flows under the height constraint and compared their estimated branch powers. We then checked 1.12~m$^3$/s on the refined grid under both door states and all three soot yields, applying the same eight-station constraint throughout each 120~s run (Appendix~D).
+\subhead{Selection and verification of the design flow}
+We retained the horizontal grid and increased the vertical cell count from 19 to 38. With the inlet and curtain geometry fixed, we tested 1.12~m$^3$/s midway between the two original flow settings. The OP-6 baseline-soot runs compare all three settings on the same refined grid (Figure~4b). We assessed the selected flow against the full 120~s records at eight stations for each door state and soot yield (Table~D3).
 \clearpage
 \subhead{2.3\quad Constrained optimisation of the extraction system}
 The brief specifies a minimum clear height and requires a power estimate for mechanical extraction. Group~18 chose minimum required fan input power as the design objective. Let $g$ denote a candidate layout, $Q$ the total extraction rate in m$^3$/s and $P$ the required electrical input in watts. We formulated the design problem as

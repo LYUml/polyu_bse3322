@@ -1,9 +1,9 @@
 \reportheading{Appendix A.\quad Case register}
-Group~18 used OP-1 and OP-6 at 47.2 and 106.2~kW, corresponding to Peng et al.~\cite{peng}, Tests 4, 8, 44 and 48 in that order. The sensitivity runs varied the mesh, subgrid closure, radiation or wall treatment around these base conditions. The propane profiles are FDS 6.10.1 time-weighted means over 90--120~s. Propylene screening ran to the first observed breach or to 120~s.
+Group~18 applied the even-group HRRs (47.2 and 106.2~kW) to OP-1 and OP-6. In the order listed in Peng et al.'s experimental matrix~\cite{peng}, these four physical conditions correspond to Tests 4, 8, 44 and 48. The brief also mentions eight cases without specifying four additional even-group conditions. We count mesh, closure, radiation and wall variants separately. Propane profiles use 90--120~s FDS means. Propylene screening records extend to the first breach or 120~s.
 
 \reportfigure{\includegraphics[width=\linewidth]{../previews/OP1_106_coarse_native_temperature_66s.png}}{Figure A1. Gas temperature on the longitudinal centreplane ($y=0.45$~m) at 66.0~s in the Task~1 propane case (106.2~kW, OP-1, all four side doors open, coarse grid). The PyroSim Results frame shows the plume reaching the ceiling and spreading to either side. The colour scale spans 20--870~$^{\circ}$C.}
 
-\reportfigure{\input{figures/op6-extinction-113s}}{Figure A2. Centreplane soot extinction coefficient at 113.0~s for the Task~2 OP-6 case (1.12~m$^3$/s, soot yield 0.05~kg/kg). The dashed line marks the 0.38~m clearance criterion. The dot marks the FDS thermal layer height at $x=6.1$~m, 55.8~mm above the criterion.}
+\reportfigure{\input{figures/op6-extinction-113s}}{Figure A2. OP-6 centreplane at 113.0~s, 1.12~m$^3$/s, soot yield 0.05. The colour scale saturates at 0.10~m$^{-1}$. Along the dashed half-height line the slice values were 6.09~m$^{-1}$ above the burner and $1.58\times10^{-4}$~m$^{-1}$ at $x=6.1$~m. The far-end dot marks the thermal interface at 0.4358~m, 55.8~mm above the target.}
 
 \clearpage
 \subhead{Appendix B.\quad Grid and door-flow comparisons}
@@ -41,7 +41,7 @@ OP-6&0.02&\textbf{0.3957}&0.5827\\
 OP-6&0.05&0.5262&0.4975\\
 OP-6&0.10&0.4061&0.5503\\
 \end{reporttable}
-The 1.28~m$^3$/s minima in Table D1 were checked against the raw device histories and successful completion logs. At 0.96~m$^3$/s the archived per-station reductions cover eight stations and 0--120~s in each of the six cases. Some local raw folders contain earlier, interrupted runs. The low-flow comparisons use the archived full-duration station data. At 1.28~m$^3$/s the refined OP-1 baseline-soot minimum (0.5879~m) also comes from an archived eight-station summary; the local raw record ends at 20~s.
+The 1.28~m$^3$/s minima in Table D1 were checked against raw histories and completion logs. Mean delivered power was 103.6--104.1~kW over 90--120~s. At 0.96~m$^3$/s the archived eight-station records cover 120~s in all six cases (minimum visibility 12.33~m, peak CO 22.82~ppm). Some local raw folders contain earlier interrupted runs. The refined OP-1 baseline-soot minimum at 1.28~m$^3$/s (0.5879~m) also uses an archived station summary. The local raw record ends at 20~s.
 
 \tabletitle{Table D2. Revised layout, OP-6, soot yield 0.02, 38-cell vertical grid. The minimum is taken over all eight stations in the recorded interval.}
 \begin{reporttable}{L{.20}L{.22}L{.21}L{.37}}
