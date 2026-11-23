@@ -102,6 +102,16 @@ def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
                 confirmed_one_second_hits=sum(lead >= 1 for lead in lead_lower_bounds))
 
 
+def first_event_training(case):
+    events = [(start, station) for station, intervals in enumerate(case['events'])
+              for start, _ in intervals]
+    start, station = min(events, default=(np.inf, 0))
+    times = case['t']
+    label = np.zeros_like(case['label'])
+    label[:, station] = (times < start) & (times + HORIZON >= start)
+    return dict(case, eligible=case['eligible'] & (times[:, None] < start), label=label)
+
+
 def main():
     complete = load_complete()
     minima = {}
@@ -146,6 +156,17 @@ def main():
                                & (heights - dt * speed < LIMIT))
         rows.append(dict(case=name, method='lowest_station_descent_fallback',
                          **evaluate(test, fallback_alarms, rearm_on_recovery=True)))
+        staged = fallback_alarms.copy()
+        if screen_positive:
+            first_score, _ = fit_warning([first_event_training(c) for c in train], 6)
+            negative_scores = np.concatenate([
+                first_score(c)[c['eligible'] & ~c['label']] for c in train])
+            # Fixed after retrospective comparison on the original 27 runs.
+            first_cutoff = np.quantile(negative_scores, .99915)
+            before_breach = ~np.logical_or.accumulate((heights < LIMIT).any(axis=1))
+            staged[before_breach] = (lowest_station & (first_score(test) > first_cutoff))[before_breach]
+        rows.append(dict(case=name, method='staged_first_breach',
+                         **evaluate(test, staged, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
