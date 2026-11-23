@@ -6,12 +6,17 @@ For Group~18, the even-group allocation gives two fire powers, 47.2 and 106.2~kW
 \reportfigure{\input{figures/op6-extinction-113s}}{Figure A2. OP-6 centreplane at 113.0~s, 1.12~m$^3$/s, soot yield 0.05. The colour scale saturates at 0.10~m$^{-1}$. Along the dashed half-height line the slice values were 6.09~m$^{-1}$ above the burner and $1.58\times10^{-4}$~m$^{-1}$ at $x=6.1$~m. The far-end dot marks the thermal interface at 0.4358~m, 55.8~mm above the target.}
 
 \clearpage
-\reportheading{Appendix A (continued).\quad Task 2 model in PyroSim}
-\reportfigure{\includegraphics[width=\linewidth]{../previews/OP6_1p12_pyrosim_workspace.png}}{Figure A3(a). Native PyroSim 2026.2 model view for the OP-6 case shown in Figure A2 (propylene, soot yield 0.05). The project tree lists the mesh, species and surfaces. The two extraction branches above the burner each carry 0.56~m$^3$/s in the FDS input.}
+\reportheading{Appendix A.\quad OP-1 and OP-6 at matched conditions}
+\reportfigure{\includegraphics[width=.94\linewidth]{../previews/OP1_OP6_temperature_matched.png}}{Figure A3(a). Task~1 centreplane gas temperature at 66.0~s. Both propane cases use 106.2~kW and the coarse grid. The FDS slices share a 20--870~$^{\circ}$C scale.}
 
 \medskip
-\reportfigure{\includegraphics[trim=300bp 250bp 375bp 325bp,clip,width=.92\linewidth,height=.23\textheight,keepaspectratio]{../previews/OP6_1p12_y005_native_R1_exterior.png}}{Figure A3(b). Exterior view of the same FDS geometry in PyroSim Results. R1 is the open doorway in the long wall. Make-up air also enters through openings in the two end walls.}
+\reportfigure{\includegraphics[width=.94\linewidth]{../previews/OP1_OP6_extinction_matched.png}}{Figure A3(b). Task~2 centreplane soot extinction at 113.0~s. Both propylene cases use 1.12~m$^3$/s total extraction and soot yield 0.05. The common scale saturates at 0.10~m$^{-1}$. Figure A2 locates the OP-6 minimum thermal interface.}
 
+\medskip
+\reportfigure{\begin{tabular}{@{}r@{\quad}l@{}}
+OP-1 & \raisebox{-.45\height}{\includegraphics[width=.79\linewidth]{../previews/OP1_1p12_side_elevation.png}}\\[3pt]
+OP-6 & \raisebox{-.45\height}{\includegraphics[width=.79\linewidth]{../previews/OP6_1p12_side_elevation.png}}
+\end{tabular}}{Figure A3(c). PyroSim Results exterior elevations of the Task~2 cases, viewed from the same side. OP-1 has four open side doors and 0.44~m end openings. OP-6 has only R1 open in the side wall and 0.48~m end openings.}
 \clearpage
 \reportheading{Appendix B.\quad Grid and door-flow comparisons}
 The characteristic fire diameters were 0.283 and 0.391~m at 47.2 and 106.2~kW. Their ratios to the longest cell dimensions were 5.65/7.82, 7.27/10.05 and 9.42/13.03 on the coarse, medium and fine meshes. Corresponding snapped burner areas were 0.06250, 0.06125 and 0.06300~m$^2$.
