@@ -24,8 +24,8 @@ def design(name):
                      (depth-.24)/.08,(flow-1.28)/.32,bool(fine)])
 
 
-def basis(t, params):
-    a = np.tanh((t[:,None]-centres)/scales+params@SLOPES)
+def basis(t, params, slopes=SLOPES):
+    a = np.tanh((t[:,None]-centres)/scales+params@slopes)
     raw = np.column_stack((np.ones(len(t)),a))
     derivative = np.column_stack((np.zeros(len(t)),(1-a*a)/scales))
     gate = np.exp(-t[:,None]/2)
@@ -67,8 +67,11 @@ def load_complete(names=None):
 
 
 def model(train,name):
-    d=design(name)
-    phi,_=basis(TIMES,d)
+    return predict_minima(train, design(name))
+
+
+def predict_minima(train, d, slopes=SLOPES):
+    phi,_=basis(TIMES,d,slopes)
     # Learn the station-wise discrepancy between fitted smooth minima and device minima.
     # The calibration fit, like the PIELM fit, sees outer-training cases only.
     gram=sum(c['gram'] for c in train)+.1*np.eye(phi.shape[1])
@@ -77,7 +80,7 @@ def model(train,name):
     avg=np.linalg.solve(gram+25*sum(c['physics'] for c in train),rhs@direction)
     w+=np.outer(avg-w@direction,direction)
     curve=np.clip(H-phi@w,0,H).min(axis=0)
-    offset=np.array([c['y'].min(axis=0)-np.clip(H-basis(TIMES,c['design'])[0]@w,0,H).min(axis=0)
+    offset=np.array([c['y'].min(axis=0)-np.clip(H-basis(TIMES,c['design'],slopes)[0]@w,0,H).min(axis=0)
                      for c in train])
     xx=np.array([c['design'] for c in train])
     def kernel(a,b):
