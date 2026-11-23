@@ -1,0 +1,20 @@
+% Source: 05_Calculations/search_summary.csv (20 GA seeds) and
+% 09_PINN_Layer/power_replay_summary.csv (refined mesh, scenario-only order).
+\reportfigure{\begin{tikzpicture}
+\pgfplotsset{replayaxis/.style={width=.48\linewidth,height=3.75cm,xmin=0,xmax=18,
+ xtick={0,4,8,12,16},xmajorgrids,axis lines=left,
+ tick label style={font=\sffamily\footnotesize},title style={font=\sffamily\small\bfseries,color=ink}}}
+\begin{axis}[replayaxis,name=designrank,ymin=.5,ymax=3.5,ytick={1,2,3},
+ yticklabels={GA,BO,固定},title={原布局：查询设计},xlabel={首次找到最大余量的查询数}]
+\addplot[teal,thick,mark=*,mark size=2pt] coordinates {(6,1)(11,1)};
+\addplot[teal,only marks,mark=*,mark size=2pt] coordinates {(7,2)};
+\addplot[ink,only marks,mark=square*,mark size=2pt] coordinates {(16,3)};
+\end{axis}
+\begin{axis}[replayaxis,at={(designrank.east)},anchor=west,xshift=1.52cm,
+ ymin=.5,ymax=4.5,ytick={1,2,3,4},yticklabels={混合,回归,PINN,固定},title={改进布局：查询工况},xlabel={确认最低功率方案的检查数}]
+\addplot[rust,thick,mark=*,mark size=2pt] coordinates {(7,1)(9,1)};
+\addplot[rust,only marks,mark=*,mark size=2pt] coordinates {(7,2)};
+\addplot[rust,thick,mark=*,mark size=2pt] coordinates {(7,3)(11,3)};
+\addplot[ink,only marks,mark=square*,mark size=2pt] coordinates {(7,4)};
+\end{axis}
+\end{tikzpicture}}{图 6.\quad 两项独立的 FDS 回放。左图的线段为 GA 在 20 个随机种子下的查询次数范围；右图的线段为缺少归档结果的工况取不同结局时的检查次数范围。}

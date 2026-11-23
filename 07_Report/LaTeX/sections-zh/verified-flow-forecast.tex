@@ -1,0 +1,21 @@
+% Rows are the six refined-grid FDS station minima at 1.12 m3/s.
+% PINN points are the forecasts frozen in hybrid_frozen_1p12.json.
+\reportfigure{\begin{tikzpicture}
+\begin{axis}[width=.96\linewidth,height=5.1cm,xmin=.55,xmax=6.45,
+ ymin=.355,ymax=.61,xtick={1,2,3,4,5,6},
+ xticklabels={{OP-1\\0.02},{OP-1\\0.05},{OP-1\\0.10},{OP-6\\0.02},{OP-6\\0.05},{OP-6\\0.10}},
+ xticklabel style={align=center},ytick={.38,.44,.50,.56,.60},ylabel={最低净高 (m)},
+ ymajorgrids,unbounded coords=discard,
+ legend style={at={(.5,1.03)},anchor=south,legend columns=3,draw=none},
+ /tikz/every even column/.append style={column sep=5pt}]
+\addplot[only marks,mark=*,teal,mark size=2.7pt]
+ table[col sep=comma,x=position,y=fds_m]{data/verified-flow-forecast.csv};
+\addlegendentry{细网格 FDS}
+\addplot[only marks,mark=diamond*,rust,mark options={fill=white},mark size=3.2pt]
+ table[col sep=comma,x expr=\thisrow{position}+.10,y=pinn_m]{data/verified-flow-forecast.csv};
+\addlegendentry{冻结 PINN}
+\addplot[ink,densely dashed] coordinates {(.55,.38)(6.45,.38)};
+\addlegendentry{净高阈值}
+\draw[teal,thin] (axis cs:5,.385)--(axis cs:5,.430);
+\node[anchor=west,font=\sffamily\scriptsize,text=teal] at (axis cs:5.04,.408) {55.8 mm};
+\end{axis}\end{tikzpicture}}{图 5.\quad 1.12~m$^3$/s 的六工况复核。横轴为门态和烟炱产率（kg/kg），实心点为八个测点在 120~s 内的 FDS 最低净高。空心菱形仅标出运行前已冻结的三组 PINN 预测。}
