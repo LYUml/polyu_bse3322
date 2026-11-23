@@ -6,8 +6,8 @@
  xlabel={时间 (s)},ylabel={净高 (m)},title={远端测点时序},
  legend style={at={(.5,1.01)},anchor=south,legend columns=2,font=\sffamily\scriptsize},
  title style={yshift=12pt,font=\sffamily\small\bfseries}]
-\addplot[teal,thick,no marks] table[col sep=comma,x=time_s,y=fds_m]{data/pinn-curve-example.csv};\addlegendentry{FDS}
-\addplot[rust,thick,dashed,no marks] table[col sep=comma,x=time_s,y=pinn_m]{data/pinn-curve-example.csv};\addlegendentry{PINN}
+\addplot[teal,thin,mark=*,mark size=.65pt] table[col sep=comma,x=time_s,y=fds_m]{data/pinn-curve-example.csv};\addlegendentry{FDS 原始输出}
+\addplot[rust,thick,dashed,no marks] table[col sep=comma,x=time_s,y=pinn_m]{data/pinn-curve-example.csv};\addlegendentry{PINN 预测}
 \addplot[ink!55,densely dotted,forget plot] coordinates {(0,.38)(120,.38)};
 \end{axis}
 \begin{axis}[at={(series.east)},anchor=west,xshift=1.75cm,width=.43\linewidth,height=4.25cm,
@@ -18,4 +18,4 @@
 \addplot[only marks,mark=o,mark size=1.7pt,ink!65] table[col sep=comma,x=mae_cm,y=row]{data/pinn-curve-errors.csv};
 \addplot[only marks,mark=diamond*,mark size=2.8pt,teal] coordinates {(1.67908,1)(4.54719,2)};
 \end{axis}
-\end{tikzpicture}}{图 6.\quad 左图为抬高补风口组中曲线 MAE 最接近组均值的算例，取远端 $x=6.1$~m 的完整记录（烟炱产率 0.02，垂壁深度 0.24~m）。点线为 0.38~m 判据。右图每个空心圆对应一个留出算例，菱形为组均值。}
+\end{tikzpicture}}{图 6.\quad 左图青色圆点为 FDS 在 $x=6.1$~m 输出的全部 241 个净高值，橙色虚线为留出预测，水平点线为 0.38~m 判据。示例取抬高补风口组中曲线 MAE 最接近组均值的算例（1.28~m$^3$/s，烟炱产率 0.02，垂壁深度 0.24~m）。右图每个空心圆代表一个算例，菱形为组均值。}
