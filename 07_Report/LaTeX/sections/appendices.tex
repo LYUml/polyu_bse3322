@@ -1,5 +1,5 @@
 \reportheading{Appendix A.\quad Case register}
-Group~18 used OP-1 and OP-6 at 47.2 and 106.2~kW, corresponding to Peng Tests 4, 8, 44 and 48 in that order. The sensitivity runs varied the mesh, subgrid closure, radiation or wall treatment around these base conditions. The propane profiles are FDS 6.10.1 time-weighted means over 90--120~s. Propylene screening ran to the first observed breach or to 120~s.
+Group~18 used OP-1 and OP-6 at 47.2 and 106.2~kW, corresponding to Peng et al.~\cite{peng}, Tests 4, 8, 44 and 48 in that order. The sensitivity runs varied the mesh, subgrid closure, radiation or wall treatment around these base conditions. The propane profiles are FDS 6.10.1 time-weighted means over 90--120~s. Propylene screening ran to the first observed breach or to 120~s.
 \subhead{Appendix B.\quad Grid and door-flow comparisons}
 The characteristic fire diameters were 0.283 and 0.391~m at 47.2 and 106.2~kW. Their ratios to the longest cell dimensions were 5.65/7.82, 7.27/10.05 and 9.42/13.03 on the coarse, medium and fine meshes. Corresponding snapped burner areas were 0.06250, 0.06125 and 0.06300~m$^2$.
 \tabletitle{B1. Doorway diagnostic cases, 90--120 s.}
@@ -22,6 +22,7 @@ OP-6&106.2&0.095&0.098&361.4\\
 0.16&$-335$&$-331$&$-296$&$-285$\\
 0.24&$-336$&$-337$&$-294$&$-302$\\
 \end{reporttable}
+\input{sections/replay-comparison}
 \clearpage
 \reportheading{Appendix D.\quad Paired-flow data coverage}
 \tabletitle{Table D1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
@@ -52,7 +53,7 @@ Combined fan input uses the two short branches and efficiency of 0.60 in Section
 \end{reporttable}
 \clearpage
 \reportheading{Appendix E.\quad Surrogate event scoring}
-The physics-informed extreme learning machine used 96 fixed tanh units and a least-squares output fit with ridge coefficient 0.1. A simplified upper-layer volume balance constrained the weighted mean layer thickness under an assumption of lateral uniformity. A short event was a continuous excursion below 0.38~m at one station lasting at most 2~s. An event counted as a match when the intersection of the predicted and observed intervals covered at least half their union, with one-to-one matching. Linear interpolation between device records approximately 0.5~s apart limits the precision of short event durations.
+The physics-informed extreme learning machine (PIELM)~\cite{pielm} used 96 fixed tanh units and a least-squares output fit with ridge coefficient 0.1. Following the control-volume approach of zone models~\cite{cfast}, a simplified upper-layer volume balance constrained the weighted mean layer thickness under an assumption of lateral uniformity. A short event was a continuous excursion below 0.38~m at one station lasting at most 2~s. An event counted as a match when the intersection of the predicted and observed intervals covered at least half their union, with one-to-one matching. Linear interpolation between device records approximately 0.5~s apart limits the precision of short event durations.
 \subhead{Testing the minimum-height decision directly}
 On the earlier 20-case, 19-cell vertical grid cohort, whole-design holdout error in minimum height fell from 27.03 to 8.26~cm after fitting a station-minimum correction. Missed breaches fell from eight to six of eight, with one false alarm among twelve passing runs. Section~5 gives the expanded comparison.
 
@@ -60,11 +61,20 @@ For the refined OP-6 low-flow case, the corrected forecast frozen before complet
 
 A separate two-second warning test used observations from running simulations. At a retrospectively matched count of 33 false alarms, local-height and multistation-temperature models detected the same four of 25 short events, with a mean lead of 0.73~s.
 
+\subhead{Time-series forecasts and short excursions}
+Whole designs were held out from 16 original-layout and six raised-inlet OP-6 cases. The eight-output PINN imposed an initial height of 0.76~m and a simplified upper-layer balance. A linear scalar model gave minimum-height MAEs of 0.96 and 6.13~cm in the two groups. The time-series PINN predicted passing minima in all six raised-inlet cases. None of the 11 short FDS excursions matched a predicted interval under the scoring rule above.
+
+At soot yield 0.10 and curtain depth 0.32~m the PINN predicted 0.619~m against an FDS minimum of 0.267~m. Threshold weighting matched 0 of 178 short events. Reconstructing the layer from 19 temperatures per column flagged the curtain case and matched 0 of 13 intervals. On the original 16 designs, averaging the reconstruction with the PINN reduced curve MAE from 4.55 to 4.26~cm and matched 0 of 167 short events.
+
+\clearpage
+\subhead{Appendix E (continued)\quad Eight-station histories and the far-end excursion}
 \input{sections/eight-stations}
+\input{sections/surrogate-event}
+Across the six raised-inlet OP-6 holdouts, 82.7\% of the 11,568 station-time records were at 0.76~m. PINN curve MAE was 1.68~cm overall, 4.75~cm for the 2,001 records with FDS height below 0.76~m and 10.09~cm for the 553 records at least 5~cm below 0.76~m. Whole-curve MAE on the 16 original designs was 4.55~cm. Linear regression on the same folds gave 1.48 and 3.89~cm for the raised-inlet and original layouts, respectively.
 
 \clearpage
 \reportheading{Appendix F.\quad Sensitivity tests and layout holdouts}
-\tabletitle{Table F1. OP-6 board model at 106.2 kW compared with Peng Fig.~9. Peak position is relative to the burner.}
+\tabletitle{Table F1. OP-6 board model at 106.2 kW compared with Peng et al., Fig.~9~\cite{peng}. Peak position is relative to the burner.}
 \begin{reporttable}{L{.18}L{.20}L{.20}L{.22}L{.20}}
 \rowcolor{tablegrey}Window (s)&Peak rise (K)&Peak $x$ (m)&R1-side bias (K)&RMSE (K)\\
 90--105&858.2&$-0.40$&$-119.9$&107.8\\
@@ -81,9 +91,9 @@ Corrected PINN&9.43&14/14&0/19\\
 Ridge regression&8.87&14/14&0/19\\
 Nearest neighbour&9.59&14/14&0/19\\
 \end{reporttable}
-\tablenote{MAE uses 27 completed runs. Classification also includes six runs stopped after an observed breach, giving 33 decisions. Each estimator classified all 33 as passing. Section~5 separately reports holdouts of individual designs.}
+\tablenote{MAE uses 27 completed runs. Classification also includes six runs stopped after an observed breach, giving 33 decisions. Section~5 separately reports holdouts of individual designs.}
 
 \medskip
 \subhead{Low-power OP-1 temperature diagnostic}
-The additional probes reproduced the baseline thermocouple RMSE of 192.4~K. Comparing the gas directly with Peng's readings gave 187.6~K RMSE. On average the gas was warmer than the bead by 4.7~K (2.5\% of the 191.8~K mean deficit). The thermocouple deficit averaged 191.1 and 192.5~K in the two successive 15~s windows. The discrepancy is already present in the predicted ceiling gas temperature. These outputs alone cannot separate the contributions of plume mixing, ventilation and other model assumptions.
+The additional probes reproduced the baseline thermocouple RMSE of 192.4~K. Comparing the gas directly with Peng's readings gave 187.6~K RMSE. On average the gas was warmer than the bead by 4.7~K (2.5\% of the 191.8~K mean deficit). The thermocouple deficit averaged 191.1 and 192.5~K in the two successive 15~s windows. Separate effects of plume mixing and doorway exchange were not measured in this comparison.
 \input{sections/plume-diagnostic}

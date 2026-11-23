@@ -12,4 +12,4 @@ width=.90\linewidth,height=3.0cm,xmin=-340,xmax=340,ymin=-200,ymax=200,ytick={-1
 \addplot[ink!65,dashed] coordinates {(-330,0) (330,0)};
 \addplot[teal,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=error_K]{../../05_Calculations/op6_106_board_doorflow_90_120.csv};
 \node[font=\sffamily\scriptsize,text=ink] at (axis cs:210,125) {Mean $-112.5$ K};
-\end{axis}\end{tikzpicture}}{Figure 2. Ceiling temperature rise for OP-6 at 106.2 kW. Both FDS profiles use the same diagnostic grid and 90--120 s window. The lower panel shows the board prediction minus the Peng measurement at each station.}
+\end{axis}\end{tikzpicture}}{Figure 2. Ceiling temperature rise for OP-6 at 106.2 kW. Both FDS profiles use the same diagnostic grid and 90--120 s window. The lower panel shows the board prediction minus the experimental value~\cite{peng} at each station.}

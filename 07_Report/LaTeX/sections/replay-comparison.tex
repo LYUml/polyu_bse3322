@@ -1,0 +1,20 @@
+% Source: 05_Calculations/search_summary.csv (20 GA seeds) and
+% 09_PINN_Layer/power_replay_summary.csv (refined mesh, scenario-only order).
+\reportfigure{\begin{tikzpicture}
+\pgfplotsset{replayaxis/.style={width=.48\linewidth,height=3.75cm,xmin=0,xmax=18,
+ xtick={0,4,8,12,16},xmajorgrids,axis lines=left,
+ tick label style={font=\sffamily\footnotesize},title style={font=\sffamily\small\bfseries,color=ink}}}
+\begin{axis}[replayaxis,name=designrank,ymin=.5,ymax=3.5,ytick={1,2,3},
+ yticklabels={GA,BO,Fixed},title={Original designs},xlabel={Queries to best margin}]
+\addplot[teal,thick,mark=*,mark size=2pt] coordinates {(6,1)(11,1)};
+\addplot[teal,only marks,mark=*,mark size=2pt] coordinates {(7,2)};
+\addplot[ink,only marks,mark=square*,mark size=2pt] coordinates {(16,3)};
+\end{axis}
+\begin{axis}[replayaxis,at={(designrank.east)},anchor=west,xshift=1.52cm,
+ ymin=.5,ymax=4.5,ytick={1,2,3,4},yticklabels={Hybrid,Reg.,PINN,Fixed},title={Revised scenarios},xlabel={Checks to verify flow}]
+\addplot[rust,thick,mark=*,mark size=2pt] coordinates {(7,1)(9,1)};
+\addplot[rust,only marks,mark=*,mark size=2pt] coordinates {(7,2)};
+\addplot[rust,thick,mark=*,mark size=2pt] coordinates {(7,3)(11,3)};
+\addplot[ink,only marks,mark=square*,mark size=2pt] coordinates {(7,4)};
+\end{axis}
+\end{tikzpicture}}{Figure C1. Independent replays of archived FDS results. The GA range spans 20 seeds. Scenario-order ranges allow either outcome for cases without archived results.}

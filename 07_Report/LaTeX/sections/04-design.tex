@@ -1,6 +1,6 @@
 \reportheading{4.\quad Task 2 --- Smoke extraction design and optimisation}
-\subhead{4.1\quad Search-order replay on the original 16 designs}
-At baseline soot yield, all 16 OP-6 designs fell below 0.38~m (Appendix~C). The design with the largest margin had a 0.16~m curtain and 0.32~m$^3$/s extraction. The fixed search order reached it on query 16, BO on query 7 and GA on queries 6--11 across 20 seeds. Even this design reached a minimum height of only 0.095~m, or 0.285~m below target. The FDS results across the grid therefore motivated a change in how replacement air entered the compartment and where smoke was extracted.
+\subhead{4.1\quad FDS screening of the original 16 designs}
+At baseline soot yield, all 16 OP-6 designs fell below 0.38~m (Appendix~C). The design with the largest margin had a 0.16~m curtain and 0.32~m$^3$/s extraction. Its minimum height was 0.095~m, or 0.285~m below target. The FDS results across the grid therefore motivated a change in how replacement air entered the compartment and where smoke was extracted.
 
 \subhead{4.2\quad Locating the failure and adapting the inlets}
 One OP-6 trial with 0.36~m end inlets, 0.24~m curtains and total extraction of 1.28~m$^3$/s fell to 0.353~m at the far-end station ($x=6.1$~m) at 83.0~s for soot yield 0.05. The adjacent samples both exceeded 0.60~m. Half-height visibility remained 30~m and the local vertical profile showed little temperature stratification. The recorded value fails the specified thermal screen, while the optical evidence indicates uncertainty about the physical extent of smoke at that location.
@@ -22,11 +22,10 @@ For OP-6 at baseline soot yield we minimised branch power over three prescribed 
 \clearpage
 \subhead{Six-scenario FDS confirmation}
 At 1.12~m$^3$/s all six refined-grid scenarios met the 0.38~m criterion at every sampled station over 120~s (Table~D3). Together with the lower-flow breach and the estimated branch powers, this establishes 1.12~m$^3$/s as the lowest-power feasible setting among the three flows tested for these inlet layouts. The limiting reading was 0.4358~m at the far end in OP-6 at soot yield 0.05. At that station and time ($x=6.1$~m, $t=113.0$~s), longitudinal velocity changed sign between $z=0.42$ and 0.44~m, close to the thermal interface.
-\subhead{Which of the six scenarios should be checked first?}
-On the refined grid, the fixed order tried the lowest-power flow first, checking OP-6 before OP-1 and increasing soot yield within each door state. In this replay, the first check rejected 0.96~m$^3$/s (OP-6, yield 0.02). Six further checks confirmed 1.12~m$^3$/s. These seven checks are the minimum needed to exclude the cheaper flow and establish feasibility at 1.12~m$^3$/s. With the same flow order, ranking scenarios by predicted height required 7--11 checks for the PINN, 7 for direct regression and 7--9 for their average. The ranges allow either outcome for scenarios without an archived result. None of the rankings saved a check on this set.
+\input{sections/verified-flow-forecast}
 
 \subhead{4.4\quad CO generation and local smoke conditions}
-The prescribed CO yield implies 10~g of CO per kilogram of fuel consumed. In earlier OP-6 trials with 0.24~m curtains and 1.28~m$^3$/s extraction, integrated HRR and the model heat of combustion gave nominal CO masses of 2.76, 2.81 and 2.94~g as soot yield increased. Corresponding local half-height peak concentrations were 20.0, 26.2 and 163.5~ppm. Local exposure depends on capture and dilution as well as total production. For the six low-flow preset scenarios the lowest sampled half-height visibility was 12.33~m and the highest sampled CO concentration was 22.82~ppm. Exhaust near the plume and an adequate make-up path help remove combustion products. For the original OP-6 layout with 0.16~m curtains and baseline soot, increasing exhaust from 0.16 to 0.64~m$^3$/s reduced mean CO at $x=6.1$~m from 101.04 to 0.62~ppm. Minimum thermal clearance there remained below target at both flows. Extraction reduced local exposure even though this layout still required revision.
+The specified CO yield gives 10~g per kilogram of fuel consumed. In earlier OP-6 trials (0.24~m curtains, 1.28~m$^3$/s), integrated fire power gave nominal CO masses of 2.76, 2.81 and 2.94~g with increasing soot yield. Corresponding peak half-height concentrations were 20.0, 26.2 and 163.5~ppm. Capture and dilution also affected local exposure. Across the six original-grid 0.96~m$^3$/s preset cases, minimum visibility was 12.33~m and maximum CO was 22.82~ppm. In the original OP-6 layout at baseline soot yield and 0.16~m curtain depth, increasing flow from 0.16 to 0.64~m$^3$/s reduced mean far-end CO from 101.04 to 0.62~ppm. Both cases breached the height target there.
 
 \tabletitle{Table 1. Half-height exposure indicators at the selected 1.12 m$^3$/s setting. Each value is the extreme over eight probes and 120 s on the refined grid.}
 \begin{reporttable}{L{.18}L{.24}L{.31}L{.27}}
@@ -38,4 +37,4 @@ OP-6&0.02&24.15&7.59\\
 OP-6&0.05&16.42&11.81\\
 OP-6&0.10&4.06&32.83\\
 \end{reporttable}
-The lowest sampled visibility and highest CO concentration occurred together under OP-6 at soot yield 0.10, at $x=3.6$~m and $t=3.0$~s. The smallest thermal clearance occurred farther downstream and later, under OP-6 at soot yield 0.05 ($x=6.1$~m, $t=113.0$~s).
+At the selected flow, peak CO and minimum visibility coincided near the burner (OP-6, yield 0.10, $x=3.6$~m, 3.0~s). The limiting thermal height occurred farther downstream under OP-6 at yield 0.05 ($x=6.1$~m, 113.0~s).

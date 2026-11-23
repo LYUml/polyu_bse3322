@@ -71,7 +71,7 @@
 \node[designnode] (initial) at (2.23,-6.98) {\textbf{16 OP-6 designs}\\All breach in FDS};
 \node[designnode] (layout) at (6.28,-6.98) {\textbf{Revise layout}\\Curtains, vents, make-up air};
 \draw[flow] (initial.east)--(layout.west);
-\node[designnode] (coarse) at (6.28,-8.47) {\textbf{Screen in FDS}\\0.96 and 1.28 pass};
+\node[designnode] (coarse) at (6.28,-8.47) {\textbf{Coarse-grid FDS}\\0.96 and 1.28 pass};
 \draw[flow] (layout.south)--(coarse.north);
 \node[designnode] (refine) at (2.23,-8.47) {\textbf{Finer vertical grid}\\Recheck clearance};
 \draw[flow] (coarse.west)--(refine.east);
@@ -107,11 +107,10 @@
 }
 
 \node[designnode] at (11.82,-9.70) {Queries to best of 16\\Fixed 16 \quad BO 7 \quad GA 6--11};
-\node[designnode] (hist) at (11.82,-11.04) {\textbf{Archived FDS minima}};
-\node[designnode] (pred) at (11.82,-12.18) {\textbf{PINN + regression}\\Predict candidate minima};
-\node[designnode,text=sea] (test) at (11.82,-13.53) {Test pre-screen accuracy\\against held-out FDS results};
+\node[designnode] (hist) at (11.82,-11.04) {\textbf{Independent scenario replay}};
+\node[designnode] (pred) at (11.82,-12.18) {\textbf{PINN + regression}\\Rank six cases per flow};
+\node[designnode,text=sea] (test) at (11.82,-13.53) {Archived checks to verify flow\\Fixed 7 \quad PINN 7--11};
 \draw[flow] (hist.south)--(pred.north);
 \draw[flow] (pred.south)--(test.north);
-\draw[flow,draw=sea] (pred.west)--(8.80,-12.18)--node[pos=.48,above,sloped,font=\sffamily\small,text=sea]{Proposed test order}(8.80,-8.47)--(coarse.east);
 \end{tikzpicture}
 \end{document}
