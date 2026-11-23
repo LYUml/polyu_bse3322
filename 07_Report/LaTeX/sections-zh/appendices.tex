@@ -6,6 +6,13 @@
 \reportfigure{\input{figures/op6-extinction-113s}}{图 A2.\quad OP-6 中心面，113.0~s，1.12~m$^3$/s，烟炱产率 0.05。色标上限为 0.10~m$^{-1}$。沿半高虚线读取原始切片，燃烧器正上方消光系数为 6.09~m$^{-1}$，远端 $x=6.1$~m 为 $1.58\times10^{-4}$~m$^{-1}$。远端圆点为 0.4358~m 的热分层界面，比目标高 55.8~mm。}
 
 \clearpage
+\reportheading{附录 A（续）.\quad Task 2 的 PyroSim 模型}
+\reportfigure{\includegraphics[width=\linewidth]{../previews/OP6_1p12_pyrosim_workspace.png}}{图 A3(a).\quad 图 A2 所对应的 OP-6 工况在 PyroSim 2026.2 中的原生模型视图（丙烯火，烟炱产率 0.05）。左侧模型树列出了网格、组分和表面类型。火源上方的两条排烟支路在 FDS 输入中各取 0.56~m$^3$/s。}
+
+\medskip
+\reportfigure{\includegraphics[trim=300bp 250bp 375bp 325bp,clip,width=.92\linewidth,height=.23\textheight,keepaspectratio]{../previews/OP6_1p12_y005_native_R1_exterior.png}}{图 A3(b).\quad 同一工况在 PyroSim Results 中的 FDS 几何外观。长侧墙上开启的门洞为 R1，两端墙另设补风口。}
+
+\clearpage
 \reportheading{附录 B.\quad 网格与门洞流量对照}
 47.2 和 106.2~kW 的火源特征直径分别为 0.283 和 0.391~m。两者与单元最长边之比在粗、中、细网格上分别为 5.65/7.82、7.27/10.05 和 9.42/13.03。与网格对齐后的燃烧器面积分别为 0.06250、0.06125 和 0.06300~m$^2$。
 \tabletitle{表 B1.\quad 门流诊断工况，90--120~s。}
