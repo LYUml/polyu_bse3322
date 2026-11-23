@@ -1,0 +1,20 @@
+\subhead{房间平面与排烟布局}
+\reportfigure{\begin{tikzpicture}[x=1.52cm,y=1.52cm,font=\sffamily\footnotesize]
+\fill[teal!5] (0,0) rectangle (6.6,.9);
+\draw[ink,line width=.7pt] (0,0) rectangle (6.6,.9);
+\foreach \x/\id in {.825/L2,2.475/L1,4.125/R1,5.775/R2}{
+ \draw[white,line width=2.3pt] (\x-.215,.9)--(\x+.215,.9);
+ \draw[teal,line width=2pt] (\x-.215,.9)--(\x+.215,.9);
+ \node[above,text=teal] at (\x,1.01){\bfseries \id};}
+\filldraw[fill=teal!24,draw=teal] (2.9,.05) rectangle (3.3,.85);
+\filldraw[fill=teal!24,draw=teal] (3.3,.05) rectangle (3.7,.85);
+\foreach \x in {2.8,3.8}{\draw[ink,dashed,thick] (\x,0)--(\x,.9);}
+\filldraw[fill=rust!30,draw=rust] (3.175,.325) rectangle (3.425,.575);
+\foreach \x in {0,6.6}{\draw[teal,line width=2.4pt] (\x,0)--(\x,.9);}
+\draw[gray!70,|<->|] (0,-.22)--node[fill=white,inner sep=2pt,text=ink]{6.60 m}(6.6,-.22);
+\draw[gray!70,|<->|] (6.90,0)--(6.90,.9);
+\node[right,text=ink] at (6.92,.45){0.90 m};
+\end{tikzpicture}\par
+{\sffamily\footnotesize\textcolor{rust}{\rule{6pt}{6pt}} 燃烧器\qquad
+\textcolor{teal!65}{\rule{6pt}{6pt}} 顶棚排烟口\qquad
+\textcolor{ink}{-- --} 挡烟垂壁\qquad\textcolor{teal}{\rule[.4ex]{10pt}{1.6pt}} 开口}}{名义几何的平面图。丙烷火模型使用图示侧开口。丙烯火设计增加端墙补风口，并在燃烧器上方两道挡烟垂壁之间设置两个顶棚排烟口。}

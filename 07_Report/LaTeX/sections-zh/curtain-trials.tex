@@ -1,0 +1,12 @@
+\reportfigure{\begin{tikzpicture}
+\begin{axis}[width=.94\linewidth,height=5.6cm,xmin=.009,xmax=.112,ymin=.22,ymax=.405,
+xtick={.02,.05,.10},ytick={.24,.28,.32,.36,.38,.40},scaled ticks=false,
+xticklabel style={/pgf/number format/fixed,/pgf/number format/fixed zerofill,/pgf/number format/precision=2},
+yticklabel style={/pgf/number format/fixed},axis lines*=left,ymajorgrids,grid style={ink!13},
+xlabel={烟炱产率 (kg/kg)},ylabel={最低高度 (m)},legend columns=3,legend style={at={(.5,1.03)},anchor=south,draw=none,/tikz/every even column/.append style={column sep=6pt}}]
+\addplot[only marks,teal,mark=*,mark size=3pt] coordinates {(0.02,0.2627491) (0.05,0.37114426) (0.1,0.24450079)};\addlegendentry{0.16 m 垂壁}
+\addplot[only marks,rust,mark=triangle*,mark size=3pt] coordinates {(0.02,0.36496348) (0.05,0.3527722) (0.1,0.36869806)};\addlegendentry{0.24 m 垂壁}
+\addplot[only marks,ink,mark=square*,mark size=3pt] coordinates {(0.10,0.26696128)};\addlegendentry{0.32 m 垂壁}
+\addplot[ink!75,dashed,forget plot] coordinates {(.009,.38) (.112,.38)};
+\node[anchor=south west,font=\sffamily\footnotesize,text=ink] at (axis cs:.011,.38){0.38 m 阈值};
+\end{axis}\end{tikzpicture}}{图 3.\quad 1.28~m$^3$/s 下七个已完成 OP-6 垂壁工况的最低热分层高度。每个标记取八个测点在 120~s 内的最低值。0.32~m 垂壁仅在烟炱产率 0.10~kg/kg 下测试。}
