@@ -76,7 +76,7 @@
  (.84,.10)--(.29,-.29)--(.29,-.43);
 \draw[sea,very thick] (-.21,-.34)--(.21,-.34);
 \end{scope}
-\node[labelnode,text=sea] (rank) at (7.50,-7.81) {\textbf{PINN + regression}\\Rank new candidates};
+\node[labelnode,text=sea] (rank) at (7.50,-7.81) {\textbf{PINN + regression}\\Proposed pre-screen};
 % Longitudinal section with eight actual station positions and the half-height plane.
 \begin{scope}[shift={(10.69,-7.23)},x=.52cm,y=.91cm]
 \filldraw[draw=ink,fill=white,line width=.7pt] (0,0) rectangle (6.6,.76);
@@ -86,7 +86,7 @@
 \foreach \x in {2.8,3.8}{\draw[ink,thick] (\x,.76)--(\x,.52);}
 \fill[clay] (3.175,0) rectangle (3.425,.07);
 \end{scope}
-\node[labelnode] (fds) at (12.40,-7.81) {\textbf{Test shortlist in FDS}\\Eight stations};
+\node[labelnode] (fds) at (12.40,-7.81) {\textbf{Verify designs in FDS}\\Eight stations};
 \draw[flow] (archive.east)--(rank.west);
 \draw[flow] (rank.east)--(fds.west);
 % Query ranks from the two seed-0 traces in search_replay.csv.
