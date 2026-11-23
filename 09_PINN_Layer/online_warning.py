@@ -58,6 +58,7 @@ def estimate(train, test, nfeat):
 def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
     hits=short_hits=false=count=short=0
     leads=[]
+    lead_lower_bounds = []
     for j,events in enumerate(case['events']):
         count+=len(events)
         short+=sum(b-a<=2 for a,b in events)
@@ -86,6 +87,9 @@ def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
                 matched.add(hit)
                 a,b=events[hit]
                 leads.append(a-now)
+                # Bound the crossing by its last at-or-above-limit sample.
+                before = np.searchsorted(case['t'], a, side='right') - 1
+                lead_lower_bounds.append(case['t'][before] - now)
                 if event_leads is not None:
                     event_leads[j, hit] = a-now
                 hits+=1
@@ -93,7 +97,9 @@ def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
     return dict(events=count,hits=hits,short_events=short,short_hits=short_hits,
                 false_alarms=false,lead_sum_s=sum(leads),
                 hits_at_least_half_second=sum(lead >= .5 for lead in leads),
-                hits_at_least_one_second=sum(lead >= 1 for lead in leads))
+                hits_at_least_one_second=sum(lead >= 1 for lead in leads),
+                confirmed_half_second_hits=sum(lead >= .5 for lead in lead_lower_bounds),
+                confirmed_one_second_hits=sum(lead >= 1 for lead in lead_lower_bounds))
 
 
 def main():
