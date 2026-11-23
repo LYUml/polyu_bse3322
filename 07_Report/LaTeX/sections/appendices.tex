@@ -63,7 +63,7 @@ A separate two-second warning test used observations from running simulations. A
 \input{sections/eight-stations}
 
 \clearpage
-\reportheading{Appendix F.\quad Window sensitivity and layout holdouts}
+\reportheading{Appendix F.\quad Sensitivity tests and layout holdouts}
 \tabletitle{Table F1. OP-6 board model at 106.2 kW compared with Peng Fig.~9. Peak position is relative to the burner.}
 \begin{reporttable}{L{.18}L{.20}L{.20}L{.22}L{.20}}
 \rowcolor{tablegrey}Window (s)&Peak rise (K)&Peak $x$ (m)&R1-side bias (K)&RMSE (K)\\
@@ -82,3 +82,8 @@ Ridge regression&8.87&14/14&0/19\\
 Nearest neighbour&9.59&14/14&0/19\\
 \end{reporttable}
 \tablenote{MAE uses 27 completed runs. Classification also includes six runs stopped after an observed breach, giving 33 decisions. Each estimator classified all 33 as passing. Section~5 separately reports holdouts of individual designs.}
+
+\medskip
+\subhead{Low-power OP-1 temperature diagnostic}
+The additional probes reproduced the baseline thermocouple RMSE of 192.4~K. Comparing the gas directly with Peng's readings gave 187.6~K RMSE. On average the gas was warmer than the bead by 4.7~K (2.5\% of the 191.8~K mean deficit). The thermocouple deficit averaged 191.1 and 192.5~K in the two successive 15~s windows. The discrepancy is already present in the predicted ceiling gas temperature. These outputs alone cannot separate the contributions of plume mixing, ventilation and other model assumptions.
+\input{sections/plume-diagnostic}
