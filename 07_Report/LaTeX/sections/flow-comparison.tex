@@ -2,14 +2,14 @@
 \begin{axis}[width=.96\linewidth,height=5.9cm,xmin=.6,xmax=6.4,ymin=.36,ymax=.61,
 ylabel={Minimum height (m)},xtick={1,2,3,4,5,6},
 xticklabels={{OP-1\\0.02},{OP-1\\0.05},{OP-1\\0.10},{OP-6\\0.02},{OP-6\\0.05},{OP-6\\0.10}},
-xticklabel style={align=center,font=\small},ytick={.38,.42,.46,.50,.54,.58},
+xticklabel style={align=center,font=\sffamily\small},ytick={.38,.42,.46,.50,.54,.58},
 scaled ticks=false,yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=2},
-axis lines=left,ymajorgrids,grid style={gray!20},tick align=outside,
-legend style={at={(.5,1.03)},anchor=south,draw=none,font=\small},/tikz/every even column/.append style={column sep=5pt},legend columns=3]
+axis lines*=left,ymajorgrids,grid style={ink!13},tick align=outside,
+legend style={at={(.5,1.03)},anchor=south,draw=none,font=\sffamily\small},/tikz/every even column/.append style={column sep=5pt},legend columns=3]
 \addplot[only marks,mark=*,color=teal,mark size=2.5pt] coordinates {(1,0.45742963) (2,0.47169434) (3,0.44104958) (4,0.39573017) (5,0.52617570) (6,0.40609647)};
 \addlegendentry{0.96 m$^3$/s}
 \addplot[only marks,mark=triangle*,color=rust,mark size=3pt] coordinates {(1,0.44252295) (2,0.50930185) (3,0.50127480) (4,0.58267633) (5,0.49747471) (6,0.55033156)};
 \addlegendentry{1.28 m$^3$/s}
-\addplot[black,dashed] coordinates {(.6,.38) (6.4,.38)};
+\addplot[ink!75,dashed] coordinates {(.6,.38) (6.4,.38)};
 \addlegendentry{0.38 m target}
 \end{axis}\end{tikzpicture}}{Figure 4. Minimum height across eight stations over 120 s on the original grid. Each pair shares a door state and soot yield (kg/kg). The closest point to the threshold occurs at OP-6 and 0.02 kg/kg for the lower flow.}

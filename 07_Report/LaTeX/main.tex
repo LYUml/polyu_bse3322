@@ -3,9 +3,17 @@
 \usepackage{fontspec,graphicx,array,colortbl,xurl}
 \usepackage{amsmath,pgfplots}
 \pgfplotsset{compat=1.18}
-\definecolor{ink}{HTML}{163A45}
-\definecolor{teal}{HTML}{096B70}
-\definecolor{rust}{HTML}{AA542C}
+\definecolor{ink}{HTML}{293C44}
+\definecolor{teal}{HTML}{286C78}
+\definecolor{rust}{HTML}{AD563B}
+\definecolor{ochre}{HTML}{A87327}
+\pgfplotsset{every axis/.append style={font=\sffamily\footnotesize,
+ axis lines*=left,axis line style={ink!55},tick style={ink!55},tick align=outside,
+ tick label style={font=\sffamily\scriptsize,text=ink},
+ label style={font=\sffamily\footnotesize,text=ink},
+ legend style={font=\sffamily\scriptsize,text=ink,draw=none},
+ title style={font=\sffamily\small\bfseries,text=ink},
+ grid style={ink!13},major tick length=2pt}}
 \usepackage[hidelinks]{hyperref}
 \setmainfont{Times New Roman}
 \urlstyle{same}

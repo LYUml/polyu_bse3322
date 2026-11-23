@@ -2,11 +2,11 @@
 \begin{axis}[width=.94\linewidth,height=5.6cm,xmin=.009,xmax=.112,ymin=.22,ymax=.405,
 xtick={.02,.05,.10},ytick={.24,.28,.32,.36,.38,.40},scaled ticks=false,
 xticklabel style={/pgf/number format/fixed,/pgf/number format/fixed zerofill,/pgf/number format/precision=2},
-yticklabel style={/pgf/number format/fixed},axis lines=left,ymajorgrids,grid style={gray!15},
+yticklabel style={/pgf/number format/fixed},axis lines*=left,ymajorgrids,grid style={ink!13},
 xlabel={Soot yield (kg/kg)},ylabel={Minimum height (m)},legend columns=3,legend style={at={(.5,1.03)},anchor=south,draw=none,/tikz/every even column/.append style={column sep=6pt}}]
 \addplot[only marks,teal,mark=*,mark size=3pt] coordinates {(0.02,0.2627491) (0.05,0.37114426) (0.1,0.24450079)};\addlegendentry{0.16 m curtain}
 \addplot[only marks,rust,mark=triangle*,mark size=3pt] coordinates {(0.02,0.36496348) (0.05,0.3527722) (0.1,0.36869806)};\addlegendentry{0.24 m curtain}
 \addplot[only marks,ink,mark=square*,mark size=3pt] coordinates {(0.10,0.26696128)};\addlegendentry{0.32 m curtain}
-\addplot[gray,dashed,forget plot] coordinates {(.009,.38) (.112,.38)};
+\addplot[ink!75,dashed,forget plot] coordinates {(.009,.38) (.112,.38)};
 \node[anchor=south west,font=\sffamily\footnotesize,text=ink] at (axis cs:.011,.38){0.38 m target};
 \end{axis}\end{tikzpicture}}{Figure 3. Minimum thermal layer height for the seven completed OP-6 curtain trials at 1.28 m$^3$/s. Each marker represents eight stations over 120 s. The 0.32 m curtain was evaluated at soot yield 0.10 kg/kg.}

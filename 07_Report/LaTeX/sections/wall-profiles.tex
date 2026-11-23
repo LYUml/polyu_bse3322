@@ -1,1 +1,15 @@
-\reportfigure{\includegraphics[width=.95\linewidth]{../op6_106_three_profiles_residual.png}}{Figure 2. Ceiling temperature rise for OP-6 at 106.2 kW. Both FDS profiles use the same diagnostic grid and 90--120 s window. The lower panel shows the board prediction minus the Peng measurement at each station.}
+\reportfigure{\begin{tikzpicture}
+\begin{axis}[name=profile,width=.90\linewidth,height=3.8cm,xmin=-340,xmax=340,
+ymin=0,ymax=1380,ytick={0,600,1200},xtick={-300,0,300},xticklabels=\empty,
+ylabel={Rise (K)},ymajorgrids,legend columns=3,legend style={at={(.5,1.02)},anchor=south}]
+\addplot[ink,only marks,mark=*,mark size=1.0pt] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/op6_106_board_doorflow_90_120.csv};\addlegendentry{Peng et al.}
+\addplot[rust,dashed,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/op6_106_doorflow_90_120.csv};\addlegendentry{Adiabatic}
+\addplot[teal,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/op6_106_board_doorflow_90_120.csv};\addlegendentry{Proxy board}
+\end{axis}
+\begin{axis}[at={(profile.south west)},anchor=north west,yshift=-.24cm,
+width=.90\linewidth,height=3.0cm,xmin=-340,xmax=340,ymin=-200,ymax=200,ytick={-150,0,150},xtick={-300,0,300},xlabel={Distance from fire axis (cm)},ylabel={Error (K)},ymajorgrids]
+\path[fill=teal!10] (axis cs:100,-200) rectangle (axis cs:330,200);
+\addplot[ink!65,dashed] coordinates {(-330,0) (330,0)};
+\addplot[teal,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=error_K]{../../05_Calculations/op6_106_board_doorflow_90_120.csv};
+\node[font=\sffamily\scriptsize,text=ink] at (axis cs:210,125) {Mean $-112.5$ K};
+\end{axis}\end{tikzpicture}}{Figure 2. Ceiling temperature rise for OP-6 at 106.2 kW. Both FDS profiles use the same diagnostic grid and 90--120 s window. The lower panel shows the board prediction minus the Peng measurement at each station.}

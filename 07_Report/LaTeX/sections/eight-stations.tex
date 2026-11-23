@@ -1,0 +1,13 @@
+\newcommand{\stationtrace}[2]{\begin{tikzpicture}
+\begin{axis}[width=.48\linewidth,height=2.47cm,xmin=0,xmax=120,ymin=0,ymax=.80,xtick={0,60,120},ytick={0,.38,.76},scaled ticks=false,title={$x=#2$ m},ymajorgrids]
+\addplot[ink!75,densely dashed] coordinates {(0,.38) (120,.38)};
+\addplot[teal,thick] table[col sep=comma,x=time,y=fds#1]{data/pinn-eight-stations.csv};
+\addplot[rust,dashed,thick] table[col sep=comma,x=time,y=pinn#1]{data/pinn-eight-stations.csv};
+\end{axis}\end{tikzpicture}}
+\reportfigure{{\sffamily\footnotesize Layer height (m)\hfill\textcolor{teal}{\rule[.4ex]{12pt}{1pt}} FDS\quad\textcolor{rust}{-- --} PINN\quad\textcolor{ink}{-- --} 0.38 m target\par}
+\begin{tabular}{@{}cc@{}}
+\stationtrace{0}{0.5}&\stationtrace{1}{1.7}\\
+\stationtrace{2}{2.4}&\stationtrace{3}{3}\\
+\stationtrace{4}{3.6}&\stationtrace{5}{4.2}\\
+\stationtrace{6}{4.9}&\stationtrace{7}{6.1}
+\end{tabular}\par{\sffamily\footnotesize Time (s)}}{Figure E1. FDS and PINN thermal layer heights across the eight sampled columns. The far-end station is enlarged in Figure 5.}

@@ -2,11 +2,11 @@
 \begin{tikzpicture}
 \begin{axis}[width=.48\linewidth,height=3.70cm,xmin=-340,xmax=340,ymin=0,ymax=1350,
 xtick={-300,0,300},ytick={0,600,1200},scaled ticks=false,
-axis lines*=left,axis line style={gray!60},tick style={gray!60},
-tick align=outside,major tick length=2pt,ymajorgrids,grid style={gray!18},
+axis lines*=left,axis line style={ink!55},tick style={ink!55},
+tick align=outside,major tick length=2pt,ymajorgrids,grid style={ink!13},
 title={#2},title style={at={(axis description cs:0,1)},anchor=south west,font=\sffamily\small\bfseries,color=ink,inner xsep=0pt},
 tick label style={font=\sffamily\scriptsize},enlarge x limits=false]
-\addplot[only marks,mark=*,mark size=1.15pt,gray!75!black] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/#1_90_120.csv};
+\addplot[only marks,mark=*,mark size=1.15pt,ink] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/#1_90_120.csv};
 \addplot[teal,line width=1.05pt,no marks] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/#1_90_120.csv};
 \node[anchor=north east,font=\sffamily\scriptsize,text=black!70,inner sep=2pt] at (rel axis cs:1,1) {RMSE #3 K};
 \end{axis}\end{tikzpicture}}
