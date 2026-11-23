@@ -40,10 +40,6 @@
 \definecolor{pendingred}{rgb}{0.55,0.10,0.06}
 \newcommand{\pendingdata}[1]{\par\smallskip\noindent\fcolorbox{pendingred}{white}{\parbox{\dimexpr\linewidth-2\fboxsep-2\fboxrule\relax}{\small\color{pendingred}\textbf{DATA PENDING}\quad #1}}\par}
 \begin{document}
-% Apply IEEEtran bibliography settings before the first reference.
-\makeatletter
-\immediate\write\@auxout{\string\citation{bibliography-control}}
-\makeatother
 \fontsize{11bp}{16bp}\selectfont
 {\centering
 {\fontsize{22bp}{26bp}\selectfont\bfseries 狭长房间的顶棚射流特性与排烟优化\par}
