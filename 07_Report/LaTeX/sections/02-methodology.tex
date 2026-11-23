@@ -1,12 +1,12 @@
 \reportheading{2.\quad Methodology}
-Both tasks used Fire Dynamics Simulator 6.10.1~\cite{fdsuser}. The propane experiment provides a benchmark for ceiling temperature. The propylene cases add soot production, mechanical exhaust and make-up air to assess smoke control.
+Fire Dynamics Simulator (FDS) version 6.10.1 was used for both tasks~\cite{fdsuser}. The propane runs reproduce the conditions of the ceiling-temperature experiment. The propylene runs include soot production, ceiling extraction and make-up air so that the available clear height can be assessed.
 
 \input{sections/study-flow}
 
 \subhead{2.1\quad Task 1 --- Propane fire and ceiling-jet validation}
-The model followed the compartment in Fig.~1 of the Topic B brief and the experiment of Peng et al.~\cite{peng}. Its internal dimensions were $6.60 \times 0.90 \times 0.76$~m (length, width and height). A floor-mounted, 0.25~m square burner was centred at $x=3.30$~m. Four side openings, each 0.43~m wide and 0.63~m high, were labelled L2, L1, R1 and R2 in order of increasing $x$. The computational domain extended beyond the opening wall to $y=1.40$~m, allowing flow to enter and leave at different heights across the same doorway. The reference ambient temperature was $27.5\,^{\circ}$C.
+The geometry follows Fig.~1 of the Topic B brief and the compartment tested by Peng et al.~\cite{peng}. The compartment measured $6.60 \times 0.90 \times 0.76$~m internally, with a 0.25~m square burner on the floor at $x=3.30$~m. Along one side wall, the openings were L2, L1, R1 and R2 in order of increasing $x$. Each was 0.43~m wide and 0.63~m high. The domain extended outside this wall to $y=1.40$~m so that air could enter at one height and leave through the same door at another. The reference ambient temperature was $27.5\,^{\circ}$C.
 
-Group~18 compared OP-1 (all four openings) with OP-6 (R1 alone) at nominal heat release rates of 47.2 and 106.2~kW. FDS prescribed the fire through the heat release rate per unit burner area. The recorded heat release rate and the burner footprint on each mesh were checked because snapping the burner edges to cell faces can change its effective area.
+Group~18 used both nominal fire powers, 47.2 and 106.2~kW, under each door state, OP-1 with all four doors open and OP-6 with only R1 open. FDS specifies heat release per unit burner area. Since the burner edges follow the mesh faces, we checked the resulting burner area on each grid together with the heat release rate recorded during the run.
 
 \clearpage
 \subhead{Spatial resolution and physical submodels}
@@ -14,44 +14,44 @@ The OP-1 study used $132\times28\times19$, $176\times36\times25$ and $220\times4
 \[
  D^*=\left(\frac{\dot Q}{\rho_\infty c_p T_\infty\sqrt{g}}\right)^{2/5}.
 \]
-Here $\dot Q$ is nominal fire power, $\rho_\infty$, $c_p$ and $T_\infty$ are ambient air density, specific heat and absolute temperature, and $g$ is gravitational acceleration. For each mesh, $D^*$ was divided by the longest cell dimension. Sensitivity was then assessed from the actual change in the predicted temperature profile.
+Here $\dot Q$ is the nominal fire power and $g$ is gravitational acceleration. The ambient air properties are density $\rho_\infty$, specific heat $c_p$ and absolute temperature $T_\infty$. Dividing $D^*$ by the longest cell dimension gives a common measure of resolution. The change in the longitudinal temperature profile shows what that resolution means for the result.
 
 \subhead{Task 1 --- Controlled comparisons and experimental measurements}
-At OP-1 and 106.2~kW, the coarse-grid simulations compared the Deardorff and WALE subgrid-scale closures at a fixed radiative fraction of 0.29~\cite{fdstech}. Yuen et al.\ also examined the sensitivity to closure in compartment-fire simulations~\cite{yuen}. Separate Deardorff runs varied this fraction to 0.20 and 0.50. To assess enclosure heat loss, paired runs replaced the adiabatic enclosure with a 15~mm conducting board. Board thickness came from the experiment. Density (200~kg/m$^3$), thermal conductivity (0.10~W/(m\,K)) and specific heat (1.0~kJ/(kg\,K)) were proxy inputs from the FDS Steckler insulation example~\cite{steckler}. The OP-6 wall comparison retained the same $154\times56\times23$ doorway-diagnostic mesh on both sides of the comparison. The 47.2~kW OP-1 wall pair used the original coarse grid.
+For OP-1 at 106.2~kW, we first held the coarse grid and radiative fraction (0.29) fixed and changed the subgrid closure from Deardorff to WALE~\cite{fdstech}. Yuen et al.\ also compared closures for compartment fires~\cite{yuen}. We then retained Deardorff and set the radiative fraction to 0.20 and 0.50 in separate runs. A further comparison replaced the adiabatic lining with a conducting board. The experiment supplied the board thickness of 15~mm. The FDS Steckler insulation example supplied proxy values for density (200~kg/m$^3$), conductivity (0.10~W/(m\,K)) and specific heat (1.0~kJ/(kg\,K))~\cite{steckler}. Both wall conditions used the $154\times56\times23$ doorway grid for OP-6 and the original coarse grid for OP-1 at 47.2~kW.
 
-The experimental reference was the longitudinal ceiling temperature rise digitised from Fig.~9 of Peng et al.~\cite{peng}. Model outputs from 1~mm thermocouples at $z=0.74$~m were paired with 51 experimental positions. At each position $i$, the simulated temperature was time-averaged over 90--120~s using the actual device output intervals, then expressed as a rise above the model ambient. For $e_i=\Delta T_{\mathrm{FDS},i}-\Delta T_{\mathrm{exp},i}$, the two profile statistics were
+Figure~9 of Peng et al.~\cite{peng} gives the measured ceiling-temperature rise along the compartment. We digitised 51 positions on each profile and paired them with readings from modelled 1~mm thermocouples at $z=0.74$~m. At position $i$, the FDS rise is the mean temperature over 90--120~s, weighted by the actual device intervals, less the model ambient temperature. With $e_i=\Delta T_{\mathrm{FDS},i}-\Delta T_{\mathrm{exp},i}$, the mean bias and root mean square error are
 \[
  \mathrm{bias}=\frac{1}{51}\sum_{i=1}^{51}e_i,\qquad
  \mathrm{RMSE}=\sqrt{\frac{1}{51}\sum_{i=1}^{51}e_i^2}.
 \]
-We recorded peak position relative to the burner and used the R1 velocity and temperature profiles to locate inflow and outflow over the same interval. The wall and radiation comparisons tested heat loss alongside doorway transport.
+The distance from the burner to the hottest station gives a separate measure of peak displacement. Over the same interval, the R1 profiles show which part of the door admitted cool air and which part carried hot gas out. The wall and radiation comparisons examine how heat loss also affects the ceiling temperature.
 
 \input{sections/layout}
 
 \clearpage
 \subhead{2.2\quad Task 2 --- Propylene fire and smoke extraction design}
-The design fire had a nominal heat release rate of 106.2~kW. The baseline soot yield was 0.02~kg/kg of fuel and the CO yield was 0.01~kg/kg. Two further soot yields, 0.05 and 0.10~kg/kg, were applied at the same specified CO yield. The six design scenarios combined these three yields with OP-1 and OP-6. Each scenario assumed a fixed doorway state throughout the fire. The original design grid comprised $132\times28\times19$ cells with adiabatic enclosure surfaces.
+For the nominal 106.2~kW propylene fire, the baseline soot yield was 0.02~kg/kg of fuel and the CO yield was 0.01~kg/kg. Additional runs raised the soot yield to 0.05 and 0.10~kg/kg while retaining the same CO yield. Each of the three soot yields was tested with OP-1 and OP-6, giving six scenarios with the doors held in position throughout each fire. The original design grid had $132\times28\times19$ cells and adiabatic enclosure surfaces.
 
 \subhead{Candidate screening and design changes}
-We examined two ways to prioritise FDS checks using archived results. In the first replay the unit of choice was a design. For the revised layout we ranked the six scenarios within each flow and tested whether also reordering the flows changed the number of checks.
+The archived FDS results support two comparisons of checking order. For the original layout, the next choice was a design. For the revised layout, the choice was which of six scenarios to check first at a given flow. We also examined the effect of changing the flow order.
 
 An initial OP-6 screen at baseline soot yield crossed four curtain depths (0, 0.08, 0.16 and 0.24~m) with four total exhaust flows (0.08, 0.16, 0.24 and 0.32~m$^3$/s). The fixed-order benchmark, Bayesian optimisation (BO)~\cite{bo} and a genetic algorithm (GA)~\cite{ga} began with the same four corner designs. Each query revealed one archived FDS margin. BO and GA used only the margins revealed so far to select their next design. We counted all queries through the first discovery of the largest recorded margin and repeated GA with 20 random seeds.
 
-Subsequent trials changed the make-up air arrangement. The paired-flow design placed ceiling extraction directly above the burner, between two transverse curtains at $x=2.8$ and 3.8~m extending 0.24~m below the ceiling. Each of the two ceiling vents served a separate exhaust branch. Both end-wall make-up openings extended upwards from floor level, to 0.44~m for OP-1 or 0.48~m for OP-6.
+In the revised layout, replacement air enters at floor level through an opening in each end wall. The inlet height is 0.44~m with OP-1 and 0.48~m with OP-6. Above the burner, two ceiling vents each feed a separate exhaust branch. Transverse curtains at $x=2.8$ and 3.8~m extend 0.24~m below the ceiling on either side of the vents.
 
 \reportfigure{\includegraphics[width=\linewidth]{../figures/op6_1p12_fds_geometry_review.png}}{Cutaway of the refined OP-6 layout. The near wall is omitted from the view. In FDS it is a continuous adiabatic wall at $y=0$. R1 is the only open side door. Dashed outlines mark the three closed door positions. Both end walls admit make-up air through openings extending 0.48~m above the floor.}
 
-With these presets fixed, total extraction of 0.96 and 1.28~m$^3$/s was compared at equal flow per branch across the six scenarios. After vertical-grid refinement we also tested 1.12~m$^3$/s. For the separate scenario-order replay, we excluded these revised-layout inlet families from training and kept the three flows in increasing power order. Within each flow, the physics-informed neural network (PINN)~\cite{pinn}, direct regression and their equal-weight average each ranked the six scenarios by predicted minimum height, lowest first (Section~5.2).
+With the two branches sharing the flow equally, we compared 0.96 and 1.28~m$^3$/s across all six scenarios. The refined grid also included the intermediate flow of 1.12~m$^3$/s. For the separate ranking study, we excluded both revised inlet families from training and retained increasing power order for the three flows. At each flow the physics-informed neural network (PINN)~\cite{pinn}, direct regression and their equal-weight average ranked the six scenarios from lowest to highest predicted clearance (Section~5.2).
 
 \subhead{Layer-height criterion and local smoke measurements}
 FDS reported a thermally inferred layer height $h_j(t)$ along eight vertical columns on the centreplane, $y=0.45$~m. Their longitudinal positions were 0.5, 1.7, 2.4, 3.0, 3.6, 4.2, 4.9 and 6.1~m. Devices were sampled nominally every 0.5~s. For scenario $s$ the sampled margin was
 \[
  m_s=\min_{j,\,0\leq t\leq120\,\mathrm{s}} h_{j,s}(t)-0.38\,\mathrm{m}.
 \]
-The threshold is half the compartment height. A recorded negative margin was sufficient to reject a screened candidate. Comparison across six scenarios required a complete 120~s record for each surviving case. The smallest scenario margin, its station and its time identified the controlling observation. The spatial inference is limited by the eight sampled columns.
+Half the compartment height sets the clearance threshold. A single reading below it is sufficient to reject a candidate during screening. A candidate that clears this check needs a full 120~s record for each of the six scenarios. The smallest recorded margin then identifies the door state, soot yield, station and time governing the design. This check covers the eight instrumented columns.
 
 \subhead{Task 2 --- Optical conditions, CO and fan power}
-Visibility and CO volume fraction were sampled at the same station positions at $z=0.38$~m. Centreplane extinction fields provided an additional check on smoke near the fire and farther along the compartment. These quantities distinguish the thermal interface used in the design criterion from local exposure at half height. CO generation was assessed with reference to fuel consumption and the specified CO yield. Local concentrations depend additionally on transport, dilution and removal. The recorded fire power was checked alongside each design comparison.
+At the same stations, probes at $z=0.38$~m recorded visibility and CO volume fraction. A centreplane map of extinction shows how far smoke extends from the fire. These measurements describe local conditions at half height alongside the temperature-based clearance criterion. Fuel consumption and the specified yield determine the estimated mass of CO generated. The concentration at a probe also depends on how the gas travels, mixes with air and leaves the compartment. Recorded fire power was checked for each comparison.
 
 For a total volume flow $Q$ divided equally between the two short exhaust branches, the estimated electrical input was
 \[
@@ -59,10 +59,10 @@ For a total volume flow $Q$ divided equally between the two short exhaust branch
  \Delta p=\left(f\frac{L}{D_h}+K\right)\frac{\rho}{2}
                  \left(\frac{Q}{2A}\right)^2 .
 \]
-Each branch had area $A=0.32$~m$^2$ and length $L=0.40$~m. The estimate assumed hydraulic diameter $D_h=0.533$~m, air density $\rho=1.2$~kg/m$^3$, Darcy friction factor $f=0.02$, local loss coefficient $K=2$ and fan efficiency $\eta=0.60$. The two parallel branches share the same pressure drop. The estimate covers the modelled branches only.
+Each short branch has area $A=0.32$~m$^2$, length $L=0.40$~m and assumed hydraulic diameter $D_h=0.533$~m. The loss calculation takes air density $\rho=1.2$~kg/m$^3$, Darcy friction factor $f=0.02$ and local loss coefficient $K=2$. The two branches run in parallel, so the same pressure drop applies to each. Applying fan efficiency $\eta=0.60$ to the combined flow gives the electrical input for these branches alone.
 
 \subhead{Selection and verification of the design flow}
-We retained the horizontal grid and increased the vertical cell count from 19 to 38. With the inlet and curtain geometry fixed, we tested 1.12~m$^3$/s midway between the two original flow settings. The OP-6 baseline-soot runs compare all three settings on the same refined grid (Figure~4b). We assessed the selected flow against the full 120~s records at eight stations for each door state and soot yield (Table~D3).
+For the flow selection we doubled the vertical cell count from 19 to 38 and retained the horizontal grid, inlet settings and curtains. The intermediate setting of 1.12~m$^3$/s lies halfway between the original flows. Figure~4b compares all three on the refined grid for OP-6 at baseline soot yield. Table~D3 checks the selected flow against the eight station histories over 120~s for each combination of door state and soot yield.
 \clearpage
 \subhead{2.3\quad Constrained optimisation of the extraction system}
 The brief specifies a minimum clear height and requires a power estimate for mechanical extraction. Group~18 chose minimum required fan input power as the design objective. Let $g$ denote a candidate layout, $Q$ the total extraction rate in m$^3$/s and $P$ the required electrical input in watts. We formulated the design problem as
@@ -85,4 +85,4 @@ For the two equal-flow branches, we evaluate power using the short-branch loss e
 m(g,Q)=\min_{s\in S,\ i\in I,\ t\in T_s}
            \{h_{s,i,t}(g,Q)-0.38\,\mathrm{m}\}.
 \]
-Any observed negative clearance excludes a candidate. Establishing $m\geq0$ requires full coverage. Among candidates satisfying this condition we compare estimated electrical inputs. When every candidate in a screen violates the criterion, the largest observed margin identifies a direction for redesign. The Bayesian and genetic search replays in Section~5.2 apply to that diagnostic comparison.
+One negative margin excludes a design. A feasible design must have $m\geq0$ over the full set of records, after which its electrical input can be compared with that of other feasible designs. If every candidate falls short, the design with the largest margin provides a starting point for the next layout. The Bayesian and genetic searches in Section~5.2 are assessed on how soon they locate that design.
