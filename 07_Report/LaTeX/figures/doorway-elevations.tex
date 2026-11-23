@@ -1,0 +1,36 @@
+% Nominal coordinates from the final inlet44_1 and inlet48_6 FDS inputs.
+% Both elevations use the same horizontal and vertical scale.
+\begin{tikzpicture}[
+  x=1.78cm,y=1.78cm,inner sep=0pt,text=ink,
+  every node/.style={font=\sffamily\footnotesize},
+  wall/.style={draw=ink!70,fill=ink!18,line width=.55pt},
+  opening/.style={draw=teal,line width=.95pt},
+  closed/.style={draw=ink!68,densely dashed,line width=.6pt}]
+  \node[anchor=west,font=\sffamily\bfseries\small] at (0,1.25)
+    {\doorlang{Side wall}{侧墙}\enspace 6.60 m};
+  \node[anchor=west,font=\sffamily\bfseries\small] at (7.03,1.25)
+    {\doorlang{End walls}{两端墙}};
+  \foreach \case/\offset/\inlet in {1/0/.44,6/-1.9/.48}{
+    \begin{scope}[shift={(0,\offset)}]
+      \node[anchor=west,font=\sffamily\bfseries\footnotesize] at (0,.96) {OP-\case};
+      \draw[wall] (0,0) rectangle (6.6,.76);
+      \foreach \left/\door/\openSix in {.61/L2/0,2.26/L1/0,3.91/R1/1,5.56/R2/0}{
+        \ifnum\case=1 \def\openDoor{1}\else \edef\openDoor{\openSix}\fi
+        \ifnum\openDoor=1
+          \fill[white] (\left,-.008) rectangle ++(.43,.638);
+          \draw[opening] (\left,0) -- ++(0,.63) -- ++(.43,0) -- ++(0,-.63);
+        \else
+          \draw[closed] (\left,0) -- ++(0,.63) -- ++(.43,0) -- ++(0,-.63);
+        \fi
+        \node at (\left+.215,-.19) {\door};
+      }
+      \draw[wall] (7.03,\inlet) rectangle (7.93,.76);
+      \draw[opening] (7.03,0) -- (7.03,\inlet) -- (7.93,\inlet) -- (7.93,0);
+      \node at (7.48,-.19) {\ifnum\case=1 0.44\else 0.48\fi\ m};
+    \end{scope}
+  }
+  \draw[opening] (0,-2.52) -- ++(.32,0);
+  \node[anchor=west] at (.42,-2.52) {\doorlang{Open aperture}{开启的洞口}};
+  \draw[closed] (3.05,-2.52) -- ++(.32,0);
+  \node[anchor=west] at (3.47,-2.52) {\doorlang{Closed door position (solid wall)}{关闭的门位（实体墙）}};
+\end{tikzpicture}

@@ -39,7 +39,7 @@ An initial OP-6 screen at baseline soot yield crossed four curtain depths (0, 0.
 
 Subsequent trials changed the make-up air arrangement. The paired-flow design placed ceiling extraction directly above the burner, between two transverse curtains at $x=2.8$ and 3.8~m extending 0.24~m below the ceiling. Each of the two ceiling vents served a separate exhaust branch. Both end-wall make-up openings extended upwards from floor level, to 0.44~m for OP-1 or 0.48~m for OP-6.
 
-\reportfigure{\includegraphics[width=\linewidth]{../figures/op6_1p12_fds_geometry_review.png}}{Cutaway of the refined OP-6 layout. R1 is the only open side door. Dashed outlines mark the three closed door positions. Both end walls admit make-up air through openings extending 0.48~m above the floor. Figure~A1 shows the model in PyroSim.}
+\reportfigure{\includegraphics[width=\linewidth]{../figures/op6_1p12_fds_geometry_review.png}}{Cutaway of the refined OP-6 layout. R1 is the only open side door. Dashed outlines mark the three closed door positions. Both end walls admit make-up air through openings extending 0.48~m above the floor. Figure~A1 compares both door configurations and identifies R1 in the native PyroSim view.}
 
 With these presets fixed, total extraction of 0.96 and 1.28~m$^3$/s was compared at equal flow per branch across the six scenarios. After vertical-grid refinement we also tested 1.12~m$^3$/s. For the separate scenario-order replay, we excluded these revised-layout inlet families from training and kept the three flows in increasing power order. Within each flow, the physics-informed neural network (PINN)~\cite{pinn}, direct regression and their equal-weight average each ranked the six scenarios by predicted minimum height, lowest first (Section~5.2).
 
