@@ -1,116 +1,48 @@
 \documentclass[tikz,border=3pt]{standalone}
-\usepackage{pgfplots}
-\pgfplotsset{compat=1.18}
 \usetikzlibrary{arrows.meta}
 \definecolor{ink}{HTML}{293C44}
 \definecolor{sea}{HTML}{286C78}
 \definecolor{clay}{HTML}{AD563B}
 \definecolor{ochre}{HTML}{A87327}
 \begin{document}
-\begin{tikzpicture}[font=\sffamily\large,text=ink,
- labelnode/.style={align=center,inner sep=3pt},
- title/.style={font=\sffamily\bfseries\large,align=center,inner xsep=9pt,inner ysep=3pt},
- flow/.style={draw=ink!85,line width=.85pt,-{Stealth[length=1.55mm]},rounded corners=2pt},
- stage/.style={draw=sea,line width=1.25pt,-{Stealth[length=1.75mm]}},
- tag/.style={font=\sffamily\normalsize,inner sep=2pt}]
-% The stage bands carry the sequence; illustrations belong to their own stage.
-\filldraw[draw=sea!30,fill=sea!6] (0,0) rectangle (15,-2.08);
-\filldraw[draw=sea!30,fill=sea!4] (0,-2.94) rectangle (15,-5.05);
-\filldraw[draw=ochre!40,fill=ochre!6] (0,-5.91) rectangle (15,-14.30);
-\node[title,fill=sea!18] at (7.5,0) {Compartment and fire inputs};
-\node[title,fill=sea!18] at (7.5,-2.94) {Task 1\quad Propane validation};
-\node[title,fill=ochre!21] at (7.5,-5.91) {Task 2\quad Propylene extraction and optimisation};
-\draw[stage] (7.5,-2.12)--(7.5,-2.61);
-\draw[stage] (7.5,-5.09)--(7.5,-5.58);
-% Physical plan and door states, simplified from the report's layout.
-\begin{scope}[shift={(.66,-1.18)},x=.52cm,y=.52cm]
-\filldraw[draw=ink,fill=white,thick] (0,0) rectangle (6.6,.9);
-\foreach \x in {.825,2.475,4.125,5.775}
- \draw[sea,line width=2pt] (\x-.215,.9)--(\x+.215,.9);
-\fill[clay] (3.175,.325) rectangle (3.425,.575);
-\end{scope}
-\node[labelnode] at (2.38,-1.66) {6.60 m compartment};
-\foreach \y/\id in {-.74/OP-1,-1.16/OP-6}{
- \node[anchor=east,font=\sffamily\normalsize] at (6.83,\y) {\id};
- \foreach \k in {0,...,3}{\draw[ink!65,fill=white] (7+.42*\k,\y-.1) rectangle ++(.28,.20);}
-}
-\foreach \k in {0,...,3}{\fill[sea] (7+.42*\k,-.84) rectangle ++(.28,.20);}
-\fill[sea] (7+.42*2,-1.26) rectangle ++(.28,.20);
-\node[labelnode] at (7.50,-1.66) {Open side doors};
-% Two burner symbols indicate the two prescribed heat release rates.
-\foreach \x/\s in {11.73/.68,12.82/1}{
- \begin{scope}[shift={(\x,-1.24)},scale=\s]
- \draw[ink,line width=1.2pt] (-.31,0)--(.31,0);
- \fill[clay] (0,.04).. controls (-.53,.17) and (-.13,.51) ..(-.10,.65)
- .. controls (.05,.53) and (.11,.42) ..(.14,.30)
- .. controls (.23,.45) and (.23,.47) ..(.24,.52)
- .. controls (.50,.18) and (.26,.06) ..(0,.04);
- \end{scope}}
-\node[labelnode] at (12.32,-1.66) {47.2 / 106.2 kW};
-% Centre thumbnail uses the actual paired profile for OP-1 at 106.2 kW.
-\begin{scope}[shift={(1.57,-4.21)},x=.33cm,y=.21cm]
-\draw[step=1,sea!65,thin] (0,0) grid (5,2);
-\draw[ink] (0,0) rectangle (5,2);
-\draw[ink] (0,2)--(.7,2.85)--(5.7,2.85)--(5,2) (5.7,2.85)--(5.7,.85)--(5,0);
-\end{scope}
-\node[labelnode] at (2.52,-4.64) {Run four FDS cases};
-\begin{axis}[at={(6.43cm,-4.25cm)},anchor=south west,scale only axis,width=2.08cm,height=.77cm,
- axis lines=left,axis line style={-,ink!55},xtick=\empty,ytick=\empty,xmin=0,xmax=660,ymin=250,ymax=1000]
-\addplot[sea,thick] table[col sep=comma,x=sensor_x_cm,y=fds_rise_K]{../../../05_Calculations/op1_106_coarse_90_120.csv};
-\addplot[clay,only marks,mark=*,mark size=.85pt] table[col sep=comma,x=sensor_x_cm,y=exp_rise_K]{../../../05_Calculations/op1_106_coarse_90_120.csv};
-\end{axis}
-\node[labelnode] at (7.48,-4.64) {Match 51 stations};
-\node[labelnode] at (12.45,-4.12) {Assess profile error\\and peak location};
-\draw[flow] (4.52,-4.07)--(5.59,-4.07);
-\draw[flow] (9.33,-4.07)--(10.39,-4.07);
-
-% The left lane follows physical design decisions. The right lane analyses FDS records.
-\tikzset{designnode/.style={labelnode,font=\sffamily\normalsize},
- decision/.style={designnode,draw=ochre!80,fill=white,rounded corners=2pt,inner sep=4pt}}
-\draw[ochre!32] (8.42,-6.35)--(8.42,-13.97);
-\node[designnode] (initial) at (2.23,-6.98) {\textbf{16 OP-6 designs}\\All breach in FDS};
-\node[designnode] (layout) at (6.28,-6.98) {\textbf{Revise layout}\\Vents, curtains, inlets};
-\draw[flow] (initial.east)--(layout.west);
-\node[designnode] (coarse) at (6.28,-8.47) {\textbf{Coarse-grid screen}\\0.96 and 1.28 pass};
-\draw[flow] (layout.south)--(coarse.north);
-\node[designnode] (refine) at (2.23,-8.47) {\textbf{Refine and retest}\\Eight FDS stations};
-\draw[flow] (coarse.west)--(refine.east);
-\node[decision] (gate) at (2.23,-10.05) {All six cases hold\\$h\geq0.38$ m for 120 s?};
-\draw[flow] (refine.south)--(gate.north);
-\node[designnode] (retry) at (6.28,-10.05) {\textbf{0.96 breaches}\\Test 1.12};
-\draw[flow] (gate.east)--node[above,tag]{No}(retry.west);
-\draw[flow] (retry.north)--(6.28,-9.16)-|(refine.south east);
-\node[designnode] (verified) at (2.23,-11.85) {\textbf{1.12 passes all six}\\Minimum margin 55.8 mm};
-\draw[flow] (gate.south)--node[right,tag]{Yes}(verified.north);
-\node[designnode,fill=white,draw=ochre!55,inner sep=5pt] (power) at (4.16,-13.42)
- {$\displaystyle\min P$\quad s.t.\ all sampled heights $\geq0.38$ m\\
- \textbf{Select 1.12 m$^3$/s}\quad 6.91 W};
-\draw[flow] (verified.south)--(verified.south |- power.north);
-\node[designnode,text=sea] (replay) at (11.82,-6.67) {\textbf{Replay archived search order}};
-\draw[flow] (initial.north)--++(0,.30)-|(8.72,-6.67)--(replay.west);
-\foreach \x/\heading/\ranks in {
- 10.25/{Bayesian\\optimisation}/{1,9,12,2,10,16,5,11,14,6,15,7,3,13,8,4},
- 13.22/{Genetic\\algorithm}/{1,13,8,2,14,10,9,5,15,16,7,6,3,12,11,4}}{
- \node[align=center,font=\sffamily\normalsize] at (\x,-7.36) {\heading};
- \foreach \q [count=\i from 0] in \ranks{
-  \pgfmathtruncatemacro{\rownum}{int(\i/4)}
-  \pgfmathtruncatemacro{\colnum}{mod(\i,4)}
-  \begin{scope}[shift={(\x+.42*\colnum-.63,-7.99-.34*\rownum)}]
-   \ifnum\i=11
-    \fill[sea] (-.21,-.17) rectangle (.21,.17);
-    \node[text=white,font=\sffamily\bfseries\small] {\q};
-   \else
-    \filldraw[draw=ink!24,fill=white,line width=.3pt] (-.21,-.17) rectangle (.21,.17);
-    \node[font=\sffamily\small] {\q};
-   \fi
-  \end{scope}}
-}
-
-\node[designnode] at (11.82,-9.70) {Queries to largest margin\\Fixed 16 \quad BO 7 \quad GA 6--11};
-\node[designnode] (hist) at (11.82,-11.04) {\textbf{Prior FDS histories}};
-\node[designnode] (pred) at (11.82,-12.18) {\textbf{PINN + regression}\\Estimate minimum height};
-\node[designnode,text=sea] (test) at (11.82,-13.53) {Assess proposed pre-screen\\Holdouts and frozen forecasts};
-\draw[flow] (hist.south)--(pred.north);
-\draw[flow] (pred.south)--(test.north);
+\begin{tikzpicture}[font=\sffamily,text=ink,
+ head/.style={anchor=west,font=\sffamily\large\bfseries,inner sep=0pt},
+ detail/.style={anchor=west,font=\sffamily\normalsize,inner sep=0pt},
+ link/.style={draw=sea,line width=1.15pt,-{Stealth[length=2mm]}},
+ branch/.style={draw=ink!65,line width=.65pt,-{Stealth[length=1.45mm]}}]
+\fill[sea!6] (0,0) rectangle (15.6,-2.23);
+\fill[ochre!6] (0,-2.36) rectangle (15.6,-8.38);
+\node[head,text=sea] at (.34,-.33) {Task 1\quad Propane benchmark};
+\node[head] at (1.47,-.97) {Compare FDS with Peng's experiments};
+\node[detail] at (1.47,-1.41) {Two door states, two fire powers, 51 ceiling stations};
+\node[detail] at (1.47,-1.88) {Door state changes the exchange flow and ceiling-temperature profile.};
+\node[head,text=ochre!85!black] at (1.47,-2.73) {Task 2\quad Propylene smoke extraction};
+\node[head] (initial) at (1.47,-3.46) {All 16 initial OP-6 designs breach};
+\node[detail] at (1.47,-3.90) {The thermal interface falls below 0.38 m.};
+\node[head] at (1.47,-4.78) {Revise the layout for both door states};
+\node[detail] at (1.47,-5.22) {Two ceiling vents, curtains and door-dependent end inlets};
+\node[head] at (1.47,-6.10) {Compare 0.96 and 1.28 m$^3$/s};
+\node[detail] at (1.47,-6.54) {Both pass on the coarse grid. Refine the limiting cases.};
+\node[head,text=clay] at (1.47,-7.42) {Reject 0.96 m$^3$/s on the refined grid};
+\node[detail] at (1.47,-7.86) {The interface reaches 0.3717 m. Test the intermediate flow.};
+\filldraw[fill=sea!12,draw=sea!45] (0,-8.52) rectangle (15.6,-10.27);
+\node[head,text=sea] at (1.47,-8.98) {Select 1.12 m$^3$/s};
+\node[detail] at (1.47,-9.47) {All six scenarios pass at eight stations over 120 s. Minimum margin: 55.8 mm.};
+\node[detail] at (1.47,-9.91) {Lowest estimated branch power among tested feasible flows: 6.91 W (33\% below 1.28 m$^3$/s).};
+\foreach \y in {-.97,-3.46,-4.78,-6.10,-7.42,-8.98}{
+ \filldraw[fill=white,draw=sea,thick] (.80,\y) circle (.095);}
+\foreach \a/\b in {-1.08/-3.32,-3.57/-4.64,-4.89/-5.96,-6.21/-7.28,-7.53/-8.84}
+ {\draw[link] (.80,\a)--(.80,\b);}
+% Secondary analyses use archived evidence and do not feed the selection node.
+\filldraw[fill=white,draw=ink!20] (10.73,-3.14) rectangle (15.36,-7.00);
+\draw[branch] (initial.east)--(10.69,-3.46);
+\node[detail,font=\sffamily\bfseries] at (10.95,-3.49) {Archived FDS data};
+\draw[branch] (11.07,-3.75)--(11.07,-4.42)--(11.39,-4.42);
+\draw[branch] (11.07,-4.42)--(11.07,-5.88)--(11.39,-5.88);
+\node[detail,font=\sffamily\small\bfseries] at (11.49,-4.28) {Bayesian optimisation};
+\node[detail,font=\sffamily\small\bfseries] at (11.49,-4.65) {and genetic algorithm};
+\node[detail,font=\sffamily\small] at (11.49,-5.06) {Replay search order};
+\node[detail,font=\sffamily\small\bfseries] at (11.49,-5.88) {PINN + regression};
+\node[detail,font=\sffamily\small] at (11.49,-6.31) {Evaluate pre-screening};
 \end{tikzpicture}
 \end{document}
