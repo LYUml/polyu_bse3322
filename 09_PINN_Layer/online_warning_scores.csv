@@ -9,6 +9,7 @@ inlet44_1_0p02_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p02_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p02_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,1,0,0,0,0,0
 inlet44_1_0p02_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,1,0,0,0,0,0
+inlet44_1_0p02_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,1,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,trend,0,0,0,0,54,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,2,0,0,0,0,0
@@ -19,6 +20,7 @@ inlet44_1_0p02_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,2,0,0,0,0,0
 inlet44_1_0p02_0p24_1p28_120,staged_first_breach,0,0,0,0,2,0,0,0,0,0
+inlet44_1_0p02_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,2,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,trend,0,0,0,0,42,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,1,0,0,0,0,0
@@ -29,6 +31,7 @@ inlet44_1_0p05_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_1_0p05_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,trend,0,0,0,0,59,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,trend_calibrated,0,0,0,0,1,0,0,0,0,0
@@ -39,6 +42,7 @@ inlet44_1_0p05_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p05_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_1_0p05_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,trend,0,0,0,0,41,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -49,6 +53,7 @@ inlet44_1_0p1_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_1_0p1_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,trend,0,0,0,0,45,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,trend_calibrated,0,0,0,0,1,0,0,0,0,0
@@ -59,6 +64,7 @@ inlet44_1_0p1_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_1_0p1_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_1_0p1_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,trend,0,0,0,0,13,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,2,0,0,0,0,0
@@ -69,6 +75,7 @@ inlet44_6_0p02_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p02_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_6_0p02_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,trend,0,0,0,0,17,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,trend_calibrated,0,0,0,0,2,0,0,0,0,0
@@ -79,6 +86,7 @@ inlet44_6_0p05_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44_6_0p05_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44_6_0p05_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,trend,0,0,0,0,52,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -89,6 +97,7 @@ inlet44L48R_1_0p1_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet44L48R_1_0p1_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet44L48R_1_0p1_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,trend,0,0,0,0,51,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,2,0,0,0,0,0
@@ -99,6 +108,7 @@ inlet48_1_0p02_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,1,0,0,0,0,0
 inlet48_1_0p02_0p24_1p28_120,staged_first_breach,0,0,0,0,1,0,0,0,0,0
+inlet48_1_0p02_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,1,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,trend,0,0,0,0,52,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -109,6 +119,7 @@ inlet48_1_0p05_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_1_0p05_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_1_0p05_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,trend,0,0,0,0,36,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -119,6 +130,7 @@ inlet48_6_0p02_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p02_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,trend,0,0,0,0,9,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -129,6 +141,7 @@ inlet48_6_0p02_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p02_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,trend,0,0,0,0,7,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -139,6 +152,7 @@ inlet48_6_0p02_0p24_1p28_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p02_0p24_1p28_z38_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p02_0p24_1p28_z38_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,trend,0,0,0,0,51,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -149,6 +163,7 @@ inlet48_6_0p05_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,1,0,0,0,0,0
 inlet48_6_0p05_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,1,0,0,0,0,0
+inlet48_6_0p05_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,1,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,trend,0,0,0,0,8,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -159,6 +174,7 @@ inlet48_6_0p05_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p05_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p05_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,trend,0,0,0,0,33,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -169,6 +185,7 @@ inlet48_6_0p1_0p24_1p12_z38_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p12_z38_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p12_z38_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,persistence,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,trend,0,0,0,0,10,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -179,6 +196,7 @@ inlet48_6_0p1_0p24_1p28_120,nearest_temperature_rearm,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,nearest_temperature_rearm_lowest_station,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,lowest_station_descent_fallback,0,0,0,0,0,0,0,0,0,0
 inlet48_6_0p1_0p24_1p28_120,staged_first_breach,0,0,0,0,0,0,0,0,0,0
+inlet48_6_0p1_0p24_1p28_120,staged_union_trend_confirmation,0,0,0,0,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,persistence,0,0,0,0,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,trend,0,0,0,0,119,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,trend_calibrated,0,0,0,0,0,0,0,0,0,0
@@ -189,6 +207,7 @@ tall_makeup_1_0p05_0p24_0p96_120,nearest_temperature_rearm,0,0,0,0,4,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,nearest_temperature_rearm_lowest_station,0,0,0,0,4,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,lowest_station_descent_fallback,0,0,0,0,4,0,0,0,0,0
 tall_makeup_1_0p05_0p24_0p96_120,staged_first_breach,0,0,0,0,1,0,0,0,0,0
+tall_makeup_1_0p05_0p24_0p96_120,staged_union_trend_confirmation,0,0,0,0,3,0,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,persistence,1,0,1,0,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,trend,1,1,1,1,57,0.21571419288248705,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,trend_calibrated,1,0,1,0,4,0,0,0,0,0
@@ -199,6 +218,7 @@ tall_makeup_1_0p05_0p24_1p28_120,nearest_temperature_rearm,1,0,1,0,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,1,0,1,0,0,0,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,lowest_station_descent_fallback,1,1,1,1,3,0.21571419288248705,0,0,0,0
 tall_makeup_1_0p05_0p24_1p28_120,staged_first_breach,1,1,1,1,3,0.21571419288248705,0,0,0,0
+tall_makeup_1_0p05_0p24_1p28_120,staged_union_trend_confirmation,1,1,1,1,3,0.21571419288248705,0,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,persistence,4,0,4,0,0,0,0,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,trend,4,3,4,3,30,2.6611500724823323,2,1,1,1
 tall_makeup_6_0p02_0p16_1p28_120,trend_calibrated,4,1,4,1,3,0.4501673860504134,0,0,0,0
@@ -209,6 +229,7 @@ tall_makeup_6_0p02_0p16_1p28_120,nearest_temperature_rearm,4,0,4,0,0,0,0,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,nearest_temperature_rearm_lowest_station,4,0,4,0,0,0,0,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,lowest_station_descent_fallback,4,0,4,0,0,0,0,0,0,0
 tall_makeup_6_0p02_0p16_1p28_120,staged_first_breach,4,1,4,1,0,0.4501673860504134,0,0,0,0
+tall_makeup_6_0p02_0p16_1p28_120,staged_union_trend_confirmation,4,1,4,1,0,0.4501673860504134,0,0,0,0
 tall_makeup_6_0p02_0p24_1p28_120,persistence,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p02_0p24_1p28_120,trend,1,1,1,1,25,0.45519445238532796,0,0,0,0
 tall_makeup_6_0p02_0p24_1p28_120,trend_calibrated,1,0,1,0,4,0,0,0,0,0
@@ -219,6 +240,7 @@ tall_makeup_6_0p02_0p24_1p28_120,nearest_temperature_rearm,1,1,1,1,5,0.455194452
 tall_makeup_6_0p02_0p24_1p28_120,nearest_temperature_rearm_lowest_station,1,1,1,1,5,0.45519445238532796,0,0,0,0
 tall_makeup_6_0p02_0p24_1p28_120,lowest_station_descent_fallback,1,1,1,1,5,0.45519445238532796,0,0,0,0
 tall_makeup_6_0p02_0p24_1p28_120,staged_first_breach,1,0,1,0,4,0,0,0,0,0
+tall_makeup_6_0p02_0p24_1p28_120,staged_union_trend_confirmation,1,1,1,1,4,0.45519445238532796,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,persistence,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,trend,1,1,1,1,32,0.48571866106809125,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,trend_calibrated,1,0,1,0,4,0,0,0,0,0
@@ -229,6 +251,7 @@ tall_makeup_6_0p05_0p16_1p28_120,nearest_temperature_rearm,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,nearest_temperature_rearm_lowest_station,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,lowest_station_descent_fallback,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p16_1p28_120,staged_first_breach,1,0,1,0,0,0,0,0,0,0
+tall_makeup_6_0p05_0p16_1p28_120,staged_union_trend_confirmation,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,persistence,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,trend,1,1,1,1,18,0.9468574887011272,1,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,trend_calibrated,1,0,1,0,1,0,0,0,0,0
@@ -239,6 +262,7 @@ tall_makeup_6_0p05_0p24_1p28_120,nearest_temperature_rearm,1,0,1,0,2,0,0,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,nearest_temperature_rearm_lowest_station,1,0,1,0,2,0,0,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,lowest_station_descent_fallback,1,0,1,0,2,0,0,0,0,0
 tall_makeup_6_0p05_0p24_1p28_120,staged_first_breach,1,0,1,0,2,0,0,0,0,0
+tall_makeup_6_0p05_0p24_1p28_120,staged_union_trend_confirmation,1,0,1,0,2,0,0,0,0,0
 tall_makeup_6_0p1_0p16_1p28_120,persistence,3,0,3,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p16_1p28_120,trend,3,2,3,2,15,1.5839330569418166,1,1,1,0
 tall_makeup_6_0p1_0p16_1p28_120,trend_calibrated,3,1,3,1,3,0.47116399054499425,0,0,0,0
@@ -249,6 +273,7 @@ tall_makeup_6_0p1_0p16_1p28_120,nearest_temperature_rearm,3,2,3,2,2,1.3046177142
 tall_makeup_6_0p1_0p16_1p28_120,nearest_temperature_rearm_lowest_station,3,2,3,2,2,1.304617714265369,1,1,1,0
 tall_makeup_6_0p1_0p16_1p28_120,lowest_station_descent_fallback,3,2,3,2,2,1.304617714265369,1,1,1,0
 tall_makeup_6_0p1_0p16_1p28_120,staged_first_breach,3,3,3,3,4,1.7757817048103632,1,1,1,0
+tall_makeup_6_0p1_0p16_1p28_120,staged_union_trend_confirmation,3,3,3,3,4,1.7757817048103632,1,1,1,0
 tall_makeup_6_0p1_0p24_1p28_120,persistence,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p24_1p28_120,trend,1,0,1,0,34,0,0,0,0,0
 tall_makeup_6_0p1_0p24_1p28_120,trend_calibrated,1,0,1,0,5,0,0,0,0,0
@@ -259,6 +284,7 @@ tall_makeup_6_0p1_0p24_1p28_120,nearest_temperature_rearm,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p24_1p28_120,nearest_temperature_rearm_lowest_station,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p24_1p28_120,lowest_station_descent_fallback,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p24_1p28_120,staged_first_breach,1,0,1,0,0,0,0,0,0,0
+tall_makeup_6_0p1_0p24_1p28_120,staged_union_trend_confirmation,1,0,1,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p32_1p28_120,persistence,13,0,13,0,0,0,0,0,0,0
 tall_makeup_6_0p1_0p32_1p28_120,trend,13,10,13,10,57,7.312239362736349,3,2,3,2
 tall_makeup_6_0p1_0p32_1p28_120,trend_calibrated,13,4,13,4,16,2.7665278396566464,1,1,1,1
@@ -269,3 +295,4 @@ tall_makeup_6_0p1_0p32_1p28_120,nearest_temperature_rearm,13,5,13,5,17,3.0540344
 tall_makeup_6_0p1_0p32_1p28_120,nearest_temperature_rearm_lowest_station,13,5,13,5,11,3.0540344026975177,2,1,2,0
 tall_makeup_6_0p1_0p32_1p28_120,lowest_station_descent_fallback,13,5,13,5,11,3.0540344026975177,2,1,2,0
 tall_makeup_6_0p1_0p32_1p28_120,staged_first_breach,13,5,13,5,12,3.0540344026975177,2,1,2,0
+tall_makeup_6_0p1_0p32_1p28_120,staged_union_trend_confirmation,13,5,13,5,12,3.0540344026975177,2,1,2,0

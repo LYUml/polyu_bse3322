@@ -167,6 +167,12 @@ def main():
             staged[before_breach] = (lowest_station & (first_score(test) > first_cutoff))[before_breach]
         rows.append(dict(case=name, method='staged_first_breach',
                          **evaluate(test, staged, rearm_on_recovery=True)))
+        agree = staged & fallback_alarms
+        either = staged | fallback_alarms
+        projected_breach = test['trend_score'] > 0
+        rows.append(dict(case=name, method='staged_union_trend_confirmation',
+                         **evaluate(test, agree | (either & projected_breach),
+                                    rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
