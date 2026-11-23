@@ -1,5 +1,6 @@
 """Nested whole-design comparison for the minimum across all stations and times."""
 import csv
+import json
 import math
 from collections import defaultdict
 
@@ -80,6 +81,18 @@ def main():
     save(HERE/'minimum_risk_holdouts.csv',rows)
     save(HERE/'minimum_stack_holdouts.csv',stacked_rows)
     save(HERE/'minimum_neighbor_holdouts.csv',neighbor_rows)
+    frozen = json.loads((HERE/'hybrid_frozen_1p12.json').read_text())
+    prospective = []
+    for forecast in frozen['cases']:
+        name = forecast['case']
+        if name in cases:
+            observed = float(cases[name]['y'].min())
+            errors = {key.removesuffix('_m')+'_error_m': forecast[key]-observed
+                      for key in ('pinn_m', 'direct_m', 'hybrid_m')}
+            prospective.append(dict(**forecast, recorded_utc=frozen['recorded_utc'],
+                                    actual_m=observed, **errors))
+    if prospective:
+        save(HERE/'minimum_prospective.csv', prospective)
     actual=np.array([r['actual_m'] for r in rows])
     for key in ['pinn_m','direct_m','hybrid_m','lower_m']:
         pred=np.array([r[key] for r in rows])
