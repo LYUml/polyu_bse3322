@@ -91,7 +91,9 @@ def evaluate(case, alarms, event_leads=None, *, rearm_on_recovery=False):
                 hits+=1
                 short_hits+=int(b-a<=2)
     return dict(events=count,hits=hits,short_events=short,short_hits=short_hits,
-                false_alarms=false,lead_sum_s=sum(leads))
+                false_alarms=false,lead_sum_s=sum(leads),
+                hits_at_least_half_second=sum(lead >= .5 for lead in leads),
+                hits_at_least_one_second=sum(lead >= 1 for lead in leads))
 
 
 def main():
