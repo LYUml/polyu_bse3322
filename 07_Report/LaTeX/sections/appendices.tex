@@ -61,3 +61,24 @@ For the refined OP-6 low-flow case, the corrected forecast frozen before complet
 A separate two-second warning test used observations from running simulations. At a retrospectively matched count of 33 false alarms, local-height and multistation-temperature models detected the same four of 25 short events, with a mean lead of 0.73~s.
 
 \reportfigure{\includegraphics[width=.90\linewidth]{../../09_PINN_Layer/eight_stations.png}}{Figure E1. FDS and PINN thermal layer heights across the eight sampled columns. The far-end station is enlarged in Figure 5.}
+
+\clearpage
+\reportheading{Appendix F.\quad Window sensitivity and layout holdouts}
+\tabletitle{Table F1. OP-6 board model at 106.2 kW compared with Peng Fig.~9. Peak position is relative to the burner.}
+\begin{reporttable}{L{.18}L{.20}L{.20}L{.22}L{.20}}
+\rowcolor{tablegrey}Window (s)&Peak rise (K)&Peak $x$ (m)&R1-side bias (K)&RMSE (K)\\
+90--105&858.2&$-0.40$&$-119.9$&107.8\\
+105--120&901.3&$-0.30$&$-105.1$&95.0\\
+90--120&876.0&$-0.30$&$-112.5$&100.7\\
+\end{reporttable}
+\tablenote{The measured peak was 890.8 K at $-0.20$ m. Bias averages model minus experiment over the 24 stations from $+1.0$ to $+3.3$ m. RMSE uses all 51 stations. The main comparison uses 90--120 s throughout.}
+
+\medskip
+\tabletitle{Table F2. Minimum-height forecasts with each inlet-layout family excluded from training. Classification threshold 0.38 m.}
+\begin{reporttable}{L{.31}L{.23}L{.23}L{.23}}
+\rowcolor{tablegrey}Estimator&MAE (cm)&Missed breaches&False alarms\\
+Corrected PINN&9.43&14/14&0/19\\
+Ridge regression&8.87&14/14&0/19\\
+Nearest neighbour&9.59&14/14&0/19\\
+\end{reporttable}
+\tablenote{MAE uses 27 completed runs. Classification also includes six runs stopped after an observed breach, giving 33 decisions. Each estimator classified all 33 as passing. Section~5 separately reports holdouts of individual designs.}
