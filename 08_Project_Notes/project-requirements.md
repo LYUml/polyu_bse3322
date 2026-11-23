@@ -89,3 +89,5 @@ Each listed suffix identifies a local FDS case under the indicated prefix. The c
 | 48 | op6_106 | 106.2 | coarse, medium, board_doorflow, doorfield, doorflow |
 
 The 20 completed numerical runs cover four distinct experimental conditions. Assignment Table 1 supplies four HRRs across both group parities. Using all four for two door states gives eight combinations, but the even-group labels select two HRRs. Neither the table nor the experimental paper identifies a further four Group 18 conditions. The paper reports three experimental repetitions per condition. The submitted count therefore records physical conditions and numerical variants separately.
+
+At 1.12 m³/s all six fixed-door refined cases completed 120 s with zero sampled excursions at eight stations. The lowest interface was 0.4358 m at x = 6.1 m, t = 113.0 s, in OP-6 at soot yield 0.05. This supports the intermediate preset at an estimated 6.91 W for the short branches. [Limiting case](../05_Calculations/inlet48_6_0p05_0p24_1p12_z38_120_stations.csv)
