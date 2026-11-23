@@ -6,7 +6,7 @@ from collections import defaultdict
 
 import numpy as np
 
-from margin_monitor import HERE, LIMIT, X, design, load_complete, model, save
+from margin_monitor import HERE, LIMIT, PATTERN, X, design, load_complete, model, save
 
 
 def estimate(train, test):
@@ -25,6 +25,24 @@ def nearest_designs(groups, outer):
     other_groups = [g for g in groups if g != outer]
     distances = np.linalg.norm(np.array(other_groups) - outer, axis=1)
     return [g for g,d in zip(other_groups, distances) if np.isclose(d, distances.min())]
+
+
+def geometry_holdouts(cases):
+    families = {name: PATTERN.fullmatch(name).group(1) for name in cases}
+    rows = []
+    for family in sorted(set(families.values())):
+        train = [case for name, case in cases.items() if families[name] != family]
+        minima = defaultdict(list)
+        for case in train:
+            minima[tuple(case['design'][:-1])].append(case['y'].min())
+        median = np.median([np.mean(values) for values in minima.values()])
+        for name, case in cases.items():
+            if families[name] == family:
+                pinn, direct, hybrid = estimate(train, name)
+                rows.append(dict(case=name, held_out_family=family, training_designs=len(minima),
+                                 actual_m=case['y'].min(), training_median_m=median,
+                                 pinn_m=pinn, direct_m=direct, hybrid_m=hybrid))
+    return rows
 
 
 def main():
@@ -81,6 +99,7 @@ def main():
     save(HERE/'minimum_risk_holdouts.csv',rows)
     save(HERE/'minimum_stack_holdouts.csv',stacked_rows)
     save(HERE/'minimum_neighbor_holdouts.csv',neighbor_rows)
+    save(HERE/'minimum_geometry_holdouts.csv', geometry_holdouts(cases))
     frozen = json.loads((HERE/'hybrid_frozen_1p12.json').read_text())
     prospective = []
     for forecast in frozen['cases']:
