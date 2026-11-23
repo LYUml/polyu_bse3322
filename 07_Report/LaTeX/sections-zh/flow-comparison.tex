@@ -1,15 +1,29 @@
 \reportfigure{\begin{tikzpicture}
-\begin{axis}[width=.96\linewidth,height=5.9cm,xmin=.6,xmax=6.4,ymin=.36,ymax=.61,
-ylabel={最低高度 (m)},xtick={1,2,3,4,5,6},
-xticklabels={{OP-1\\0.02},{OP-1\\0.05},{OP-1\\0.10},{OP-6\\0.02},{OP-6\\0.05},{OP-6\\0.10}},
-xticklabel style={align=center,font=\sffamily\small},ytick={.38,.42,.46,.50,.54,.58},
-scaled ticks=false,yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=2},
-axis lines*=left,ymajorgrids,grid style={ink!13},tick align=outside,
-legend style={at={(.5,1.03)},anchor=south,draw=none,font=\sffamily\small},/tikz/every even column/.append style={column sep=5pt},legend columns=3]
-\addplot[only marks,mark=*,color=teal,mark size=2.5pt] coordinates {(1,0.45742963) (2,0.47169434) (3,0.44104958) (4,0.39573017) (5,0.52617570) (6,0.40609647)};
-\addlegendentry{0.96 m$^3$/s}
-\addplot[only marks,mark=triangle*,color=rust,mark size=3pt] coordinates {(1,0.44252295) (2,0.50930185) (3,0.50127480) (4,0.58267633) (5,0.49747471) (6,0.55033156)};
-\addlegendentry{1.28 m$^3$/s}
-\addplot[ink!75,dashed] coordinates {(.6,.38) (6.4,.38)};
-\addlegendentry{0.38 m 阈值}
-\end{axis}\end{tikzpicture}}{图 4.\quad 原网格八个测点在 120~s 内的最低高度。每对标记对应同一门态和烟炱产率（kg/kg）。低风量、OP-6、产率 0.02~kg/kg 的点最接近阈值。}
+\pgfplotsset{flowpanel/.style={
+ scale only axis,height=3.35cm,ymin=.35,ymax=.62,ytick={.38,.44,.50,.56,.62},
+ scaled ticks=false,yticklabel style={/pgf/number format/fixed,/pgf/number format/precision=2},
+ ymajorgrids,grid style={ink!13},tick align=outside,title style={font=\sffamily\small\bfseries},
+ tick label style={font=\sffamily\scriptsize},label style={font=\sffamily\scriptsize}}}
+\begin{axis}[flowpanel,name=original,width=.47\linewidth,xmin=.55,xmax=6.45,
+ title={(a) 原网格：六工况筛选},ylabel={最低净高 (m)},
+ xtick={1,2,3,4,5,6},xticklabels={0.02,0.05,0.10,0.02,0.05,0.10},
+ clip=false,legend style={at={(.50,.99)},anchor=north,font=\sffamily\scriptsize,fill=white},
+ legend columns=2]
+\addplot[only marks,mark=*,teal,mark size=1.9pt] coordinates {(1,.45742963) (2,.47169434) (3,.44104958) (4,.39573017) (5,.52617570) (6,.40609647)};
+\addlegendentry{0.96}
+\addplot[only marks,mark=triangle*,rust,mark size=2.4pt] coordinates {(1,.44252295) (2,.50930185) (3,.50127480) (4,.58267633) (5,.49747471) (6,.55033156)};
+\addlegendentry{1.28}
+\addplot[ink!70,dashed] coordinates {(.55,.38)(6.45,.38)};
+\node[anchor=north,font=\sffamily\scriptsize] at (axis description cs:.25,-.15) {OP-1};
+\node[anchor=north,font=\sffamily\scriptsize] at (axis description cs:.75,-.15) {OP-6};
+\end{axis}
+\begin{axis}[flowpanel,at={(original.east)},anchor=west,xshift=.065\linewidth,
+ width=.34\linewidth,xmin=.65,xmax=3.35,title={(b) 细网格：OP-6，产率 0.02},
+ xtick={1,2,3},xticklabels={0.96,1.12,1.28},xlabel={排烟量 (m$^3$/s)},yticklabels=\empty]
+\addplot[ink!70,dashed] coordinates {(.65,.38)(3.35,.38)};
+\addplot[only marks,mark=*,teal,mark size=2.3pt] coordinates {(1,.37169)};
+\addplot[only marks,mark=diamond*,ink,mark size=3pt] coordinates {(2,.5522)};
+\addplot[only marks,mark=triangle*,rust,mark size=2.6pt] coordinates {(3,.5429)};
+\node[anchor=south,font=\sffamily\scriptsize] at (axis cs:2,.558) {0.5522 m};
+\end{axis}
+\end{tikzpicture}}{图 4.\quad 两阶段 FDS 风量比较，虚线为 0.38~m 限值。(a) 原网格比较 0.96 和 1.28~m$^3$/s，横轴按门态和烟炱产率（kg/kg）分组。(b) 在同一细网格和工况下，0.96~m$^3$/s 在 98~s 越限即停止；1.12 和 1.28~m$^3$/s 均完成 120~s。1.12~m$^3$/s 的六工况复核见图 5。}
