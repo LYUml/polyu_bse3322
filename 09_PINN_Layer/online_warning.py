@@ -170,9 +170,15 @@ def main():
         agree = staged & fallback_alarms
         either = staged | fallback_alarms
         projected_breach = test['trend_score'] > 0
+        confirmed = agree | (either & projected_breach)
         rows.append(dict(case=name, method='staged_union_trend_confirmation',
-                         **evaluate(test, agree | (either & projected_breach),
-                                    rearm_on_recovery=True)))
+                         **evaluate(test, confirmed, rearm_on_recovery=True)))
+        # Retrospective candidate for the 6.1 m station, using its 4.9 m neighbor.
+        neighbor_at_ceiling = heights[:, -2] == H
+        filtered = confirmed.copy()
+        filtered[1:, -1] &= ~(neighbor_at_ceiling[:-1] & neighbor_at_ceiling[1:])
+        rows.append(dict(case=name, method='downstream_neighbor_ceiling',
+                         **evaluate(test, filtered, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
