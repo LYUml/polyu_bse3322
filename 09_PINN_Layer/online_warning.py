@@ -179,6 +179,15 @@ def main():
         filtered[1:, -1] &= ~(neighbor_at_ceiling[:-1] & neighbor_at_ceiling[1:])
         rows.append(dict(case=name, method='downstream_neighbor_ceiling',
                          **evaluate(test, filtered, rearm_on_recovery=True)))
+        # Retrospective window measured from the last below-limit sample at each station.
+        last_below = np.maximum.accumulate(np.where(heights < LIMIT, times[:, None], -np.inf), axis=0)
+        recently_recovered = (heights >= LIMIT) & (times[:, None] - last_below <= 10.)
+        descending = test['features'][:, :, 1] > 0
+        repeat_alert = recently_recovered & lowest_station & projected_breach & descending
+        repeat_alert[0] = False
+        repeat_alert[1:] &= descending[:-1]
+        rows.append(dict(case=name, method='recent_recovery_descent',
+                         **evaluate(test, filtered | repeat_alert, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
