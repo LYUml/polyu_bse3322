@@ -115,20 +115,31 @@ def main():
                          **evaluate(test, methods['height_and_temperature'], rearm_on_recovery=True)))
         neighbors = nearest_designs(minima, tuple(test['design'][:-1]))
         alarms = np.zeros_like(test['eligible'])
-        if np.mean([np.mean(minima[g]) for g in neighbors]) < LIMIT:
+        screen_positive = np.mean([np.mean(minima[g]) for g in neighbors]) < LIMIT
+        if screen_positive:
             score, cutoff = fit_warning(train, 6, quantile=.9985)
             alarms = score(test) > cutoff
         rows.append(dict(case=name, method='nearest_temperature_rearm',
                          **evaluate(test, alarms, rearm_on_recovery=True)))
         times = test['t']
         heights = complete[name]['y']
-        first_station_alarms = np.zeros_like(alarms)
+        lowest_station = np.zeros_like(alarms)
         for end, start in enumerate(np.searchsorted(times, times - HORIZON)):
             # Ties go to the first station in the existing station order.
             station = np.argmin(heights[start:end + 1].min(axis=0))
-            first_station_alarms[end, station] = alarms[end, station]
+            lowest_station[end, station] = True
+        first_station_alarms = lowest_station & alarms
         rows.append(dict(case=name, method='nearest_temperature_rearm_lowest_station',
                          **evaluate(test, first_station_alarms, rearm_on_recovery=True)))
+        fallback_alarms = first_station_alarms
+        if not screen_positive:
+            dt = np.r_[0, np.diff(times)][:, None]
+            speed = test['features'][:, :, 1]
+            prior_speed = np.vstack([np.zeros_like(speed[:1]), speed[:-1]])
+            fallback_alarms = (lowest_station & (heights <= .50) & (prior_speed > 0)
+                               & (heights - dt * speed < LIMIT))
+        rows.append(dict(case=name, method='lowest_station_descent_fallback',
+                         **evaluate(test, fallback_alarms, rearm_on_recovery=True)))
     save(HERE/'online_warning_scores.csv',rows)
     for method in dict.fromkeys(r['method'] for r in rows):
         subset=[r for r in rows if r['method']==method]
