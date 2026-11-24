@@ -26,20 +26,8 @@ OP-6&106.2&0.095&0.098&361.4\\
 \end{reporttable}
 \input{sections/door-profiles}
 \clearpage
-\reportheading{Appendix C.\quad Original OP-6 search}
-\tabletitle{C1. Sampled height margin (mm) as a function of curtain depth and flow.}
-\begin{reporttable}{L{.28}L{.18}L{.18}L{.18}L{.18}}
-\rowcolor{tablegrey}Curtain depth&\multicolumn{4}{c}{Total flow (m$^3$/s)}\\
-(m)&0.08&0.16&0.24&0.32\\
-0.00&$-334$&$-331$&$-295$&$-289$\\
-0.08&$-336$&$-331$&$-288$&$-294$\\
-0.16&$-335$&$-331$&$-296$&$-285$\\
-0.24&$-336$&$-337$&$-294$&$-302$\\
-\end{reporttable}
-\input{sections/replay-comparison}
-\clearpage
-\reportheading{Appendix D.\quad Paired-flow data coverage}
-\tabletitle{Table D1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
+\reportheading{Appendix C.\quad Paired-flow data coverage}
+\tabletitle{Table C1. Minimum thermal interface height (m) across eight stations, 0--120~s, original grid. The target is 0.380~m.}
 \begin{reporttable}{L{.23}L{.23}L{.27}L{.27}}
 \rowcolor{tablegrey}Door state&Soot (kg/kg)&0.96 m$^3$/s&1.28 m$^3$/s\\
 OP-1&0.02&0.4574&\textbf{0.4425}\\
@@ -49,9 +37,9 @@ OP-6&0.02&\textbf{0.3957}&0.5827\\
 OP-6&0.05&0.5262&0.4975\\
 OP-6&0.10&0.4061&0.5503\\
 \end{reporttable}
-The 1.28~m$^3$/s minima in Table D1 were checked against raw histories and completion logs. Mean delivered power was 103.6--104.1~kW over 90--120~s. At 0.96~m$^3$/s the archived eight-station records cover 120~s in all six cases (minimum visibility 12.33~m, peak CO 22.82~ppm). Some local raw folders contain earlier interrupted runs. The refined OP-1 baseline-soot minimum at 1.28~m$^3$/s (0.5879~m) also uses an archived station summary. The local raw record ends at 20~s.
+The 1.28~m$^3$/s minima in Table C1 were checked against raw histories and completion logs. Mean delivered power was 103.6--104.1~kW over 90--120~s. At 0.96~m$^3$/s the archived eight-station records cover 120~s in all six cases (minimum visibility 12.33~m, peak CO 22.82~ppm). Some local raw folders contain earlier interrupted runs. The refined OP-1 baseline-soot minimum at 1.28~m$^3$/s (0.5879~m) also uses an archived station summary. The local raw record ends at 20~s.
 
-\tabletitle{Table D2. Revised layout, OP-6, soot yield 0.02, 38-cell vertical grid. The minimum is taken over all eight stations in the recorded interval.}
+\tabletitle{Table C2. Revised layout, OP-6, soot yield 0.02, 38-cell vertical grid. The minimum is taken over all eight stations in the recorded interval.}
 \begin{reporttable}{L{.20}L{.22}L{.21}L{.37}}
 \rowcolor{tablegrey}$Q$ (m$^3$/s)&Fan input (W)&Minimum (m)&FDS record\\
 0.96&4.35&0.3717&Breach at 98.0 s\\
@@ -59,14 +47,14 @@ The 1.28~m$^3$/s minima in Table D1 were checked against raw histories and compl
 1.28&10.32&0.5429&Complete, 120 s\\
 \end{reporttable}
 
-The power values in Table D2 cover both short branches at the assumed efficiency of 0.60 (Section~2.2). Of the feasible settings in that table, 1.12~m$^3$/s requires the least power. Table D3 gives the lowest of the eight station readings for each of the six completed runs at this flow.
-\tabletitle{Table D3. Refined-grid evidence at 1.12~m$^3$/s. The clearance threshold is 0.38~m.}
+The power values in Table C2 cover both short branches at the assumed efficiency of 0.60 (Section~2.2). Of the feasible settings in that table, 1.12~m$^3$/s requires the least power. Table C3 gives the lowest of the eight station readings for each of the six completed runs at this flow.
+\tabletitle{Table C3. Refined-grid evidence at 1.12~m$^3$/s. The clearance threshold is 0.38~m.}
 \begin{reporttable}{L{.16}L{.18}L{.21}L{.22}L{.23}}
 \rowcolor{tablegrey}Door&Soot (kg/kg)&Status&Record (s)&Minimum (m)\\
 \csname @@input\endcsname sections/intermediate-coverage.tex
 \end{reporttable}
 \clearpage
-\reportheading{Appendix E.\quad Surrogate event scoring}
+\reportheading{Appendix D.\quad Surrogate event scoring}
 The physics-informed extreme learning machine (PIELM)~\cite{pielm} used 96 fixed tanh units and a least-squares output fit with ridge coefficient 0.1. Following the control-volume approach of zone models~\cite{cfast}, a simplified upper-layer volume balance constrained the weighted mean layer thickness under an assumption of lateral uniformity. A short event was a continuous excursion below 0.38~m at one station lasting at most 2~s. An event counted as a match when the intersection of the predicted and observed intervals covered at least half their union, with one-to-one matching. Linear interpolation between device records approximately 0.5~s apart limits the precision of short event durations.
 \subhead{Testing the minimum-height decision directly}
 On the earlier 20-case, 19-cell vertical grid cohort, whole-design holdout error in minimum height fell from 27.03 to 8.26~cm after fitting a station-minimum correction. Missed breaches fell from eight to six of eight, with one false alarm among twelve passing runs. Section~5 gives the expanded comparison.
@@ -81,14 +69,14 @@ Whole designs were held out from 16 original-layout and six raised-inlet OP-6 ca
 At soot yield 0.10 and curtain depth 0.32~m the PINN predicted 0.619~m against an FDS minimum of 0.267~m. Threshold weighting matched 0 of 178 short events. Reconstructing the layer from 19 temperatures per column flagged the curtain case and matched 0 of 13 intervals. On the original 16 designs, averaging the reconstruction with the PINN reduced curve MAE from 4.55 to 4.26~cm and matched 0 of 167 short events.
 
 \clearpage
-\reportheading{Appendix E (continued)\quad Station histories and the far-end breach}
+\reportheading{Appendix D (continued)\quad Station histories and the far-end breach}
 \input{sections/eight-stations}
 \input{sections/surrogate-event}
 Across the six raised-inlet OP-6 holdouts, 82.7\% of the 11,568 station-time records were at 0.76~m. PINN curve MAE was 1.68~cm overall, 4.75~cm for the 2,001 records with FDS height below 0.76~m and 10.09~cm for the 553 records at least 5~cm below 0.76~m. Whole-curve MAE on the 16 original designs was 4.55~cm. Linear regression on the same folds gave 1.48 and 3.89~cm for the raised-inlet and original layouts, respectively.
 
 \clearpage
-\reportheading{Appendix F.\quad Sensitivity tests and layout holdouts}
-\tabletitle{Table F1. OP-6 board model at 106.2 kW compared with Peng et al., Fig.~9~\cite{peng}. Peak position is relative to the burner.}
+\reportheading{Appendix E.\quad Sensitivity tests and layout holdouts}
+\tabletitle{Table E1. OP-6 board model at 106.2 kW compared with Peng et al., Fig.~9~\cite{peng}. Peak position is relative to the burner.}
 \begin{reporttable}{L{.18}L{.20}L{.20}L{.22}L{.20}}
 \rowcolor{tablegrey}Window (s)&Peak rise (K)&Peak $x$ (m)&R1-side bias (K)&RMSE (K)\\
 90--105&858.2&$-0.40$&$-119.9$&107.8\\
@@ -98,7 +86,7 @@ Across the six raised-inlet OP-6 holdouts, 82.7\% of the 11,568 station-time rec
 \tablenote{The measured peak was 890.8 K at $-0.20$ m. Bias averages model minus experiment over the 24 stations from $+1.0$ to $+3.3$ m. RMSE uses all 51 stations. The main comparison uses 90--120 s throughout.}
 
 \medskip
-\tabletitle{Table F2. Minimum-height forecasts with each inlet-layout family excluded from training. Classification threshold 0.38 m.}
+\tabletitle{Table E2. Minimum-height forecasts with each inlet-layout family excluded from training. Classification threshold 0.38 m.}
 \begin{reporttable}{L{.31}L{.23}L{.23}L{.23}}
 \rowcolor{tablegrey}Estimator&MAE (cm)&Missed breaches&False alarms\\
 Corrected PINN&9.43&14/14&0/19\\

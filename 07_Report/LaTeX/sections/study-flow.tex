@@ -1,1 +1,8 @@
-\reportfigure{\includegraphics[width=.92\linewidth]{figures/study-workflow.pdf}}{Study workflow. Left: FDS tests of the revised layout (flow in m$^3$/s). Right: independent replays of archived results. Teal cells mark the best recorded design margin (GA example, seed 0).}
+\reportfigure{\begin{tikzpicture}[font=\sffamily\footnotesize,
+  stage/.style={draw=teal,fill=teal!7,rounded corners=3pt,align=center,minimum width=2.25cm,minimum height=.95cm}]
+\node[stage] (s0) at (0,0) {\textbf{Baseline FDS}\\Scenario data};
+\node[stage] (s1) at (2.66,0) {\textbf{BO / GA}\\Flow and depth};
+\node[stage] (s2) at (5.32,0) {\textbf{PINN screening}\\Eight heights};
+\node[stage] (s3) at (7.98,0) {\textbf{Refined FDS}\\Six scenarios};
+\foreach \a/\b in {0/1,1/2,2/3}{\draw[->,teal,thick] (s\a.east)--(s\b.west);}
+\end{tikzpicture}}{Staged solution of the joint design problem. Separate replays assess BO and GA on the original layout. After the layout trials, PINN provides clearance forecasts and refined FDS determines the recommended flow.}
