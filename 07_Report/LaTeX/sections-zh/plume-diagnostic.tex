@@ -6,4 +6,4 @@ legend style={at={(.5,1.02)},anchor=south}]
 \addplot[ink,only marks,mark=*,mark size=1.1pt] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{Peng 等}
 \addplot[teal,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=gas_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{FDS 气体}
 \addplot[rust,thick,dashed] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{FDS 热电偶}
-\end{axis}\end{tikzpicture}}{图 E1.\quad 47.2~kW、OP-1。绝热粗网格上，在顶棚下 20~mm 处同步采集气体与 1~mm 热电偶温度。实测曲线取自文献~\cite{peng} 图 9。模拟温升为 90--120~s 时间加权平均。}
+\end{axis}\end{tikzpicture}}{图 F1.\quad 47.2~kW、OP-1。绝热粗网格上，在顶棚下 20~mm 处同步采集气体与 1~mm 热电偶温度。实测曲线取自文献~\cite{peng} 图 9。模拟温升为 90--120~s 时间加权平均。}

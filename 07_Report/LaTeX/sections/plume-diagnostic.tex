@@ -6,4 +6,4 @@ legend style={at={(.5,1.02)},anchor=south}]
 \addplot[ink,only marks,mark=*,mark size=1.1pt] table[col sep=comma,x=figure_r_cm,y=exp_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{Peng et al.}
 \addplot[teal,thick] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=gas_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{FDS gas}
 \addplot[rust,thick,dashed] table[col sep=comma,x expr=\thisrow{model_x_cm}-330,y=fds_rise_K]{../../05_Calculations/op1_47_plume_diag_stations.csv};\addlegendentry{FDS thermocouple}
-\end{axis}\end{tikzpicture}}{Figure E1. OP-1 at 47.2 kW. Gas and 1 mm thermocouple temperatures were sampled together 20 mm below the ceiling on the adiabatic coarse grid. The 90--120~s time-weighted rises are compared with Peng et al.~\cite{peng}.}
+\end{axis}\end{tikzpicture}}{Figure F1. OP-1 at 47.2 kW. Gas and 1 mm thermocouple temperatures were sampled together 20 mm below the ceiling on the adiabatic coarse grid. The 90--120~s time-weighted rises are compared with Peng et al.~\cite{peng}.}

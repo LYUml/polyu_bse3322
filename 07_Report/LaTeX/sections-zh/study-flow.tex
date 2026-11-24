@@ -1,8 +1,1 @@
-\reportfigure{\begin{tikzpicture}[font=\sffamily\footnotesize,
-  stage/.style={draw=teal,fill=teal!7,rounded corners=3pt,align=center,minimum width=2.25cm,minimum height=.95cm}]
-\node[stage] (s0) at (0,0) {\textbf{基线 FDS}\\工况与净高};
-\node[stage] (s1) at (2.66,0) {\textbf{BO / GA}\\风量与帘深};
-\node[stage] (s2) at (5.32,0) {\textbf{PINN 预筛}\\预测八站净高};
-\node[stage] (s3) at (7.98,0) {\textbf{细网格 FDS}\\六工况核查};
-\foreach \a/\b in {0/1,1/2,2/3}{\draw[->,teal,thick] (s\a.east)--(s\b.west);}
-\end{tikzpicture}}{分阶段求解联合设计问题。原布局用独立回放评估 BO 和 GA。改布局试算后，PINN 为候选工况提供净高预测，细网格 FDS 确定推荐风量。}
+\reportfigure{\resizebox{.92\linewidth}{!}{\input{sections-zh/workflow-picture}}}{左栏为 FDS 筛选和风量决策。右栏为两项独立分析：BO/GA 回放设计顺序，代理模型预估工况最低净高。风量单位为 m$^3$/s。蓝绿色单元格标出回放中净高余量最大的方案（GA 示意采用随机种子 0）。回箭头表示可用代理模型安排未来 FDS 的检查顺序。}

@@ -1,7 +1,7 @@
-\reportheading{Appendix F.\quad FDS inputs for two representative runs}
+\reportheading{Appendix G.\quad FDS inputs for two representative runs}
 The propane example is the OP-6 coarse-grid benchmark at 106.2~kW. The propylene example is the OP-6 run at soot yield 0.05 that governs thermal clearance at the selected 1.12~m$^3$/s. Both used FDS 6.10.1, $27.5\,^{\circ}$C ambient air and an adiabatic default surface. Coordinates are in metres and measured from the model origin.
 
-\tabletitle{Table F1. Input settings checked against the two decks and solver records.}
+\tabletitle{Table G1. Input settings checked against the two decks and solver records.}
 \begin{reporttable}{L{.22}L{.38}L{.40}}
 \rowcolor{tablegrey}Setting & Propane benchmark & Propylene design\\
 Mesh and radiation & $132\times28\times19$, radiative fraction 0.29 & $132\times28\times38$, radiative fraction 0.37\\
@@ -18,13 +18,13 @@ The computational domain spans $x=0$--6.60, $y=0$--1.40 and $z=0$--0.76. The sid
 The floor burner spans $x=3.175$--3.425 and $y=0.325$--0.575 in the inputs. After alignment to the mesh it covers $5\times5$ horizontal cells of side 0.05~m in both runs, giving 0.0625~m$^2$. Both fire surfaces specify \texttt{HRRPUA} = 1699.2~kW/m$^2$ and use the FDS default startup factor $\tanh(t/1\,\mathrm{s})$~\cite{fdsuser}.
 
 \subhead{Exhaust setting and recorded flow}
-Each ceiling vent feeds an HVAC duct connected to an ambient node. Each duct has area 0.32~m$^2$, length 0.40~m and \texttt{VOLUME\_FLOW} = 0.56~m$^3$/s. The mean total recorded by the two \texttt{DUCT VOLUME FLOW} devices in this run was 1.11345~m$^3$/s over 0--120~s. Table~C3 reports the height check at the 1.12~m$^3$/s setpoint.
+Each ceiling vent feeds an HVAC duct connected to an ambient node. Each duct has area 0.32~m$^2$, length 0.40~m and \texttt{VOLUME\_FLOW} = 0.56~m$^3$/s. The mean total recorded by the two \texttt{DUCT VOLUME FLOW} devices in this run was 1.11345~m$^3$/s over 0--120~s. Table~D3 reports the height check at the 1.12~m$^3$/s setpoint.
 
 \clearpage
-\reportheading{Appendix G.\quad PINN training and minimum-height correction}
-The corrected PINN used in Section~5 fits the smoke-layer histories at eight FDS stations and then corrects the predicted minimum at each station. The model takes time and seven case inputs. All dimensions and flow rates in Table~G1 use m and m$^3$/s, respectively.
+\reportheading{Appendix H.\quad PINN training and minimum-height correction}
+The corrected PINN used in Section~5 fits the smoke-layer histories at eight FDS stations and then corrects the predicted minimum at each station. The model takes time and seven case inputs. All dimensions and flow rates in Table~H1 use m and m$^3$/s, respectively.
 
-\tabletitle{Table G1. Case inputs to the Section~5 surrogate.}
+\tabletitle{Table H1. Case inputs to the Section~5 surrogate.}
 \begin{reporttable}{L{.45}L{.55}}
 \rowcolor{tablegrey}Input & Value supplied to the model\\
 Left and right end-inlet heights, $a_L,a_R$ & $(a_L-0.44)/0.08$ and $(a_R-0.44)/0.08$\\

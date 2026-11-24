@@ -62,11 +62,27 @@ For a total volume flow $Q$ divided equally between the two short exhaust branch
 Each short branch has area $A=0.32$~m$^2$, length $L=0.40$~m and assumed hydraulic diameter $D_h=0.533$~m. The loss calculation takes air density $\rho=1.2$~kg/m$^3$, Darcy friction factor $f=0.02$ and local loss coefficient $K=2$. The two branches run in parallel, so the same pressure drop applies to each. Applying fan efficiency $\eta=0.60$ to the combined flow gives the electrical input for these branches alone.
 
 \subhead{Selection and verification of the design flow}
-For the flow selection we doubled the vertical cell count from 19 to 38 and retained the horizontal grid, inlet settings and curtains. The intermediate setting of 1.12~m$^3$/s lies halfway between the original flows. Figure~4b compares all three on the refined grid for OP-6 at baseline soot yield. Table~C3 checks the selected flow against the eight station histories over 120~s for each combination of door state and soot yield.
+For the flow selection we doubled the vertical cell count from 19 to 38 and retained the horizontal grid, inlet settings and curtains. The intermediate setting of 1.12~m$^3$/s lies halfway between the original flows. Figure~4b compares all three on the refined grid for OP-6 at baseline soot yield. Table~D3 checks the selected flow against the eight station histories over 120~s for each combination of door state and soot yield.
 \clearpage
-\subhead{2.3\quad Joint optimisation of the extraction system}
-Let $\mathbf d=(Q,\mathbf v_1,\mathbf v_2,\mathbf c_1,\mathbf c_2,d_c,H_1,H_6)$, where $Q$ is total exhaust flow, $\mathbf v_i$ are vent centres, $\mathbf c_i$ are curtain positions, $d_c$ is curtain depth and $H_1,H_6$ are end-inlet heights for OP-1 and OP-6.
-\input{sections/joint-formulation}
-Here $\mathcal D$ requires the vents to fit within the ceiling and between the curtains, and inlet heights and curtain depths to fit the compartment. $\mathcal S$ combines both door states with soot yields $0.02,0.05,0.10$~kg/kg. $h_{sj}$ is thermal layer height above the floor at station $j$ in scenario $s$, sampled at output times $t\in T_s$ over 120~s. The sum estimates electrical input for branches with flow $Q_i$, pressure loss $\Delta p_i$ and efficiency $\eta_i$.
+\subhead{2.3\quad Constrained optimisation of the extraction system}
+The brief specifies a minimum clear height and requires a power estimate for mechanical extraction. Group~18 chose minimum required fan input power as the design objective. Let $g$ denote a candidate layout, $Q$ the total extraction rate in m$^3$/s and $P$ the required electrical input in watts. We formulated the design problem as
+\begin{equation}
+\begin{aligned}
+\min_{g,Q,P}\quad &P\\
+\mathrm{s.t.}\quad
+ &h_{s,i,t}(g,Q)\geq 0.38\,\mathrm{m}
+       &&\forall s\in S,\ i\in I,\ t\in T_s,\\
+ &P\geq Q\,\Delta p_s(g,Q)/\eta_s(g,Q)
+       &&\forall s\in S,\\
+ &g\in G,\quad Q\in\mathcal Q(g),\quad P\geq0 .
+\end{aligned}
+\label{eq:design}
+\end{equation}
+$G$ contains the candidate vent, curtain and make-up layouts. A door-dependent inlet preset is part of $g$. One setting is specified in advance for each door state and applies to all soot yields in that state. The same $Q$ is selected from the tested flows $\mathcal Q(g)$ for every scenario. The six members of $S$ combine the two door states with the three soot yields. $I$ contains the eight station positions, and $T_s$ contains the stored device times over the full 120~s run. The first constraint tests every recorded station and time. The second sizes electrical input for the largest required power across the scenarios, with pressure drop $\Delta p_s$ in Pa and total efficiency $0<\eta_s\leq1$.
 
-The CFD cost motivated a staged search of this joint problem. Baseline FDS cases supplied the response data. Separate BO and GA replays tested how each method could search joint flow and curtain-depth choices. After the layout trials, PINN forecasts from earlier runs provided a screening estimate for the revised candidates, and refined FDS resolved feasibility. The archived trials cover subsets of $\mathcal D$.
+For the two equal-flow branches, we evaluate power using the short-branch loss estimate in Section~2.2. Remaining ductwork and equipment losses are unknown. We evaluate feasibility by enumerating the tested candidates and computing the worst sampled clearance,
+\[
+m(g,Q)=\min_{s\in S,\ i\in I,\ t\in T_s}
+           \{h_{s,i,t}(g,Q)-0.38\,\mathrm{m}\}.
+\]
+One negative margin excludes a design. A feasible design must have $m\geq0$ over the full set of records, after which its electrical input can be compared with that of other feasible designs. If every candidate falls short, the design with the largest margin provides a starting point for the next layout. The Bayesian and genetic searches in Section~5.2 are assessed on how soon they locate that design.
